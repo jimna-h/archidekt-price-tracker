@@ -125,8 +125,14 @@ def is_proxied(label):
 
 
 def price(prices, key, foil):
-    """Use the foil price for foil copies when there is one."""
-    value = prices.get(f"{key}Foil") if foil else None
+    """Use the foil price for foil copies, falling back to nonfoil only if there is none.
+
+    Archidekt names foil prices in lowercase ("tcgfoil", "ckfoil", "cmfoil"); the
+    camel-case spelling is checked too in case that ever changes.
+    """
+    value = None
+    if foil:
+        value = prices.get(f"{key}foil") or prices.get(f"{key}Foil")
     if not value:
         value = prices.get(key)
     return value if value not in (None, 0, -1, "") else ""

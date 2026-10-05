@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "17 13 * * *"   # once a day, 13:17 UTC (7:17am Mountain)
   workflow_dispatch:         # lets you run it by hand from the Actions tab
+  push:                      # re-snapshot today whenever the script changes
+    branches: [main]
+    paths: [track_prices.py]
 
 permissions:
   contents: write            # needed to commit the updated CSV
