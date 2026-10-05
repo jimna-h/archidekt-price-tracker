@@ -1,8 +1,11 @@
 # Archidekt Price Tracker
 
-A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https://archidekt.com) folder: the cards in each deck, their current prices, and whether each card is a proxy. Rows are appended to `data/prices.csv`, so the file builds up a price history over time. Deck names are kept separately in `data/decks.csv`.
+A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https://archidekt.com) folder: the cards in each deck, their current prices, and whether each card is a proxy. Rows are appended to `data/prices.csv`, so the file builds up a price history over time. Deck names and commanders are kept in `data/decks.csv`, and each card's type, mana value and color identity in `data/cards.csv`.
 
-`index.html` charts it all: each deck's value over time, card swaps between snapshots, and owned vs proxied value. Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
+`index.html` has two tabs:
+- **Prices**: each deck's value over time (total, paper and proxies), card swaps between snapshots, plus a whole-collection view and an average-deck view.
+- **Card index**: every card across all decks in the latest snapshot, with which decks run it. Filter by color identity, type, subtype, deck, commanders or proxies. (This replaces the old [edh-ledger](https://github.com/jimna-h/edh-ledger) project, reading the daily snapshot instead of manual imports.)
+ Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
 
 Builds on the Archidekt API approach from [LandBase](https://github.com/jimna-h/LandBase).
 
@@ -40,7 +43,17 @@ Decks are always identified by their Archidekt deck id.
 |---|---|
 | `deck_id` | Archidekt deck id |
 | `deck_name` | The deck's most recent name |
+| `commanders` | Cards in the deck's commander zone (Archidekt's premier category), separated by ` \| ` |
 | `last_seen` | Last date the deck was found in the folder |
+
+**`data/cards.csv`**: one row per card name, refreshed each run.
+
+| Column | Meaning |
+|---|---|
+| `card_name` | Card name |
+| `type_line` | e.g. `Legendary Artifact Creature — Human Soldier` (front face for double-faced cards) |
+| `mana_value` | Mana value |
+| `color_identity` | WUBRG letters, blank for colorless |
 
 Re-running on the same day replaces that day's rows rather than duplicating them.
 

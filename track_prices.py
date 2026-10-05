@@ -142,9 +142,17 @@ def price(prices, key, foil):
     return value if value not in (None, 0, -1, "") else ""
 
 
+# Printed order of card types, e.g. "Artifact Creature", "Enchantment Land", "Kindred Instant".
+TYPE_ORDER = ["Kindred", "Tribal", "Artifact", "Enchantment", "Land", "Planeswalker", "Battle", "Creature", "Instant", "Sorcery"]
+
+
+def type_order(card_type):
+    return TYPE_ORDER.index(card_type) if card_type in TYPE_ORDER else len(TYPE_ORDER)
+
+
 def card_info(oracle):
     """Type line, mana value and color identity (WUBRG letters) from Archidekt's card data."""
-    types = " ".join((oracle.get("superTypes") or []) + (oracle.get("types") or []))
+    types = " ".join((oracle.get("superTypes") or []) + sorted(oracle.get("types") or [], key=type_order))
     subtypes = " ".join(oracle.get("subTypes") or [])
     identity = {COLOR_CODES.get(str(c).lower(), str(c)[:1].upper()) for c in oracle.get("colorIdentity") or []}
     cmc = oracle.get("cmc")

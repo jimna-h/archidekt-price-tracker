@@ -57,7 +57,7 @@
   .sub { color: var(--text-secondary); margin-top: 2px; }
   .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   label.ctl { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; }
-  select, input[type=search] {
+  select, input[type=search], input[type=text] {
     font: inherit; color: var(--text-primary); background: var(--surface);
     border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; min-height: 34px;
   }
@@ -131,6 +131,35 @@
   .tip .row b { margin-left: auto; padding-left: 12px; }
   #deckTable tbody tr.pinned td:first-child { font-weight: 600; }
   #deckTable tbody tr.pinned-last td { border-bottom: 2px solid var(--axis); }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--grid); margin: -4px 0 16px; }
+  .tabs button { font: inherit; font-weight: 600; color: var(--text-secondary); background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; margin-bottom: -1px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--series-1); }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .filters input[type=search], .filters input[type=text] { min-width: 0; flex: 1 1 160px; max-width: 260px; }
+  .pip { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 700; border: 1px solid var(--border); color: #111; flex: none; }
+  .pip.W { background: #f8f1d4; } .pip.U { background: #a9d3ef; } .pip.B { background: #b9b2ad; }
+  .pip.R { background: #f1a487; } .pip.G { background: #9fd1a8; } .pip.C { background: #d7d5d0; }
+  .pips { display: inline-flex; gap: 2px; }
+  .ctoggles { display: inline-flex; gap: 4px; }
+  .ctoggles button { padding: 2px; border-radius: 50%; border: 2px solid transparent; background: none; cursor: pointer; opacity: 0.55; }
+  .ctoggles button[aria-pressed="true"] { border-color: var(--series-1); opacity: 1; }
+  details.dd { position: relative; }
+  details.dd summary { list-style: none; cursor: pointer; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; min-height: 34px; display: flex; align-items: center; gap: 6px; background: var(--surface); }
+  details.dd summary::-webkit-details-marker { display: none; }
+  details.dd .panel { position: absolute; z-index: 5; top: calc(100% + 4px); left: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.14); max-height: 320px; overflow: auto; min-width: 220px; }
+  #ixDeckDD .panel { left: auto; right: 0; }
+  details.dd .panel { max-width: calc(100vw - 32px); }
+  details.dd .panel label { display: flex; gap: 8px; align-items: center; padding: 4px 6px; border-radius: 6px; white-space: nowrap; cursor: pointer; }
+  details.dd .panel label:hover { background: var(--hover); }
+  .count-badge { font-size: 11px; background: var(--series-1); color: #fff; border-radius: 999px; padding: 0 6px; }
+  label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--text-secondary); font-size: 13px; cursor: pointer; }
+  button.ghost { font: inherit; font-size: 13px; color: var(--text-secondary); background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+  .result-line { color: var(--text-secondary); font-size: 13px; margin-top: 10px; }
+  .where { display: flex; flex-wrap: wrap; gap: 4px; }
+  .dchip { font-size: 11px; border: 1px solid var(--axis); border-radius: 999px; padding: 0 7px; color: var(--text-secondary); white-space: nowrap; }
+  .dchip.cmd { font-weight: 700; color: var(--text-primary); }
+  .dchip.proxy { border-style: dashed; }
+  #indexTable td { vertical-align: top; }
   .note { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
   .row-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
   .row-head h2 { margin: 0; }
@@ -156,9 +185,48 @@
 
   <div id="loadError" class="card empty" hidden>
     <div>Couldn't load <code>data/prices.csv</code> (opening this file directly from disk blocks that).</div>
-    <div>Pick <code>prices.csv</code> (and <code>decks.csv</code> for deck names) to view them:</div>
+    <div>Pick <code>prices.csv</code>, plus <code>decks.csv</code> and <code>cards.csv</code> if you have them:</div>
     <input type="file" id="fileInput" accept=".csv" multiple>
   </div>
+
+  <nav class="tabs" id="tabs" hidden>
+    <button data-view="pricesView" aria-selected="true">Prices</button>
+    <button data-view="indexView" aria-selected="false">Card index</button>
+  </nav>
+
+  <section id="indexView" hidden>
+    <div class="card">
+      <div class="filters">
+        <input type="search" id="ixSearch" placeholder="Search cards…">
+        <div class="ctoggles" id="ixColors" title="Color identity (matches any selected)"></div>
+        <details class="dd" id="ixTypeDD"><summary>Type <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
+        <input type="text" id="ixSubtype" placeholder="Subtype (e.g. Bird)">
+        <details class="dd" id="ixDeckDD"><summary>Decks <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
+        <label class="check"><input type="checkbox" id="ixCommanders"> Commanders only</label>
+        <label class="check"><input type="checkbox" id="ixProxies"> Proxied somewhere</label>
+        <button class="ghost" id="ixClear">Clear filters</button>
+      </div>
+      <div class="result-line" id="ixResult"></div>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table id="indexTable">
+          <thead><tr>
+            <th data-k="name">Card</th>
+            <th data-k="type">Type</th>
+            <th data-k="mv" class="num">MV</th>
+            <th data-k="color">Color</th>
+            <th data-k="decks" class="num">Decks</th>
+            <th data-k="qty" class="num">Copies</th>
+            <th data-k="price" class="num">Price</th>
+            <th>Where</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="note">From the most recent snapshot. Bold decks have the card as a commander; dashed ones run it as a proxy.</div>
+    </div>
+  </section>
 
   <section id="app" hidden>
     <div class="card">
@@ -270,9 +338,12 @@
   }
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
-  let deckNames = new Map();
-  function load(text, namesText) {
-    deckNames = new Map(namesText ? parseCSV(namesText).map(d => [d.deck_id, d.deck_name]) : []);
+  let deckNames = new Map(), deckCommanders = new Map(), cardInfo = new Map();
+  function load(text, namesText, cardsText) {
+    const deckRows = namesText ? parseCSV(namesText) : [];
+    deckNames = new Map(deckRows.map(d => [d.deck_id, d.deck_name]));
+    deckCommanders = new Map(deckRows.map(d => [d.deck_id, new Set((d.commanders || "").split(" | ").filter(Boolean))]));
+    cardInfo = new Map((cardsText ? parseCSV(cardsText) : []).map(c => [c.card_name, c]));
     rows = parseCSV(text);
     rows.forEach(r => { r.qty = +r.quantity || 0; r.key = `${r.card_name}|${r.set_code}|${r.finish}`; });
     dates = [...new Set(rows.map(r => r.date))].sort();
@@ -284,10 +355,12 @@
       d.byDate.get(r.date).push(r);
     }
     addCombinedDecks();
-    $("subtitle").textContent = `${realDecks().length} decks · ${dates.length} snapshot${dates.length === 1 ? "" : "s"} · ${fmtDate(dates[0])} – ${fmtDate(dates[dates.length - 1])}`;
-    $("app").hidden = false; $("loadError").hidden = true;
+    $("subtitle").textContent = `${realDecks().length} decks · ${dates.length} snapshot${dates.length === 1 ? "" : "s"} · ${dates.length === 1 ? fmtDate(dates[0]) : `${fmtDate(dates[0])} – ${fmtDate(dates[dates.length - 1])}`}`;
+    $("tabs").hidden = false; $("loadError").hidden = true;
+    showView(view);
     if (!(selected && decks.has(selected))) selected = ALL;
     render();
+    renderIndex();
   }
 
   // Two combined "decks" pinned above the real ones: the whole collection (every deck's
@@ -581,14 +654,125 @@
     markSort($("cardTable"), cardSort);
   }
 
+  // ---------- card index (from the most recent snapshot) ----------
+  let view = "pricesView";
+  const ix = { search: "", colors: new Set(), types: new Set(), subtype: "", decks: new Set(), commanders: false, proxies: false };
+  let ixSort = { k: "decks", dir: -1 };
+  const MAIN_TYPES = ["Creature", "Instant", "Sorcery", "Artifact", "Enchantment", "Planeswalker", "Battle", "Land", "Legendary", "Tribal", "Kindred"];
+
+  function showView(v) {
+    view = v;
+    $("app").hidden = v !== "pricesView"; $("indexView").hidden = v !== "indexView";
+    $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
+  }
+  $("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-view]"); if (b) showView(b.dataset.view); });
+
+  function indexCards() {
+    const latest = dates[dates.length - 1], byName = new Map();
+    for (const d of realDecks()) {
+      if (ix.decks.size && !ix.decks.has(d.id)) continue;
+      const list = d.byDate.get(latest); if (!list) continue;   // only decks in the latest pull
+      const cmds = deckCommanders.get(d.id) || new Set();
+      for (const r of list) {
+        let c = byName.get(r.card_name);
+        if (!c) {
+          const info = cardInfo.get(r.card_name) || {};
+          const [types, subtypes = ""] = (info.type_line || "").split(" — ");
+          byName.set(r.card_name, c = { name: r.card_name, type: info.type_line || "", types: types.split(" ").filter(Boolean), subtypes,
+            mv: info.mana_value === "" || info.mana_value == null ? null : +info.mana_value,
+            color: info.color_identity ?? null, qty: 0, price: null, perDeck: new Map(), commander: false, proxied: false });
+        }
+        c.qty += r.qty;
+        const p = priceOf(r); if (p != null && (c.price == null || p < c.price)) c.price = p;   // cheapest printing in use
+        const e = c.perDeck.get(d.id) || { qty: 0, cmd: false, proxy: false };
+        e.qty += r.qty; e.cmd ||= cmds.has(r.card_name); e.proxy ||= isProxy(r);
+        c.perDeck.set(d.id, e);
+        c.commander ||= e.cmd; c.proxied ||= e.proxy;
+      }
+    }
+    return [...byName.values()].map(c => ({ ...c, decks: c.perDeck.size }));
+  }
+
+  function ixMatches(c) {
+    if (ix.search && !c.name.toLowerCase().includes(ix.search)) return false;
+    if (ix.subtype && !c.subtypes.toLowerCase().includes(ix.subtype)) return false;
+    if (ix.colors.size) {
+      const id = c.color || "";
+      if (![...ix.colors].some(k => k === "C" ? id === "" && c.color != null : id.includes(k))) return false;
+    }
+    if (ix.types.size && !c.types.some(t => ix.types.has(t))) return false;
+    if (ix.commanders && !c.commander) return false;
+    if (ix.proxies && !c.proxied) return false;
+    return true;
+  }
+
+  const pipsHtml = id => id == null ? `<span class="muted">?</span>` :
+    `<span class="pips">${(id || "C").split("").map(k => `<span class="pip ${k}">${k}</span>`).join("")}</span>`;
+
+  function renderIndexFilters() {
+    const sorted = sortBy(realDecks().map(deckStats), { k: "name", dir: 1 });
+    const typesPresent = new Set([...cardInfo.values()].flatMap(c => (c.type_line || "").split(" — ")[0].split(" ")));
+    const box = (dd, items, set) => {
+      dd.querySelector(".panel").innerHTML = items.map(([v, label]) =>
+        `<label><input type="checkbox" value="${esc(v)}" ${set.has(v) ? "checked" : ""}> ${esc(label)}</label>`).join("") || `<div class="muted">Nothing yet</div>`;
+      const badge = dd.querySelector(".count-badge"); badge.hidden = !set.size; badge.textContent = set.size;
+    };
+    box($("ixTypeDD"), MAIN_TYPES.filter(t => typesPresent.has(t)).map(t => [t, t]), ix.types);
+    box($("ixDeckDD"), sorted.map(s => [s.id, s.name]), ix.decks);
+    $("ixColors").innerHTML = "WUBRGC".split("").map(k =>
+      `<button data-c="${k}" aria-pressed="${ix.colors.has(k)}" title="${{ W: "White", U: "Blue", B: "Black", R: "Red", G: "Green", C: "Colorless" }[k]}"><span class="pip ${k}">${k}</span></button>`).join("");
+  }
+
+  function renderIndex() {
+    if (!dates.length) return;
+    renderIndexFilters();
+    const all = indexCards(), list = sortBy(all.filter(ixMatches), ixSort);
+    const copies = list.reduce((s, c) => s + c.qty, 0);
+    $("ixResult").textContent = `${list.length} of ${all.length} cards · ${copies} copies · ${fmtDate(dates[dates.length - 1])}` +
+      (cardInfo.size ? "" : " · card types and colors arrive with the next daily run");
+    const names = new Map(realDecks().map(d => [d.id, deckStats(d).name]));
+    const MAX = 400;
+    $("indexTable").tBodies[0].innerHTML = list.slice(0, MAX).map(c => `
+      <tr>
+        <td>${esc(c.name)}${c.commander ? ` <span class="badge">Commander</span>` : ""}</td>
+        <td class="muted">${esc(c.type || "–")}</td>
+        <td class="num">${c.mv ?? "–"}</td>
+        <td>${pipsHtml(c.color)}</td>
+        <td class="num">${c.decks}</td>
+        <td class="num">${c.qty}</td>
+        <td class="num">${money(c.price)}</td>
+        <td><div class="where">${sortBy([...c.perDeck].map(([id, e]) => ({ id, e, name: names.get(id) })), { k: "name", dir: 1 })
+          .map(({ name, e }) => `<span class="dchip ${e.cmd ? "cmd" : ""} ${e.proxy ? "proxy" : ""}">${esc(name)}${e.qty > 1 ? " ×" + e.qty : ""}</span>`).join("")}</div></td>
+      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="8" class="muted">Showing the first ${MAX} — narrow the filters to see the rest.</td></tr>` : "")
+      || `<tr><td colspan="8" class="muted">No cards match these filters.</td></tr>`;
+    markSort($("indexTable"), ixSort);
+  }
+
+  $("ixSearch").addEventListener("input", e => { ix.search = e.target.value.trim().toLowerCase(); renderIndex(); });
+  $("ixSubtype").addEventListener("input", e => { ix.subtype = e.target.value.trim().toLowerCase(); renderIndex(); });
+  $("ixCommanders").addEventListener("change", e => { ix.commanders = e.target.checked; renderIndex(); });
+  $("ixProxies").addEventListener("change", e => { ix.proxies = e.target.checked; renderIndex(); });
+  $("ixColors").addEventListener("click", e => {
+    const b = e.target.closest("button[data-c]"); if (!b) return;
+    ix.colors.has(b.dataset.c) ? ix.colors.delete(b.dataset.c) : ix.colors.add(b.dataset.c); renderIndex();
+  });
+  for (const [dd, set] of [["ixTypeDD", ix.types], ["ixDeckDD", ix.decks]])
+    $(dd).addEventListener("change", e => { const v = e.target.value; e.target.checked ? set.add(v) : set.delete(v); renderIndex(); });
+  document.addEventListener("click", e => document.querySelectorAll("details.dd[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));
+  $("ixClear").addEventListener("click", () => {
+    Object.assign(ix, { search: "", subtype: "", commanders: false, proxies: false }); ix.colors.clear(); ix.types.clear(); ix.decks.clear();
+    $("ixSearch").value = $("ixSubtype").value = ""; $("ixCommanders").checked = $("ixProxies").checked = false; renderIndex();
+  });
+
   // ---------- events ----------
   function sortClick(table, state, after) {
     table.tHead.addEventListener("click", e => {
       const k = e.target.closest("th")?.dataset.k; if (!k) return;
-      state.dir = state.k === k ? -state.dir : (k === "name" || k === "tag" ? 1 : -1); state.k = k; after();
+      state.dir = state.k === k ? -state.dir : (["name", "tag", "type", "color"].includes(k) ? 1 : -1); state.k = k; after();
     });
   }
   sortClick($("deckTable"), deckSort, renderDecks);
+  sortClick($("indexTable"), ixSort, renderIndex);
   sortClick($("cardTable"), cardSort, () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
   $("deckTable").tBodies[0].addEventListener("click", e => {
     const tr = e.target.closest("tr[data-id]"); if (!tr) return;
@@ -600,20 +784,21 @@
     tagFilter = tagFilter === row.dataset.tag ? null : row.dataset.tag; renderDeck();
   });
   $("search").addEventListener("input", () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
-  $("source").addEventListener("change", e => { source = e.target.value; render(); });
+  $("source").addEventListener("change", e => { source = e.target.value; render(); renderIndex(); });
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => decks.size && renderDeck(), 150); });
   $("fileInput").addEventListener("change", async e => {
     const files = [...e.target.files];
     const texts = await Promise.all(files.map(f => f.text()));
-    const prices = texts.find(t => /^\s*date,/.test(t)), names = texts.find(t => /^\s*deck_id,deck_name/.test(t));
-    if (prices) load(prices, names);
+    const prices = texts.find(t => /^\s*date,/.test(t)), names = texts.find(t => /^\s*deck_id,deck_name/.test(t)),
+          cards = texts.find(t => /^\s*card_name,type_line/.test(t));
+    if (prices) load(prices, names, cards);
   });
 
   const getText = (url, optional) => fetch(url, { cache: "no-store" })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
     .catch(e => { if (optional) return null; throw e; });
-  Promise.all([getText("data/prices.csv"), getText("data/decks.csv", true)])
-    .then(([prices, names]) => load(prices, names))
+  Promise.all([getText("data/prices.csv"), getText("data/decks.csv", true), getText("data/cards.csv", true)])
+    .then(([prices, names, cards]) => load(prices, names, cards))
     .catch(() => { $("subtitle").textContent = "No data loaded"; $("loadError").hidden = false; });
 })();
 </script>
