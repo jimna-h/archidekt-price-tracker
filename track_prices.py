@@ -2,8 +2,9 @@
 
 For each deck directly inside the folder (subfolders are ignored), one row per card is
 appended to data/prices.csv, keyed by the deck's Archidekt id and today's date, with a
-flag for whether the card has the "Proxied" color tag. Deck names are kept separately in
-data/decks.csv: one row per deck id, holding the deck's most recent name.
+flag for whether the card has the "Proxied" color tag. Two more files are rewritten each run:
+data/decks.csv (one row per deck id: its most recent name and commanders) and
+data/cards.csv (one row per card name: type line, mana value and color identity).
 
 Usage:
     python track_prices.py <folder_id>
@@ -27,6 +28,7 @@ SITE = "https://archidekt.com"
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 CSV_PATH = os.path.join(DATA_DIR, "prices.csv")
 DECKS_PATH = os.path.join(DATA_DIR, "decks.csv")
+CARDS_PATH = os.path.join(DATA_DIR, "cards.csv")
 PROXY_TAG = "proxied"  # color tag name (any capitalization) that marks a card as a proxy
 
 # Archidekt's price keys -> CSV column names
@@ -47,7 +49,9 @@ FIELDNAMES = [
     "proxied",
 ]
 
-DECK_FIELDNAMES = ["deck_id", "deck_name", "last_seen"]
+DECK_FIELDNAMES = ["deck_id", "deck_name", "commanders", "last_seen"]
+CARD_FIELDNAMES = ["card_name", "type_line", "mana_value", "color_identity"]
+COLOR_CODES = {"white": "W", "blue": "U", "black": "B", "red": "R", "green": "G"}
 
 session = Session()
 session.headers.update({"User-Agent": "Mozilla/5.0 (archidekt-price-tracker)"})
@@ -138,8 +142,22 @@ def price(prices, key, foil):
     return value if value not in (None, 0, -1, "") else ""
 
 
+def card_info(oracle):
+    """Type line, mana value and color identity (WUBRG letters) from Archidekt's card data."""
+    types = " ".join((oracle.get("superTypes") or []) + (oracle.get("types") or []))
+    subtypes = " ".join(oracle.get("subTypes") or [])
+    identity = {COLOR_CODES.get(str(c).lower(), str(c)[:1].upper()) for c in oracle.get("colorIdentity") or []}
+    cmc = oracle.get("cmc")
+    return {
+        "card_name": oracle.get("name", ""),
+        "type_line": f"{types} — {subtypes}" if subtypes else types,
+        "mana_value": int(cmc) if isinstance(cmc, (int, float)) and cmc == int(cmc) else (cmc if cmc is not None else ""),
+        "color_identity": "".join(c for c in "WUBRG" if c in identity),
+    }
+
+
 def fetch_deck(deck_id, today):
-    """Returns (deck name, card rows) for one deck."""
+    """Returns (deck name, commander names, card rows, card info) for one deck."""
     response = get(f"{API}/decks/{deck_id}/")
     response.raise_for_status()
     deck = response.json()
@@ -151,8 +169,10 @@ def fetch_deck(deck_id, today):
         for category in deck.get("categories") or []
         if category.get("includedInDeck") is False
     }
+    # The commander zone is Archidekt's "premier" category (normally called "Commander").
+    premier = {category.get("name") for category in deck.get("categories") or [] if category.get("isPremier")} or {"Commander"}
 
-    rows = []
+    rows, commanders, infos = [], [], []
     for entry in deck.get("cards", []):
         # A card's primary category is the first one listed; uncategorized cards count.
         categories = entry.get("categories") or []
@@ -160,6 +180,10 @@ def fetch_deck(deck_id, today):
             continue
 
         card = entry.get("card", {})
+        oracle = card.get("oracleCard", {})
+        infos.append(card_info(oracle))
+        if categories and categories[0] in premier:
+            commanders.append(oracle.get("name", ""))
         foil = (entry.get("modifier") or "").lower() == "foil"
         prices = card.get("prices") or {}
         row = {
@@ -174,7 +198,7 @@ def fetch_deck(deck_id, today):
         for key, column in PRICE_SOURCES.items():
             row[column] = price(prices, key, foil)
         rows.append(row)
-    return deck.get("name", ""), rows
+    return deck.get("name", ""), commanders, rows, infos
 
 
 # ---------------------------------------------------------------- csv
@@ -194,21 +218,39 @@ def write_rows(new_rows, today):
         writer.writerows(new_rows)
 
 
-def write_deck_names(names, today):
-    """Keep one row per deck id with its latest name. Decks that leave the folder keep
-    their last known name, so their history still has a label."""
+def write_deck_names(names, commanders, today):
+    """Keep one row per deck id with its latest name and commanders. Decks that leave the
+    folder keep their last known details, so their history still has a label."""
     os.makedirs(DATA_DIR, exist_ok=True)
     decks = {}
     if os.path.exists(DECKS_PATH):
         with open(DECKS_PATH, newline="", encoding="utf-8") as f:
             decks = {row["deck_id"]: row for row in csv.DictReader(f)}
     for deck_id, name in names.items():
-        decks[str(deck_id)] = {"deck_id": deck_id, "deck_name": name, "last_seen": today}
+        decks[str(deck_id)] = {"deck_id": deck_id, "deck_name": name,
+                               "commanders": " | ".join(commanders.get(deck_id, [])), "last_seen": today}
 
     with open(DECKS_PATH, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=DECK_FIELDNAMES, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(sorted(decks.values(), key=lambda d: int(d["deck_id"])))
+
+
+def write_card_info(infos):
+    """One row per card name. Cards seen this run are refreshed; older ones are kept."""
+    os.makedirs(DATA_DIR, exist_ok=True)
+    cards = {}
+    if os.path.exists(CARDS_PATH):
+        with open(CARDS_PATH, newline="", encoding="utf-8") as f:
+            cards = {row["card_name"]: row for row in csv.DictReader(f)}
+    for info in infos:
+        if info["card_name"]:
+            cards[info["card_name"]] = info
+
+    with open(CARDS_PATH, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=CARD_FIELDNAMES, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(sorted(cards.values(), key=lambda c: c["card_name"]))
 
 
 def main():
@@ -223,21 +265,24 @@ def main():
     if not deck_ids:
         sys.exit("No decks found. Is the folder public, and are the decks directly inside it?")
 
-    rows, names, failed = [], {}, []
+    rows, names, commanders, infos, failed = [], {}, {}, [], []
     for deck_id in deck_ids:
         try:
-            name, these = fetch_deck(deck_id, today)
+            name, deck_commanders, these, these_infos = fetch_deck(deck_id, today)
             print(f"  deck {deck_id} ({name}): {len(these)} card entries")
             names[deck_id] = name
+            commanders[deck_id] = deck_commanders
             rows += these
+            infos += these_infos
         except Exception as error:  # one private/broken deck shouldn't sink the run
             print(f"  deck {deck_id}: FAILED ({error})")
             failed.append(deck_id)
         time.sleep(1)  # be polite to Archidekt
 
     write_rows(rows, today)
-    write_deck_names(names, today)
-    print(f"Wrote {len(rows)} rows for {today} to {CSV_PATH}, {len(names)} deck names to {DECKS_PATH}")
+    write_deck_names(names, commanders, today)
+    write_card_info(infos)
+    print(f"Wrote {len(rows)} rows for {today}, {len(names)} decks, {len(infos)} card details")
     if failed and len(failed) == len(deck_ids):
         sys.exit("Every deck failed to load.")
 
