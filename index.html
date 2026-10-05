@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Archidekt Snapshot</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M16.00%2011.40L25.23%204.18A15%2015%200%200%201%2030.10%2021.13L20.37%2014.58Z%22%20fill%3D%22%23f2e8c9%22/%3E%3Cpath%20d%3D%22M20.37%2014.58L30.10%2021.13A15%2015%200%200%201%2015.48%2030.99L18.70%2019.72Z%22%20fill%3D%22%233d8fd1%22/%3E%3Cpath%20d%3D%22M18.70%2019.72L15.48%2030.99A15%2015%200%200%201%201.58%2020.13L13.30%2019.72Z%22%20fill%3D%22%233b3733%22/%3E%3Cpath%20d%3D%22M13.30%2019.72L1.58%2020.13A15%2015%200%200%201%207.61%203.56L11.63%2014.58Z%22%20fill%3D%22%23d9533b%22/%3E%3Cpath%20d%3D%22M11.63%2014.58L7.61%203.56A15%2015%200%200%201%2025.23%204.18L16.00%2011.40Z%22%20fill%3D%22%232f8a52%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%2315171c%22%20stroke-opacity%3D%22.18%22/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M11.58%2014.73L7.18%203.86A15%2015%200%200%201%2024.82%203.86L15.84%2011.40Z%22%20fill%3D%22%23f2e8c9%22/%3E%3Cpath%20d%3D%22M15.84%2011.40L24.82%203.86A15%2015%200%200%201%2030.27%2020.64L20.32%2014.43Z%22%20fill%3D%22%233d8fd1%22/%3E%3Cpath%20d%3D%22M20.32%2014.43L30.27%2020.64A15%2015%200%200%201%2016.00%2031.00L18.83%2019.62Z%22%20fill%3D%22%233b3733%22/%3E%3Cpath%20d%3D%22M18.83%2019.62L16.00%2031.00A15%2015%200%200%201%201.73%2020.64L13.43%2019.81Z%22%20fill%3D%22%23d9533b%22/%3E%3Cpath%20d%3D%22M13.43%2019.81L1.73%2020.64A15%2015%200%200%201%207.18%203.86L11.58%2014.73Z%22%20fill%3D%22%232f8a52%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%2315171c%22%20stroke-opacity%3D%22.18%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
     --series-1-wash: rgba(42,120,214,0.09);
     --series-paper: #008300;
     --series-proxy: #eb6834;
-    --up: #b42318;
-    --down: #006300;
+    --up: #006300;      /* value went up: good */
+    --down: #b42318;
     --shadow: 0 1px 2px rgba(21,23,28,0.04), 0 8px 24px -12px rgba(21,23,28,0.10);
     --serif: "Alegreya", Georgia, serif;
     --sans: "Alegreya Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -39,7 +39,7 @@
       --grid: #262a32; --axis: #3a3f49; --border: rgba(255,255,255,0.08); --hover: rgba(255,255,255,0.04);
       --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
       --series-paper: #008300; --series-proxy: #d95926;
-      --up: #f07a72; --down: #0ca30c;
+      --up: #0ca30c; --down: #f07a72;
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.6);
       --mark-black: #5c5650;
     }
@@ -51,7 +51,7 @@
     --grid: #262a32; --axis: #3a3f49; --border: rgba(255,255,255,0.08); --hover: rgba(255,255,255,0.04);
     --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
     --series-paper: #008300; --series-proxy: #d95926;
-    --up: #f07a72; --down: #0ca30c;
+    --up: #0ca30c; --down: #f07a72;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.6);
     --mark-black: #5c5650;
   }
@@ -158,7 +158,6 @@
   tbody tr:last-child td { border-bottom: 0; }
   .card-name { font-weight: 500; }
   .badge.proxy { border-style: dashed; border-color: var(--series-proxy); }
-  .badge.paper { border-color: transparent; color: var(--text-muted); padding-left: 0; }
   .printing { color: var(--text-muted); font-size: 13px; margin-left: 4px; }
   .badge { display: inline-block; font-size: 12px; font-weight: 500; color: var(--text-secondary); border: 1px solid var(--axis); border-radius: 999px; padding: 0 8px; line-height: 18px; vertical-align: 1px; }
 
@@ -246,7 +245,7 @@
 <main>
   <header class="masthead">
     <div class="brand">
-      <svg class="mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16.00 11.40L25.23 4.18A15 15 0 0 1 30.10 21.13L20.37 14.58Z" fill="#f2e8c9"/><path d="M20.37 14.58L30.10 21.13A15 15 0 0 1 15.48 30.99L18.70 19.72Z" fill="#3d8fd1"/><path d="M18.70 19.72L15.48 30.99A15 15 0 0 1 1.58 20.13L13.30 19.72Z" fill="#3b3733" class="blade-b"/><path d="M13.30 19.72L1.58 20.13A15 15 0 0 1 7.61 3.56L11.63 14.58Z" fill="#d9533b"/><path d="M11.63 14.58L7.61 3.56A15 15 0 0 1 25.23 4.18L16.00 11.40Z" fill="#2f8a52"/><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-opacity=".18"/></svg>
+      <svg class="mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M11.58 14.73L7.18 3.86A15 15 0 0 1 24.82 3.86L15.84 11.40Z" fill="#f2e8c9"/><path d="M15.84 11.40L24.82 3.86A15 15 0 0 1 30.27 20.64L20.32 14.43Z" fill="#3d8fd1"/><path d="M20.32 14.43L30.27 20.64A15 15 0 0 1 16.00 31.00L18.83 19.62Z" fill="#3b3733" class="blade-b"/><path d="M18.83 19.62L16.00 31.00A15 15 0 0 1 1.73 20.64L13.43 19.81Z" fill="#d9533b"/><path d="M13.43 19.81L1.73 20.64A15 15 0 0 1 7.18 3.86L11.58 14.73Z" fill="#2f8a52"/><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-opacity=".18"/></svg>
       <div>
         <h1>Archidekt Snapshot</h1>
         <div class="sub" id="subtitle">Loading your decks…</div>
@@ -270,13 +269,13 @@
 
   <nav class="tabs" id="tabs" role="tablist" hidden>
     <button role="tab" data-view="pricesView" aria-selected="true">Decks</button>
-    <button role="tab" data-view="indexView" aria-selected="false">Card index</button>
+    <button role="tab" data-view="indexView" aria-selected="false">Search all decks</button>
   </nav>
 
   <section id="indexView" hidden>
     <div class="ix-bar">
       <div class="filters">
-        <input type="search" id="ixSearch" placeholder="Search cards" aria-label="Search cards">
+        <input type="search" id="ixSearch" placeholder="Card name, across every deck" aria-label="Search all decks by card name">
         <div class="ctoggles" id="ixColors" title="Color identity (shows cards with any selected color)"></div>
         <details class="dd" id="ixTypeDD"><summary>Type <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <input type="text" id="ixSubtype" placeholder="Subtype, e.g. Bird" aria-label="Subtype">
@@ -297,7 +296,6 @@
             <th data-k="color">Color</th>
             <th data-k="decks" class="num">Decks</th>
             <th data-k="qty" class="num">Copies</th>
-            <th data-k="price" class="num">Price</th>
             <th>Where</th>
           </tr></thead>
           <tbody></tbody>
@@ -360,7 +358,7 @@
               <thead><tr>
                 <th data-k="name">Card</th>
                 <th data-k="qty" class="num">Qty</th>
-                <th data-k="tag">Paper or proxy</th>
+                <th data-k="tag">Proxy</th>
                 <th data-k="price" class="num">Price</th>
                 <th data-k="total" class="num">Total</th>
                 <th data-k="dFirst" class="num">Since first</th>
@@ -720,7 +718,7 @@
       <tr>
         <td><span class="card-name">${esc(c.name)}</span><span class="printing">${esc(c.set.toUpperCase())}${c.finish && c.finish !== "Normal" ? ", " + esc(c.finish.toLowerCase()) : ""}</span></td>
         <td class="num">${c.qty}</td>
-        <td>${c.proxy ? `<span class="badge proxy">Proxy</span>` : `<span class="badge paper">Paper</span>`}</td>
+        <td>${c.proxy ? `<span class="badge proxy">Proxy</span>` : ""}</td>
         <td class="num">${money(c.price)}</td>
         <td class="num">${money(c.total)}</td>
         ${deltaCell(c.dFirst)}
@@ -737,6 +735,7 @@
   function showView(v) {
     view = v;
     $("app").hidden = v !== "pricesView"; $("indexView").hidden = v !== "indexView";
+    $("source").closest("label").style.visibility = v === "indexView" ? "hidden" : "";
     $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
   }
   $("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-view]"); if (b) showView(b.dataset.view); });
@@ -754,10 +753,9 @@
           const [types, subtypes = ""] = (info.type_line || "").split(" — ");
           byName.set(r.card_name, c = { name: r.card_name, type: info.type_line || "", types: types.split(" ").filter(Boolean), subtypes,
             mv: info.mana_value === "" || info.mana_value == null ? null : +info.mana_value,
-            color: info.color_identity ?? null, qty: 0, price: null, perDeck: new Map(), commander: false, proxied: false });
+            color: info.color_identity ?? null, qty: 0, perDeck: new Map(), commander: false, proxied: false });
         }
         c.qty += r.qty;
-        const p = priceOf(r); if (p != null && (c.price == null || p < c.price)) c.price = p;   // cheapest printing in use
         const e = c.perDeck.get(d.id) || { qty: 0, cmd: false, proxy: false };
         e.qty += r.qty; e.cmd ||= cmds.has(r.card_name); e.proxy ||= isProxy(r);
         c.perDeck.set(d.id, e);
@@ -814,11 +812,10 @@
         <td>${pipsHtml(c.color)}</td>
         <td class="num">${c.decks}</td>
         <td class="num">${c.qty}</td>
-        <td class="num">${money(c.price)}</td>
         <td><div class="where">${sortBy([...c.perDeck].map(([id, e]) => ({ id, e, name: names.get(id) })), { k: "name", dir: 1 })
           .map(({ name, e }) => `<span class="dchip ${e.cmd ? "cmd" : ""} ${e.proxy ? "proxy" : ""}">${esc(name)}${e.qty > 1 ? " ×" + e.qty : ""}</span>`).join("")}</div></td>
-      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="8" class="muted">Showing the first ${MAX} — narrow the filters to see the rest.</td></tr>` : "")
-      || `<tr><td colspan="8" class="muted">No cards match these filters.</td></tr>`;
+      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="7" class="muted">Showing the first ${MAX} — narrow the filters to see the rest.</td></tr>` : "")
+      || `<tr><td colspan="7" class="muted">No cards match these filters.</td></tr>`;
     markSort($("indexTable"), ixSort);
   }
 
@@ -860,7 +857,7 @@
     tagFilter = tagFilter === row.dataset.tag ? null : row.dataset.tag; renderDeck();
   });
   $("search").addEventListener("input", () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
-  $("source").addEventListener("change", e => { source = e.target.value; render(); renderIndex(); });
+  $("source").addEventListener("change", e => { source = e.target.value; render(); });
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => decks.size && renderDeck(), 150); });
   $("fileInput").addEventListener("change", async e => {
     const files = [...e.target.files];
