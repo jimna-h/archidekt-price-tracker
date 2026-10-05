@@ -5,7 +5,8 @@ A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https:
 `index.html` has two tabs:
 - **Prices**: each deck's value over time (total, paper and proxies), card swaps between snapshots, plus a whole-collection view and an average-deck view.
 - **Card index**: every card across all decks in the latest snapshot, with which decks run it. Filter by color identity, type, subtype, deck, commanders or proxies. (This replaces the old [edh-ledger](https://github.com/jimna-h/edh-ledger) project, reading the daily snapshot instead of manual imports.)
- Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
+
+Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
 
 Builds on the Archidekt API approach from [LandBase](https://github.com/jimna-h/LandBase).
 
