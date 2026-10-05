@@ -18,6 +18,8 @@
     --hover: rgba(11,11,11,0.04);
     --series-1: #2a78d6;
     --series-1-wash: rgba(42,120,214,0.10);
+    --series-paper: #008300;
+    --series-proxy: #eb6834;
     --up: #b42318;      /* price went up = costs more */
     --down: #006300;    /* price went down */
   }
@@ -28,6 +30,7 @@
       --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
       --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
       --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
+      --series-paper: #008300; --series-proxy: #d95926;
       --up: #f07a72; --down: #0ca30c;
     }
   }
@@ -37,10 +40,12 @@
     --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
     --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
     --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
+    --series-paper: #008300; --series-proxy: #d95926;
     --up: #f07a72; --down: #0ca30c;
   }
 
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   body {
     margin: 0; background: var(--page); color: var(--text-primary);
     font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -78,7 +83,7 @@
   .hero .delta { font-size: 15px; font-weight: 600; }
 
   .chart { position: relative; }
-  .chart svg { display: block; width: 100%; height: 260px; overflow: visible; }
+  .chart svg { display: block; width: 100%; height: 280px; overflow: visible; }
   .chart text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
   .tip {
     position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border);
@@ -117,6 +122,15 @@
   .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
   .empty { padding: 40px 16px; text-align: center; color: var(--text-secondary); }
   .empty input { margin-top: 12px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 4px 0 6px; font-size: 13px; }
+  .legend span.item { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); }
+  .legend b { color: var(--text-primary); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .key { width: 16px; height: 0; border-top: 2px solid; flex: none; }
+  .key.dash { border-top-style: dashed; }
+  .tip .row { display: flex; align-items: center; gap: 6px; }
+  .tip .row b { margin-left: auto; padding-left: 12px; }
+  #deckTable tbody tr.pinned td:first-child { font-weight: 600; }
+  #deckTable tbody tr.pinned-last td { border-bottom: 2px solid var(--axis); }
   .note { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
   .row-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
   .row-head h2 { margin: 0; }
@@ -174,22 +188,23 @@
         <div><div class="lbl">Since last snapshot</div><div class="delta num" id="heroPrev">–</div></div>
         <div><div class="lbl">Since first snapshot</div><div class="delta num" id="heroFirst">–</div></div>
       </div>
+      <div class="legend" id="legend"></div>
       <div class="chart" id="chart"><svg role="img" aria-label="Deck value over time"></svg><div class="tip"></div></div>
       <div class="note" id="chartNote"></div>
     </div>
 
-    <div class="card">
+    <div class="card" id="swapsCard">
       <h2>Card swaps</h2>
       <div id="changes"></div>
     </div>
 
     <div class="card">
-      <h2>Owned vs proxied</h2>
+      <h2>Paper vs proxied</h2>
       <div class="tags" id="tags"></div>
-      <div class="note">Proxies are cards with the "Proxied" color tag on Archidekt. Click a row to filter the card list below.</div>
+      <div class="note">Proxies are cards with the "Proxied" color tag on Archidekt. <span id="tagHint">Click a row to filter the card list below.</span></div>
     </div>
 
-    <div class="card">
+    <div class="card" id="cardsCard">
       <div class="row-head">
         <h2 id="cardsTitle">Cards</h2>
         <input type="search" id="search" placeholder="Filter cards…">
@@ -268,25 +283,49 @@
       if (!d.byDate.has(r.date)) d.byDate.set(r.date, []);
       d.byDate.get(r.date).push(r);
     }
-    $("subtitle").textContent = `${decks.size} decks · ${dates.length} snapshot${dates.length === 1 ? "" : "s"} · ${fmtDate(dates[0])} – ${fmtDate(dates[dates.length - 1])}`;
+    addCombinedDecks();
+    $("subtitle").textContent = `${realDecks().length} decks · ${dates.length} snapshot${dates.length === 1 ? "" : "s"} · ${fmtDate(dates[0])} – ${fmtDate(dates[dates.length - 1])}`;
     $("app").hidden = false; $("loadError").hidden = true;
-    if (!(selected && decks.has(selected)))
-      selected = sortBy([...decks.values()].map(deckStats), { k: "name", dir: 1 })[0].id;
+    if (!(selected && decks.has(selected))) selected = ALL;
     render();
   }
 
+  // Two combined "decks" pinned above the real ones: the whole collection (every deck's
+  // cards summed per day) and the average deck (that total divided by the number of decks
+  // snapshotted that day). Both reuse the merged rows; the average just scales them.
+  const ALL = "__all", AVG = "__avg";
+  const realDecks = () => [...decks.values()].filter(d => !d.virtual);
+  function addCombinedDecks() {
+    const merged = new Map(), count = new Map();
+    for (const d of realDecks()) for (const [date, list] of d.byDate) {
+      count.set(date, (count.get(date) || 0) + 1);
+      if (!merged.has(date)) merged.set(date, new Map());
+      const m = merged.get(date);
+      for (const r of list) {
+        const k = r.key + "|" + r.proxied, e = m.get(k);
+        if (e) e.qty += r.qty; else m.set(k, { ...r });
+      }
+    }
+    const byDate = new Map([...merged].map(([date, m]) => [date, [...m.values()]]));
+    decks.set(ALL, { id: ALL, virtual: true, name: "Whole collection", byDate, scale: () => 1 });
+    decks.set(AVG, { id: AVG, virtual: true, name: "Average deck", byDate, scale: date => 1 / count.get(date), noCards: true });
+  }
+
   const priceOf = r => { const v = parseFloat(r[source]); return isFinite(v) ? v : null; };
-  function deckValue(d, date) {
+  const isProxy = r => String(r.proxied).toLowerCase() === "true";
+  const KEEP = { total: () => true, paper: r => !isProxy(r), proxy: r => isProxy(r) };
+  function deckValue(d, date, part = "total") {
     const list = d.byDate.get(date); if (!list) return null;
-    return list.reduce((s, r) => s + (priceOf(r) ?? 0) * r.qty, 0);
+    const keep = KEEP[part];
+    return list.reduce((s, r) => s + (keep(r) ? (priceOf(r) ?? 0) * r.qty : 0), 0) * (d.scale ? d.scale(date) : 1);
   }
   function deckStats(d) {
     const ds = dates.filter(x => d.byDate.has(x));
     const last = ds[ds.length - 1], prev = ds[ds.length - 2], first = ds[0];
     const value = deckValue(d, last);
     return {
-      id: d.id, name: deckNames.get(d.id) || `Deck #${d.id}`, value, last, ds,
-      cards: d.byDate.get(last).reduce((s, r) => s + r.qty, 0),
+      id: d.id, virtual: !!d.virtual, name: d.virtual ? d.name : deckNames.get(d.id) || `Deck #${d.id}`, value, last, ds,
+      cards: d.byDate.get(last).reduce((s, r) => s + r.qty, 0) * (d.scale ? d.scale(last) : 1),
       dPrev: prev ? value - deckValue(d, prev) : null,
       dFirst: ds.length > 1 ? value - deckValue(d, first) : null,
       lastSwap: deckChanges(d).at(-1)?.date ?? null,
@@ -311,11 +350,11 @@
   function render() { renderDecks(); renderDeck(); }
 
   function renderDecks() {
-    const stats = sortBy([...decks.values()].map(deckStats), deckSort);
+    const stats = [deckStats(decks.get(ALL)), deckStats(decks.get(AVG)), ...sortBy(realDecks().map(deckStats), deckSort)];
     $("deckTable").tBodies[0].innerHTML = stats.map(s => `
-      <tr data-id="${esc(s.id)}" class="${s.id === selected ? "sel" : ""}">
-        <td>${esc(s.name)} <span class="muted">#${esc(s.id)}</span></td>
-        <td class="num">${s.cards}</td>
+      <tr data-id="${esc(s.id)}" class="${s.id === selected ? "sel" : ""} ${s.virtual ? "pinned" : ""} ${s.id === AVG ? "pinned-last" : ""}">
+        <td>${esc(s.name)}${s.virtual ? "" : ` <span class="muted">#${esc(s.id)}</span>`}</td>
+        <td class="num">${Number.isInteger(s.cards) ? s.cards : s.cards.toFixed(1)}</td>
         <td class="num">${money(s.value)}</td>
         ${deltaCell(s.dPrev)}${deltaCell(s.dFirst)}
         <td class="num ${s.lastSwap ? "" : "muted"}">${s.lastSwap ? fmtDate(s.lastSwap) : "–"}</td>
@@ -326,17 +365,22 @@
   function renderDeck() {
     const d = decks.get(selected), s = deckStats(d);
     $("deckTitle").textContent = s.name;
-    $("deckLink").href = `https://archidekt.com/decks/${encodeURIComponent(s.id)}`;
+    $("deckLink").hidden = s.virtual;
+    if (!s.virtual) $("deckLink").href = `https://archidekt.com/decks/${encodeURIComponent(s.id)}`;
+    $("swapsCard").hidden = $("cardsCard").hidden = !!d.noCards;
+    $("tagHint").hidden = !!d.noCards;
+    if (d.noCards) tagFilter = null;
     $("heroLbl").textContent = `Value on ${fmtDate(s.last)}`;
     $("heroVal").textContent = money(s.value);
     delta($("heroPrev"), s.dPrev, s.prevVal);
     delta($("heroFirst"), s.dFirst, s.firstVal);
     const missing = d.byDate.get(s.last).filter(r => priceOf(r) == null).length;
-    $("chartNote").textContent = (s.ds.length < 2 ? "Only one snapshot so far — the line fills in as the daily job runs. " : "")
+    $("chartNote").textContent = (s.ds.length < 2 ? "Only one snapshot so far — the lines fill in as the daily job runs. " : "")
+      + (selected === AVG ? "Each day is the collection total divided by the number of decks that day. " : "")
       + (deckChanges(d).length ? "Hollow points mark days the decklist changed. " : "")
       + (missing ? `${missing} card${missing === 1 ? " has" : "s have"} no ${$("source").selectedOptions[0].text} price and count as $0.` : "");
-    const changes = deckChanges(d);
-    drawChart(s.ds.map(x => ({ date: x, v: deckValue(d, x) })), changes);
+    const changes = d.noCards ? [] : deckChanges(d);
+    drawChart(s.ds.map(x => ({ date: x, total: deckValue(d, x), paper: deckValue(d, x, "paper"), proxy: deckValue(d, x, "proxy") })), changes);
     renderChanges(changes);
     renderTags(d, s);
     renderCards(d, s);
@@ -382,7 +426,7 @@
   function renderChanges(changes) {
     const box = $("changes");
     if (!changes.length) {
-      box.innerHTML = `<div class="muted">No swaps recorded yet. Cards entering or leaving this deck between daily snapshots will show up here.</div>`;
+      box.innerHTML = `<div class="muted">No swaps recorded yet. Cards entering or leaving ${selected === ALL ? "the collection" : "this deck"} between daily snapshots will show up here.${selected === ALL ? " Moving a card from one deck to another doesn't count." : ""}</div>`;
       return;
     }
     const n = l => l.reduce((s, c) => s + c.qty, 0);
@@ -403,18 +447,28 @@
       </div>`).join("");
   }
 
+  const SERIES = [
+    { k: "total", label: "Total", color: "var(--series-1)" },
+    { k: "paper", label: "Paper", color: "var(--series-paper)" },
+    { k: "proxy", label: "Proxies", color: "var(--series-proxy)", dash: true },
+  ];
+  const signed = d => `${d > 0 ? "+" : d < 0 ? "−" : "±"}${money(Math.abs(d))}`;
+
   function drawChart(pts, changes = []) {
     const wrap = $("chart"), svg = wrap.querySelector("svg"), tip = wrap.querySelector(".tip");
-    const W = svg.clientWidth || 800, H = 260, m = { t: 12, r: 16, b: 28, l: 56 };
+    const last = pts[pts.length - 1];
+    $("legend").innerHTML = SERIES.map(sr => `<span class="item"><span class="key ${sr.dash ? "dash" : ""}" style="border-color:${sr.color}"></span>${sr.label} <b>${money(last[sr.k])}</b></span>`).join("");
+
+    const W = svg.clientWidth || 800, H = 280, m = { t: 12, r: 68, b: 28, l: 56 };
     const iw = W - m.l - m.r, ih = H - m.t - m.b;
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    const vals = pts.map(p => p.v);
+    const vals = pts.flatMap(p => SERIES.map(sr => p[sr.k]));
     let lo = Math.min(...vals), hi = Math.max(...vals);
-    const pad = (hi - lo) * 0.15 || Math.max(hi * 0.1, 1);
+    const pad = (hi - lo) * 0.1 || Math.max(hi * 0.1, 1);
     lo = Math.max(0, lo - pad); hi = hi + pad;
     const step = niceStep((hi - lo) / 4);
     lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
-    const t0 = +new Date(pts[0].date), t1 = +new Date(pts[pts.length - 1].date);
+    const t0 = +new Date(pts[0].date), t1 = +new Date(last.date);
     const x = p => m.l + (t1 === t0 ? iw / 2 : (+new Date(p.date) - t0) / (t1 - t0) * iw);
     const y = v => m.t + ih - (v - lo) / (hi - lo) * ih;
 
@@ -424,50 +478,62 @@
       g += `<text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">$${v >= 1000 ? (v / 1000).toFixed(v % 1000 ? 1 : 0) + "k" : Math.round(v)}</text>`;
     }
     g += `<line x1="${m.l}" x2="${W - m.r}" y1="${m.t + ih}" y2="${m.t + ih}" stroke="var(--axis)"/>`;
-    // x ticks: up to ~6 evenly spaced dates
     const n = Math.min(pts.length, Math.max(2, Math.floor(iw / 110)));
     const tickIdx = pts.length === 1 ? [0] : [...new Set(Array.from({ length: n }, (_, i) => Math.round(i * (pts.length - 1) / (n - 1))))];
     for (const i of tickIdx) {
       const p = pts[i], anchor = pts.length > 1 && i === 0 ? "start" : pts.length > 1 && i === pts.length - 1 ? "end" : "middle";
       g += `<text x="${x(p)}" y="${H - 8}" text-anchor="${anchor}">${new Date(p.date + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" })}</text>`;
     }
-    const path = pts.map((p, i) => `${i ? "L" : "M"}${x(p).toFixed(1)},${y(p.v).toFixed(1)}`).join("");
-    g += `<path d="${path}" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+
+    // lines: draw total last so it sits on top
+    for (const sr of [...SERIES].reverse()) {
+      const path = pts.map((p, i) => `${i ? "L" : "M"}${x(p).toFixed(1)},${y(p[sr.k]).toFixed(1)}`).join("");
+      g += `<path d="${path}" fill="none" stroke="${sr.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" ${sr.dash ? `stroke-dasharray="6 4"` : ""}/>`;
+      g += `<circle cx="${x(last)}" cy="${y(last[sr.k])}" r="4" fill="${sr.color}" stroke="var(--surface)" stroke-width="2"/>`;
+    }
     const swapAt = new Map(changes.map(c => [c.date, c]));
-    for (const p of pts) if (swapAt.has(p.date))
-      g += `<circle cx="${x(p)}" cy="${y(p.v)}" r="5" fill="var(--surface)" stroke="var(--series-1)" stroke-width="2"/>`;
-    const last = pts[pts.length - 1];
-    g += `<circle cx="${x(last)}" cy="${y(last.v)}" r="4" fill="var(--series-1)" stroke="var(--surface)" stroke-width="2"/>`;
+    for (const p of pts) if (swapAt.has(p.date) && p !== last)
+      g += `<circle cx="${x(p)}" cy="${y(p.total)}" r="5" fill="var(--surface)" stroke="var(--series-1)" stroke-width="2"/>`;
+
+    // direct labels at the right end, nudged apart so they never overlap
+    const labels = SERIES.map(sr => ({ sr, y: y(last[sr.k]) })).sort((a, b) => a.y - b.y);
+    for (let i = 1; i < labels.length; i++) labels[i].y = Math.max(labels[i].y, labels[i - 1].y + 14);
+    const overflow = labels[labels.length - 1].y - (m.t + ih);
+    if (overflow > 0) labels.forEach(l => l.y -= overflow);
+    for (const l of labels)
+      g += `<text x="${x(last) + 10}" y="${l.y + 4}" style="fill:var(--text-secondary)">${l.sr.label}</text>`;
+
     g += `<line class="xh" y1="${m.t}" y2="${m.t + ih}" stroke="var(--axis)" stroke-dasharray="3 3" visibility="hidden"/>`;
-    g += `<circle class="hd" r="5" fill="var(--series-1)" stroke="var(--surface)" stroke-width="2" visibility="hidden"/>`;
+    for (const sr of SERIES) g += `<circle class="hd" data-k="${sr.k}" r="4.5" fill="${sr.color}" stroke="var(--surface)" stroke-width="2" visibility="hidden"/>`;
     g += `<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent"/>`;
     svg.innerHTML = g;
 
-    const xh = svg.querySelector(".xh"), hd = svg.querySelector(".hd");
+    const xh = svg.querySelector(".xh"), hds = [...svg.querySelectorAll(".hd")];
     svg.onpointermove = e => {
       const r = svg.getBoundingClientRect(), mx = (e.clientX - r.left) * (W / r.width);
       let best = pts[0]; for (const p of pts) if (Math.abs(x(p) - mx) < Math.abs(x(best) - mx)) best = p;
-      const i = pts.indexOf(best), prev = pts[i - 1];
+      const prev = pts[pts.indexOf(best) - 1];
       xh.setAttribute("x1", x(best)); xh.setAttribute("x2", x(best)); xh.setAttribute("visibility", "visible");
-      hd.setAttribute("cx", x(best)); hd.setAttribute("cy", y(best.v)); hd.setAttribute("visibility", "visible");
-      const dd = prev ? best.v - prev.v : null;
-      tip.innerHTML = `<div class="muted">${fmtDate(best.date)}</div><b>${money(best.v)}</b>` +
-        (dd != null ? ` <span class="${dd > 0.005 ? "up" : dd < -0.005 ? "down" : "muted"}">${dd > 0 ? "+" : dd < 0 ? "−" : "±"}${money(Math.abs(dd))}</span>` : "") +
-        (swapAt.has(best.date) ? `<div class="muted">${swapAt.get(best.date).added.reduce((s, c) => s + c.qty, 0)} in · ${swapAt.get(best.date).removed.reduce((s, c) => s + c.qty, 0)} out</div>` : "");
-      const px = x(best) * r.width / W, py = y(best.v) * r.height / H;
+      for (const h of hds) { h.setAttribute("cx", x(best)); h.setAttribute("cy", y(best[h.dataset.k])); h.setAttribute("visibility", "visible"); }
+      const sw = swapAt.get(best.date), cnt = l => l.reduce((s, c) => s + c.qty, 0);
+      tip.innerHTML = `<div class="muted">${fmtDate(best.date)}</div>` + SERIES.map(sr => {
+        const dd = prev ? best[sr.k] - prev[sr.k] : null;
+        return `<div class="row"><span class="key ${sr.dash ? "dash" : ""}" style="border-color:${sr.color}"></span>${sr.label}<b>${money(best[sr.k])}</b>` +
+          (dd != null ? `<span class="${dd > 0.005 ? "up" : dd < -0.005 ? "down" : "muted"}">${signed(dd)}</span>` : "") + `</div>`;
+      }).join("") + (sw ? `<div class="muted">${cnt(sw.added)} in · ${cnt(sw.removed)} out</div>` : "");
+      const px = x(best) * r.width / W, py = y(best.total) * r.height / H;
       tip.style.left = Math.min(Math.max(px - tip.offsetWidth / 2, 0), r.width - tip.offsetWidth) + "px";
-      tip.style.top = Math.max(py - tip.offsetHeight - 12, 0) + "px";
+      tip.style.top = (py - tip.offsetHeight - 12 > 0 ? py - tip.offsetHeight - 12 : py + 16) + "px";
       tip.style.opacity = 1;
     };
-    svg.onpointerleave = () => { tip.style.opacity = 0; xh.setAttribute("visibility", "hidden"); hd.setAttribute("visibility", "hidden"); };
+    svg.onpointerleave = () => { tip.style.opacity = 0; xh.setAttribute("visibility", "hidden"); hds.forEach(h => h.setAttribute("visibility", "hidden")); };
   }
   function niceStep(raw) {
     const p = Math.pow(10, Math.floor(Math.log10(raw || 1))), f = raw / p;
     return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
   }
 
-  const isProxy = r => String(r.proxied).toLowerCase() === "true";
-  function tagOf(r) { return isProxy(r) ? { name: "Proxied", proxy: true } : { name: "Owned", proxy: false }; }
+  function tagOf(r) { return isProxy(r) ? { name: "Proxied", proxy: true } : { name: "Paper", proxy: false }; }
 
   function renderTags(d, s) {
     const groups = new Map();
@@ -475,13 +541,15 @@
       const t = tagOf(r), g = groups.get(t.name) || { ...t, v: 0, n: 0 };
       g.v += (priceOf(r) ?? 0) * r.qty; g.n += r.qty; groups.set(t.name, g);
     }
+    const k = d.scale ? d.scale(s.last) : 1;
+    for (const g of groups.values()) { g.v *= k; g.n *= k; }
     const list = [...groups.values()].sort((a, b) => b.v - a.v);
     const max = Math.max(...list.map(g => g.v), 0.01);
     if (tagFilter && !groups.has(tagFilter)) tagFilter = null;
     $("tags").innerHTML = list.map(g => `
-      <div class="tagrow ${g.name === tagFilter ? "active" : ""}" data-tag="${esc(g.name)}" title="${g.n} card${g.n === 1 ? "" : "s"}">
-        <span class="chip">${esc(g.name)} <span class="muted">· ${g.n} card${g.n === 1 ? "" : "s"}</span></span>
-        <div class="bar"><div style="width:${(g.v / max * 100).toFixed(1)}%"></div></div>
+      <div class="tagrow ${g.name === tagFilter ? "active" : ""}" data-tag="${esc(g.name)}" >
+        <span class="chip">${esc(g.name)} <span class="muted">· ${Number.isInteger(g.n) ? g.n : g.n.toFixed(1)} card${g.n === 1 ? "" : "s"}</span></span>
+        <div class="bar"><div style="width:${(g.v / max * 100).toFixed(1)}%;background:${g.proxy ? "var(--series-proxy)" : "var(--series-paper)"}"></div></div>
         <span class="num">${money(g.v)}</span>
       </div>`).join("");
   }
@@ -528,7 +596,7 @@
     $("deckTitle").scrollIntoView({ behavior: "smooth", block: "start" });
   });
   $("tags").addEventListener("click", e => {
-    const row = e.target.closest(".tagrow"); if (!row) return;
+    const row = e.target.closest(".tagrow"); if (!row || decks.get(selected).noCards) return;
     tagFilter = tagFilter === row.dataset.tag ? null : row.dataset.tag; renderDeck();
   });
   $("search").addEventListener("input", () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
