@@ -301,7 +301,7 @@ def write_decklists(rows, today, fetched_ids):
         entries[entry_key(r)] = entries.get(entry_key(r), 0) + int(r["quantity"])
 
     changes = []
-    for deck_id in {str(i) for i in fetched_ids}:
+    for deck_id in sorted({str(i) for i in fetched_ids}, key=int):  # stable order keeps diffs small
         before, after = state.get(deck_id, {}), today_state.get(deck_id, {})
         for key in sorted(set(before) | set(after)):
             if before.get(key, 0) != after.get(key, 0):
