@@ -7,6 +7,8 @@ A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https:
 - **Proxies**: every proxied card, its price at TCGplayer, Card Kingdom and Cardmarket, the cheapest option, and a running total of what it would cost to replace them.
 - **Search all decks**: find any card across every deck and see which decks run it, plus a grid of how many cards each pair of decks shares. (This replaces the old [edh-ledger](https://github.com/jimna-h/edh-ledger) project.)
 
+The page address always reflects the tab, deck and filters you have open, so you can bookmark or share any view (there's a "Copy link" button too).
+
 Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
 
 Builds on the Archidekt API approach from [LandBase](https://github.com/jimna-h/LandBase).

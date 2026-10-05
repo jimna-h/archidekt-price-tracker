@@ -90,7 +90,8 @@
   select { padding-right: 28px; }
 
   /* ---------- tabs ---------- */
-  .tabs { display: inline-flex; gap: 2px; padding: 3px; background: var(--grid); border-radius: 10px; margin-bottom: 20px; }
+  .tabbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 20px; }
+  .tabs { display: inline-flex; gap: 2px; padding: 3px; background: var(--grid); border-radius: 10px; }
   .tabs button { font: inherit; font-weight: 500; font-size: 15px; color: var(--text-secondary); background: none; border: 0; border-radius: 8px; padding: 6px 16px; cursor: pointer; }
   .tabs button:hover { color: var(--text-primary); }
   .tabs button[aria-selected="true"] { background: var(--surface); color: var(--text-primary); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
@@ -316,11 +317,14 @@
     <div>View it on GitHub Pages, or from this folder run <code>python -m http.server</code> and open <code>localhost:8000</code>.</div>
   </div>
 
+  <div class="tabbar">
   <nav class="tabs" id="tabs" role="tablist" hidden>
     <button role="tab" data-view="pricesView" aria-selected="true">Decks</button>
     <button role="tab" data-view="proxyView" aria-selected="false">Proxies</button>
     <button role="tab" data-view="indexView" aria-selected="false">Search all decks</button>
   </nav>
+  <button class="ghost" id="copyLink" title="Copies a link to exactly what you're looking at, filters included">Copy link</button>
+  </div>
 
   <section id="proxyView" hidden>
     <div class="ix-bar">
@@ -615,8 +619,9 @@
     $("subtitle").textContent = `${current} deck${current === 1 ? "" : "s"}, last snapshot ${fmtDate(latestDate)}` +
       (dates.length > 1 ? `, history since ${fmtDate(dates[0])}` : "");
     $("tabs").hidden = false;
-    showView(view);
-    render(); renderProxies(); renderIndex();
+    applyUrl();
+    urlReady = true;
+    history.replaceState(null, "", buildUrl());
   }
 
   // Combined "decks": the whole collection (all decks summed) and the average deck (that
@@ -741,10 +746,11 @@
     for (const id of ["pricesView", "proxyView", "indexView"]) $(id === "pricesView" ? "app" : id).hidden = v !== id;
     $("source").closest("label").hidden = v === "proxyView";
     $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
+    syncUrl();
   }
   $("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-view]"); if (b) showView(b.dataset.view); });
 
-  function render() { renderDecks(); renderDeck(); }
+  function render() { renderDecks(); renderDeck(); syncUrl(); }
 
   function renderDecks() {
     const item = st => `
@@ -885,7 +891,7 @@
   }
   $("moverWindow").addEventListener("click", e => {
     const b = e.target.closest("button[data-w]"); if (!b) return;
-    moverWindow = +b.dataset.w; renderMovers(decks.get(selected));
+    moverWindow = +b.dataset.w; renderMovers(decks.get(selected)); syncUrl();
   });
 
   // ---------- swaps ----------
@@ -1001,6 +1007,7 @@
         ${past ? "" : deltaCell(c.d30)}
       </tr>`).join("") || `<tr><td colspan="6" class="muted">No cards match.</td></tr>`;
     markSort($("cardTable"), cardSort);
+    syncUrl();
   }
   $("asOf").addEventListener("change", e => { asOf = e.target.value; renderCards(decks.get(selected)); });
 
@@ -1047,6 +1054,7 @@
     }).join("") || `<tr><td colspan="9" class="muted">Nothing to show.</td></tr>`;
     markSort($("proxyTable"), pxSort);
     fillDeckDropdown($("pxDeckDD"), px.decks);
+    syncUrl();
   }
   document.querySelectorAll(".px-store").forEach(c => c.addEventListener("change", () => {
     c.checked ? px.stores.add(c.value) : px.stores.delete(c.value);
@@ -1142,6 +1150,7 @@
       || `<tr><td colspan="8" class="muted">No cards match these filters.</td></tr>`;
     markSort($("indexTable"), ixSort);
     renderOverlap();
+    syncUrl();
   }
 
   // Deck overlap: unique non-basic card names shared by each pair of current decks.
@@ -1180,6 +1189,119 @@
   });
   document.addEventListener("click", e => document.querySelectorAll("details.dd[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));
 
+  // ---------- shareable links ----------
+  // The address holds the tab plus that tab's deck and filters, e.g.
+  //   #decks?deck=4279849&price=ck&on=2026-09-11&show=proxied&q=sol
+  //   #proxies?decks=4279849,5005670&stores=tcg,ck,cm&sort=-best
+  //   #search?q=elf&colors=WG&types=Creature&decks=1,2&match=every&cmd=1&sort=-price
+  // Switching tab or deck adds a history entry (so Back works); filter tweaks replace it.
+  const VIEW_SLUG = { pricesView: "decks", proxyView: "proxies", indexView: "search" };
+  const SLUG_VIEW = Object.fromEntries(Object.entries(VIEW_SLUG).map(([k, v]) => [v, k]));
+  const PRICE_SLUG = { price_tcgplayer: "tcg", price_cardkingdom: "ck", price_cardmarket: "cm" };
+  const SLUG_PRICE = Object.fromEntries(Object.entries(PRICE_SLUG).map(([k, v]) => [v, k]));
+  const sortStr = st => (st.dir < 0 ? "-" : "") + st.k;
+  const readSort = (str, st) => { if (str) { st.dir = str.startsWith("-") ? -1 : 1; st.k = str.replace(/^-/, ""); } };
+  const csvList = str => (str || "").split(",").map(x => x.trim()).filter(Boolean);
+  let urlReady = false, lastNav = "";
+
+  function buildUrl() {
+    const q = new URLSearchParams();
+    if (source !== "price_tcgplayer" && view !== "proxyView") q.set("price", PRICE_SLUG[source]);
+    if (view === "pricesView") {
+      if (selected !== ALL) q.set("deck", selected === AVG ? "average" : selected);
+      if (asOf && asOf !== latestDate) q.set("on", asOf);
+      if (tagFilter) q.set("show", tagFilter === "Proxied" ? "proxied" : "paper");
+      if ($("search").value.trim()) q.set("q", $("search").value.trim());
+      if (moverWindow !== 30) q.set("movers", moverWindow);
+      if (sortStr(deckSort) !== "name") q.set("sort", sortStr(deckSort));
+      if (sortStr(cardSort) !== "-total") q.set("cards", sortStr(cardSort));
+    } else if (view === "proxyView") {
+      if (px.decks.size) q.set("decks", [...px.decks].join(","));
+      if ([...px.stores].sort().join(",") !== "ck,tcg") q.set("stores", [...px.stores].join(","));
+      if (sortStr(pxSort) !== "-best") q.set("sort", sortStr(pxSort));
+    } else {
+      if (ix.search) q.set("q", ix.search);
+      if (ix.colors.size) q.set("colors", [...ix.colors].join(""));
+      if (ix.types.size) q.set("types", [...ix.types].join(","));
+      if (ix.subtype) q.set("sub", ix.subtype);
+      if (ix.decks.size) q.set("decks", [...ix.decks].join(","));
+      if (ix.decks.size > 1 && ix.match === "every") q.set("match", "every");
+      if (ix.commanders) q.set("cmd", "1");
+      if (ix.proxies) q.set("proxied", "1");
+      if (sortStr(ixSort) !== "-decks") q.set("sort", sortStr(ixSort));
+    }
+    const qs = q.toString().replace(/%2C/g, ",");
+    return "#" + VIEW_SLUG[view] + (qs ? "?" + qs : "");
+  }
+
+  function syncUrl() {
+    if (!urlReady) return;
+    const next = buildUrl();
+    if (next === location.hash) return;
+    const nav = view + "|" + (view === "pricesView" ? selected : "");
+    if (nav !== lastNav) history.pushState(null, "", next); else history.replaceState(null, "", next);
+    lastNav = nav;
+  }
+
+  function readUrl() {
+    const [slug, qs = ""] = location.hash.replace(/^#/, "").split("?");
+    const q = new URLSearchParams(qs);
+    view = SLUG_VIEW[slug] || "pricesView";
+    source = SLUG_PRICE[q.get("price")] || "price_tcgplayer";
+    $("source").value = source;
+    // reset everything, then apply what the link specifies
+    selected = ALL; asOf = null; tagFilter = null; moverWindow = 30; $("search").value = "";
+    Object.assign(deckSort, { k: "name", dir: 1 }); Object.assign(cardSort, { k: "total", dir: -1 });
+    px.decks = new Set(); px.stores = new Set(["tcg", "ck"]); Object.assign(pxSort, { k: "best", dir: -1 });
+    Object.assign(ix, { search: "", subtype: "", match: "any", commanders: false, proxies: false });
+    ix.colors = new Set(); ix.types = new Set(); ix.decks = new Set(); Object.assign(ixSort, { k: "decks", dir: -1 });
+    const known = id => decks.has(id) && !decks.get(id).virtual;
+
+    if (view === "pricesView") {
+      const dk = q.get("deck");
+      selected = dk === "average" ? AVG : dk && known(dk) ? dk : ALL;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(q.get("on") || "")) asOf = q.get("on");
+      tagFilter = q.get("show") === "proxied" ? "Proxied" : q.get("show") === "paper" ? "Paper" : null;
+      $("search").value = q.get("q") || "";
+      if (q.get("movers") === "7") moverWindow = 7;
+      readSort(q.get("sort"), deckSort); readSort(q.get("cards"), cardSort);
+    } else if (view === "proxyView") {
+      px.decks = new Set(csvList(q.get("decks")).filter(known));
+      const st = csvList(q.get("stores")).filter(x => STORE_NAMES[x]);
+      if (st.length) px.stores = new Set(st);
+      readSort(q.get("sort"), pxSort);
+    } else {
+      ix.search = (q.get("q") || "").toLowerCase();
+      ix.colors = new Set((q.get("colors") || "").toUpperCase().split("").filter(c => "WUBRGC".includes(c)));
+      ix.types = new Set(csvList(q.get("types")));
+      ix.subtype = (q.get("sub") || "").toLowerCase();
+      ix.decks = new Set(csvList(q.get("decks")).filter(known));
+      ix.match = q.get("match") === "every" ? "every" : "any";
+      ix.commanders = q.get("cmd") === "1"; ix.proxies = q.get("proxied") === "1";
+      readSort(q.get("sort"), ixSort);
+    }
+    // put the form controls in step with the state
+    $("deckSortSel").value = deckSort.k;
+    document.querySelectorAll(".px-store").forEach(c => c.checked = px.stores.has(c.value));
+    $("ixSearch").value = ix.search; $("ixSubtype").value = ix.subtype;
+    $("ixCommanders").checked = ix.commanders; $("ixProxies").checked = ix.proxies;
+    lastNav = view + "|" + (view === "pricesView" ? selected : "");
+  }
+
+  function applyUrl() {
+    readUrl();
+    showView(view);
+    render(); renderProxies(); renderIndex();
+  }
+  addEventListener("popstate", () => { urlReady = false; applyUrl(); urlReady = true; });
+
+  $("copyLink").addEventListener("click", async () => {
+    const btn = $("copyLink"), link = location.href;
+    try { await navigator.clipboard.writeText(link); btn.textContent = "Link copied"; }
+    catch { prompt("Copy this link:", link); }
+    setTimeout(() => btn.textContent = "Copy link", 1600);
+  });
+
   // ---------- events ----------
   function sortClick(table, getState, after) {
     table.tHead.addEventListener("click", e => {
@@ -1191,7 +1313,7 @@
   sortClick($("indexTable"), () => ixSort, renderIndex);
   sortClick($("cardTable"), () => cardSort, () => renderCards(decks.get(selected)));
   sortClick($("proxyTable"), () => pxSort, renderProxies);
-  $("deckSortSel").addEventListener("change", e => { deckSort.k = e.target.value; deckSort.dir = e.target.value === "name" ? 1 : -1; renderDecks(); });
+  $("deckSortSel").addEventListener("change", e => { deckSort.k = e.target.value; deckSort.dir = e.target.value === "name" ? 1 : -1; renderDecks(); syncUrl(); });
   $("deckList").addEventListener("click", e => {
     const b = e.target.closest(".deck-item"); if (!b) return;
     selected = b.dataset.id; tagFilter = null; asOf = null; $("search").value = ""; render();
