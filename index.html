@@ -221,6 +221,52 @@
   #indexTable td { vertical-align: top; }
   .type-col { color: var(--text-secondary); }
 
+  /* ---------- new pieces ---------- */
+  .seg { display: inline-flex; gap: 2px; padding: 3px; background: var(--grid); border-radius: 8px; }
+  .seg button { font: inherit; font-size: 14px; color: var(--text-secondary); background: none; border: 0; border-radius: 6px; padding: 3px 10px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--text-primary); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+  .movers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .movers ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .movers li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: baseline; font-size: 15px; }
+  .movers li .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .movers li .pct { font-size: 13px; width: 56px; text-align: right; }
+  .mini-h { font-size: 14px; color: var(--text-secondary); margin-bottom: 10px; }
+  .curve-wrap { display: grid; grid-template-columns: 3fr 2fr; gap: 32px; }
+  .curve { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 6px; align-items: end; height: 170px; }
+  .curve .col { display: grid; grid-template-rows: auto 1fr auto; height: 100%; text-align: center; font-size: 13px; }
+  .curve .col .v { color: var(--text-secondary); font-variant-numeric: lining-nums tabular-nums; }
+  .curve .col .b { align-self: end; background: var(--series-1); border-radius: 4px 4px 0 0; min-height: 2px; }
+  .curve .col .k { color: var(--text-muted); border-top: 1px solid var(--axis); padding-top: 4px; }
+  .types { display: grid; gap: 6px; }
+  .types .t { display: grid; grid-template-columns: 96px 1fr 32px; gap: 10px; align-items: center; font-size: 14px; }
+  .types .t .bar > div { background: var(--series-1); }
+  .types .t .num { color: var(--text-secondary); }
+  label.ctl.small { font-size: 14px; }
+  label.ctl.small select { min-height: 32px; font-size: 14px; }
+  .proxy-summary { display: flex; flex-wrap: wrap; gap: 8px 36px; align-items: baseline; }
+  .proxy-summary .big { font-family: var(--serif); font-weight: 700; font-size: 36px; line-height: 1.05; }
+  .proxy-summary .lbl { font-size: 14px; color: var(--text-secondary); }
+  .proxy-summary .alt { font-size: 15px; color: var(--text-secondary); }
+  .filter-label { font-size: 14px; color: var(--text-muted); margin-left: 6px; }
+  td.best { font-weight: 700; }
+  #proxyTable td { vertical-align: top; }
+  details.overlap summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+  details.overlap summary::-webkit-details-marker { display: none; }
+  details.overlap summary h3::after { content: " ▸"; color: var(--text-muted); font-size: 14px; }
+  details.overlap[open] summary h3::after { content: " ▾"; }
+  details.overlap[open] summary { margin-bottom: 14px; }
+  .overlap-grid { width: auto; font-size: 14px; }
+  .overlap-grid th, .overlap-grid td { border: 0; padding: 2px; position: static; cursor: default; }
+  .overlap-grid th.rowh { text-align: right; padding-right: 10px; white-space: nowrap; font-weight: 500; color: var(--text-secondary); max-width: 240px; overflow: hidden; text-overflow: ellipsis; }
+  .overlap-grid th.colh { text-align: center; color: var(--text-muted); font-weight: 500; }
+  .overlap-grid button { width: 40px; height: 32px; border: 0; border-radius: 6px; font: inherit; font-size: 13px; font-variant-numeric: lining-nums tabular-nums; cursor: pointer; color: var(--text-primary); }
+  .overlap-grid button:hover { outline: 2px solid var(--series-1); }
+  .overlap-grid .zero { width: 40px; height: 32px; display: grid; place-items: center; color: var(--text-muted); font-size: 13px; }
+  .overlap-grid .self { width: 40px; height: 32px; border-radius: 6px; background: var(--raised); }
+  @media (max-width: 760px) {
+    .movers, .curve-wrap { grid-template-columns: 1fr; }
+  }
+
   .empty { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 40px 20px; text-align: center; color: var(--text-secondary); display: grid; gap: 8px; justify-items: center; }
 
   /* ---------- small screens ---------- */
@@ -264,15 +310,47 @@
 
   <div id="loadError" class="empty" hidden>
     <h3>No snapshot data found</h3>
-    <div>This page reads <code>data/prices.csv</code>, which browsers block when the file is opened straight from disk.</div>
-    <div>Choose <code>prices.csv</code>, plus <code>decks.csv</code> and <code>cards.csv</code> if you have them:</div>
-    <input type="file" id="fileInput" accept=".csv" multiple>
+    <div>This page reads the files in <code>data/</code>, which browsers block when the page is opened straight from disk.</div>
+    <div>View it on GitHub Pages, or from this folder run <code>python -m http.server</code> and open <code>localhost:8000</code>.</div>
   </div>
 
   <nav class="tabs" id="tabs" role="tablist" hidden>
     <button role="tab" data-view="pricesView" aria-selected="true">Decks</button>
+    <button role="tab" data-view="proxyView" aria-selected="false">Proxies</button>
     <button role="tab" data-view="indexView" aria-selected="false">Search all decks</button>
   </nav>
+
+  <section id="proxyView" hidden>
+    <div class="ix-bar">
+      <div class="proxy-summary" id="pxSummary"></div>
+      <div class="filters" style="margin-top:12px">
+        <details class="dd" id="pxDeckDD"><summary>Decks <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
+        <span class="filter-label">Compare stores</span>
+        <label class="check"><input type="checkbox" class="px-store" value="tcg" checked> TCGplayer</label>
+        <label class="check"><input type="checkbox" class="px-store" value="ck" checked> Card Kingdom</label>
+        <label class="check"><input type="checkbox" class="px-store" value="cm"> Cardmarket</label>
+      </div>
+      <div class="note">Cardmarket is off by default: it's a European store, and its prices may not be in dollars. The running total adds up rows in the order shown, so sort by price to plan what to replace next.</div>
+    </div>
+    <div class="ix-table">
+      <div class="table-wrap">
+        <table id="proxyTable">
+          <thead><tr>
+            <th data-k="name">Card</th>
+            <th>Decks</th>
+            <th data-k="qty" class="num">Qty</th>
+            <th data-k="tcg" class="num">TCGplayer</th>
+            <th data-k="ck" class="num">Card Kingdom</th>
+            <th data-k="cm" class="num">Cardmarket</th>
+            <th data-k="best" class="num">Cheapest total</th>
+            <th class="num">Running total</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="note">Store prices are per copy. The cheapest one for each card is in bold.</div>
+    </div>
+  </section>
 
   <section id="indexView" hidden>
     <div class="ix-bar">
@@ -282,12 +360,20 @@
         <details class="dd" id="ixTypeDD"><summary>Type <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <input type="text" id="ixSubtype" placeholder="Subtype, e.g. Bird" aria-label="Subtype">
         <details class="dd" id="ixDeckDD"><summary>Decks <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
+        <select id="ixMatch" aria-label="Which selected decks" hidden>
+          <option value="any">In any selected deck</option>
+          <option value="every">In every selected deck</option>
+        </select>
         <label class="check"><input type="checkbox" id="ixCommanders"> Commanders only</label>
         <label class="check"><input type="checkbox" id="ixProxies"> Proxied somewhere</label>
         <button class="ghost" id="ixClear">Clear filters</button>
       </div>
       <div class="result-line" id="ixResult"></div>
     </div>
+    <details class="ix-bar overlap" id="overlapBox">
+      <summary><h3>Deck overlap</h3><span class="muted">How many cards each pair of decks shares, not counting basic lands. Select a number to list those cards.</span></summary>
+      <div class="table-wrap"><table class="overlap-grid" id="overlapGrid"></table></div>
+    </details>
     <div class="ix-table">
       <div class="table-wrap">
         <table id="indexTable">
@@ -339,6 +425,17 @@
           <div class="note" id="chartNote"></div>
         </section>
 
+        <section id="moversCard">
+          <div class="section-head">
+            <h3>Biggest movers</h3>
+            <div class="seg" id="moverWindow" role="group" aria-label="Period">
+              <button data-w="7" aria-pressed="false">7 days</button>
+              <button data-w="30" aria-pressed="true">30 days</button>
+            </div>
+          </div>
+          <div class="movers" id="movers"></div>
+        </section>
+
         <section id="swapsCard">
           <div class="section-head"><h3>Card swaps</h3></div>
           <div id="changes"></div>
@@ -350,10 +447,22 @@
           <div class="note">Proxies are cards with the "Proxied" color tag on Archidekt. <span id="tagHint">Select a row to filter the card list.</span></div>
         </section>
 
+        <section id="curveCard">
+          <div class="section-head"><h3>Mana curve and card types</h3></div>
+          <div class="curve-wrap">
+            <div><div class="mini-h">Mana value, lands excluded</div><div class="curve" id="curve"></div></div>
+            <div><div class="mini-h">Card types</div><div class="types" id="types"></div></div>
+          </div>
+          <div class="note">Cards with more than one type, like artifact creatures, count toward each.</div>
+        </section>
+
         <section id="cardsCard">
           <div class="section-head">
             <h3 id="cardsTitle">Cards</h3>
-            <input type="search" id="search" placeholder="Filter cards" aria-label="Filter cards">
+            <div class="filters">
+              <label class="ctl small">Decklist on <select id="asOf"></select></label>
+              <input type="search" id="search" placeholder="Filter cards" aria-label="Filter cards">
+            </div>
           </div>
           <div class="table-wrap">
             <table id="cardTable">
@@ -363,7 +472,7 @@
                 <th data-k="qty" class="num">Qty</th>
                 <th data-k="price" class="num">Price</th>
                 <th data-k="total" class="num">Total</th>
-                <th data-k="dFirst" class="num">Since first</th>
+                <th data-k="d30" class="num">Last 30 days</th>
               </tr></thead>
               <tbody></tbody>
             </table>
@@ -376,6 +485,16 @@
 
 <script>
 (() => {
+  // =====================================================================================
+  // Data files (see track_prices.py):
+  //   totals.csv      per deck per day: card count + total/paper/proxy value at each store
+  //   latest.csv      today's cards in every deck, with prices and proxy flag
+  //   decklists.csv   change log of deck contents (full list on a deck's first day, then diffs)
+  //   card_prices/YYYY-MM.csv   one price row per printing per day (last two months loaded;
+  //                   older months load on demand for decklist history)
+  //   decks.csv, cards.csv      names/commanders, and type line / mana value / colors
+  // =====================================================================================
+
   // ---------- CSV ----------
   function parseCSV(text) {
     const rows = []; let row = [], field = "", q = false;
@@ -396,95 +515,27 @@
     return rows.filter(r => r.length > 1).map(r => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ""])));
   }
 
-  // ---------- state ----------
+  // ---------- helpers ----------
   const $ = id => document.getElementById(id);
-  const money = v => v == null ? "–" : "$" + v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const money = v => v == null || Number.isNaN(v) ? "–" : "$" + v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
-  let rows = [], dates = [], decks = new Map();
-  let source = "price_tcgplayer", selected = null, tagFilter = null;
-  let deckSort = { k: "name", dir: 1 }, cardSort = { k: "total", dir: -1 };
+  const shortDate = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const signed = d => `${d > 0 ? "+" : d < 0 ? "−" : "±"}${money(Math.abs(d))}`;
+  const tone = d => d > 0.005 ? "up" : d < -0.005 ? "down" : "muted";
+  const deltaCell = d => d == null ? `<td class="num muted">–</td>` : `<td class="num ${tone(d)}">${signed(d)}</td>`;
+  const daysBetween = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+  const addDays = (d, n) => { const t = new Date(d + "T00:00:00Z"); t.setUTCDate(t.getUTCDate() + n); return t.toISOString().slice(0, 10); };
+  const fmtCount = n => Number.isInteger(n) ? String(n) : n.toFixed(1);
+  const num = v => { const n = parseFloat(v); return Number.isFinite(n) && n > 0 ? n : null; };
+  const isProxy = r => String(r.proxied).toLowerCase() === "true";
+  const printKey = r => `${r.card_name}|${r.set_code}|${r.finish}`;
 
   function delta(el, d, base) {
-    if (d == null) { el.textContent = "–"; el.className = el.className.replace(/\b(up|down)\b/g, ""); return; }
+    el.classList.remove("up", "down", "muted");
+    if (d == null) { el.textContent = "–"; return; }
     const pct = base ? ` (${d >= 0 ? "+" : ""}${(d / base * 100).toFixed(1)}%)` : "";
-    el.textContent = (d > 0 ? "+" : d < 0 ? "−" : "±") + money(Math.abs(d)) + pct;
-    el.classList.toggle("up", d > 0.005); el.classList.toggle("down", d < -0.005);
-  }
-  function deltaCell(d) {
-    if (d == null) return `<td class="num muted">–</td>`;
-    const cls = d > 0.005 ? "up" : d < -0.005 ? "down" : "muted";
-    return `<td class="num ${cls}">${d > 0 ? "+" : d < 0 ? "−" : "±"}${money(Math.abs(d))}</td>`;
-  }
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-
-  let deckNames = new Map(), deckCommanders = new Map(), cardInfo = new Map();
-  function load(text, namesText, cardsText) {
-    const deckRows = namesText ? parseCSV(namesText) : [];
-    deckNames = new Map(deckRows.map(d => [d.deck_id, d.deck_name]));
-    deckCommanders = new Map(deckRows.map(d => [d.deck_id, new Set((d.commanders || "").split(" | ").filter(Boolean))]));
-    cardInfo = new Map((cardsText ? parseCSV(cardsText) : []).map(c => [c.card_name, c]));
-    rows = parseCSV(text);
-    rows.forEach(r => { r.qty = +r.quantity || 0; r.key = `${r.card_name}|${r.set_code}|${r.finish}`; });
-    dates = [...new Set(rows.map(r => r.date))].sort();
-    decks = new Map();
-    for (const r of rows) {
-      let d = decks.get(r.deck_id);
-      if (!d) decks.set(r.deck_id, d = { id: r.deck_id, byDate: new Map() });
-      if (!d.byDate.has(r.date)) d.byDate.set(r.date, []);
-      d.byDate.get(r.date).push(r);
-    }
-    addCombinedDecks();
-    const current = realDecks().filter(d => d.byDate.has(dates[dates.length - 1])).length;
-    $("subtitle").textContent = `${current} deck${current === 1 ? "" : "s"}, last snapshot ${fmtDate(dates[dates.length - 1])}` +
-      (dates.length > 1 ? `, history since ${fmtDate(dates[0])}` : "");
-    $("tabs").hidden = false; $("loadError").hidden = true;
-    showView(view);
-    if (!(selected && decks.has(selected))) selected = ALL;
-    render();
-    renderIndex();
-  }
-
-  // Two combined "decks" pinned above the real ones: the whole collection (every deck's
-  // cards summed per day) and the average deck (that total divided by the number of decks
-  // snapshotted that day). Both reuse the merged rows; the average just scales them.
-  const ALL = "__all", AVG = "__avg";
-  const realDecks = () => [...decks.values()].filter(d => !d.virtual);
-  function addCombinedDecks() {
-    const merged = new Map(), count = new Map();
-    for (const d of realDecks()) for (const [date, list] of d.byDate) {
-      count.set(date, (count.get(date) || 0) + 1);
-      if (!merged.has(date)) merged.set(date, new Map());
-      const m = merged.get(date);
-      for (const r of list) {
-        const k = r.key + "|" + r.proxied, e = m.get(k);
-        if (e) e.qty += r.qty; else m.set(k, { ...r });
-      }
-    }
-    const byDate = new Map([...merged].map(([date, m]) => [date, [...m.values()]]));
-    decks.set(ALL, { id: ALL, virtual: true, name: "Whole collection", byDate, scale: () => 1 });
-    decks.set(AVG, { id: AVG, virtual: true, name: "Average deck", byDate, scale: date => 1 / count.get(date), noCards: true });
-  }
-
-  const priceOf = r => { const v = parseFloat(r[source]); return isFinite(v) ? v : null; };
-  const isProxy = r => String(r.proxied).toLowerCase() === "true";
-  const KEEP = { total: () => true, paper: r => !isProxy(r), proxy: r => isProxy(r) };
-  function deckValue(d, date, part = "total") {
-    const list = d.byDate.get(date); if (!list) return null;
-    const keep = KEEP[part];
-    return list.reduce((s, r) => s + (keep(r) ? (priceOf(r) ?? 0) * r.qty : 0), 0) * (d.scale ? d.scale(date) : 1);
-  }
-  function deckStats(d) {
-    const ds = dates.filter(x => d.byDate.has(x));
-    const last = ds[ds.length - 1], prev = ds[ds.length - 2], first = ds[0];
-    const value = deckValue(d, last);
-    return {
-      id: d.id, virtual: !!d.virtual, name: d.virtual ? d.name : deckNames.get(d.id) || `Deck #${d.id}`, value, last, ds,
-      cards: d.byDate.get(last).reduce((s, r) => s + r.qty, 0) * (d.scale ? d.scale(last) : 1),
-      dFirst: ds.length > 1 ? value - deckValue(d, first) : null,
-      lastSwap: deckChanges(d).at(-1)?.date ?? null,
-      stale: !d.virtual && last !== dates[dates.length - 1],   // no longer in the folder
-      firstVal: deckValue(d, first),
-    };
+    el.textContent = signed(d) + pct; el.classList.add(tone(d));
   }
   function sortBy(arr, { k, dir }) {
     return arr.sort((a, b) => {
@@ -500,7 +551,195 @@
     });
   }
 
-  // ---------- render ----------
+  // ---------- state ----------
+  const SRC = { price_tcgplayer: "tcg", price_cardkingdom: "ck", price_cardmarket: "cm" };
+  const STORE_NAMES = { tcg: "TCGplayer", ck: "Card Kingdom", cm: "Cardmarket" };
+  let source = "price_tcgplayer";
+  const src = () => SRC[source];
+  const ALL = "__all", AVG = "__avg";
+
+  let dates = [], latestDate = null;
+  let decks = new Map();              // id -> { id, name, virtual, totals: Map(date -> row), rows: [latest rows], log: [] }
+  let cardInfo = new Map(), commandersOf = new Map();
+  const priceDays = new Map();         // date -> Map(printKey -> row)   (loaded months only)
+  const loadedMonths = new Set();
+  let selected = ALL, tagFilter = null, asOf = null, moverWindow = 30, view = "pricesView";
+  let deckSort = { k: "name", dir: 1 }, cardSort = { k: "total", dir: -1 };
+
+  const realDecks = () => [...decks.values()].filter(d => !d.virtual);
+  const deckName = id => decks.get(id)?.name || `Deck #${id}`;
+
+  // ---------- loading ----------
+  const getText = (url, optional) => fetch(url, { cache: "no-store" })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .catch(e => { if (optional) return null; throw e; });
+
+  async function loadMonth(month) {
+    if (loadedMonths.has(month)) return;
+    loadedMonths.add(month);
+    const text = await getText(`data/card_prices/${month}.csv`, true);
+    if (!text) return;
+    for (const r of parseCSV(text)) {
+      if (!priceDays.has(r.date)) priceDays.set(r.date, new Map());
+      priceDays.get(r.date).set(printKey(r), r);
+    }
+  }
+  const monthOf = d => d.slice(0, 7);
+  const prevMonth = d => { const t = new Date(d.slice(0, 7) + "-01T00:00:00Z"); t.setUTCMonth(t.getUTCMonth() - 1); return t.toISOString().slice(0, 7); };
+
+  async function start() {
+    const [totalsT, latestT, logT, decksT, cardsT] = await Promise.all([
+      getText("data/totals.csv"), getText("data/latest.csv"), getText("data/decklists.csv"),
+      getText("data/decks.csv", true), getText("data/cards.csv", true)]);
+    const totals = parseCSV(totalsT), latest = parseCSV(latestT), log = parseCSV(logT);
+    const deckRows = decksT ? parseCSV(decksT) : [];
+    cardInfo = new Map((cardsT ? parseCSV(cardsT) : []).map(c => [c.card_name, c]));
+    commandersOf = new Map(deckRows.map(d => [d.deck_id, new Set((d.commanders || "").split(" | ").filter(Boolean))]));
+    const names = new Map(deckRows.map(d => [d.deck_id, d.deck_name]));
+
+    dates = [...new Set(totals.map(r => r.date))].sort();
+    latestDate = dates[dates.length - 1];
+    const ensure = id => decks.get(id) || decks.set(id, { id, name: names.get(id) || `Deck #${id}`, totals: new Map(), rows: [], log: [] }).get(id);
+    for (const r of totals) ensure(r.deck_id).totals.set(r.date, r);
+    for (const r of latest) { r.qty = +r.quantity || 0; ensure(r.deck_id).rows.push(r); }
+    for (const r of log.sort((a, b) => a.date.localeCompare(b.date))) { r.qty = +r.quantity || 0; ensure(r.deck_id).log.push(r); }
+    addCombined();
+
+    await Promise.all([loadMonth(monthOf(latestDate)), loadMonth(prevMonth(latestDate))]);
+
+    const current = realDecks().filter(d => !isStale(d)).length;
+    $("subtitle").textContent = `${current} deck${current === 1 ? "" : "s"}, last snapshot ${fmtDate(latestDate)}` +
+      (dates.length > 1 ? `, history since ${fmtDate(dates[0])}` : "");
+    $("tabs").hidden = false;
+    showView(view);
+    render(); renderProxies(); renderIndex();
+  }
+
+  // Combined "decks": the whole collection (all decks summed) and the average deck (that
+  // total divided by how many decks were snapshotted that day).
+  function addCombined() {
+    const sum = new Map(), count = new Map();
+    for (const d of realDecks()) for (const [date, t] of d.totals) {
+      count.set(date, (count.get(date) || 0) + 1);
+      const s = sum.get(date) || {};
+      for (const [k, v] of Object.entries(t)) if (k !== "date" && k !== "deck_id") s[k] = (s[k] || 0) + (+v || 0);
+      sum.set(date, s);
+    }
+    const scaled = div => new Map([...sum].map(([date, s]) => [date, Object.fromEntries(Object.entries(s).map(([k, v]) => [k, v / div(date)]))]));
+    const rows = mergeRows(realDecks().filter(d => !isStale(d)).flatMap(d => d.rows));
+    decks.set(ALL, { id: ALL, virtual: true, name: "Whole collection", totals: scaled(() => 1), rows, log: [] });
+    decks.set(AVG, { id: AVG, virtual: true, name: "Average deck", totals: scaled(d => count.get(d)), rows: [], log: [], noCards: true });
+  }
+  // Same printing + proxy status across decks becomes one row with summed quantity.
+  function mergeRows(list) {
+    const m = new Map();
+    for (const r of list) {
+      const k = printKey(r) + "|" + r.proxied, e = m.get(k);
+      if (e) e.qty += r.qty; else m.set(k, { ...r });
+    }
+    return [...m.values()];
+  }
+
+  const isStale = d => !d.virtual && ![...d.totals.keys()].includes(latestDate);
+  const deckDates = d => [...d.totals.keys()].sort();
+  const val = (d, date, part = "total") => { const t = d.totals.get(date); return t ? +t[`${src()}_${part}`] || 0 : null; };
+
+  // ---------- prices ----------
+  const priceIn = (row, column = source) => num(row?.[column]);
+  // Price of a printing on a given day (from the loaded months), or null.
+  const priceOn = (date, key, column = source) => priceIn(priceDays.get(date)?.get(key), column);
+  // The earliest loaded day on or after `target`.
+  function dayOnOrAfter(target) {
+    const loaded = [...priceDays.keys()].sort();
+    return loaded.find(d => d >= target) ?? null;
+  }
+
+  // ---------- decklist log ----------
+  // State of a deck's list on `date`: Map(entryKey -> { row, qty }).
+  function stateOn(d, date) {
+    const st = new Map();
+    for (const r of d.log) {
+      if (r.date > date) break;
+      const k = printKey(r) + "|" + r.proxied;
+      if (r.qty) st.set(k, { row: r, qty: r.qty }); else st.delete(k);
+    }
+    return st;
+  }
+  // Swaps: per change date, which card names went in and out (by name, so reprints and
+  // proxy-to-paper upgrades don't count). A deck's first day is its baseline, not a swap.
+  function deckSwaps(d) {
+    const ids = d.virtual ? realDecks().map(x => x.id) : [d.id];
+    const byDate = new Map();       // date -> Map(name -> net qty change)
+    for (const id of ids) {
+      const deck = decks.get(id), names = new Map();   // name -> qty
+      const firstDay = deck.log[0]?.date;
+      const perKey = new Map();
+      for (const r of deck.log) {
+        const k = printKey(r) + "|" + r.proxied;
+        const before = perKey.get(k) || 0;
+        perKey.set(k, r.qty);
+        // baseline: the deck's first day only counts as "in" for the whole collection,
+        // and only when the deck arrived after tracking began
+        if (r.date === firstDay && (!d.virtual || firstDay === dates[0])) continue;
+        const m = byDate.get(r.date) || new Map();
+        m.set(r.card_name, (m.get(r.card_name) || 0) + (r.qty - before));
+        byDate.set(r.date, m);
+      }
+    }
+    const out = [];
+    for (const date of [...byDate.keys()].sort()) {
+      const added = [], removed = [];
+      for (const [name, n] of byDate.get(date)) {
+        const price = latestPriceByName(name);
+        if (n > 0) added.push({ name, qty: n, price }); else if (n < 0) removed.push({ name, qty: -n, price });
+      }
+      if (!added.length && !removed.length) continue;
+      const sum = l => l.reduce((s, c) => s + (c.price ?? 0) * c.qty, 0);
+      added.sort((a, b) => (b.price ?? 0) - (a.price ?? 0)); removed.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
+      const prev = dates.filter(x => x < date).pop();
+      out.push({ date, since: prev, added, removed, net: sum(added) - sum(removed) });
+    }
+    return out;
+  }
+  // Current price for a card name: the cheapest printing in today's decks, else the most
+  // recent price we have for any printing of it (for cards that have since left).
+  let nameCache = { source: null, map: null };
+  function latestPriceByName(name) {
+    if (nameCache.source !== source) {
+      const map = new Map();
+      for (const d of realDecks()) for (const r of d.rows) {
+        const p = priceIn(r); if (p != null && (!map.has(r.card_name) || p < map.get(r.card_name))) map.set(r.card_name, p);
+      }
+      for (const day of [...priceDays.keys()].sort().reverse()) for (const r of priceDays.get(day).values()) {
+        const p = priceIn(r); if (p != null && !map.has(r.card_name)) map.set(r.card_name, p);
+      }
+      nameCache = { source, map };
+    }
+    return nameCache.map.get(name) ?? null;
+  }
+
+  // ---------- stats ----------
+  function deckStats(d) {
+    const ds = deckDates(d), last = ds[ds.length - 1], first = ds[0];
+    const value = val(d, last);
+    return {
+      id: d.id, virtual: !!d.virtual, name: d.name, value, last, ds,
+      cards: d.totals.get(last) ? +d.totals.get(last).cards : 0,
+      dFirst: ds.length > 1 ? value - val(d, first) : null, firstVal: val(d, first),
+      lastSwap: d.virtual && d.id === AVG ? null : (deckSwaps(d).at(-1)?.date ?? null),
+      stale: isStale(d),
+    };
+  }
+
+  // ---------- views ----------
+  function showView(v) {
+    view = v;
+    for (const id of ["pricesView", "proxyView", "indexView"]) $(id === "pricesView" ? "app" : id).hidden = v !== id;
+    $("source").closest("label").hidden = v !== "pricesView";
+    $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
+  }
+  $("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-view]"); if (b) showView(b.dataset.view); });
+
   function render() { renderDecks(); renderDeck(); }
 
   function renderDecks() {
@@ -508,8 +747,8 @@
       <button class="deck-item ${st.id === selected ? "sel" : ""} ${st.virtual ? "combined" : ""} ${st.stale ? "stale" : ""}" data-id="${esc(st.id)}" aria-current="${st.id === selected}">
         <span class="dname" title="${esc(st.name)}">${esc(st.name)}</span>
         <span class="dval num">${money(st.value)}</span>
-        <span class="dmeta">${st.stale ? `Last in folder ${fmtDate(st.last)}` : `${Number.isInteger(st.cards) ? st.cards : st.cards.toFixed(1)} cards`}${!st.stale && st.lastSwap ? `, swapped ${new Date(st.lastSwap + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : ""}</span>
-        <span class="ddelta num ${st.dFirst > 0.005 ? "up" : st.dFirst < -0.005 ? "down" : "muted"}">${st.dFirst == null ? "" : signed(st.dFirst)}</span>
+        <span class="dmeta">${st.stale ? `Last in folder ${fmtDate(st.last)}` : `${fmtCount(st.cards)} cards`}${!st.stale && st.lastSwap ? `, swapped ${shortDate(st.lastSwap)}` : ""}</span>
+        <span class="ddelta num ${tone(st.dFirst)}">${st.dFirst == null ? "" : signed(st.dFirst)}</span>
       </button>`;
     const all = sortBy(realDecks().map(deckStats), deckSort);
     const real = [...all.filter(s => !s.stale), ...all.filter(s => s.stale)];
@@ -521,92 +760,38 @@
     $("deckTitle").textContent = s.name;
     $("deckLink").hidden = s.virtual;
     if (!s.virtual) $("deckLink").href = `https://archidekt.com/decks/${encodeURIComponent(s.id)}`;
-    $("swapsCard").hidden = $("cardsCard").hidden = !!d.noCards;
+    for (const id of ["swapsCard", "cardsCard", "moversCard", "curveCard"]) $(id).hidden = !!d.noCards;
     $("tagHint").hidden = !!d.noCards;
     if (d.noCards) tagFilter = null;
     $("heroLbl").textContent = s.stale ? `Value on ${fmtDate(s.last)}, its last snapshot before leaving the folder` : `Value on ${fmtDate(s.last)}`;
     $("heroVal").textContent = money(s.value);
     delta($("heroFirst"), s.dFirst, s.firstVal);
-    const missing = d.byDate.get(s.last).filter(r => priceOf(r) == null).length;
-    $("chartNote").textContent = (s.ds.length < 2 ? "Only one snapshot so far — the lines fill in as the daily job runs. " : "")
+    const missing = d.rows.filter(r => priceIn(r) == null).length;
+    const swaps = d.noCards ? [] : deckSwaps(d);
+    $("chartNote").textContent = (s.ds.length < 2 ? "Only one snapshot so far. The lines fill in as the daily job runs. " : "")
       + (selected === AVG ? "Each day is the collection total divided by the number of decks that day. " : "")
-      + (deckChanges(d).length ? "Hollow points mark days the decklist changed. " : "")
-      + (missing ? `${missing} card${missing === 1 ? " has" : "s have"} no ${$("source").selectedOptions[0].text} price and count as $0.` : "");
-    const changes = d.noCards ? [] : deckChanges(d);
-    drawChart(s.ds.map(x => ({ date: x, total: deckValue(d, x), paper: deckValue(d, x, "paper"), proxy: deckValue(d, x, "proxy") })), changes);
-    renderChanges(changes);
+      + (swaps.length ? "Hollow points mark days the decklist changed. " : "")
+      + (missing ? `${missing} card${missing === 1 ? " has" : "s have"} no ${STORE_NAMES[src()]} price and count as $0.` : "");
+    drawChart(s.ds.map(x => ({ date: x, total: val(d, x), paper: val(d, x, "paper"), proxy: val(d, x, "proxy") })), swaps);
     renderTags(d, s);
-    renderCards(d, s);
+    if (d.noCards) return;
+    renderMovers(d);
+    renderSwaps(swaps);
+    renderCurve(d);
+    renderAsOf(d);
+    renderCards(d);
   }
 
-  // ---------- swaps ----------
-  // Compare each snapshot with the one before it, by card name (a reprint swap of the
-  // same card isn't a deck change). Quantity changes count as in/out of that many copies.
-  function deckChanges(d) {
-    const ds = dates.filter(x => d.byDate.has(x));
-    const tally = date => {
-      const m = new Map();
-      for (const r of d.byDate.get(date)) {
-        const e = m.get(r.card_name) || { qty: 0, price: null };
-        e.qty += r.qty; if (e.price == null) e.price = priceOf(r);
-        m.set(r.card_name, e);
-      }
-      return m;
-    };
-    const out = [];
-    let before = ds.length ? tally(ds[0]) : null;
-    for (let i = 1; i < ds.length; i++) {
-      const after = tally(ds[i]), added = [], removed = [];
-      for (const [name, a] of after) {
-        const n = a.qty - (before.get(name)?.qty || 0);
-        if (n > 0) added.push({ name, qty: n, price: a.price });
-      }
-      for (const [name, b] of before) {
-        const n = b.qty - (after.get(name)?.qty || 0);
-        if (n > 0) removed.push({ name, qty: n, price: b.price });
-      }
-      if (added.length || removed.length) {
-        const sum = l => l.reduce((s, c) => s + (c.price ?? 0) * c.qty, 0);
-        added.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
-        removed.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
-        out.push({ date: ds[i], since: ds[i - 1], added, removed, net: sum(added) - sum(removed) });
-      }
-      before = after;
-    }
-    return out;
-  }
-
-  function renderChanges(changes) {
-    const box = $("changes");
-    if (!changes.length) {
-      box.innerHTML = `<div class="muted">No swaps recorded yet. Cards entering or leaving ${selected === ALL ? "the collection" : "this deck"} between daily snapshots will show up here.${selected === ALL ? " Moving a card from one deck to another doesn't count." : ""}</div>`;
-      return;
-    }
-    const n = l => l.reduce((s, c) => s + c.qty, 0);
-    const list = (l, sign) => l.length ? l.map(c => `
-        <li><span class="sign ${sign === "+" ? "in" : "out"}">${sign}</span>${c.qty > 1 ? c.qty + "× " : ""}${esc(c.name)}
-          <span class="num muted">${money(c.price)}</span></li>`).join("") : `<li class="muted">—</li>`;
-    box.innerHTML = [...changes].reverse().map(c => `
-      <div class="swap">
-        <div class="swap-head">
-          <b>${fmtDate(c.date)}</b>
-          <span class="muted">${n(c.added)} in, ${n(c.removed)} out${(new Date(c.date) - new Date(c.since)) / 864e5 > 1 ? ` since ${fmtDate(c.since)}` : ""}</span>
-          <span class="num ${c.net > 0.005 ? "up" : c.net < -0.005 ? "down" : "muted"}">${c.net > 0 ? "+" : c.net < 0 ? "−" : "±"}${money(Math.abs(c.net))}</span>
-        </div>
-        <div class="swap-cols">
-          <ul><li class="col-h">In</li>${list(c.added, "+")}</ul>
-          <ul><li class="col-h">Out</li>${list(c.removed, "−")}</ul>
-        </div>
-      </div>`).join("");
-  }
-
+  // ---------- chart ----------
   const SERIES = [
     { k: "total", label: "Total", color: "var(--series-1)" },
     { k: "paper", label: "Paper", color: "var(--series-paper)" },
     { k: "proxy", label: "Proxies", color: "var(--series-proxy)", dash: true },
   ];
-  const signed = d => `${d > 0 ? "+" : d < 0 ? "−" : "±"}${money(Math.abs(d))}`;
-
+  function niceStep(raw) {
+    const p = Math.pow(10, Math.floor(Math.log10(raw || 1))), f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+  }
   function drawChart(pts, changes = []) {
     const wrap = $("chart"), svg = wrap.querySelector("svg"), tip = wrap.querySelector(".tip");
     const last = pts[pts.length - 1];
@@ -635,10 +820,8 @@
     const tickIdx = pts.length === 1 ? [0] : [...new Set(Array.from({ length: n }, (_, i) => Math.round(i * (pts.length - 1) / (n - 1))))];
     for (const i of tickIdx) {
       const p = pts[i], anchor = pts.length > 1 && i === 0 ? "start" : pts.length > 1 && i === pts.length - 1 ? "end" : "middle";
-      g += `<text x="${x(p)}" y="${H - 8}" text-anchor="${anchor}">${new Date(p.date + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" })}</text>`;
+      g += `<text x="${x(p)}" y="${H - 8}" text-anchor="${anchor}">${shortDate(p.date)}</text>`;
     }
-
-    // lines: draw total last so it sits on top
     for (const sr of [...SERIES].reverse()) {
       const path = pts.map((p, i) => `${i ? "L" : "M"}${x(p).toFixed(1)},${y(p[sr.k]).toFixed(1)}`).join("");
       g += `<path d="${path}" fill="none" stroke="${sr.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" ${sr.dash ? `stroke-dasharray="6 4"` : ""}/>`;
@@ -647,15 +830,11 @@
     const swapAt = new Map(changes.map(c => [c.date, c]));
     for (const p of pts) if (swapAt.has(p.date) && p !== last)
       g += `<circle cx="${x(p)}" cy="${y(p.total)}" r="5" fill="var(--surface)" stroke="var(--series-1)" stroke-width="2"/>`;
-
-    // direct labels at the right end, nudged apart so they never overlap
     const labels = SERIES.map(sr => ({ sr, y: y(last[sr.k]) })).sort((a, b) => a.y - b.y);
     for (let i = 1; i < labels.length; i++) labels[i].y = Math.max(labels[i].y, labels[i - 1].y + 14);
     const overflow = labels[labels.length - 1].y - (m.t + ih);
     if (overflow > 0) labels.forEach(l => l.y -= overflow);
-    for (const l of labels)
-      g += `<text x="${x(last) + 10}" y="${l.y + 4}" style="fill:var(--text-secondary)">${l.sr.label}</text>`;
-
+    for (const l of labels) g += `<text x="${x(last) + 10}" y="${l.y + 4}" style="fill:var(--text-secondary)">${l.sr.label}</text>`;
     g += `<line class="xh" y1="${m.t}" y2="${m.t + ih}" stroke="var(--axis)" stroke-dasharray="3 3" visibility="hidden"/>`;
     for (const sr of SERIES) g += `<circle class="hd" data-k="${sr.k}" r="4.5" fill="${sr.color}" stroke="var(--surface)" stroke-width="2" visibility="hidden"/>`;
     g += `<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent"/>`;
@@ -668,9 +847,9 @@
       xh.setAttribute("x1", x(best)); xh.setAttribute("x2", x(best)); xh.setAttribute("visibility", "visible");
       for (const h of hds) { h.setAttribute("cx", x(best)); h.setAttribute("cy", y(best[h.dataset.k])); h.setAttribute("visibility", "visible"); }
       const sw = swapAt.get(best.date), cnt = l => l.reduce((s, c) => s + c.qty, 0);
-      tip.innerHTML = `<div class="muted">${fmtDate(best.date)}</div>` + SERIES.map(sr => {
-        return `<div class="row"><span class="key ${sr.dash ? "dash" : ""}" style="border-color:${sr.color}"></span>${sr.label}<b>${money(best[sr.k])}</b></div>`;
-      }).join("") + (sw ? `<div class="muted">${cnt(sw.added)} in, ${cnt(sw.removed)} out</div>` : "");
+      tip.innerHTML = `<div class="muted">${fmtDate(best.date)}</div>` + SERIES.map(sr =>
+        `<div class="row"><span class="key ${sr.dash ? "dash" : ""}" style="border-color:${sr.color}"></span>${sr.label}<b>${money(best[sr.k])}</b></div>`).join("")
+        + (sw ? `<div class="muted">${cnt(sw.added)} in, ${cnt(sw.removed)} out</div>` : "");
       const px = x(best) * r.width / W, py = y(best.total) * r.height / H;
       tip.style.left = Math.min(Math.max(px - tip.offsetWidth / 2, 0), r.width - tip.offsetWidth) + "px";
       tip.style.top = (py - tip.offsetHeight - 12 > 0 ? py - tip.offsetHeight - 12 : py + 16) + "px";
@@ -678,47 +857,136 @@
     };
     svg.onpointerleave = () => { tip.style.opacity = 0; xh.setAttribute("visibility", "hidden"); hds.forEach(h => h.setAttribute("visibility", "hidden")); };
   }
-  function niceStep(raw) {
-    const p = Math.pow(10, Math.floor(Math.log10(raw || 1))), f = raw / p;
-    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+
+  // ---------- biggest movers ----------
+  function renderMovers(d) {
+    $("moverWindow").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.w === moverWindow));
+    const from = dayOnOrAfter(addDays(latestDate, -moverWindow));
+    const box = $("movers");
+    if (!from || from === latestDate) { box.innerHTML = `<div class="swaps-empty">Price changes show up here once there's more than a day of history.</div>`; return; }
+    const seen = new Set(), list = [];
+    for (const r of d.rows) {
+      const k = printKey(r); if (seen.has(k)) continue; seen.add(k);
+      const now = priceIn(r), then = priceOn(from, k);
+      if (now == null || then == null || Math.abs(now - then) < 0.005) continue;
+      list.push({ name: r.card_name, set: r.set_code, finish: r.finish, change: now - then, pct: (now - then) / then * 100 });
+    }
+    const up = list.filter(c => c.change > 0).sort((a, b) => b.change - a.change).slice(0, 6);
+    const down = list.filter(c => c.change < 0).sort((a, b) => a.change - b.change).slice(0, 6);
+    const col = (title, l) => `<div><div class="mini-h">${title}</div>${l.length ? `<ol>${l.map(c => `
+      <li><span class="nm"><span class="card-name">${esc(c.name)}</span><span class="printing">${esc(c.set.toUpperCase())}${c.finish !== "Normal" ? ", " + esc(c.finish.toLowerCase()) : ""}</span></span>
+        <span class="num ${tone(c.change)}">${signed(c.change)}</span><span class="pct ${tone(c.change)}">${c.pct > 0 ? "+" : ""}${c.pct.toFixed(0)}%</span></li>`).join("")}</ol>`
+      : `<div class="muted">None</div>`}</div>`;
+    box.innerHTML = col(`Up since ${shortDate(from)}, per copy`, up) + col(`Down since ${shortDate(from)}, per copy`, down);
+  }
+  $("moverWindow").addEventListener("click", e => {
+    const b = e.target.closest("button[data-w]"); if (!b) return;
+    moverWindow = +b.dataset.w; renderMovers(decks.get(selected));
+  });
+
+  // ---------- swaps ----------
+  function renderSwaps(changes) {
+    const box = $("changes");
+    if (!changes.length) {
+      box.innerHTML = `<div class="swaps-empty">No swaps recorded yet. Cards entering or leaving ${selected === ALL ? "the collection" : "this deck"} between daily snapshots will show up here.${selected === ALL ? " Moving a card from one deck to another doesn't count." : ""}</div>`;
+      return;
+    }
+    const n = l => l.reduce((s, c) => s + c.qty, 0);
+    const list = (l, sign) => l.length ? l.map(c => `
+        <li><span class="sign ${sign === "+" ? "in" : "out"}">${sign}</span>${c.qty > 1 ? c.qty + "× " : ""}${esc(c.name)}
+          <span class="num muted">${money(c.price)}</span></li>`).join("") : `<li class="muted">—</li>`;
+    box.innerHTML = [...changes].reverse().map(c => `
+      <div class="swap">
+        <div class="swap-head">
+          <b>${fmtDate(c.date)}</b>
+          <span class="muted">${n(c.added)} in, ${n(c.removed)} out${c.since && daysBetween(c.since, c.date) > 1 ? ` since ${fmtDate(c.since)}` : ""}</span>
+          <span class="num ${tone(c.net)}">${signed(c.net)}</span>
+        </div>
+        <div class="swap-cols">
+          <ul><li class="col-h">In</li>${list(c.added, "+")}</ul>
+          <ul><li class="col-h">Out</li>${list(c.removed, "−")}</ul>
+        </div>
+      </div>`).join("");
   }
 
-  function tagOf(r) { return isProxy(r) ? { name: "Proxied", proxy: true } : { name: "Paper", proxy: false }; }
-
+  // ---------- paper vs proxied ----------
   function renderTags(d, s) {
-    const groups = new Map();
-    for (const r of d.byDate.get(s.last)) {
-      const t = tagOf(r), g = groups.get(t.name) || { ...t, v: 0, n: 0 };
-      g.v += (priceOf(r) ?? 0) * r.qty; g.n += r.qty; groups.set(t.name, g);
-    }
-    const k = d.scale ? d.scale(s.last) : 1;
-    for (const g of groups.values()) { g.v *= k; g.n *= k; }
-    const list = [...groups.values()].sort((a, b) => b.v - a.v);
+    const groups = new Map([["Paper", { name: "Paper", proxy: false, v: val(d, s.last, "paper") || 0, n: 0 }],
+                             ["Proxied", { name: "Proxied", proxy: true, v: val(d, s.last, "proxy") || 0, n: 0 }]]);
+    const rows = d.id === AVG ? decks.get(ALL).rows : d.rows;
+    for (const r of rows) groups.get(isProxy(r) ? "Proxied" : "Paper").n += r.qty;
+    if (d.id === AVG) { const k = realDecks().filter(x => !isStale(x)).length || 1; for (const g of groups.values()) g.n /= k; }
+    const list = [...groups.values()].filter(g => g.n > 0).sort((a, b) => b.v - a.v);
     const max = Math.max(...list.map(g => g.v), 0.01);
-    if (tagFilter && !groups.has(tagFilter)) tagFilter = null;
+    if (tagFilter && !list.some(g => g.name === tagFilter)) tagFilter = null;
     $("tags").innerHTML = list.map(g => `
-      <div class="tagrow ${g.name === tagFilter ? "active" : ""}" data-tag="${esc(g.name)}" >
-        <span class="chip">${esc(g.name)} <span class="muted">${Number.isInteger(g.n) ? g.n : g.n.toFixed(1)} card${g.n === 1 ? "" : "s"}</span></span>
+      <div class="tagrow ${g.name === tagFilter ? "active" : ""}" data-tag="${g.name}">
+        <span class="chip">${g.name} <span class="muted">${fmtCount(g.n)} card${g.n === 1 ? "" : "s"}</span></span>
         <div class="bar"><div style="width:${(g.v / max * 100).toFixed(1)}%;background:${g.proxy ? "var(--series-proxy)" : "var(--series-paper)"}"></div></div>
         <span class="num">${money(g.v)}</span>
       </div>`).join("");
   }
 
-  function renderCards(d, s) {
-    const i = s.ds.length - 1;
-    const map = date => new Map((d.byDate.get(date) || []).map(r => [r.key, priceOf(r)]));
-    const first = i > 0 ? map(s.ds[0]) : null;
+  // ---------- mana curve & types ----------
+  const TYPE_LIST = ["Creature", "Instant", "Sorcery", "Artifact", "Enchantment", "Planeswalker", "Battle", "Land"];
+  function renderCurve(d) {
+    const curve = new Array(8).fill(0), types = new Map(TYPE_LIST.map(t => [t, 0]));
+    let known = 0;
+    for (const r of d.rows) {
+      const info = cardInfo.get(r.card_name); if (!info) continue;
+      known += r.qty;
+      const ts = (info.type_line || "").split(" — ")[0].split(" ");
+      for (const t of ts) if (types.has(t)) types.set(t, types.get(t) + r.qty);
+      if (!ts.includes("Land") && info.mana_value !== "") curve[Math.min(7, Math.floor(+info.mana_value))] += r.qty;
+    }
+    const cmax = Math.max(...curve, 1);
+    $("curve").innerHTML = curve.map((n, i) => `
+      <div class="col"><span class="v">${n || ""}</span><span class="b" style="height:${(n / cmax * 100).toFixed(1)}%"></span><span class="k">${i === 7 ? "7+" : i}</span></div>`).join("");
+    const tl = [...types].filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]), tmax = Math.max(...tl.map(t => t[1]), 1);
+    $("types").innerHTML = tl.map(([t, n]) => `
+      <div class="t"><span>${t}</span><div class="bar"><div style="width:${(n / tmax * 100).toFixed(1)}%"></div></div><span class="num">${n}</span></div>`).join("")
+      || `<div class="muted">Card types arrive with the next daily run.</div>`;
+  }
+
+  // ---------- cards + decklist history ----------
+  function renderAsOf(d) {
+    const sel = $("asOf");
+    const days = d.virtual ? [...new Set(realDecks().flatMap(x => x.log.map(r => r.date)))] : [...new Set(d.log.map(r => r.date))];
+    const opts = [...new Set([latestDate, ...days])].sort().reverse();
+    if (asOf && !opts.includes(asOf)) asOf = null;
+    sel.innerHTML = opts.map(o => `<option value="${o}" ${o === (asOf || latestDate) ? "selected" : ""}>${o === latestDate ? "Today" : fmtDate(o)}</option>`).join("");
+    sel.closest("label").hidden = opts.length < 2;
+  }
+
+  async function cardsFor(d) {
+    if (!asOf || asOf === latestDate) return { date: latestDate, rows: d.rows, past: false };
+    const ids = d.virtual ? realDecks().map(x => x.id) : [d.id];
+    const rows = mergeRows(ids.flatMap(id => [...stateOn(decks.get(id), asOf).values()].map(({ row, qty }) => ({ ...row, qty }))));
+    await loadMonth(monthOf(asOf));
+    // that day's prices; fall back to the nearest later day we have
+    const day = priceDays.has(asOf) ? asOf : dayOnOrAfter(asOf);
+    for (const r of rows) for (const c of Object.keys(SRC)) r[c] = priceDays.get(day)?.get(printKey(r))?.[c] ?? "";
+    return { date: asOf, rows, past: true };
+  }
+
+  let cardsToken = 0;
+  async function renderCards(d) {
+    const token = ++cardsToken;
+    const { date, rows, past } = await cardsFor(d);
+    if (token !== cardsToken) return;
+    const from = dayOnOrAfter(addDays(latestDate, -30));
     const q = $("search").value.trim().toLowerCase();
-    let list = d.byDate.get(s.last).map(r => {
-      const p = priceOf(r), t = tagOf(r);
-      const ch = m => (m && p != null && m.get(r.key) != null) ? (p - m.get(r.key)) * r.qty : null;
-      return { name: r.card_name, set: r.set_code, finish: r.finish, qty: r.qty, tag: t.name, proxy: t.proxy,
-               price: p, total: p == null ? null : p * r.qty, dFirst: ch(first) };
+    let list = rows.map(r => {
+      const p = priceIn(r), then = !past && from && from !== latestDate ? priceOn(from, printKey(r)) : null;
+      return { name: r.card_name, set: r.set_code, finish: r.finish, qty: r.qty, tag: isProxy(r) ? "Proxied" : "Paper", proxy: isProxy(r),
+               price: p, total: p == null ? null : p * r.qty, d30: p != null && then != null ? (p - then) * r.qty : null };
     });
     if (tagFilter) list = list.filter(c => c.tag === tagFilter);
     if (q) list = list.filter(c => c.name.toLowerCase().includes(q));
     sortBy(list, cardSort);
-    $("cardsTitle").textContent = `${tagFilter === "Proxied" ? "Proxied cards" : tagFilter === "Paper" ? "Paper cards" : "Cards"} (${list.length})`;
+    const label = tagFilter === "Proxied" ? "Proxied cards" : tagFilter === "Paper" ? "Paper cards" : "Cards";
+    $("cardsTitle").textContent = `${label} (${list.length})${past ? `, ${fmtDate(date)}` : ""}`;
+    $("cardTable").querySelector('th[data-k="d30"]').hidden = past;
     $("cardTable").tBodies[0].innerHTML = list.map(c => `
       <tr>
         <td><span class="card-name">${esc(c.name)}</span><span class="printing">${esc(c.set.toUpperCase())}${c.finish && c.finish !== "Normal" ? ", " + esc(c.finish.toLowerCase()) : ""}</span></td>
@@ -726,32 +994,81 @@
         <td class="num">${c.qty}</td>
         <td class="num">${money(c.price)}</td>
         <td class="num">${money(c.total)}</td>
-        ${deltaCell(c.dFirst)}
+        ${past ? "" : deltaCell(c.d30)}
       </tr>`).join("") || `<tr><td colspan="6" class="muted">No cards match.</td></tr>`;
     markSort($("cardTable"), cardSort);
   }
+  $("asOf").addEventListener("change", e => { asOf = e.target.value; renderCards(decks.get(selected)); });
 
-  // ---------- card index (from the most recent snapshot) ----------
-  let view = "pricesView";
-  const ix = { search: "", colors: new Set(), types: new Set(), subtype: "", decks: new Set(), commanders: false, proxies: false };
+  // ---------- proxies tab ----------
+  const px = { decks: new Set(), stores: new Set(["tcg", "ck"]) };
+  let pxSort = { k: "best", dir: -1 };
+  function renderProxies() {
+    const list = new Map();
+    for (const d of realDecks()) {
+      if (isStale(d) || (px.decks.size && !px.decks.has(d.id))) continue;
+      for (const r of d.rows) if (isProxy(r)) {
+        const k = printKey(r);
+        const e = list.get(k) || { name: r.card_name, set: r.set_code, finish: r.finish, qty: 0, decks: new Map(),
+          tcg: num(r.price_tcgplayer), ck: num(r.price_cardkingdom), cm: num(r.price_cardmarket) };
+        e.qty += r.qty; e.decks.set(d.id, (e.decks.get(d.id) || 0) + r.qty); list.set(k, e);
+      }
+    }
+    const rows = [...list.values()].map(e => {
+      const options = [...px.stores].map(s => [s, e[s]]).filter(([, p]) => p != null);
+      const [bestStore, bestPrice] = options.sort((a, b) => a[1] - b[1])[0] || [null, null];
+      return { ...e, bestStore, best: bestPrice == null ? null : bestPrice * e.qty };
+    });
+    sortBy(rows, pxSort);
+    const copies = rows.reduce((s, r) => s + r.qty, 0), total = rows.reduce((s, r) => s + (r.best ?? 0), 0);
+    const storeTotal = s => rows.reduce((t, r) => t + (r[s] ?? 0) * r.qty, 0);
+    const deckCount = new Set(rows.flatMap(r => [...r.decks.keys()])).size;
+    $("pxSummary").innerHTML = rows.length ? `
+      <div><div class="lbl">Cost to replace every proxy, buying each card where it's cheapest</div><div class="big num" style="text-align:left">${money(total)}</div></div>
+      <div class="alt">${copies} proxied ${copies === 1 ? "copy" : "copies"} across ${deckCount} deck${deckCount === 1 ? "" : "s"}<br>
+        ${[...px.stores].map(s => `All from ${STORE_NAMES[s]}: ${money(storeTotal(s))}`).join("<br>")}</div>`
+      : `<div class="alt">No proxies${px.decks.size ? " in the selected decks" : ""}. Cards with the "Proxied" color tag on Archidekt show up here.</div>`;
+    let running = 0;
+    $("proxyTable").tBodies[0].innerHTML = rows.map(r => {
+      running += r.best ?? 0;
+      const cell = s => `<td class="num ${r.bestStore === s ? "best" : ""} ${px.stores.has(s) ? "" : "muted"}">${money(r[s])}</td>`;
+      return `<tr>
+        <td><span class="card-name">${esc(r.name)}</span><span class="printing">${esc(r.set.toUpperCase())}${r.finish !== "Normal" ? ", " + esc(r.finish.toLowerCase()) : ""}</span></td>
+        <td><div class="where">${sortBy([...r.decks].map(([id, q]) => ({ name: deckName(id), q })), { k: "name", dir: 1 }).map(x => `<span class="dchip">${esc(x.name)}${x.q > 1 ? " ×" + x.q : ""}</span>`).join("")}</div></td>
+        <td class="num">${r.qty}</td>${cell("tcg")}${cell("ck")}${cell("cm")}
+        <td class="num">${money(r.best)}</td>
+        <td class="num muted">${money(running)}</td>
+      </tr>`;
+    }).join("") || `<tr><td colspan="8" class="muted">Nothing to show.</td></tr>`;
+    markSort($("proxyTable"), pxSort);
+    fillDeckDropdown($("pxDeckDD"), px.decks);
+  }
+  document.querySelectorAll(".px-store").forEach(c => c.addEventListener("change", () => {
+    c.checked ? px.stores.add(c.value) : px.stores.delete(c.value);
+    if (!px.stores.size) { px.stores.add(c.value); c.checked = true; }
+    renderProxies();
+  }));
+  $("pxDeckDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? px.decks.add(v) : px.decks.delete(v); renderProxies(); });
+
+  function fillDeckDropdown(dd, set) {
+    const items = sortBy(realDecks().filter(d => !isStale(d)).map(d => ({ id: d.id, name: d.name })), { k: "name", dir: 1 });
+    dd.querySelector(".panel").innerHTML = items.map(x =>
+      `<label><input type="checkbox" value="${esc(x.id)}" ${set.has(x.id) ? "checked" : ""}> ${esc(x.name)}</label>`).join("");
+    const badge = dd.querySelector(".count-badge"); badge.hidden = !set.size; badge.textContent = set.size;
+  }
+
+  // ---------- search all decks ----------
+  const ix = { search: "", colors: new Set(), types: new Set(), subtype: "", decks: new Set(), match: "any", commanders: false, proxies: false };
   let ixSort = { k: "decks", dir: -1 };
   const MAIN_TYPES = ["Creature", "Instant", "Sorcery", "Artifact", "Enchantment", "Planeswalker", "Battle", "Land", "Legendary", "Tribal", "Kindred"];
-
-  function showView(v) {
-    view = v;
-    $("app").hidden = v !== "pricesView"; $("indexView").hidden = v !== "indexView";
-    $("source").closest("label").style.visibility = v === "indexView" ? "hidden" : "";
-    $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
-  }
-  $("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-view]"); if (b) showView(b.dataset.view); });
+  const isBasic = name => (cardInfo.get(name)?.type_line || "").startsWith("Basic ");
 
   function indexCards() {
-    const latest = dates[dates.length - 1], byName = new Map();
+    const byName = new Map();
     for (const d of realDecks()) {
-      if (ix.decks.size && !ix.decks.has(d.id)) continue;
-      const list = d.byDate.get(latest); if (!list) continue;   // only decks in the latest pull
-      const cmds = deckCommanders.get(d.id) || new Set();
-      for (const r of list) {
+      if (isStale(d) || (ix.decks.size && !ix.decks.has(d.id))) continue;
+      const cmds = commandersOf.get(d.id) || new Set();
+      for (const r of d.rows) {
         let c = byName.get(r.card_name);
         if (!c) {
           const info = cardInfo.get(r.card_name) || {};
@@ -769,7 +1086,6 @@
     }
     return [...byName.values()].map(c => ({ ...c, decks: c.perDeck.size }));
   }
-
   function ixMatches(c) {
     if (ix.search && !c.name.toLowerCase().includes(ix.search)) return false;
     if (ix.subtype && !c.subtypes.toLowerCase().includes(ix.subtype)) return false;
@@ -780,34 +1096,27 @@
     if (ix.types.size && !c.types.some(t => ix.types.has(t))) return false;
     if (ix.commanders && !c.commander) return false;
     if (ix.proxies && !c.proxied) return false;
+    if (ix.match === "every" && ix.decks.size > 1 && c.perDeck.size < ix.decks.size) return false;
     return true;
   }
-
   const pipsHtml = id => id == null ? `<span class="muted">?</span>` :
     `<span class="pips">${(id || "C").split("").map(k => `<span class="pip ${k}">${k}</span>`).join("")}</span>`;
 
-  function renderIndexFilters() {
-    const sorted = sortBy(realDecks().map(deckStats), { k: "name", dir: 1 });
+  function renderIndex() {
     const typesPresent = new Set([...cardInfo.values()].flatMap(c => (c.type_line || "").split(" — ")[0].split(" ")));
-    const box = (dd, items, set) => {
-      dd.querySelector(".panel").innerHTML = items.map(([v, label]) =>
-        `<label><input type="checkbox" value="${esc(v)}" ${set.has(v) ? "checked" : ""}> ${esc(label)}</label>`).join("") || `<div class="muted">Nothing yet</div>`;
-      const badge = dd.querySelector(".count-badge"); badge.hidden = !set.size; badge.textContent = set.size;
-    };
-    box($("ixTypeDD"), MAIN_TYPES.filter(t => typesPresent.has(t)).map(t => [t, t]), ix.types);
-    box($("ixDeckDD"), sorted.map(s => [s.id, s.name]), ix.decks);
+    const typePanel = $("ixTypeDD").querySelector(".panel");
+    typePanel.innerHTML = MAIN_TYPES.filter(t => typesPresent.has(t)).map(t =>
+      `<label><input type="checkbox" value="${t}" ${ix.types.has(t) ? "checked" : ""}> ${t}</label>`).join("") || `<div class="muted">Nothing yet</div>`;
+    const tb = $("ixTypeDD").querySelector(".count-badge"); tb.hidden = !ix.types.size; tb.textContent = ix.types.size;
+    fillDeckDropdown($("ixDeckDD"), ix.decks);
+    $("ixMatch").hidden = ix.decks.size < 2; $("ixMatch").value = ix.match;
     $("ixColors").innerHTML = "WUBRGC".split("").map(k =>
       `<button data-c="${k}" aria-pressed="${ix.colors.has(k)}" title="${{ W: "White", U: "Blue", B: "Black", R: "Red", G: "Green", C: "Colorless" }[k]}"><span class="pip ${k}">${k}</span></button>`).join("");
-  }
 
-  function renderIndex() {
-    if (!dates.length) return;
-    renderIndexFilters();
     const all = indexCards(), list = sortBy(all.filter(ixMatches), ixSort);
     const copies = list.reduce((s, c) => s + c.qty, 0);
-    $("ixResult").textContent = `Showing ${list.length} of ${all.length} cards (${copies} copies) from the ${fmtDate(dates[dates.length - 1])} snapshot` +
+    $("ixResult").textContent = `Showing ${list.length} of ${all.length} cards (${copies} copies) from the ${fmtDate(latestDate)} snapshot` +
       (cardInfo.size ? "" : ". Card types and colors arrive with the next daily run.");
-    const names = new Map(realDecks().map(d => [d.id, deckStats(d).name]));
     const MAX = 400;
     $("indexTable").tBodies[0].innerHTML = list.slice(0, MAX).map(c => `
       <tr>
@@ -817,67 +1126,79 @@
         <td>${pipsHtml(c.color)}</td>
         <td class="num">${c.decks}</td>
         <td class="num">${c.qty}</td>
-        <td><div class="where">${sortBy([...c.perDeck].map(([id, e]) => ({ id, e, name: names.get(id) })), { k: "name", dir: 1 })
+        <td><div class="where">${sortBy([...c.perDeck].map(([id, e]) => ({ e, name: deckName(id) })), { k: "name", dir: 1 })
           .map(({ name, e }) => `<span class="dchip ${e.cmd ? "cmd" : ""} ${e.proxy ? "proxy" : ""}">${esc(name)}${e.qty > 1 ? " ×" + e.qty : ""}</span>`).join("")}</div></td>
-      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="7" class="muted">Showing the first ${MAX} — narrow the filters to see the rest.</td></tr>` : "")
+      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="7" class="muted">Showing the first ${MAX}. Narrow the filters to see the rest.</td></tr>` : "")
       || `<tr><td colspan="7" class="muted">No cards match these filters.</td></tr>`;
     markSort($("indexTable"), ixSort);
+    renderOverlap();
   }
+
+  // Deck overlap: unique non-basic card names shared by each pair of current decks.
+  function renderOverlap() {
+    const ds = sortBy(realDecks().filter(d => !isStale(d)).map(d => ({ id: d.id, name: d.name,
+      cards: new Set(d.rows.map(r => r.card_name).filter(n => !isBasic(n))) })), { k: "name", dir: 1 });
+    const shared = (a, b) => { let n = 0; for (const c of a.cards) if (b.cards.has(c)) n++; return n; };
+    let max = 1; const m = ds.map(a => ds.map(b => { const n = a === b ? null : shared(a, b); if (n > max) max = n; return n; }));
+    const shade = n => `color-mix(in oklab, var(--series-1) ${Math.round(8 + n / max * 62)}%, var(--surface))`;
+    $("overlapGrid").innerHTML = `<thead><tr><th></th>${ds.map((d, j) => `<th class="colh" title="${esc(d.name)}">${j + 1}</th>`).join("")}</tr></thead><tbody>` +
+      ds.map((a, i) => `<tr><th class="rowh" title="${esc(a.name)}">${i + 1}. ${esc(a.name.replace(/^\d+\.\s*/, ""))}</th>${ds.map((b, j) =>
+        m[i][j] == null ? `<td><div class="self"></div></td>` : m[i][j] === 0 ? `<td><div class="zero">0</div></td>` :
+        `<td><button data-a="${esc(a.id)}" data-b="${esc(b.id)}" style="background:${shade(m[i][j])};${m[i][j] / max > 0.6 ? "color:#fff" : ""}" title="${esc(a.name)} and ${esc(b.name)} share ${m[i][j]} cards">${m[i][j]}</button></td>`).join("")}</tr>`).join("") + `</tbody>`;
+  }
+  $("overlapGrid").addEventListener("click", e => {
+    const b = e.target.closest("button[data-a]"); if (!b) return;
+    ix.decks = new Set([b.dataset.a, b.dataset.b]); ix.match = "every";
+    renderIndex();
+    $("indexTable").scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  });
 
   $("ixSearch").addEventListener("input", e => { ix.search = e.target.value.trim().toLowerCase(); renderIndex(); });
   $("ixSubtype").addEventListener("input", e => { ix.subtype = e.target.value.trim().toLowerCase(); renderIndex(); });
   $("ixCommanders").addEventListener("change", e => { ix.commanders = e.target.checked; renderIndex(); });
   $("ixProxies").addEventListener("change", e => { ix.proxies = e.target.checked; renderIndex(); });
+  $("ixMatch").addEventListener("change", e => { ix.match = e.target.value; renderIndex(); });
   $("ixColors").addEventListener("click", e => {
     const b = e.target.closest("button[data-c]"); if (!b) return;
     ix.colors.has(b.dataset.c) ? ix.colors.delete(b.dataset.c) : ix.colors.add(b.dataset.c); renderIndex();
   });
-  for (const [dd, set] of [["ixTypeDD", ix.types], ["ixDeckDD", ix.decks]])
-    $(dd).addEventListener("change", e => { const v = e.target.value; e.target.checked ? set.add(v) : set.delete(v); renderIndex(); });
-  document.addEventListener("click", e => document.querySelectorAll("details.dd[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));
+  $("ixTypeDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? ix.types.add(v) : ix.types.delete(v); renderIndex(); });
+  $("ixDeckDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? ix.decks.add(v) : ix.decks.delete(v); renderIndex(); });
   $("ixClear").addEventListener("click", () => {
-    Object.assign(ix, { search: "", subtype: "", commanders: false, proxies: false }); ix.colors.clear(); ix.types.clear(); ix.decks.clear();
+    Object.assign(ix, { search: "", subtype: "", commanders: false, proxies: false, match: "any" }); ix.colors.clear(); ix.types.clear(); ix.decks.clear();
     $("ixSearch").value = $("ixSubtype").value = ""; $("ixCommanders").checked = $("ixProxies").checked = false; renderIndex();
   });
+  document.addEventListener("click", e => document.querySelectorAll("details.dd[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));
 
   // ---------- events ----------
-  function sortClick(table, state, after) {
+  function sortClick(table, getState, after) {
     table.tHead.addEventListener("click", e => {
       const k = e.target.closest("th")?.dataset.k; if (!k) return;
-      state.dir = state.k === k ? -state.dir : (["name", "tag", "type", "color"].includes(k) ? 1 : -1); state.k = k; after();
+      const state = getState();
+      state.dir = state.k === k ? -state.dir : (["name", "type", "color"].includes(k) ? 1 : -1); state.k = k; after();
     });
   }
-  $("deckSortSel").addEventListener("change", e => {
-    deckSort.k = e.target.value; deckSort.dir = e.target.value === "name" ? 1 : -1; renderDecks();
-  });
-  sortClick($("indexTable"), ixSort, renderIndex);
-  sortClick($("cardTable"), cardSort, () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
+  sortClick($("indexTable"), () => ixSort, renderIndex);
+  sortClick($("cardTable"), () => cardSort, () => renderCards(decks.get(selected)));
+  sortClick($("proxyTable"), () => pxSort, renderProxies);
+  $("deckSortSel").addEventListener("change", e => { deckSort.k = e.target.value; deckSort.dir = e.target.value === "name" ? 1 : -1; renderDecks(); });
   $("deckList").addEventListener("click", e => {
     const b = e.target.closest(".deck-item"); if (!b) return;
-    selected = b.dataset.id; tagFilter = null; $("search").value = ""; render();
+    selected = b.dataset.id; tagFilter = null; asOf = null; $("search").value = ""; render();
     if (matchMedia("(max-width: 900px)").matches) $("deckTitle").scrollIntoView({ block: "start" });
   });
   $("tags").addEventListener("click", e => {
     const row = e.target.closest(".tagrow"); if (!row || decks.get(selected).noCards) return;
-    tagFilter = tagFilter === row.dataset.tag ? null : row.dataset.tag; renderDeck();
+    tagFilter = tagFilter === row.dataset.tag ? null : row.dataset.tag;
+    renderTags(decks.get(selected), deckStats(decks.get(selected))); renderCards(decks.get(selected));
   });
-  $("search").addEventListener("input", () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
+  $("search").addEventListener("input", () => renderCards(decks.get(selected)));
   $("source").addEventListener("change", e => { source = e.target.value; render(); });
-  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => decks.size && renderDeck(), 150); });
-  $("fileInput").addEventListener("change", async e => {
-    const files = [...e.target.files];
-    const texts = await Promise.all(files.map(f => f.text()));
-    const prices = texts.find(t => /^\s*date,/.test(t)), names = texts.find(t => /^\s*deck_id,deck_name/.test(t)),
-          cards = texts.find(t => /^\s*card_name,type_line/.test(t));
-    if (prices) load(prices, names, cards);
-  });
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => decks.size && drawChart(
+    deckStats(decks.get(selected)).ds.map(x => ({ date: x, total: val(decks.get(selected), x), paper: val(decks.get(selected), x, "paper"), proxy: val(decks.get(selected), x, "proxy") })),
+    decks.get(selected).noCards ? [] : deckSwaps(decks.get(selected))), 150); });
 
-  const getText = (url, optional) => fetch(url, { cache: "no-store" })
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .catch(e => { if (optional) return null; throw e; });
-  Promise.all([getText("data/prices.csv"), getText("data/decks.csv", true), getText("data/cards.csv", true)])
-    .then(([prices, names, cards]) => load(prices, names, cards))
-    .catch(() => { $("subtitle").textContent = "No data loaded yet"; $("loadError").hidden = false; });
+  start().catch(err => { console.error(err); $("subtitle").textContent = "No data loaded yet"; $("loadError").hidden = false; });
 })();
 </script>
 </body>

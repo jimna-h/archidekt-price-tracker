@@ -9,7 +9,8 @@ on:
     paths: [track_prices.py, .github/workflows/daily-prices.yml]
 
 permissions:
-  contents: write            # needed to commit the updated CSV
+  contents: write            # needed to commit the updated data
+  actions: write             # lets the job keep its own schedule switched on (see last step)
 
 concurrency:
   group: daily-prices
@@ -49,3 +50,13 @@ jobs:
             done
             exit 1
           fi
+
+      # GitHub switches off scheduled workflows after 60 days without repository activity.
+      # The daily data commit should already count, but re-enabling the workflow each run
+      # makes sure the schedule never lapses.
+      - name: Keep schedule enabled
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/daily-prices.yml/enable"

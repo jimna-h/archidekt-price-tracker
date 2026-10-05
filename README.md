@@ -1,10 +1,11 @@
 # Archidekt Snapshot
 
-A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https://archidekt.com) folder: the cards in each deck, their current prices, and whether each card is a proxy. Rows are appended to `data/prices.csv`, so the file builds up a price history over time. Deck names and commanders are kept in `data/decks.csv`, and each card's type, mana value and color identity in `data/cards.csv`.
+A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https://archidekt.com) folder: the cards in each deck, their current prices, and whether each card is a proxy. It builds up a price and decklist history over time (see [Data files](#data-files)).
 
-`index.html` (Archidekt Snapshot) has two tabs:
-- **Decks**: each deck's value over time (total, paper and proxies), card swaps between snapshots, plus a whole-collection view and an average-deck view.
-- **Search all decks**: find any card across every deck in the latest snapshot and see which decks run it, with which decks run it. Filter by color identity, type, subtype, deck, commanders or proxies. (This replaces the old [edh-ledger](https://github.com/jimna-h/edh-ledger) project, reading the daily snapshot instead of manual imports.)
+`index.html` (Archidekt Snapshot) has three tabs:
+- **Decks**: each deck's value over time (total, paper and proxies), biggest price movers, card swaps, mana curve and card types, and the decklist on any past date. Includes a whole-collection view and an average-deck view.
+- **Proxies**: every proxied card, its price at TCGplayer, Card Kingdom and Cardmarket, the cheapest option, and a running total of what it would cost to replace them.
+- **Search all decks**: find any card across every deck and see which decks run it, plus a grid of how many cards each pair of decks shares. (This replaces the old [edh-ledger](https://github.com/jimna-h/edh-ledger) project.)
 
 Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
 
@@ -23,38 +24,18 @@ Within each deck, a card is only recorded if its primary (first) category is inc
 
 ## Data files
 
-Decks are always identified by their Archidekt deck id.
+Decks are always identified by their Archidekt deck id. The files are laid out so the page only downloads a couple of megabytes however long this runs.
 
-**`data/prices.csv`**: one row per card per deck per day.
+| File | What's in it | Size over time |
+|---|---|---|
+| `data/latest.csv` | Today's cards in every deck: `deck_id`, `card_name`, `quantity`, `set_code`, `finish`, the three prices, `proxied` | Rewritten daily, stays ~60 KB |
+| `data/totals.csv` | One row per deck per day: card count, and total / paper / proxy value at each store (`tcg_*`, `ck_*`, `cm_*`) | ~1 KB a day |
+| `data/decklists.csv` | Change log of deck contents. A deck's full list on its first day, then only entries whose quantity changed (`0` = removed). Swaps and decklist history are rebuilt from this | Grows only when you change decks |
+| `data/card_prices/YYYY-MM.csv` | One row per printing per day with the three prices, shared across decks | ~1.3 MB a month; the page loads the last two months |
+| `data/decks.csv` | One row per deck: latest name, commanders, first and last seen | Tiny |
+| `data/cards.csv` | One row per card name: type line, mana value, color identity | Tiny |
 
-| Column | Meaning |
-|---|---|
-| `date` | UTC date of the snapshot |
-| `deck_id` | Archidekt deck id |
-| `card_name` | Card name |
-| `quantity` | Copies in the deck |
-| `set_code` | Printing's set code |
-| `finish` | `Normal`, `Foil`, `Etched`… |
-| `price_tcgplayer`, `price_cardkingdom`, `price_cardmarket` | Archidekt's listed price per copy (foil price for foil copies); blank if none |
-| `proxied` | `true` if the card has the "Proxied" color tag on Archidekt, else `false` |
-
-**`data/decks.csv`**: one row per deck id.
-
-| Column | Meaning |
-|---|---|
-| `deck_id` | Archidekt deck id |
-| `deck_name` | The deck's most recent name |
-| `commanders` | Cards in the deck's commander zone (Archidekt's premier category), separated by ` \| ` |
-| `last_seen` | Last date the deck was found in the folder |
-
-**`data/cards.csv`**: one row per card name, refreshed each run.
-
-| Column | Meaning |
-|---|---|
-| `card_name` | Card name |
-| `type_line` | e.g. `Legendary Artifact Creature — Human Soldier` (front face for double-faced cards) |
-| `mana_value` | Mana value |
-| `color_identity` | WUBRG letters, blank for colorless |
+Prices are Archidekt's: TCGplayer, Card Kingdom and Cardmarket, using the foil price for foil copies. A deck that disappears from the folder for 10 days has all of its history deleted.
 
 Re-running on the same day replaces that day's rows rather than duplicating them.
 
