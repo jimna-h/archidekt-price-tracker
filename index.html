@@ -3,204 +3,283 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deck Prices</title>
+<title>Archidekt Snapshot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M16.00%2011.40L25.23%204.18A15%2015%200%200%201%2030.10%2021.13L20.37%2014.58Z%22%20fill%3D%22%23f2e8c9%22/%3E%3Cpath%20d%3D%22M20.37%2014.58L30.10%2021.13A15%2015%200%200%201%2015.48%2030.99L18.70%2019.72Z%22%20fill%3D%22%233d8fd1%22/%3E%3Cpath%20d%3D%22M18.70%2019.72L15.48%2030.99A15%2015%200%200%201%201.58%2020.13L13.30%2019.72Z%22%20fill%3D%22%233b3733%22/%3E%3Cpath%20d%3D%22M13.30%2019.72L1.58%2020.13A15%2015%200%200%201%207.61%203.56L11.63%2014.58Z%22%20fill%3D%22%23d9533b%22/%3E%3Cpath%20d%3D%22M11.63%2014.58L7.61%203.56A15%2015%200%200%201%2025.23%204.18L16.00%2011.40Z%22%20fill%3D%22%232f8a52%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%2315171c%22%20stroke-opacity%3D%22.18%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: light;
-    --page: #f9f9f7;
-    --surface: #fcfcfb;
-    --text-primary: #0b0b0b;
-    --text-secondary: #52514e;
-    --text-muted: #898781;
-    --grid: #e1e0d9;
-    --axis: #c3c2b7;
-    --border: rgba(11,11,11,0.10);
-    --hover: rgba(11,11,11,0.04);
+    --page: #eef0f3;
+    --surface: #ffffff;
+    --raised: #f7f8fa;
+    --text-primary: #15171c;
+    --text-secondary: #5a606b;
+    --text-muted: #8a8f99;
+    --grid: #e3e6eb;
+    --axis: #c5cad3;
+    --border: rgba(21,23,28,0.09);
+    --hover: rgba(21,23,28,0.04);
     --series-1: #2a78d6;
-    --series-1-wash: rgba(42,120,214,0.10);
+    --series-1-wash: rgba(42,120,214,0.09);
     --series-paper: #008300;
     --series-proxy: #eb6834;
-    --up: #b42318;      /* price went up = costs more */
-    --down: #006300;    /* price went down */
+    --up: #b42318;
+    --down: #006300;
+    --shadow: 0 1px 2px rgba(21,23,28,0.04), 0 8px 24px -12px rgba(21,23,28,0.10);
+    --serif: "Alegreya", Georgia, serif;
+    --sans: "Alegreya Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:where(:not([data-theme="light"])) {
       color-scheme: dark;
-      --page: #0d0d0d; --surface: #1a1a19;
-      --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
-      --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
+      --page: #0f1115; --surface: #171a20; --raised: #1d2128;
+      --text-primary: #f3f4f6; --text-secondary: #b5bac4; --text-muted: #7d838e;
+      --grid: #262a32; --axis: #3a3f49; --border: rgba(255,255,255,0.08); --hover: rgba(255,255,255,0.04);
       --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
       --series-paper: #008300; --series-proxy: #d95926;
       --up: #f07a72; --down: #0ca30c;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.6);
+      --mark-black: #5c5650;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --page: #0d0d0d; --surface: #1a1a19;
-    --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
-    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
+    --page: #0f1115; --surface: #171a20; --raised: #1d2128;
+    --text-primary: #f3f4f6; --text-secondary: #b5bac4; --text-muted: #7d838e;
+    --grid: #262a32; --axis: #3a3f49; --border: rgba(255,255,255,0.08); --hover: rgba(255,255,255,0.04);
     --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
     --series-paper: #008300; --series-proxy: #d95926;
     --up: #f07a72; --down: #0ca30c;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px -16px rgba(0,0,0,0.6);
+    --mark-black: #5c5650;
   }
 
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
   body {
     margin: 0; background: var(--page); color: var(--text-primary);
-    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    font: 16px/1.5 var(--sans);
+    font-variant-numeric: lining-nums;
+    -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
-  header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
-  h1 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
-  h2 { font-size: 15px; margin: 0 0 12px; }
-  .sub { color: var(--text-secondary); margin-top: 2px; }
-  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  label.ctl { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; }
-  select, input[type=search], input[type=text] {
-    font: inherit; color: var(--text-primary); background: var(--surface);
-    border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; min-height: 34px;
-  }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
-  .num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  :focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; border-radius: 4px; }
+  main { max-width: 1240px; margin: 0 auto; padding: 28px 20px 72px; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.005em; margin: 0; }
+  h2 { font-size: 22px; line-height: 1.2; }
+  h3 { font-size: 18px; line-height: 1.25; }
+  a { color: inherit; }
+  code { font-size: 0.9em; }
+  .num { font-variant-numeric: lining-nums tabular-nums; text-align: right; white-space: nowrap; }
   .muted { color: var(--text-muted); }
   .up { color: var(--up); } .down { color: var(--down); }
 
-  table { width: 100%; border-collapse: collapse; }
-  th, td { padding: 8px 10px; border-bottom: 1px solid var(--grid); text-align: left; }
-  th { font-weight: 600; font-size: 12px; color: var(--text-secondary); cursor: pointer; user-select: none; white-space: nowrap; }
+  /* ---------- masthead ---------- */
+  .masthead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-bottom: 22px; }
+  .mark .blade-b { fill: var(--mark-black, #3b3733); }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .mark { width: 46px; height: 46px; flex: none; color: var(--text-primary); }
+  .brand h1 { font-size: 32px; line-height: 1; letter-spacing: -0.015em; }
+  .brand .sub { color: var(--text-secondary); font-size: 15px; margin-top: 4px; }
+  label.ctl { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 15px; }
+  select, input[type=search], input[type=text] {
+    font: inherit; font-size: 15px; color: var(--text-primary); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; min-height: 36px;
+  }
+  select { padding-right: 28px; }
+
+  /* ---------- tabs ---------- */
+  .tabs { display: inline-flex; gap: 2px; padding: 3px; background: var(--grid); border-radius: 10px; margin-bottom: 20px; }
+  .tabs button { font: inherit; font-weight: 500; font-size: 15px; color: var(--text-secondary); background: none; border: 0; border-radius: 8px; padding: 6px 16px; cursor: pointer; }
+  .tabs button:hover { color: var(--text-primary); }
+  .tabs button[aria-selected="true"] { background: var(--surface); color: var(--text-primary); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+
+  /* ---------- decks view: sidebar + detail ---------- */
+  .layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 24px; align-items: start; }
+  .sidebar { position: sticky; top: 16px; }
+  .sidebar-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 2px 4px 10px; }
+  .sidebar-head label { color: var(--text-secondary); font-size: 14px; display: flex; align-items: center; gap: 6px; }
+  .sidebar-head select { min-height: 30px; padding: 2px 26px 2px 8px; font-size: 14px; }
+  .deck-list { display: grid; gap: 2px; max-height: calc(100vh - 120px); overflow-y: auto; padding: 2px; }
+  .deck-item {
+    display: grid; grid-template-columns: 1fr auto; gap: 0 12px; text-align: left; width: 100%;
+    font: inherit; color: inherit; background: none; border: 0; border-radius: 10px; padding: 9px 12px; cursor: pointer;
+  }
+  .deck-item:hover { background: var(--hover); }
+  .deck-item.sel { background: var(--surface); box-shadow: var(--shadow); }
+  .deck-item .dname { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .deck-item .dval { font-weight: 500; }
+  .deck-item .dmeta { font-size: 13px; color: var(--text-muted); }
+  .deck-item .ddelta { font-size: 13px; text-align: right; }
+  .deck-item.combined .dname { font-family: var(--serif); font-weight: 700; }
+  .deck-sep { height: 1px; background: var(--axis); margin: 8px 12px; }
+
+  .panel-main { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 28px 28px 32px; min-width: 0; }
+  .panel-main > section + section { border-top: 1px solid var(--grid); margin-top: 28px; padding-top: 24px; }
+  .detail-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+  .detail-head h2 { font-size: 30px; }
+  .ext { font-size: 14px; color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--axis); }
+  .ext:hover { color: var(--text-primary); border-color: currentColor; }
+  .hero { display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: last baseline; margin: 14px 0 18px; }
+  .hero .big { font-family: var(--serif); font-weight: 700; font-size: 48px; line-height: 1; letter-spacing: -0.02em; text-align: left; }
+  .hero .lbl { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }
+  .hero .delta { font-size: 18px; font-weight: 500; text-align: left; }
+  .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; margin-bottom: 14px; }
+
+  /* ---------- chart ---------- */
+  .chart { position: relative; }
+  .chart svg { display: block; width: 100%; height: 280px; overflow: visible; }
+  .chart text { fill: var(--text-muted); font: 12px var(--sans); font-variant-numeric: lining-nums tabular-nums; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0 0 8px; font-size: 15px; }
+  .legend .item { display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); }
+  .legend b { color: var(--text-primary); font-weight: 700; font-variant-numeric: lining-nums tabular-nums; }
+  .key { width: 18px; height: 0; border-top: 2px solid; flex: none; }
+  .key.dash { border-top-style: dashed; }
+  .tip {
+    position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 8px 12px; font-size: 14px; box-shadow: var(--shadow);
+    white-space: nowrap; opacity: 0; transition: opacity .08s; min-width: 180px;
+  }
+  .tip .row { display: flex; align-items: center; gap: 8px; }
+  .tip .row b { margin-left: auto; padding-left: 14px; font-variant-numeric: lining-nums tabular-nums; }
+  .note { font-size: 14px; color: var(--text-muted); margin-top: 10px; max-width: 72ch; }
+
+  /* ---------- tables ---------- */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { padding: 9px 10px; border-bottom: 1px solid var(--grid); text-align: left; }
+  th { font-weight: 500; font-size: 14px; color: var(--text-secondary); cursor: pointer; user-select: none; white-space: nowrap; background: var(--surface); position: sticky; top: 0; z-index: 1; }
+  th:hover { color: var(--text-primary); }
   th.num { text-align: right; }
   th[aria-sort]::after { content: " ↓"; color: var(--text-muted); }
   th[aria-sort="ascending"]::after { content: " ↑"; }
   tbody tr:hover { background: var(--hover); }
-  #deckTable tbody tr { cursor: pointer; }
-  #deckTable tbody tr.sel { background: var(--series-1-wash); }
-  .table-wrap { overflow-x: auto; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .card-name { font-weight: 500; }
+  .badge.proxy { border-style: dashed; border-color: var(--series-proxy); }
+  .badge.paper { border-color: transparent; color: var(--text-muted); padding-left: 0; }
+  .printing { color: var(--text-muted); font-size: 13px; margin-left: 4px; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 500; color: var(--text-secondary); border: 1px solid var(--axis); border-radius: 999px; padding: 0 8px; line-height: 18px; vertical-align: 1px; }
 
-  .hero { display: flex; flex-wrap: wrap; gap: 28px; align-items: baseline; margin-bottom: 8px; }
-  .hero .big { font-size: 34px; font-weight: 650; letter-spacing: -0.02em; }
-  .hero .lbl { font-size: 12px; color: var(--text-secondary); }
-  .hero .delta { font-size: 15px; font-weight: 600; }
-
-  .chart { position: relative; }
-  .chart svg { display: block; width: 100%; height: 280px; overflow: visible; }
-  .chart text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-  .tip {
-    position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border);
-    border-radius: 8px; padding: 6px 10px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    white-space: nowrap; opacity: 0; transition: opacity .08s;
-  }
-  .tip b { font-variant-numeric: tabular-nums; }
-
-  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
-  .badge { display: inline-block; font-size: 11px; font-weight: 600; color: var(--text-secondary); border: 1px solid var(--axis); border-radius: 999px; padding: 0 8px; }
-  .swatch { width: 10px; height: 10px; border-radius: 3px; border: 1px solid var(--border); flex: none; }
-
-  .tags { display: grid; gap: 8px; }
-  .tagrow { display: grid; grid-template-columns: minmax(110px, 200px) 1fr auto; gap: 12px; align-items: center; cursor: pointer; border-radius: 6px; padding: 2px 4px; }
-  .tagrow:hover, .tagrow.active { background: var(--hover); }
-  .bar { height: 10px; background: var(--grid); border-radius: 4px; overflow: hidden; }
-  .bar > div { height: 100%; background: var(--series-1); border-radius: 0 4px 4px 0; }
-
-  #changes { display: grid; gap: 14px; max-height: 520px; overflow-y: auto; }
-  .swap { border-top: 1px solid var(--grid); padding-top: 12px; }
-  .swap:first-child { border-top: 0; padding-top: 0; }
-  .swap-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; margin-bottom: 8px; }
-  .swap-head .num { margin-left: auto; }
-  .swap-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  /* ---------- swaps ---------- */
+  #changes { display: grid; gap: 16px; max-height: 520px; overflow-y: auto; }
+  .swap { background: var(--raised); border-radius: 12px; padding: 14px 16px; }
+  .swap-head { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; margin-bottom: 10px; }
+  .swap-head b { font-family: var(--serif); font-size: 17px; }
+  .swap-head .num { margin-left: auto; font-weight: 500; }
+  .swap-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .swap-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; align-content: start; }
-  .swap-cols li { display: flex; gap: 6px; align-items: baseline; }
+  .swap-cols li { display: flex; gap: 8px; align-items: baseline; font-size: 15px; }
   .swap-cols li .num { margin-left: auto; }
-  .col-h { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+  .col-h { font-size: 13px; font-weight: 500; color: var(--text-secondary); }
   .sign { font-weight: 700; width: 10px; flex: none; }
   .sign.in { color: var(--series-1); } .sign.out { color: var(--text-muted); }
+  .swaps-empty { color: var(--text-secondary); }
+
+  /* ---------- paper vs proxied ---------- */
+  .tags { display: grid; gap: 6px; }
+  .tagrow { display: grid; grid-template-columns: minmax(130px, 220px) 1fr auto; gap: 14px; align-items: center; border-radius: 8px; padding: 6px 8px; margin: 0 -8px; cursor: pointer; }
+  .tagrow:hover, .tagrow.active { background: var(--hover); }
+  .tagrow.active { box-shadow: inset 0 0 0 1px var(--axis); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; }
+  .bar { height: 10px; background: var(--grid); border-radius: 4px; overflow: hidden; }
+  .bar > div { height: 100%; border-radius: 0 4px 4px 0; }
+
+  /* ---------- card index ---------- */
+  .ix-bar { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 16px 18px; margin-bottom: 16px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .filters input[type=search], .filters input[type=text] { min-width: 0; flex: 1 1 170px; max-width: 280px; }
+  .pip { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 700; color: #15171c; flex: none; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+  .pip.W { background: #f2e8c9; } .pip.U { background: #a9d0ee; } .pip.B { background: #bdb6b0; }
+  .pip.R { background: #f0a184; } .pip.G { background: #9ccfa7; } .pip.C { background: #d9d8d4; }
+  .pips { display: inline-flex; gap: 3px; }
+  .ctoggles { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--raised); }
+  .ctoggles button { padding: 3px; border-radius: 50%; border: 0; background: none; cursor: pointer; opacity: 0.45; filter: saturate(0.6); }
+  .ctoggles button:hover { opacity: 0.8; }
+  .ctoggles button[aria-pressed="true"] { opacity: 1; filter: none; box-shadow: 0 0 0 2px var(--series-1); }
+  details.dd { position: relative; }
+  details.dd summary { list-style: none; cursor: pointer; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; min-height: 36px; display: flex; align-items: center; gap: 6px; background: var(--surface); font-size: 15px; }
+  details.dd summary::after { content: "▾"; color: var(--text-muted); font-size: 12px; }
+  details.dd summary::-webkit-details-marker { display: none; }
+  details.dd .panel { position: absolute; z-index: 5; top: calc(100% + 6px); left: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 6px; box-shadow: var(--shadow); max-height: 340px; overflow: auto; min-width: 230px; max-width: calc(100vw - 40px); }
+  #ixDeckDD .panel { left: auto; right: 0; }
+  details.dd .panel label { display: flex; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 6px; white-space: nowrap; cursor: pointer; font-size: 15px; }
+  details.dd .panel label:hover { background: var(--hover); }
+  .count-badge { font-size: 12px; background: var(--series-1); color: #fff; border-radius: 999px; padding: 0 7px; line-height: 18px; }
+  label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--text-secondary); font-size: 15px; cursor: pointer; }
+  button.ghost { font: inherit; font-size: 14px; color: var(--text-secondary); background: none; border: 0; padding: 6px 8px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--axis); }
+  button.ghost:hover { color: var(--text-primary); }
+  .result-line { color: var(--text-secondary); font-size: 14px; margin-top: 12px; }
+  .ix-table { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 8px 18px 18px; }
+  .ix-table .table-wrap { max-height: calc(100vh - 80px); overflow: auto; }
+  .where { display: flex; flex-wrap: wrap; gap: 4px; }
+  .dchip { font-size: 13px; border: 1px solid var(--axis); border-radius: 999px; padding: 0 8px; color: var(--text-secondary); white-space: nowrap; line-height: 20px; }
+  .dchip.cmd { font-weight: 700; color: var(--text-primary); border-color: var(--text-secondary); }
+  .dchip.proxy { border-style: dashed; border-color: var(--series-proxy); }
+  #indexTable td { vertical-align: top; }
+  .type-col { color: var(--text-secondary); }
+
+  .empty { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 40px 20px; text-align: center; color: var(--text-secondary); display: grid; gap: 8px; justify-items: center; }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .deck-list { max-height: 320px; background: var(--raised); border-radius: 12px; padding: 4px; }
+    .panel-main { padding: 20px 16px 24px; border-radius: 14px; }
+    .detail-head h2 { font-size: 26px; }
+    .hero .big { font-size: 40px; }
+  }
   @media (max-width: 560px) {
+    main { padding: 20px 16px 56px; }
+    .brand h1 { font-size: 26px; }
+    .mark { width: 38px; height: 38px; }
     .swap-cols { grid-template-columns: 1fr; }
     .tagrow { grid-template-columns: 1fr auto; row-gap: 4px; }
     .tagrow .bar { grid-column: 1 / -1; grid-row: 2; }
+    .ix-bar, .ix-table { padding-left: 12px; padding-right: 12px; }
   }
-  .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  .empty { padding: 40px 16px; text-align: center; color: var(--text-secondary); }
-  .empty input { margin-top: 12px; }
-  .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 4px 0 6px; font-size: 13px; }
-  .legend span.item { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); }
-  .legend b { color: var(--text-primary); font-weight: 600; font-variant-numeric: tabular-nums; }
-  .key { width: 16px; height: 0; border-top: 2px solid; flex: none; }
-  .key.dash { border-top-style: dashed; }
-  .tip .row { display: flex; align-items: center; gap: 6px; }
-  .tip .row b { margin-left: auto; padding-left: 12px; }
-  #deckTable tbody tr.pinned td:first-child { font-weight: 600; }
-  #deckTable tbody tr.pinned-last td { border-bottom: 2px solid var(--axis); }
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--grid); margin: -4px 0 16px; }
-  .tabs button { font: inherit; font-weight: 600; color: var(--text-secondary); background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px; margin-bottom: -1px; cursor: pointer; }
-  .tabs button[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--series-1); }
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .filters input[type=search], .filters input[type=text] { min-width: 0; flex: 1 1 160px; max-width: 260px; }
-  .pip { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 700; border: 1px solid var(--border); color: #111; flex: none; }
-  .pip.W { background: #f8f1d4; } .pip.U { background: #a9d3ef; } .pip.B { background: #b9b2ad; }
-  .pip.R { background: #f1a487; } .pip.G { background: #9fd1a8; } .pip.C { background: #d7d5d0; }
-  .pips { display: inline-flex; gap: 2px; }
-  .ctoggles { display: inline-flex; gap: 4px; }
-  .ctoggles button { padding: 2px; border-radius: 50%; border: 2px solid transparent; background: none; cursor: pointer; opacity: 0.55; }
-  .ctoggles button[aria-pressed="true"] { border-color: var(--series-1); opacity: 1; }
-  details.dd { position: relative; }
-  details.dd summary { list-style: none; cursor: pointer; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; min-height: 34px; display: flex; align-items: center; gap: 6px; background: var(--surface); }
-  details.dd summary::-webkit-details-marker { display: none; }
-  details.dd .panel { position: absolute; z-index: 5; top: calc(100% + 4px); left: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.14); max-height: 320px; overflow: auto; min-width: 220px; }
-  #ixDeckDD .panel { left: auto; right: 0; }
-  details.dd .panel { max-width: calc(100vw - 32px); }
-  details.dd .panel label { display: flex; gap: 8px; align-items: center; padding: 4px 6px; border-radius: 6px; white-space: nowrap; cursor: pointer; }
-  details.dd .panel label:hover { background: var(--hover); }
-  .count-badge { font-size: 11px; background: var(--series-1); color: #fff; border-radius: 999px; padding: 0 6px; }
-  label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--text-secondary); font-size: 13px; cursor: pointer; }
-  button.ghost { font: inherit; font-size: 13px; color: var(--text-secondary); background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
-  .result-line { color: var(--text-secondary); font-size: 13px; margin-top: 10px; }
-  .where { display: flex; flex-wrap: wrap; gap: 4px; }
-  .dchip { font-size: 11px; border: 1px solid var(--axis); border-radius: 999px; padding: 0 7px; color: var(--text-secondary); white-space: nowrap; }
-  .dchip.cmd { font-weight: 700; color: var(--text-primary); }
-  .dchip.proxy { border-style: dashed; }
-  #indexTable td { vertical-align: top; }
-  .note { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
-  .row-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .row-head h2 { margin: 0; }
 </style>
 </head>
 <body>
 <main>
-  <header>
-    <div>
-      <h1>Deck Prices</h1>
-      <div class="sub" id="subtitle">Loading data/prices.csv…</div>
+  <header class="masthead">
+    <div class="brand">
+      <svg class="mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16.00 11.40L25.23 4.18A15 15 0 0 1 30.10 21.13L20.37 14.58Z" fill="#f2e8c9"/><path d="M20.37 14.58L30.10 21.13A15 15 0 0 1 15.48 30.99L18.70 19.72Z" fill="#3d8fd1"/><path d="M18.70 19.72L15.48 30.99A15 15 0 0 1 1.58 20.13L13.30 19.72Z" fill="#3b3733" class="blade-b"/><path d="M13.30 19.72L1.58 20.13A15 15 0 0 1 7.61 3.56L11.63 14.58Z" fill="#d9533b"/><path d="M11.63 14.58L7.61 3.56A15 15 0 0 1 25.23 4.18L16.00 11.40Z" fill="#2f8a52"/><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-opacity=".18"/></svg>
+      <div>
+        <h1>Archidekt Snapshot</h1>
+        <div class="sub" id="subtitle">Loading your decks…</div>
+      </div>
     </div>
-    <div class="controls">
-      <label class="ctl">Prices from
-        <select id="source">
-          <option value="price_tcgplayer">TCGplayer</option>
-          <option value="price_cardkingdom">Card Kingdom</option>
-          <option value="price_cardmarket">Cardmarket</option>
-        </select>
-      </label>
-    </div>
+    <label class="ctl">Prices from
+      <select id="source">
+        <option value="price_tcgplayer">TCGplayer</option>
+        <option value="price_cardkingdom">Card Kingdom</option>
+        <option value="price_cardmarket">Cardmarket</option>
+      </select>
+    </label>
   </header>
 
-  <div id="loadError" class="card empty" hidden>
-    <div>Couldn't load <code>data/prices.csv</code> (opening this file directly from disk blocks that).</div>
-    <div>Pick <code>prices.csv</code>, plus <code>decks.csv</code> and <code>cards.csv</code> if you have them:</div>
+  <div id="loadError" class="empty" hidden>
+    <h3>No snapshot data found</h3>
+    <div>This page reads <code>data/prices.csv</code>, which browsers block when the file is opened straight from disk.</div>
+    <div>Choose <code>prices.csv</code>, plus <code>decks.csv</code> and <code>cards.csv</code> if you have them:</div>
     <input type="file" id="fileInput" accept=".csv" multiple>
   </div>
 
-  <nav class="tabs" id="tabs" hidden>
-    <button data-view="pricesView" aria-selected="true">Prices</button>
-    <button data-view="indexView" aria-selected="false">Card index</button>
+  <nav class="tabs" id="tabs" role="tablist" hidden>
+    <button role="tab" data-view="pricesView" aria-selected="true">Decks</button>
+    <button role="tab" data-view="indexView" aria-selected="false">Card index</button>
   </nav>
 
   <section id="indexView" hidden>
-    <div class="card">
+    <div class="ix-bar">
       <div class="filters">
-        <input type="search" id="ixSearch" placeholder="Search cards…">
-        <div class="ctoggles" id="ixColors" title="Color identity (matches any selected)"></div>
+        <input type="search" id="ixSearch" placeholder="Search cards" aria-label="Search cards">
+        <div class="ctoggles" id="ixColors" title="Color identity (shows cards with any selected color)"></div>
         <details class="dd" id="ixTypeDD"><summary>Type <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
-        <input type="text" id="ixSubtype" placeholder="Subtype (e.g. Bird)">
+        <input type="text" id="ixSubtype" placeholder="Subtype, e.g. Bird" aria-label="Subtype">
         <details class="dd" id="ixDeckDD"><summary>Decks <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <label class="check"><input type="checkbox" id="ixCommanders"> Commanders only</label>
         <label class="check"><input type="checkbox" id="ixProxies"> Proxied somewhere</label>
@@ -208,7 +287,7 @@
       </div>
       <div class="result-line" id="ixResult"></div>
     </div>
-    <div class="card">
+    <div class="ix-table">
       <div class="table-wrap">
         <table id="indexTable">
           <thead><tr>
@@ -224,72 +303,72 @@
           <tbody></tbody>
         </table>
       </div>
-      <div class="note">From the most recent snapshot. Bold decks have the card as a commander; dashed ones run it as a proxy.</div>
+      <div class="note">Bold decks run the card as a commander; dashed ones run it as a proxy.</div>
     </div>
   </section>
 
   <section id="app" hidden>
-    <div class="card">
-      <h2>All decks</h2>
-      <div class="table-wrap">
-        <table id="deckTable">
-          <thead><tr>
-            <th data-k="name">Deck</th>
-            <th data-k="cards" class="num">Cards</th>
-            <th data-k="value" class="num">Value</th>
-            <th data-k="dPrev" class="num">Since last</th>
-            <th data-k="dFirst" class="num">Since first</th>
-            <th data-k="lastSwap" class="num">Last swap</th>
-          </tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-head">
+          <h3>Decks</h3>
+          <label>Sort
+            <select id="deckSortSel">
+              <option value="name">Name</option>
+              <option value="value">Value</option>
+              <option value="dFirst">Change since first</option>
+              <option value="lastSwap">Last swap</option>
+            </select>
+          </label>
+        </div>
+        <div class="deck-list" id="deckList"></div>
+      </aside>
 
-    <div class="card">
-      <div class="row-head">
-        <h2 id="deckTitle">Deck</h2>
-        <a id="deckLink" class="chip" target="_blank" rel="noopener">Open on Archidekt ↗</a>
-      </div>
-      <div class="hero">
-        <div><div class="lbl" id="heroLbl">Value</div><div class="big num" id="heroVal">–</div></div>
-        <div><div class="lbl">Since last snapshot</div><div class="delta num" id="heroPrev">–</div></div>
-        <div><div class="lbl">Since first snapshot</div><div class="delta num" id="heroFirst">–</div></div>
-      </div>
-      <div class="legend" id="legend"></div>
-      <div class="chart" id="chart"><svg role="img" aria-label="Deck value over time"></svg><div class="tip"></div></div>
-      <div class="note" id="chartNote"></div>
-    </div>
+      <div class="panel-main">
+        <section>
+          <div class="detail-head">
+            <h2 id="deckTitle">Deck</h2>
+            <a id="deckLink" class="ext" target="_blank" rel="noopener">Open on Archidekt ↗</a>
+          </div>
+          <div class="hero">
+            <div><div class="lbl" id="heroLbl">Value</div><div class="big num" id="heroVal">–</div></div>
+            <div><div class="lbl">Since first snapshot</div><div class="delta num" id="heroFirst">–</div></div>
+          </div>
+          <div class="legend" id="legend"></div>
+          <div class="chart" id="chart"><svg role="img" aria-label="Value over time"></svg><div class="tip"></div></div>
+          <div class="note" id="chartNote"></div>
+        </section>
 
-    <div class="card" id="swapsCard">
-      <h2>Card swaps</h2>
-      <div id="changes"></div>
-    </div>
+        <section id="swapsCard">
+          <div class="section-head"><h3>Card swaps</h3></div>
+          <div id="changes"></div>
+        </section>
 
-    <div class="card">
-      <h2>Paper vs proxied</h2>
-      <div class="tags" id="tags"></div>
-      <div class="note">Proxies are cards with the "Proxied" color tag on Archidekt. <span id="tagHint">Click a row to filter the card list below.</span></div>
-    </div>
+        <section>
+          <div class="section-head"><h3>Paper vs proxied</h3></div>
+          <div class="tags" id="tags"></div>
+          <div class="note">Proxies are cards with the "Proxied" color tag on Archidekt. <span id="tagHint">Select a row to filter the card list.</span></div>
+        </section>
 
-    <div class="card" id="cardsCard">
-      <div class="row-head">
-        <h2 id="cardsTitle">Cards</h2>
-        <input type="search" id="search" placeholder="Filter cards…">
-      </div>
-      <div class="table-wrap">
-        <table id="cardTable">
-          <thead><tr>
-            <th data-k="name">Card</th>
-            <th data-k="qty" class="num">Qty</th>
-            <th data-k="tag">Proxy</th>
-            <th data-k="price" class="num">Price</th>
-            <th data-k="total" class="num">Total</th>
-            <th data-k="dPrev" class="num">Since last</th>
-            <th data-k="dFirst" class="num">Since first</th>
-          </tr></thead>
-          <tbody></tbody>
-        </table>
+        <section id="cardsCard">
+          <div class="section-head">
+            <h3 id="cardsTitle">Cards</h3>
+            <input type="search" id="search" placeholder="Filter cards" aria-label="Filter cards">
+          </div>
+          <div class="table-wrap">
+            <table id="cardTable">
+              <thead><tr>
+                <th data-k="name">Card</th>
+                <th data-k="qty" class="num">Qty</th>
+                <th data-k="tag">Paper or proxy</th>
+                <th data-k="price" class="num">Price</th>
+                <th data-k="total" class="num">Total</th>
+                <th data-k="dFirst" class="num">Since first</th>
+              </tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </div>
   </section>
@@ -355,7 +434,8 @@
       d.byDate.get(r.date).push(r);
     }
     addCombinedDecks();
-    $("subtitle").textContent = `${realDecks().length} decks · ${dates.length} snapshot${dates.length === 1 ? "" : "s"} · ${dates.length === 1 ? fmtDate(dates[0]) : `${fmtDate(dates[0])} – ${fmtDate(dates[dates.length - 1])}`}`;
+    $("subtitle").textContent = `${realDecks().length} decks, last snapshot ${fmtDate(dates[dates.length - 1])}` +
+      (dates.length > 1 ? `, history since ${fmtDate(dates[0])}` : "");
     $("tabs").hidden = false; $("loadError").hidden = true;
     showView(view);
     if (!(selected && decks.has(selected))) selected = ALL;
@@ -399,10 +479,9 @@
     return {
       id: d.id, virtual: !!d.virtual, name: d.virtual ? d.name : deckNames.get(d.id) || `Deck #${d.id}`, value, last, ds,
       cards: d.byDate.get(last).reduce((s, r) => s + r.qty, 0) * (d.scale ? d.scale(last) : 1),
-      dPrev: prev ? value - deckValue(d, prev) : null,
       dFirst: ds.length > 1 ? value - deckValue(d, first) : null,
       lastSwap: deckChanges(d).at(-1)?.date ?? null,
-      firstVal: deckValue(d, first), prevVal: prev ? deckValue(d, prev) : null,
+      firstVal: deckValue(d, first),
     };
   }
   function sortBy(arr, { k, dir }) {
@@ -423,16 +502,15 @@
   function render() { renderDecks(); renderDeck(); }
 
   function renderDecks() {
-    const stats = [deckStats(decks.get(ALL)), deckStats(decks.get(AVG)), ...sortBy(realDecks().map(deckStats), deckSort)];
-    $("deckTable").tBodies[0].innerHTML = stats.map(s => `
-      <tr data-id="${esc(s.id)}" class="${s.id === selected ? "sel" : ""} ${s.virtual ? "pinned" : ""} ${s.id === AVG ? "pinned-last" : ""}">
-        <td>${esc(s.name)}${s.virtual ? "" : ` <span class="muted">#${esc(s.id)}</span>`}</td>
-        <td class="num">${Number.isInteger(s.cards) ? s.cards : s.cards.toFixed(1)}</td>
-        <td class="num">${money(s.value)}</td>
-        ${deltaCell(s.dPrev)}${deltaCell(s.dFirst)}
-        <td class="num ${s.lastSwap ? "" : "muted"}">${s.lastSwap ? fmtDate(s.lastSwap) : "–"}</td>
-      </tr>`).join("");
-    markSort($("deckTable"), deckSort);
+    const item = st => `
+      <button class="deck-item ${st.id === selected ? "sel" : ""} ${st.virtual ? "combined" : ""}" data-id="${esc(st.id)}" aria-current="${st.id === selected}">
+        <span class="dname" title="${esc(st.name)}">${esc(st.name)}</span>
+        <span class="dval num">${money(st.value)}</span>
+        <span class="dmeta">${Number.isInteger(st.cards) ? st.cards : st.cards.toFixed(1)} cards${st.lastSwap ? `, swapped ${new Date(st.lastSwap + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : ""}</span>
+        <span class="ddelta num ${st.dFirst > 0.005 ? "up" : st.dFirst < -0.005 ? "down" : "muted"}">${st.dFirst == null ? "" : signed(st.dFirst)}</span>
+      </button>`;
+    const real = sortBy(realDecks().map(deckStats), deckSort);
+    $("deckList").innerHTML = item(deckStats(decks.get(ALL))) + item(deckStats(decks.get(AVG))) + `<div class="deck-sep" role="presentation"></div>` + real.map(item).join("");
   }
 
   function renderDeck() {
@@ -445,7 +523,6 @@
     if (d.noCards) tagFilter = null;
     $("heroLbl").textContent = `Value on ${fmtDate(s.last)}`;
     $("heroVal").textContent = money(s.value);
-    delta($("heroPrev"), s.dPrev, s.prevVal);
     delta($("heroFirst"), s.dFirst, s.firstVal);
     const missing = d.byDate.get(s.last).filter(r => priceOf(r) == null).length;
     $("chartNote").textContent = (s.ds.length < 2 ? "Only one snapshot so far — the lines fill in as the daily job runs. " : "")
@@ -510,7 +587,7 @@
       <div class="swap">
         <div class="swap-head">
           <b>${fmtDate(c.date)}</b>
-          <span class="muted">${n(c.added)} in · ${n(c.removed)} out${(new Date(c.date) - new Date(c.since)) / 864e5 > 1 ? ` · since ${fmtDate(c.since)}` : ""}</span>
+          <span class="muted">${n(c.added)} in, ${n(c.removed)} out${(new Date(c.date) - new Date(c.since)) / 864e5 > 1 ? ` since ${fmtDate(c.since)}` : ""}</span>
           <span class="num ${c.net > 0.005 ? "up" : c.net < -0.005 ? "down" : "muted"}">${c.net > 0 ? "+" : c.net < 0 ? "−" : "±"}${money(Math.abs(c.net))}</span>
         </div>
         <div class="swap-cols">
@@ -585,15 +662,12 @@
     svg.onpointermove = e => {
       const r = svg.getBoundingClientRect(), mx = (e.clientX - r.left) * (W / r.width);
       let best = pts[0]; for (const p of pts) if (Math.abs(x(p) - mx) < Math.abs(x(best) - mx)) best = p;
-      const prev = pts[pts.indexOf(best) - 1];
       xh.setAttribute("x1", x(best)); xh.setAttribute("x2", x(best)); xh.setAttribute("visibility", "visible");
       for (const h of hds) { h.setAttribute("cx", x(best)); h.setAttribute("cy", y(best[h.dataset.k])); h.setAttribute("visibility", "visible"); }
       const sw = swapAt.get(best.date), cnt = l => l.reduce((s, c) => s + c.qty, 0);
       tip.innerHTML = `<div class="muted">${fmtDate(best.date)}</div>` + SERIES.map(sr => {
-        const dd = prev ? best[sr.k] - prev[sr.k] : null;
-        return `<div class="row"><span class="key ${sr.dash ? "dash" : ""}" style="border-color:${sr.color}"></span>${sr.label}<b>${money(best[sr.k])}</b>` +
-          (dd != null ? `<span class="${dd > 0.005 ? "up" : dd < -0.005 ? "down" : "muted"}">${signed(dd)}</span>` : "") + `</div>`;
-      }).join("") + (sw ? `<div class="muted">${cnt(sw.added)} in · ${cnt(sw.removed)} out</div>` : "");
+        return `<div class="row"><span class="key ${sr.dash ? "dash" : ""}" style="border-color:${sr.color}"></span>${sr.label}<b>${money(best[sr.k])}</b></div>`;
+      }).join("") + (sw ? `<div class="muted">${cnt(sw.added)} in, ${cnt(sw.removed)} out</div>` : "");
       const px = x(best) * r.width / W, py = y(best.total) * r.height / H;
       tip.style.left = Math.min(Math.max(px - tip.offsetWidth / 2, 0), r.width - tip.offsetWidth) + "px";
       tip.style.top = (py - tip.offsetHeight - 12 > 0 ? py - tip.offsetHeight - 12 : py + 16) + "px";
@@ -621,7 +695,7 @@
     if (tagFilter && !groups.has(tagFilter)) tagFilter = null;
     $("tags").innerHTML = list.map(g => `
       <div class="tagrow ${g.name === tagFilter ? "active" : ""}" data-tag="${esc(g.name)}" >
-        <span class="chip">${esc(g.name)} <span class="muted">· ${Number.isInteger(g.n) ? g.n : g.n.toFixed(1)} card${g.n === 1 ? "" : "s"}</span></span>
+        <span class="chip">${esc(g.name)} <span class="muted">${Number.isInteger(g.n) ? g.n : g.n.toFixed(1)} card${g.n === 1 ? "" : "s"}</span></span>
         <div class="bar"><div style="width:${(g.v / max * 100).toFixed(1)}%;background:${g.proxy ? "var(--series-proxy)" : "var(--series-paper)"}"></div></div>
         <span class="num">${money(g.v)}</span>
       </div>`).join("");
@@ -630,27 +704,27 @@
   function renderCards(d, s) {
     const i = s.ds.length - 1;
     const map = date => new Map((d.byDate.get(date) || []).map(r => [r.key, priceOf(r)]));
-    const prev = i > 0 ? map(s.ds[i - 1]) : null, first = i > 0 ? map(s.ds[0]) : null;
+    const first = i > 0 ? map(s.ds[0]) : null;
     const q = $("search").value.trim().toLowerCase();
     let list = d.byDate.get(s.last).map(r => {
       const p = priceOf(r), t = tagOf(r);
       const ch = m => (m && p != null && m.get(r.key) != null) ? (p - m.get(r.key)) * r.qty : null;
       return { name: r.card_name, set: r.set_code, finish: r.finish, qty: r.qty, tag: t.name, proxy: t.proxy,
-               price: p, total: p == null ? null : p * r.qty, dPrev: ch(prev), dFirst: ch(first) };
+               price: p, total: p == null ? null : p * r.qty, dFirst: ch(first) };
     });
     if (tagFilter) list = list.filter(c => c.tag === tagFilter);
     if (q) list = list.filter(c => c.name.toLowerCase().includes(q));
     sortBy(list, cardSort);
-    $("cardsTitle").textContent = `Cards${tagFilter ? ` · ${tagFilter}` : ""} (${list.length})`;
+    $("cardsTitle").textContent = `${tagFilter === "Proxied" ? "Proxied cards" : tagFilter === "Paper" ? "Paper cards" : "Cards"} (${list.length})`;
     $("cardTable").tBodies[0].innerHTML = list.map(c => `
       <tr>
-        <td>${esc(c.name)} <span class="muted">${esc(c.set.toUpperCase())}${c.finish && c.finish !== "Normal" ? " · " + esc(c.finish) : ""}</span></td>
+        <td><span class="card-name">${esc(c.name)}</span><span class="printing">${esc(c.set.toUpperCase())}${c.finish && c.finish !== "Normal" ? ", " + esc(c.finish.toLowerCase()) : ""}</span></td>
         <td class="num">${c.qty}</td>
-        <td>${c.proxy ? `<span class="badge">Proxy</span>` : ""}</td>
+        <td>${c.proxy ? `<span class="badge proxy">Proxy</span>` : `<span class="badge paper">Paper</span>`}</td>
         <td class="num">${money(c.price)}</td>
         <td class="num">${money(c.total)}</td>
-        ${deltaCell(c.dPrev)}${deltaCell(c.dFirst)}
-      </tr>`).join("") || `<tr><td colspan="7" class="muted">No matching cards.</td></tr>`;
+        ${deltaCell(c.dFirst)}
+      </tr>`).join("") || `<tr><td colspan="6" class="muted">No cards match.</td></tr>`;
     markSort($("cardTable"), cardSort);
   }
 
@@ -728,14 +802,14 @@
     renderIndexFilters();
     const all = indexCards(), list = sortBy(all.filter(ixMatches), ixSort);
     const copies = list.reduce((s, c) => s + c.qty, 0);
-    $("ixResult").textContent = `${list.length} of ${all.length} cards · ${copies} copies · ${fmtDate(dates[dates.length - 1])}` +
-      (cardInfo.size ? "" : " · card types and colors arrive with the next daily run");
+    $("ixResult").textContent = `Showing ${list.length} of ${all.length} cards (${copies} copies) from the ${fmtDate(dates[dates.length - 1])} snapshot` +
+      (cardInfo.size ? "" : ". Card types and colors arrive with the next daily run.");
     const names = new Map(realDecks().map(d => [d.id, deckStats(d).name]));
     const MAX = 400;
     $("indexTable").tBodies[0].innerHTML = list.slice(0, MAX).map(c => `
       <tr>
-        <td>${esc(c.name)}${c.commander ? ` <span class="badge">Commander</span>` : ""}</td>
-        <td class="muted">${esc(c.type || "–")}</td>
+        <td><span class="card-name">${esc(c.name)}</span>${c.commander ? ` <span class="badge">Commander</span>` : ""}</td>
+        <td class="type-col">${esc(c.type || "–")}</td>
         <td class="num">${c.mv ?? "–"}</td>
         <td>${pipsHtml(c.color)}</td>
         <td class="num">${c.decks}</td>
@@ -771,13 +845,15 @@
       state.dir = state.k === k ? -state.dir : (["name", "tag", "type", "color"].includes(k) ? 1 : -1); state.k = k; after();
     });
   }
-  sortClick($("deckTable"), deckSort, renderDecks);
+  $("deckSortSel").addEventListener("change", e => {
+    deckSort.k = e.target.value; deckSort.dir = e.target.value === "name" ? 1 : -1; renderDecks();
+  });
   sortClick($("indexTable"), ixSort, renderIndex);
   sortClick($("cardTable"), cardSort, () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
-  $("deckTable").tBodies[0].addEventListener("click", e => {
-    const tr = e.target.closest("tr[data-id]"); if (!tr) return;
-    selected = tr.dataset.id; tagFilter = null; $("search").value = ""; render();
-    $("deckTitle").scrollIntoView({ behavior: "smooth", block: "start" });
+  $("deckList").addEventListener("click", e => {
+    const b = e.target.closest(".deck-item"); if (!b) return;
+    selected = b.dataset.id; tagFilter = null; $("search").value = ""; render();
+    if (matchMedia("(max-width: 900px)").matches) $("deckTitle").scrollIntoView({ block: "start" });
   });
   $("tags").addEventListener("click", e => {
     const row = e.target.closest(".tagrow"); if (!row || decks.get(selected).noCards) return;
@@ -799,7 +875,7 @@
     .catch(e => { if (optional) return null; throw e; });
   Promise.all([getText("data/prices.csv"), getText("data/decks.csv", true), getText("data/cards.csv", true)])
     .then(([prices, names, cards]) => load(prices, names, cards))
-    .catch(() => { $("subtitle").textContent = "No data loaded"; $("loadError").hidden = false; });
+    .catch(() => { $("subtitle").textContent = "No data loaded yet"; $("loadError").hidden = false; });
 })();
 </script>
 </body>

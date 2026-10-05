@@ -1,9 +1,9 @@
-# Archidekt Price Tracker
+# Archidekt Snapshot
 
 A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https://archidekt.com) folder: the cards in each deck, their current prices, and whether each card is a proxy. Rows are appended to `data/prices.csv`, so the file builds up a price history over time. Deck names and commanders are kept in `data/decks.csv`, and each card's type, mana value and color identity in `data/cards.csv`.
 
-`index.html` has two tabs:
-- **Prices**: each deck's value over time (total, paper and proxies), card swaps between snapshots, plus a whole-collection view and an average-deck view.
+`index.html` (Archidekt Snapshot) has two tabs:
+- **Decks**: each deck's value over time (total, paper and proxies), card swaps between snapshots, plus a whole-collection view and an average-deck view.
 - **Card index**: every card across all decks in the latest snapshot, with which decks run it. Filter by color identity, type, subtype, deck, commanders or proxies. (This replaces the old [edh-ledger](https://github.com/jimna-h/edh-ledger) project, reading the daily snapshot instead of manual imports.)
 
 Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
@@ -15,7 +15,7 @@ Builds on the Archidekt API approach from [LandBase](https://github.com/jimna-h/
 1. Find your folder's id — it's the number in the folder URL, e.g. `https://archidekt.com/folders/781767` → `781767`. The folder and its decks must be **public**.
 2. In this repo on GitHub: **Settings → Secrets and variables → Actions → Variables → New repository variable**, name `ARCHIDEKT_FOLDER_ID`, value your folder id.
 3. **Settings → Actions → General → Workflow permissions**: choose **Read and write permissions** (so the action can commit the CSV).
-4. Run it once by hand from the **Actions** tab ("Daily deck prices" → *Run workflow*) to check it works. After that it runs daily at 13:17 UTC.
+4. Run it once by hand from the **Actions** tab ("Daily snapshot" → *Run workflow*) to check it works. After that it runs daily at 13:17 UTC.
 
 Only decks directly inside the folder are tracked; subfolders are ignored.
 

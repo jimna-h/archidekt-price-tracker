@@ -1,4 +1,4 @@
-name: Daily deck prices
+name: Daily snapshot
 
 on:
   schedule:
@@ -41,6 +41,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Price snapshot $(date -u +%Y-%m-%d)"
+            git commit -m "Snapshot $(date -u +%Y-%m-%d)"
             git push
           fi
