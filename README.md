@@ -13,6 +13,8 @@ Builds on the Archidekt API approach from [LandBase](https://github.com/jimna-h/
 
 Only decks directly inside the folder are tracked; subfolders are ignored.
 
+Within each deck, a card is only recorded if its primary (first) category is included in the deck, so Maybeboard, Sideboard and any custom category with "included in deck" turned off are skipped. Uncategorized cards are recorded.
+
 ## CSV columns
 
 | Column | Meaning |

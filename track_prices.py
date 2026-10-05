@@ -136,8 +136,21 @@ def deck_rows(deck_id, today):
     response.raise_for_status()
     deck = response.json()
 
+    # Categories the deck excludes from the deck itself (Maybeboard, Sideboard, and any
+    # custom category with "included in deck" turned off).
+    excluded = {
+        category.get("name")
+        for category in deck.get("categories") or []
+        if category.get("includedInDeck") is False
+    }
+
     rows = []
     for entry in deck.get("cards", []):
+        # A card's primary category is the first one listed; uncategorized cards count.
+        categories = entry.get("categories") or []
+        if categories and categories[0] in excluded:
+            continue
+
         card = entry.get("card", {})
         foil = (entry.get("modifier") or "").lower() == "foil"
         prices = card.get("prices") or {}
