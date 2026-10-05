@@ -338,7 +338,7 @@
         <label class="check"><input type="checkbox" class="px-store" value="ck" checked> Card Kingdom</label>
         <label class="check"><input type="checkbox" class="px-store" value="cm"> Cardmarket</label>
       </div>
-      <div class="note">Cardmarket is off by default: it's a European store, and its prices may not be in dollars. The running total adds up rows in the order shown, so sort by price to plan what to replace next.</div>
+      <div class="note">Cardmarket is off by default: it's a European store, and its prices may not be in dollars. The list starts with the cheapest cards, and the running total adds up rows in the order shown, so you can see how far a budget goes.</div>
     </div>
     <div class="ix-table">
       <div class="table-wrap">
@@ -1016,7 +1016,7 @@
 
   // ---------- proxies tab ----------
   const px = { decks: new Set(), stores: new Set(["tcg", "ck"]) };
-  let pxSort = { k: "best", dir: -1 };
+  let pxSort = { k: "best", dir: 1 };   // cheapest first
   function renderProxies() {
     const list = new Map();
     for (const d of realDecks()) {
@@ -1239,7 +1239,7 @@
     } else if (view === "proxyView") {
       if (px.decks.size) q.set("decks", [...px.decks].join(","));
       if ([...px.stores].sort().join(",") !== "ck,tcg") q.set("stores", [...px.stores].join(","));
-      if (sortStr(pxSort) !== "-best") q.set("sort", sortStr(pxSort));
+      if (sortStr(pxSort) !== "best") q.set("sort", sortStr(pxSort));
     } else {
       if (ix.search) q.set("q", ix.search);
       if (ix.colors.size) q.set("colors", [...ix.colors].join(""));
@@ -1274,7 +1274,7 @@
     // reset everything, then apply what the link specifies
     selected = ALL; asOf = null; tagFilter = null; moverWindow = 30; $("search").value = "";
     Object.assign(deckSort, { k: "name", dir: 1 }); Object.assign(cardSort, { k: "total", dir: -1 });
-    px.decks = new Set(); px.stores = new Set(["tcg", "ck"]); Object.assign(pxSort, { k: "best", dir: -1 });
+    px.decks = new Set(); px.stores = new Set(["tcg", "ck"]); Object.assign(pxSort, { k: "best", dir: 1 });
     Object.assign(ix, { search: "", subtype: "", match: "any", commanders: false, proxies: false });
     ix.colors = new Set(); ix.types = new Set(); ix.sets = new Set(); ix.decks = new Set(); Object.assign(ixSort, { k: "decks", dir: -1 });
     const known = id => decks.has(id) && !decks.get(id).virtual;
