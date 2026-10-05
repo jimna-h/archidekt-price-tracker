@@ -1,7 +1,9 @@
-"""Daily snapshot of the cards, prices and color tags of every deck in one Archidekt folder.
+"""Daily snapshot of the cards and prices of every deck in one Archidekt folder.
 
 For each deck directly inside the folder (subfolders are ignored), one row per card is
-appended to data/prices.csv, keyed by the deck's Archidekt id and today's date.
+appended to data/prices.csv, keyed by the deck's Archidekt id and today's date, with a
+flag for whether the card has the "Proxied" color tag. Deck names are kept separately in
+data/decks.csv: one row per deck id, holding the deck's most recent name.
 
 Usage:
     python track_prices.py <folder_id>
@@ -22,7 +24,10 @@ from requests import Session
 
 API = "https://archidekt.com/api"
 SITE = "https://archidekt.com"
-CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "prices.csv")
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+CSV_PATH = os.path.join(DATA_DIR, "prices.csv")
+DECKS_PATH = os.path.join(DATA_DIR, "decks.csv")
+PROXY_TAG = "proxied"  # color tag name (any capitalization) that marks a card as a proxy
 
 # Archidekt's price keys -> CSV column names
 PRICE_SOURCES = {
@@ -34,16 +39,15 @@ PRICE_SOURCES = {
 FIELDNAMES = [
     "date",
     "deck_id",
-    "deck_name",
     "card_name",
     "quantity",
     "set_code",
     "finish",
     *PRICE_SOURCES.values(),
-    "color_tag",
-    "color_tag_hex",
-    "categories",
+    "proxied",
 ]
+
+DECK_FIELDNAMES = ["deck_id", "deck_name", "last_seen"]
 
 session = Session()
 session.headers.update({"User-Agent": "Mozilla/5.0 (archidekt-price-tracker)"})
@@ -113,14 +117,11 @@ def get_deck_ids(folder_id):
 
 # ---------------------------------------------------------------- deck -> rows
 
-def parse_color_tag(label):
-    """Archidekt stores a card's color tag as "Name,#hexcolor" (name may be empty)."""
-    if not label:
-        return "", ""
-    name, _, hex_color = label.rpartition(",")
-    if not hex_color.startswith("#"):  # no color part
-        return label, ""
-    return name, hex_color
+def is_proxied(label):
+    """Archidekt stores a card's color tag as "Name,#hexcolor"; only the name matters here."""
+    label = label or ""
+    name = label.rpartition(",")[0] if "," in label else label
+    return name.strip().lower() == PROXY_TAG
 
 
 def price(prices, key, foil):
@@ -131,7 +132,8 @@ def price(prices, key, foil):
     return value if value not in (None, 0, -1, "") else ""
 
 
-def deck_rows(deck_id, today):
+def fetch_deck(deck_id, today):
+    """Returns (deck name, card rows) for one deck."""
     response = get(f"{API}/decks/{deck_id}/")
     response.raise_for_status()
     deck = response.json()
@@ -154,30 +156,26 @@ def deck_rows(deck_id, today):
         card = entry.get("card", {})
         foil = (entry.get("modifier") or "").lower() == "foil"
         prices = card.get("prices") or {}
-        tag_name, tag_hex = parse_color_tag(entry.get("label"))
         row = {
             "date": today,
             "deck_id": deck_id,
-            "deck_name": deck.get("name", ""),
             "card_name": card.get("oracleCard", {}).get("name", ""),
             "quantity": entry.get("quantity", 1),
             "set_code": (card.get("edition") or {}).get("editioncode", ""),
             "finish": entry.get("modifier") or "Normal",
-            "color_tag": tag_name,
-            "color_tag_hex": tag_hex,
-            "categories": "; ".join(entry.get("categories") or []),
+            "proxied": "true" if is_proxied(entry.get("label")) else "false",
         }
         for key, column in PRICE_SOURCES.items():
             row[column] = price(prices, key, foil)
         rows.append(row)
-    return rows
+    return deck.get("name", ""), rows
 
 
 # ---------------------------------------------------------------- csv
 
 def write_rows(new_rows, today):
     """Append today's rows, replacing any rows already written today (safe to re-run)."""
-    os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
+    os.makedirs(DATA_DIR, exist_ok=True)
     existing = []
     if os.path.exists(CSV_PATH):
         with open(CSV_PATH, newline="", encoding="utf-8") as f:
@@ -188,6 +186,23 @@ def write_rows(new_rows, today):
         writer.writeheader()
         writer.writerows(existing)
         writer.writerows(new_rows)
+
+
+def write_deck_names(names, today):
+    """Keep one row per deck id with its latest name. Decks that leave the folder keep
+    their last known name, so their history still has a label."""
+    os.makedirs(DATA_DIR, exist_ok=True)
+    decks = {}
+    if os.path.exists(DECKS_PATH):
+        with open(DECKS_PATH, newline="", encoding="utf-8") as f:
+            decks = {row["deck_id"]: row for row in csv.DictReader(f)}
+    for deck_id, name in names.items():
+        decks[str(deck_id)] = {"deck_id": deck_id, "deck_name": name, "last_seen": today}
+
+    with open(DECKS_PATH, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=DECK_FIELDNAMES, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(sorted(decks.values(), key=lambda d: int(d["deck_id"])))
 
 
 def main():
@@ -202,11 +217,12 @@ def main():
     if not deck_ids:
         sys.exit("No decks found. Is the folder public, and are the decks directly inside it?")
 
-    rows, failed = [], []
+    rows, names, failed = [], {}, []
     for deck_id in deck_ids:
         try:
-            these = deck_rows(deck_id, today)
-            print(f"  deck {deck_id}: {len(these)} card entries")
+            name, these = fetch_deck(deck_id, today)
+            print(f"  deck {deck_id} ({name}): {len(these)} card entries")
+            names[deck_id] = name
             rows += these
         except Exception as error:  # one private/broken deck shouldn't sink the run
             print(f"  deck {deck_id}: FAILED ({error})")
@@ -214,7 +230,8 @@ def main():
         time.sleep(1)  # be polite to Archidekt
 
     write_rows(rows, today)
-    print(f"Wrote {len(rows)} rows for {today} to {CSV_PATH}")
+    write_deck_names(names, today)
+    print(f"Wrote {len(rows)} rows for {today} to {CSV_PATH}, {len(names)} deck names to {DECKS_PATH}")
     if failed and len(failed) == len(deck_ids):
         sys.exit("Every deck failed to load.")
 

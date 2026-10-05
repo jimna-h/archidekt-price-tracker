@@ -1,6 +1,8 @@
 # Archidekt Price Tracker
 
-A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https://archidekt.com) folder: the cards in each deck, their current prices, and their color tags. Rows are appended to `data/prices.csv`, so the file builds up a price history over time.
+A GitHub Action that, once a day, snapshots every deck in one [Archidekt](https://archidekt.com) folder: the cards in each deck, their current prices, and whether each card is a proxy. Rows are appended to `data/prices.csv`, so the file builds up a price history over time. Deck names are kept separately in `data/decks.csv`.
+
+`index.html` charts it all: each deck's value over time, card swaps between snapshots, and owned vs proxied value. Turn on GitHub Pages (Settings → Pages → Deploy from a branch → `main`, `/ (root)`) to view it online.
 
 Builds on the Archidekt API approach from [LandBase](https://github.com/jimna-h/LandBase).
 
@@ -15,21 +17,30 @@ Only decks directly inside the folder are tracked; subfolders are ignored.
 
 Within each deck, a card is only recorded if its primary (first) category is included in the deck, so Maybeboard, Sideboard and any custom category with "included in deck" turned off are skipped. Uncategorized cards are recorded.
 
-## CSV columns
+## Data files
+
+Decks are always identified by their Archidekt deck id.
+
+**`data/prices.csv`**: one row per card per deck per day.
 
 | Column | Meaning |
 |---|---|
 | `date` | UTC date of the snapshot |
-| `deck_id` | Archidekt deck id (the deck's identifier) |
-| `deck_name` | Deck name at snapshot time (for readability; can change) |
+| `deck_id` | Archidekt deck id |
 | `card_name` | Card name |
 | `quantity` | Copies in the deck |
 | `set_code` | Printing's set code |
 | `finish` | `Normal`, `Foil`, `Etched`… |
 | `price_tcgplayer`, `price_cardkingdom`, `price_cardmarket` | Archidekt's listed price per copy (foil price for foil copies); blank if none |
-| `color_tag` | The card's Archidekt color tag name (blank if untagged or unnamed) |
-| `color_tag_hex` | The color tag's color, e.g. `#37d67a` |
-| `categories` | The card's deck categories, `; `-separated |
+| `proxied` | `true` if the card has the "Proxied" color tag on Archidekt, else `false` |
+
+**`data/decks.csv`**: one row per deck id.
+
+| Column | Meaning |
+|---|---|
+| `deck_id` | Archidekt deck id |
+| `deck_name` | The deck's most recent name |
+| `last_seen` | Last date the deck was found in the folder |
 
 Re-running on the same day replaces that day's rows rather than duplicating them.
 

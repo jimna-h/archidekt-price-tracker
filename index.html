@@ -88,6 +88,7 @@
   .tip b { font-variant-numeric: tabular-nums; }
 
   .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; color: var(--text-secondary); border: 1px solid var(--axis); border-radius: 999px; padding: 0 8px; }
   .swatch { width: 10px; height: 10px; border-radius: 3px; border: 1px solid var(--border); flex: none; }
 
   .tags { display: grid; gap: 8px; }
@@ -141,8 +142,8 @@
 
   <div id="loadError" class="card empty" hidden>
     <div>Couldn't load <code>data/prices.csv</code> (opening this file directly from disk blocks that).</div>
-    <div>Pick the CSV to view it:</div>
-    <input type="file" id="fileInput" accept=".csv">
+    <div>Pick <code>prices.csv</code> (and <code>decks.csv</code> for deck names) to view them:</div>
+    <input type="file" id="fileInput" accept=".csv" multiple>
   </div>
 
   <section id="app" hidden>
@@ -183,9 +184,9 @@
     </div>
 
     <div class="card">
-      <h2>Value by color tag</h2>
+      <h2>Owned vs proxied</h2>
       <div class="tags" id="tags"></div>
-      <div class="note">Click a tag to filter the card list below.</div>
+      <div class="note">Proxies are cards with the "Proxied" color tag on Archidekt. Click a row to filter the card list below.</div>
     </div>
 
     <div class="card">
@@ -198,7 +199,7 @@
           <thead><tr>
             <th data-k="name">Card</th>
             <th data-k="qty" class="num">Qty</th>
-            <th data-k="tag">Color tag</th>
+            <th data-k="tag">Proxy</th>
             <th data-k="price" class="num">Price</th>
             <th data-k="total" class="num">Total</th>
             <th data-k="dPrev" class="num">Since last</th>
@@ -239,7 +240,7 @@
   const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
   let rows = [], dates = [], decks = new Map();
   let source = "price_tcgplayer", selected = null, tagFilter = null;
-  let deckSort = { k: "value", dir: -1 }, cardSort = { k: "total", dir: -1 };
+  let deckSort = { k: "name", dir: 1 }, cardSort = { k: "total", dir: -1 };
 
   function delta(el, d, base) {
     if (d == null) { el.textContent = "–"; el.className = el.className.replace(/\b(up|down)\b/g, ""); return; }
@@ -254,7 +255,9 @@
   }
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
-  function load(text) {
+  let deckNames = new Map();
+  function load(text, namesText) {
+    deckNames = new Map(namesText ? parseCSV(namesText).map(d => [d.deck_id, d.deck_name]) : []);
     rows = parseCSV(text);
     rows.forEach(r => { r.qty = +r.quantity || 0; r.key = `${r.card_name}|${r.set_code}|${r.finish}`; });
     dates = [...new Set(rows.map(r => r.date))].sort();
@@ -264,12 +267,11 @@
       if (!d) decks.set(r.deck_id, d = { id: r.deck_id, byDate: new Map() });
       if (!d.byDate.has(r.date)) d.byDate.set(r.date, []);
       d.byDate.get(r.date).push(r);
-      d.name = r.deck_name; // rows are in date order, so the last name wins
     }
     $("subtitle").textContent = `${decks.size} decks · ${dates.length} snapshot${dates.length === 1 ? "" : "s"} · ${fmtDate(dates[0])} – ${fmtDate(dates[dates.length - 1])}`;
     $("app").hidden = false; $("loadError").hidden = true;
     if (!(selected && decks.has(selected)))
-      selected = [...decks.values()].map(deckStats).sort((a, b) => b.value - a.value)[0].id;
+      selected = sortBy([...decks.values()].map(deckStats), { k: "name", dir: 1 })[0].id;
     render();
   }
 
@@ -283,7 +285,7 @@
     const last = ds[ds.length - 1], prev = ds[ds.length - 2], first = ds[0];
     const value = deckValue(d, last);
     return {
-      id: d.id, name: d.name, value, last, ds,
+      id: d.id, name: deckNames.get(d.id) || `Deck #${d.id}`, value, last, ds,
       cards: d.byDate.get(last).reduce((s, r) => s + r.qty, 0),
       dPrev: prev ? value - deckValue(d, prev) : null,
       dFirst: ds.length > 1 ? value - deckValue(d, first) : null,
@@ -295,7 +297,7 @@
     return arr.sort((a, b) => {
       const x = a[k], y = b[k];
       if (x == null && y == null) return 0; if (x == null) return 1; if (y == null) return -1;
-      return (typeof x === "string" ? x.localeCompare(y) : x - y) * dir;
+      return (typeof x === "string" ? x.localeCompare(y, undefined, { numeric: true, sensitivity: "base" }) : x - y) * dir;
     });
   }
   function markSort(table, s) {
@@ -464,7 +466,8 @@
     return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
   }
 
-  function tagOf(r) { return { name: r.color_tag || (r.color_tag_hex && r.color_tag_hex !== "#656565" ? "(unnamed)" : "Untagged"), hex: r.color_tag_hex || "" }; }
+  const isProxy = r => String(r.proxied).toLowerCase() === "true";
+  function tagOf(r) { return isProxy(r) ? { name: "Proxied", proxy: true } : { name: "Owned", proxy: false }; }
 
   function renderTags(d, s) {
     const groups = new Map();
@@ -477,7 +480,7 @@
     if (tagFilter && !groups.has(tagFilter)) tagFilter = null;
     $("tags").innerHTML = list.map(g => `
       <div class="tagrow ${g.name === tagFilter ? "active" : ""}" data-tag="${esc(g.name)}" title="${g.n} card${g.n === 1 ? "" : "s"}">
-        <span class="chip"><span class="swatch" style="background:${/^#[0-9a-f]{3,8}$/i.test(g.hex) ? g.hex : "transparent"}"></span>${esc(g.name)}</span>
+        <span class="chip">${esc(g.name)} <span class="muted">· ${g.n} card${g.n === 1 ? "" : "s"}</span></span>
         <div class="bar"><div style="width:${(g.v / max * 100).toFixed(1)}%"></div></div>
         <span class="num">${money(g.v)}</span>
       </div>`).join("");
@@ -491,7 +494,7 @@
     let list = d.byDate.get(s.last).map(r => {
       const p = priceOf(r), t = tagOf(r);
       const ch = m => (m && p != null && m.get(r.key) != null) ? (p - m.get(r.key)) * r.qty : null;
-      return { name: r.card_name, set: r.set_code, finish: r.finish, qty: r.qty, tag: t.name, hex: t.hex,
+      return { name: r.card_name, set: r.set_code, finish: r.finish, qty: r.qty, tag: t.name, proxy: t.proxy,
                price: p, total: p == null ? null : p * r.qty, dPrev: ch(prev), dFirst: ch(first) };
     });
     if (tagFilter) list = list.filter(c => c.tag === tagFilter);
@@ -502,7 +505,7 @@
       <tr>
         <td>${esc(c.name)} <span class="muted">${esc(c.set.toUpperCase())}${c.finish && c.finish !== "Normal" ? " · " + esc(c.finish) : ""}</span></td>
         <td class="num">${c.qty}</td>
-        <td><span class="chip"><span class="swatch" style="background:${/^#[0-9a-f]{3,8}$/i.test(c.hex) ? c.hex : "transparent"}"></span>${esc(c.tag)}</span></td>
+        <td>${c.proxy ? `<span class="badge">Proxy</span>` : ""}</td>
         <td class="num">${money(c.price)}</td>
         <td class="num">${money(c.total)}</td>
         ${deltaCell(c.dPrev)}${deltaCell(c.dFirst)}
@@ -531,11 +534,18 @@
   $("search").addEventListener("input", () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
   $("source").addEventListener("change", e => { source = e.target.value; render(); });
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => decks.size && renderDeck(), 150); });
-  $("fileInput").addEventListener("change", async e => { const f = e.target.files[0]; if (f) load(await f.text()); });
+  $("fileInput").addEventListener("change", async e => {
+    const files = [...e.target.files];
+    const texts = await Promise.all(files.map(f => f.text()));
+    const prices = texts.find(t => /^\s*date,/.test(t)), names = texts.find(t => /^\s*deck_id,deck_name/.test(t));
+    if (prices) load(prices, names);
+  });
 
-  fetch("data/prices.csv", { cache: "no-store" })
+  const getText = (url, optional) => fetch(url, { cache: "no-store" })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(load)
+    .catch(e => { if (optional) return null; throw e; });
+  Promise.all([getText("data/prices.csv"), getText("data/decks.csv", true)])
+    .then(([prices, names]) => load(prices, names))
     .catch(() => { $("subtitle").textContent = "No data loaded"; $("loadError").hidden = false; });
 })();
 </script>
