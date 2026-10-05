@@ -220,6 +220,7 @@
   .dchip.proxy { border-style: dashed; border-color: var(--series-proxy); }
   #indexTable td { vertical-align: top; }
   .type-col { color: var(--text-secondary); }
+  .printings-note { font-size: 12px; color: var(--text-muted); }
 
   /* ---------- new pieces ---------- */
   .seg { display: inline-flex; gap: 2px; padding: 3px; background: var(--grid); border-radius: 8px; }
@@ -249,6 +250,7 @@
   .proxy-summary .alt { font-size: 15px; color: var(--text-secondary); }
   .filter-label { font-size: 14px; color: var(--text-muted); margin-left: 6px; }
   td.best { font-weight: 700; }
+  td.store { white-space: nowrap; font-weight: 500; }
   #proxyTable td { vertical-align: top; }
   details.overlap summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
   details.overlap summary::-webkit-details-marker { display: none; }
@@ -342,13 +344,14 @@
             <th data-k="tcg" class="num">TCGplayer</th>
             <th data-k="ck" class="num">Card Kingdom</th>
             <th data-k="cm" class="num">Cardmarket</th>
+            <th data-k="bestName">Cheapest at</th>
             <th data-k="best" class="num">Cheapest total</th>
             <th class="num">Running total</th>
           </tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <div class="note">Store prices are per copy. The cheapest one for each card is in bold.</div>
+      <div class="note">Store prices are per copy, for the printing in your deck. The cheapest is in bold and named in "Cheapest at".</div>
     </div>
   </section>
 
@@ -384,12 +387,13 @@
             <th data-k="color">Color</th>
             <th data-k="decks" class="num">Decks</th>
             <th data-k="qty" class="num">Copies</th>
+            <th data-k="price" class="num">Price</th>
             <th>Where</th>
           </tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <div class="note">Bold decks run the card as a commander; dashed ones run it as a proxy.</div>
+      <div class="note">Price is per copy, from the store chosen in "Prices from". If you play more than one printing of a card, it shows the cheapest. Bold decks run the card as a commander; dashed ones run it as a proxy.</div>
     </div>
   </section>
 
@@ -735,7 +739,7 @@
   function showView(v) {
     view = v;
     for (const id of ["pricesView", "proxyView", "indexView"]) $(id === "pricesView" ? "app" : id).hidden = v !== id;
-    $("source").closest("label").hidden = v !== "pricesView";
+    $("source").closest("label").hidden = v === "proxyView";
     $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
   }
   $("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-view]"); if (b) showView(b.dataset.view); });
@@ -1017,7 +1021,7 @@
     const rows = [...list.values()].map(e => {
       const options = [...px.stores].map(s => [s, e[s]]).filter(([, p]) => p != null);
       const [bestStore, bestPrice] = options.sort((a, b) => a[1] - b[1])[0] || [null, null];
-      return { ...e, bestStore, best: bestPrice == null ? null : bestPrice * e.qty };
+      return { ...e, bestStore, bestName: bestStore ? STORE_NAMES[bestStore] : null, best: bestPrice == null ? null : bestPrice * e.qty };
     });
     sortBy(rows, pxSort);
     const copies = rows.reduce((s, r) => s + r.qty, 0), total = rows.reduce((s, r) => s + (r.best ?? 0), 0);
@@ -1036,10 +1040,11 @@
         <td><span class="card-name">${esc(r.name)}</span><span class="printing">${esc(r.set.toUpperCase())}${r.finish !== "Normal" ? ", " + esc(r.finish.toLowerCase()) : ""}</span></td>
         <td><div class="where">${sortBy([...r.decks].map(([id, q]) => ({ name: deckName(id), q })), { k: "name", dir: 1 }).map(x => `<span class="dchip">${esc(x.name)}${x.q > 1 ? " ×" + x.q : ""}</span>`).join("")}</div></td>
         <td class="num">${r.qty}</td>${cell("tcg")}${cell("ck")}${cell("cm")}
+        <td class="store">${r.bestName ? esc(r.bestName) : `<span class="muted">No price</span>`}</td>
         <td class="num">${money(r.best)}</td>
         <td class="num muted">${money(running)}</td>
       </tr>`;
-    }).join("") || `<tr><td colspan="8" class="muted">Nothing to show.</td></tr>`;
+    }).join("") || `<tr><td colspan="9" class="muted">Nothing to show.</td></tr>`;
     markSort($("proxyTable"), pxSort);
     fillDeckDropdown($("pxDeckDD"), px.decks);
   }
@@ -1075,9 +1080,13 @@
           const [types, subtypes = ""] = (info.type_line || "").split(" — ");
           byName.set(r.card_name, c = { name: r.card_name, type: info.type_line || "", types: types.split(" ").filter(Boolean), subtypes,
             mv: info.mana_value === "" || info.mana_value == null ? null : +info.mana_value,
-            color: info.color_identity ?? null, qty: 0, perDeck: new Map(), commander: false, proxied: false });
+            color: info.color_identity ?? null, qty: 0, perDeck: new Map(), commander: false, proxied: false,
+            price: null, printings: new Set() });
         }
         c.qty += r.qty;
+        // price = the cheapest printing among the ones you play
+        c.printings.add(printKey(r));
+        const p = priceIn(r); if (p != null && (c.price == null || p < c.price)) c.price = p;
         const e = c.perDeck.get(d.id) || { qty: 0, cmd: false, proxy: false };
         e.qty += r.qty; e.cmd ||= cmds.has(r.card_name); e.proxy ||= isProxy(r);
         c.perDeck.set(d.id, e);
@@ -1126,10 +1135,11 @@
         <td>${pipsHtml(c.color)}</td>
         <td class="num">${c.decks}</td>
         <td class="num">${c.qty}</td>
+        <td class="num" ${c.printings.size > 1 ? `title="Cheapest of the ${c.printings.size} printings you play"` : ""}>${money(c.price)}${c.printings.size > 1 ? `<div class="printings-note">cheapest of ${c.printings.size}</div>` : ""}</td>
         <td><div class="where">${sortBy([...c.perDeck].map(([id, e]) => ({ e, name: deckName(id) })), { k: "name", dir: 1 })
           .map(({ name, e }) => `<span class="dchip ${e.cmd ? "cmd" : ""} ${e.proxy ? "proxy" : ""}">${esc(name)}${e.qty > 1 ? " ×" + e.qty : ""}</span>`).join("")}</div></td>
-      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="7" class="muted">Showing the first ${MAX}. Narrow the filters to see the rest.</td></tr>` : "")
-      || `<tr><td colspan="7" class="muted">No cards match these filters.</td></tr>`;
+      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="8" class="muted">Showing the first ${MAX}. Narrow the filters to see the rest.</td></tr>` : "")
+      || `<tr><td colspan="8" class="muted">No cards match these filters.</td></tr>`;
     markSort($("indexTable"), ixSort);
     renderOverlap();
   }
@@ -1193,7 +1203,7 @@
     renderTags(decks.get(selected), deckStats(decks.get(selected))); renderCards(decks.get(selected));
   });
   $("search").addEventListener("input", () => renderCards(decks.get(selected)));
-  $("source").addEventListener("change", e => { source = e.target.value; render(); });
+  $("source").addEventListener("change", e => { source = e.target.value; render(); renderIndex(); });
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => decks.size && drawChart(
     deckStats(decks.get(selected)).ds.map(x => ({ date: x, total: val(decks.get(selected), x), paper: val(decks.get(selected), x, "paper"), proxy: val(decks.get(selected), x, "proxy") })),
     decks.get(selected).noCards ? [] : deckSwaps(decks.get(selected))), 150); });
