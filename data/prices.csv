@@ -1,29 +1,17 @@
 date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_cardkingdom,price_cardmarket,color_tag,color_tag_hex,categories
-2026-10-05,26722467,10. wait let him cook,Stocking the Pantry,1,blb,Normal,0.32,0.49,0.16,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Felidar Retreat,1,fdn,Normal,0.99,2.29,1.2,,#656565,Sideboard
 2026-10-05,26722467,10. wait let him cook,Abandoned Air Temple,1,tla,Normal,5.11,9.99,7.74,,#656565,Land
-2026-10-05,26722467,10. wait let him cook,"Andúril, Narsil Reforged",1,ltc,Normal,14.12,18.99,14.98,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Cosmogrand Zenith,1,eoe,Normal,7.7,10.99,6.63,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,"Aragorn and Arwen, Wed",1,ltr,Foil,,,5.49,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Leader's Talent,1,tmt,Normal,0.5,0.69,0.23,,#656565,Sideboard
 2026-10-05,26722467,10. wait let him cook,"Agent Bishop, Man in Black",1,tmt,Normal,0.32,0.99,0.26,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,Sakura-Tribe Elder,1,plg24,Foil,,,,,#656565,ramp
 2026-10-05,26722467,10. wait let him cook,Farseek,1,pf27,Normal,,,,,#656565,ramp
 2026-10-05,26722467,10. wait let him cook,Birds of Paradise,1,sld,Foil,44.08,47.99,54.0,,#656565,ramp
 2026-10-05,26722467,10. wait let him cook,Three Visits,1,sld,Foil,48.23,44.99,28.45,,#656565,ramp
 2026-10-05,26722467,10. wait let him cook,Utopia Sprawl,1,pf26,Foil,,,,,#656565,ramp
-2026-10-05,26722467,10. wait let him cook,"Aragorn, Hornburg Hero",1,ltc,Foil,4.24,9.49,2.95,,#656565,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Nature's Lore,1,sld,Foil,,,8.49,,#656565,ramp
-2026-10-05,26722467,10. wait let him cook,All Will Be One,1,one,Normal,17.02,18.99,14.75,,#656565,Sideboard
 2026-10-05,26722467,10. wait let him cook,"Anim Pakal, Thousandth Moon",1,lci,Normal,5.47,5.99,4.05,,#656565,beaters
-2026-10-05,26722467,10. wait let him cook,Axgard Artisan,1,mom,Normal,0.4,0.79,0.64,only good with rocco,#a257b2,Sideboard
-2026-10-05,26722467,10. wait let him cook,"Baylen, the Haymaker",1,blb,Normal,1.13,1.29,0.59,only good with rocco,#a257b2,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Botanical Brawler,1,mom,Normal,0.28,0.35,0.14,,#656565,beaters
 2026-10-05,26722467,10. wait let him cook,Commander Liara Portyr,1,clb,Normal,0.23,0.35,0.25,,#656565,card advantage
-2026-10-05,26722467,10. wait let him cook,Conclave Mentor,1,moc,Normal,1.1,0.99,0.3,,#656565,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Dusk Legion Duelist,1,mom,Normal,1.74,3.49,1.2,,#656565,card advantage
 2026-10-05,26722467,10. wait let him cook,"Etali, Primal Conqueror // Etali, Primal Sickness",1,mom,Normal,29.38,37.99,24.47,,#656565,beaters
-2026-10-05,26722467,10. wait let him cook,"Etali, Primal Storm",1,fdn,Normal,0.64,0.79,0.41,,#656565,Maybeboard; rocco enablers
 2026-10-05,26722467,10. wait let him cook,Healer's Hawk,1,fdn,Normal,0.18,0.35,0.1,,#656565,beaters
 2026-10-05,26722467,10. wait let him cook,"Kutzil, Malamet Exemplar",1,lci,Normal,2.87,2.99,2.55,,#656565,card advantage
 2026-10-05,26722467,10. wait let him cook,"Ozolith, the Shattered Spire",1,soc,Normal,6.86,8.49,4.46,,#656565,utility
@@ -34,149 +22,65 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,26722467,10. wait let him cook,Rosie Cotton of South Lane,1,ltr,Normal,0.36,0.49,0.13,only good with rocco,#a257b2,count em
 2026-10-05,26722467,10. wait let him cook,Share the Spoils,1,afc,Normal,3.6,6.99,4.87,only good with rocco,#a257b2,card advantage
 2026-10-05,26722467,10. wait let him cook,Sovereign Okinec Ahau,1,lci,Normal,5.08,3.99,3.54,,#656565,count em
-2026-10-05,26722467,10. wait let him cook,Stolen Strategy,1,pip,Normal,0.36,0.49,0.22,only good with rocco,#a257b2,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Swords to Plowshares,1,frc,Normal,0.63,2.79,1.37,,#656565,interaction
 2026-10-05,26722467,10. wait let him cook,Yotian Dissident,1,bro,Normal,0.28,0.35,0.05,only good with rocco,#a257b2,count em
 2026-10-05,26722467,10. wait let him cook,The Ozolith,1,sld,Foil,69.37,79.99,42.39,,#656565,utility
 2026-10-05,26722467,10. wait let him cook,Germination Practicum,1,sos,Normal,8.26,10.99,5.72,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,Improvisation Capstone,1,sos,Normal,9.46,13.99,11.88,,#656565,card advantage
 2026-10-05,26722467,10. wait let him cook,Patrolling Peacemaker,1,eoc,Normal,0.79,1.99,1.32,,#656565,count em
-2026-10-05,26722467,10. wait let him cook,Aerial Extortionist,1,mkc,Normal,4.98,5.49,4.19,,#656565,Sideboard; card advantage
 2026-10-05,26722467,10. wait let him cook,Avatar's Wrath,1,tla,Normal,4.0,6.49,3.97,,#656565,interaction
-2026-10-05,26722467,10. wait let him cook,"Bennie Bracks, Zoologist",1,mkc,Normal,11.91,12.99,7.78,only good with rocco,#a257b2,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Bigger on the Inside,1,who,Normal,0.51,0.49,0.15,,#656565,ramp
-2026-10-05,26722467,10. wait let him cook,"Chimil, the Inner Sun",1,ecc,Normal,7.98,11.99,8.91,only good with rocco,#a257b2,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Esper Sentinel,1,h2r,Normal,59.52,69.99,39.99,,#656565,card advantage
 2026-10-05,26722467,10. wait let him cook,Exploration,1,dmr,Normal,30.48,37.99,25.99,,#656565,ramp
 2026-10-05,26722467,10. wait let him cook,Generous Pup,1,j25,Normal,7.79,12.99,6.74,,#656565,utility
 2026-10-05,26722467,10. wait let him cook,Kami of Celebration,1,nec,Normal,1.11,1.29,0.25,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,Kodama of the West Tree,1,j25,Normal,19.53,24.99,16.97,,#656565,wincons
 2026-10-05,26722467,10. wait let him cook,"Mikey & Leo, Chaos & Order",1,tmt,Normal,1.36,2.29,1.3,,#656565,card advantage
-2026-10-05,26722467,10. wait let him cook,Shalai and Hallar,1,moc,Normal,6.6,12.99,4.07,,#656565,Sideboard
 2026-10-05,26722467,10. wait let him cook,Terrasymbiosis,1,eoe,Normal,10.08,12.99,10.95,,#656565,card advantage
-2026-10-05,26722467,10. wait let him cook,Throne of Geth,1,2xm,Normal,1.14,0.79,0.68,only good with rocco,#a257b2,Sideboard; count em
-2026-10-05,26722467,10. wait let him cook,Uba Mask,1,chk,Normal,9.12,12.99,2.83,only good with rocco,#a257b2,Maybeboard
-2026-10-05,26722467,10. wait let him cook,"Urabrask, Heretic Praetor",1,snc,Normal,2.03,3.99,1.75,only good with rocco,#a257b2,Sideboard; rocco enablers
 2026-10-05,26722467,10. wait let him cook,Rhythm of the Wild,1,sld,Foil,15.55,16.99,10.59,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,"Halana and Alena, Partners",1,fdn,Normal,0.35,0.69,0.69,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,Ouroboroid,1,eoe,Normal,44.05,57.99,42.5,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,The Ooze,1,tmt,Normal,4.18,8.49,5.14,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,Agatha's Soul Cauldron,1,woe,Normal,41.43,49.99,37.07,,#656565,count em
 2026-10-05,26722467,10. wait let him cook,Forest,36,snc,Normal,0.38,0.49,0.19,,#656565,Land
-2026-10-05,26722467,10. wait let him cook,Annie Joins Up,1,otj,Normal,3.8,3.99,3.13,,#656565,Maybeboard; utility
-2026-10-05,26722467,10. wait let him cook,Railway Brawler,1,otj,Normal,5.88,9.99,6.58,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,"Azusa, Lost but Seeking",1,cmm,Normal,13.01,17.99,9.29,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Guiding Hydra,1,fra,Normal,0.5,0.59,0.61,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Advanced Reconstruction,1,soc,Normal,0.31,0.59,0.56,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Wild-Magic Sorcerer,1,clb,Normal,7.0,9.49,6.76,only good with rocco,#a257b2,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Wand of Wonder,1,clb,Normal,2.02,1.99,0.8,only good with rocco,#a257b2,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Collector's Cage,1,big,Normal,0.88,1.29,1.48,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Fight Rigging,1,snc,Normal,0.98,1.49,1.84,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,"Wolverine, Best There Is",1,sld,Normal,27.47,24.99,12.0,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,"Jaws, Relentless Predator",1,sld,Foil,175.44,229.99,130.0,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Warden of the Grove,1,tdm,Normal,1.74,1.99,1.03,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Shrike Force,1,blb,Normal,0.29,0.39,0.16,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Brightblade Stoat,1,blb,Normal,0.15,0.35,0.15,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Soul Partition,1,bro,Normal,0.4,1.29,0.68,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,"Dragonhawk, Fate's Tempest",1,blb,Normal,4.9,7.49,6.97,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Authority of the Consuls,1,fic,Normal,3.71,5.49,4.85,,#656565,Maybeboard; Enchantment
 2026-10-05,26722467,10. wait let him cook,"Rocco, Street Chef",1,mat,Foil,0.74,1.79,0.47,,#656565,Commander
 2026-10-05,26722467,10. wait let him cook,Hardened Scales,1,wot,Normal,4.68,5.99,3.2,,#656565,utility
 2026-10-05,26722467,10. wait let him cook,"Laelia, the Blade Reforged",1,soc,Normal,0.35,0.69,0.2,,#656565,card advantage
 2026-10-05,26722467,10. wait let him cook,Champion of Lambholt,1,moc,Normal,4.81,4.99,3.45,,#656565,wincons
-2026-10-05,26722467,10. wait let him cook,Evolution Witness,1,mh3,Normal,0.28,0.99,0.15,,#656565,Maybeboard; utility
 2026-10-05,26722467,10. wait let him cook,Speaker of the Heavens,1,m21,Normal,0.62,0.79,0.66,,#656565,beaters
 2026-10-05,26722467,10. wait let him cook,Thundering Raiju,1,neo,Normal,0.44,0.79,0.27,,#656565,wincons
 2026-10-05,26722467,10. wait let him cook,Aerial Responder,1,c20,Normal,0.31,0.35,0.16,,#656565,beaters
-2026-10-05,26722467,10. wait let him cook,Trumpeting Carnosaur,1,lci,Normal,2.36,3.99,1.68,,#656565,Maybeboard; Creature
 2026-10-05,26722467,10. wait let him cook,Beast Within,1,msc,Normal,0.73,1.49,0.83,,#656565,interaction
 2026-10-05,26722467,10. wait let him cook,Suspend Aggression,1,sos,Normal,0.24,0.49,0.11,,#656565,interaction
 2026-10-05,26722467,10. wait let him cook,Generous Gift,1,msc,Normal,0.93,2.29,0.91,,#656565,interaction
 2026-10-05,26722467,10. wait let him cook,Call Forth the Tempest,1,ltc,Normal,26.2,29.99,17.98,,#656565,interaction
 2026-10-05,26722467,10. wait let him cook,Guff Rewrites History,1,cmm,Normal,3.06,4.99,3.31,,#656565,interaction
-2026-10-05,26722467,10. wait let him cook,Contest of Claws,1,lcc,Normal,7.18,8.49,3.62,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Feral Encounter,1,woe,Normal,0.23,0.49,0.13,,#656565,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Dispatch,1,msc,Normal,0.37,1.49,2.14,,#656565,interaction
 2026-10-05,26722467,10. wait let him cook,Chaos Warp,1,msc,Normal,0.98,2.49,0.59,,#656565,interaction
-2026-10-05,26722467,10. wait let him cook,It's Clobberin' Time!,1,msc,Normal,0.29,0.49,0.32,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Into the Time Vortex,1,who,Normal,1.98,1.99,1.48,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Nature's Rhythm,1,tdm,Normal,5.15,8.99,5.62,,#656565,Sideboard; utility
-2026-10-05,26722467,10. wait let him cook,Finale of Devastation,1,sld,Normal,32.19,34.99,24.0,,#656565,Sideboard; utility
-2026-10-05,26722467,10. wait let him cook,Cultivate,1,sld,Normal,2.83,2.29,4.36,,#656565,Sideboard; ramp
-2026-10-05,26722467,10. wait let him cook,Kodama's Reach,1,sld,Normal,9.42,13.99,8.0,,#656565,Sideboard; ramp
-2026-10-05,26722467,10. wait let him cook,Creative Technique,1,soc,Normal,0.31,0.49,0.22,,#656565,Sideboard; Sorcery
 2026-10-05,26722467,10. wait let him cook,"Arwen, Weaver of Hope",1,ltc,Normal,4.73,6.49,5.74,,#656565,count em
-2026-10-05,26722467,10. wait let him cook,Uncivil Unrest,1,moc,Normal,19.16,24.99,17.21,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,Woodwork Prodigy // Soul Tether,1,fra,Normal,0.23,0.59,0.16,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Monk Gyatso,1,tle,Normal,8.0,10.99,8.63,,#656565,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Heartwood Crafter // Soul Tether,1,fra,Normal,0.3,0.49,0.19,,#656565,ramp
 2026-10-05,26722467,10. wait let him cook,Studious First-Year // Rampant Growth,1,sos,Normal,0.19,0.39,0.19,,#656565,ramp
-2026-10-05,26722467,10. wait let him cook,Airbender Ascension,1,tla,Normal,1.33,1.49,1.22,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,"Appa, Steadfast Guardian",1,tla,Normal,5.65,9.49,7.27,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Aven Interrupter,1,otj,Normal,2.68,4.99,4.31,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,The Legend of Yangchen // Avatar Yangchen,1,tla,Normal,3.41,5.49,3.78,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Delayed Blast Fireball,1,clb,Normal,15.25,20.99,13.17,,#656565,Sideboard
-2026-10-05,26722467,10. wait let him cook,"Nico Minoru, Runaway",1,msc,Normal,16.99,20.99,21.56,,#656565,Sideboard
 2026-10-05,26722467,10. wait let him cook,Falcon and Redwing,1,msc,Normal,0.66,1.49,0.69,,#656565,beaters
 2026-10-05,26722467,10. wait let him cook,Shroofus Sproutsire,1,j25,Normal,4.94,8.99,4.98,,#656565,beaters
-2026-10-05,26722467,10. wait let him cook,Lifestream's Blessing,1,fic,Normal,0.28,1.49,1.18,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Caretaker's Talent,1,blb,Normal,11.95,17.99,8.48,only good with rocco,#a257b2,Sideboard; card advantage
-2026-10-05,26722467,10. wait let him cook,Plargg and Nassari,1,soc,Normal,0.36,0.69,0.25,only good with rocco,#a257b2,Maybeboard
 2026-10-05,26722467,10. wait let him cook,Wild Wasteland,1,pip,Normal,1.27,2.99,0.95,only good with rocco,#a257b2,card advantage
-2026-10-05,26722467,10. wait let him cook,"Mona Lisa, Ever Adaptable",1,tmc,Normal,3.57,5.49,3.46,,#656565,Sideboard; Creature
 2026-10-05,26722467,10. wait let him cook,Mosswort Bridge,1,tdc,Normal,0.37,0.79,0.36,,#656565,Land
-2026-10-05,26722467,10. wait let him cook,Crimson Caravaneer,1,pip,Normal,0.3,0.35,0.2,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Questing Druid // Seek the Beast,1,woe,Normal,0.35,0.99,0.7,,#656565,Maybeboard
-2026-10-05,26722467,10. wait let him cook,Ribtruss Roaster,1,soc,Normal,0.37,0.59,0.27,,#656565,Sideboard
 2026-10-05,24974478,8. i literally hate their faces,Sire of Seven Deaths,1,fdn,Normal,33.31,49.99,32.0,Proxied,#fa890d,beaters
 2026-10-05,24974478,8. i literally hate their faces,"Elrond, Moon-Reader",1,hob,Normal,2.25,1.79,2.87,Proxied,#fa890d,flip em
-2026-10-05,24974478,8. i literally hate their faces,Deadeye Navigator,1,inr,Normal,4.03,4.49,2.55,,#656565,Maybeboard
 2026-10-05,24974478,8. i literally hate their faces,Exit Specialist,1,mkm,Normal,0.2,0.35,0.16,Getting,#2ccce4,interaction
-2026-10-05,24974478,8. i literally hate their faces,Sphinx of the Second Sun,1,mkc,Normal,5.12,5.99,2.32,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Starwinder,1,eoe,Normal,1.87,1.79,1.44,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Mischievous Quanar,1,scg,Normal,0.97,1.99,0.91,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Victory Chimes,1,c21,Normal,5.33,5.99,6.99,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,The Reality Chip,1,neo,Normal,4.33,6.49,1.94,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Voidmage Apprentice,1,jvc,Normal,0.65,0.59,0.39,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Slip Out the Back,1,clu,Normal,5.09,7.99,5.55,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Shadow of the Second Sun,1,mh3,Normal,1.05,2.29,0.71,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Ashnod's Altar,1,cmm,Normal,16.46,19.99,12.88,,#656565,Maybeboard
 2026-10-05,24974478,8. i literally hate their faces,Dreamstone Hedron,1,cmm,Normal,0.36,0.35,0.05,,#656565,ramp
-2026-10-05,24974478,8. i literally hate their faces,Worn Powerstone,1,mh3,Normal,0.48,0.99,0.17,,#656565,Maybeboard
 2026-10-05,24974478,8. i literally hate their faces,Ur-Golem's Eye,1,c14,Normal,2.29,0.69,0.49,Proxied,#fa890d,ramp
 2026-10-05,24974478,8. i literally hate their faces,Stonespeaker Crystal,1,clb,Normal,0.38,1.29,0.62,Getting,#2ccce4,ramp
 2026-10-05,24974478,8. i literally hate their faces,The Eternity Elevator,1,eoe,Normal,2.85,3.49,1.16,Proxied,#fa890d,ramp
-2026-10-05,24974478,8. i literally hate their faces,Ichor Elixir,1,moc,Normal,0.18,0.49,0.2,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Arc Reactor,1,msh,Normal,0.82,0.79,0.63,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Sisay's Ring,1,cmr,Normal,0.32,0.35,0.09,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,"Nezahal, Primal Tide",1,cmr,Normal,8.18,11.99,8.33,,#656565,Maybeboard
 2026-10-05,24974478,8. i literally hate their faces,Waterbender's Restoration,1,tle,Normal,3.83,5.49,8.99,Proxied,#fa890d,flip em
 2026-10-05,24974478,8. i literally hate their faces,Lord of Change,1,40k,Normal,2.95,3.99,5.58,Proxied,#fa890d,card advantage
 2026-10-05,24974478,8. i literally hate their faces,Marang River Regent // Coil and Catch,1,tdm,Normal,1.89,2.29,1.92,,#656565,interaction
 2026-10-05,24974478,8. i literally hate their faces,Fear of Sleep Paralysis,1,dsc,Normal,0.39,1.29,0.51,Getting,#2ccce4,interaction
-2026-10-05,24974478,8. i literally hate their faces,Phyrexian Dreadnought,1,mir,Normal,271.39,299.99,210.0,Consider Cutting,#f2fa0d,Maybeboard; beaters
-2026-10-05,24974478,8. i literally hate their faces,Retraced Image,1,tor,Normal,8.83,12.99,4.67,,#656565,Maybeboard
 2026-10-05,24974478,8. i literally hate their faces,Sol Ring,1,msc,Normal,1.6,2.99,1.95,,#656565,ramp
-2026-10-05,24974478,8. i literally hate their faces,Sensei's Divining Top,1,2x2,Normal,40.17,39.99,25.0,,#656565,Maybeboard
 2026-10-05,24974478,8. i literally hate their faces,Scroll Rack,1,cmr,Normal,31.08,42.99,29.99,Proxied,#fa890d,Artifact
-2026-10-05,24974478,8. i literally hate their faces,Spire Owl,1,usg,Normal,0.17,0.39,0.14,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Cloudstone Curio,1,rvr,Normal,17.57,18.99,7.0,,#656565,Maybeboard
 2026-10-05,24974478,8. i literally hate their faces,Illusionist's Bracers,1,rvr,Normal,6.63,6.99,3.99,,#656565,Artifact
-2026-10-05,24974478,8. i literally hate their faces,Glen Elendra Archmage,1,uma,Normal,9.84,10.99,8.8,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Agent of Treachery,1,m20,Normal,5.99,7.99,5.14,,#656565,Sideboard
-2026-10-05,24974478,8. i literally hate their faces,Hidden Strings,1,dgm,Normal,0.33,0.69,0.28,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Enduring Curiosity,1,dsk,Normal,5.74,11.99,7.34,Have,#37d67a,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Laboratory Maniac,1,inr,Normal,2.36,2.49,0.37,,#656565,Sideboard
 2026-10-05,24974478,8. i literally hate their faces,Wonder,1,cma,Normal,3.54,3.49,1.3,Proxied,#fa890d,Creature
-2026-10-05,24974478,8. i literally hate their faces,Jeskai Infiltrator,1,c18,Normal,0.22,0.49,0.18,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Lens of Clarity,1,ktk,Normal,0.07,0.35,0.13,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,"Elrond, Lord of Rivendell",1,ltr,Normal,0.29,0.35,0.09,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Eater of Days,1,dst,Normal,0.95,2.99,0.24,Consider Cutting,#f2fa0d,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Long-Term Plans,1,scg,Normal,5.89,7.49,0.61,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Aphetto Runecaster,1,scg,Normal,0.33,0.79,0.18,,#656565,Maybeboard; card advantage
 2026-10-05,24974478,8. i literally hate their faces,Cavalier of Gales,1,m20,Normal,2.85,3.99,2.73,Proxied,#fa890d,card advantage
 2026-10-05,24974478,8. i literally hate their faces,Glasspool Mimic // Glasspool Shore,1,znr,Normal,5.79,10.99,6.62,Proxied,#fa890d,Land
-2026-10-05,24974478,8. i literally hate their faces,Proteus Staff,1,mrd,Normal,3.44,2.99,0.44,,#656565,Sideboard
 2026-10-05,24974478,8. i literally hate their faces,"Silver Surfer, Cosmic Voyager",1,msc,Normal,0.62,1.29,1.18,Getting,#2ccce4,flip em
 2026-10-05,24974478,8. i literally hate their faces,Displacer Kitten,1,pclb,Foil,43.64,57.99,33.99,,#656565,flip em
 2026-10-05,24974478,8. i literally hate their faces,Heartstone,1,sth,Normal,3.06,2.99,1.37,Proxied,#fa890d,ramp
@@ -227,51 +131,12 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,24974478,8. i literally hate their faces,Enigma Thief,1,znc,Normal,0.33,0.99,0.22,Getting,#2ccce4,interaction
 2026-10-05,24974478,8. i literally hate their faces,Primordial Mist,1,dsc,Normal,0.31,0.49,0.25,Getting,#2ccce4,flip em
 2026-10-05,24974478,8. i literally hate their faces,"Sash and Waistcoat, Unmen",1,mbc,Normal,,,,,#656565,Commander
-2026-10-05,24974478,8. i literally hate their faces,Everflowing Chalice,1,eoc,Normal,0.27,0.69,0.25,,#656565,Sideboard; Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Bag End Banquet,1,hoc,Normal,6.93,6.99,6.34,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,"Ugin, the Spirit Dragon",1,m21,Normal,12.19,14.99,12.52,,#656565,Sideboard
-2026-10-05,24974478,8. i literally hate their faces,All Is Dust,1,cmm,Normal,5.57,7.99,4.03,,#656565,Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,They Came from the Pipes,1,dsc,Normal,0.33,0.69,0.37,Consider Cutting,#f2fa0d,Sideboard; Maybeboard
-2026-10-05,24974478,8. i literally hate their faces,Energy Tap,1,4ed,Normal,0.27,0.59,0.69,,#656565,Sideboard
 2026-10-05,25536840,9. Fastidious and precise,The Echoverse Fulcrum,1,fra,Normal,4.75,11.99,6.2,,#656565,interaction
-2026-10-05,25536840,9. Fastidious and precise,Ethereal Haze,1,chk,Normal,1.22,0.99,0.24,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Holy Day,1,10e,Normal,0.54,0.69,0.15,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Dunes of the Dead,1,otc,Normal,0.29,0.35,0.49,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Flagstones of Trokair,1,tsr,Normal,3.6,3.49,3.56,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Scorched Ruins,1,wth,Normal,61.08,74.99,47.98,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Wand of the Worldsoul,1,moc,Normal,4.29,4.49,1.12,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Staff of the Storyteller,1,onc,Normal,3.04,1.49,2.0,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Surveyor's Scope,1,cma,Normal,4.83,5.99,3.37,,#656565,Maybeboard; Artifact
-2026-10-05,25536840,9. Fastidious and precise,Cartographer's Hawk,1,cmm,Normal,0.31,0.69,0.18,,#656565,Sideboard; Maybeboard; Creature
-2026-10-05,25536840,9. Fastidious and precise,Scouting Hawk,1,clb,Normal,0.33,0.35,0.21,,#656565,Maybeboard; Creature
-2026-10-05,25536840,9. Fastidious and precise,Space Marine Scout,1,40k,Normal,0.56,1.49,0.54,,#656565,Maybeboard; Creature
-2026-10-05,25536840,9. Fastidious and precise,Boreas Charger,1,voc,Normal,0.31,0.59,0.16,,#656565,Maybeboard; Creature
-2026-10-05,25536840,9. Fastidious and precise,Smuggler's Share,1,mkc,Normal,10.84,16.99,8.72,,#656565,Maybeboard; Sideboard; card advantage
-2026-10-05,25536840,9. Fastidious and precise,Keeper of the Accord,1,cmr,Normal,0.91,1.49,0.85,,#656565,Maybeboard; Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Will of the Mardu,1,tdc,Normal,5.29,5.99,4.66,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Kjeldoran Outpost,1,all,Normal,10.73,12.99,6.6,,#656565,Sideboard; Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Castle Ardenvale,1,peld,Normal,2.78,0.79,0.42,,#656565,Land
-2026-10-05,25536840,9. Fastidious and precise,"Adagia, Windswept Bastion",1,eoe,Normal,5.8,8.49,5.45,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Halo Fountain,1,snc,Normal,7.28,9.99,5.1,,#656565,Sideboard; Artifact
-2026-10-05,25536840,9. Fastidious and precise,Trading Post,1,msc,Normal,0.3,0.49,0.28,,#656565,Maybeboard; Artifact
-2026-10-05,25536840,9. Fastidious and precise,Skyhunter Strike Force,1,onc,Normal,3.7,3.99,4.19,,#656565,Sideboard; Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Reprieve,1,hoc,Normal,6.11,11.99,6.9,,#656565,Sideboard; Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Alhammarret's Archive,1,c21,Normal,10.56,13.99,9.38,,#656565,card advantage
-2026-10-05,25536840,9. Fastidious and precise,Apothecary White,1,clu,Normal,4.99,4.99,3.6,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,"Cloud, Midgar Mercenary",1,fin,Normal,19.39,32.99,24.08,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Lightning Greaves,1,msc,Normal,3.96,5.99,4.16,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Aura Fracture,1,pcy,Normal,0.22,0.35,0.19,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Brave the Sands,1,cm2,Normal,6.13,5.99,2.19,,#656565,Sideboard
 2026-10-05,25536840,9. Fastidious and precise,Loran of the Third Path,1,mkc,Normal,7.42,8.49,3.23,Proxied,#fa890d,interaction
-2026-10-05,25536840,9. Fastidious and precise,Prismatic Strands,1,c19,Normal,7.96,10.99,12.0,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Molecule Man,1,msc,Normal,5.17,8.99,8.21,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Cleansing Meditation,1,tor,Normal,5.14,5.49,2.71,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Doom's Time Platform,1,msc,Normal,0.62,1.49,1.05,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Divine Reckoning,1,c19,Normal,0.86,1.29,0.99,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Claim Jumper,1,otj,Foil,0.52,0.99,0.66,,#656565,ramp
-2026-10-05,25536840,9. Fastidious and precise,Weathered Wayfarer,1,2x2,Normal,2.19,3.49,0.75,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Wall of Omens,1,tdc,Normal,0.35,0.39,0.2,,#656565,cantrips
-2026-10-05,25536840,9. Fastidious and precise,Mirrormind Crown,1,ecl,Normal,0.63,0.99,0.33,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Inspiring Overseer,1,fdn,Normal,0.24,,,,#656565,cantrips
 2026-10-05,25536840,9. Fastidious and precise,Spirited Companion,1,cmm,Normal,0.32,0.59,0.39,,#656565,cantrips
 2026-10-05,25536840,9. Fastidious and precise,Helpful Hunter,1,fdn,Normal,0.27,0.59,0.16,,#656565,cantrips
@@ -281,7 +146,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,25536840,9. Fastidious and precise,Witch Enchanter // Witch-Blessed Meadow,1,mh3,Normal,5.71,9.49,4.5,,#656565,Land
 2026-10-05,25536840,9. Fastidious and precise,Pearl Medallion,1,mh3,Normal,6.5,8.99,4.35,,#656565,ramp
 2026-10-05,25536840,9. Fastidious and precise,Clever Concealment,1,msc,Normal,3.66,5.99,4.61,Proxied,#fa890d,keep myself alive
-2026-10-05,25536840,9. Fastidious and precise,Oketra's Monument,1,dmc,Normal,5.75,6.49,3.54,,#656565,Maybeboard; Sideboard
 2026-10-05,25536840,9. Fastidious and precise,Plains,19,hob,Foil,0.33,0.59,0.32,,#656565,Land
 2026-10-05,25536840,9. Fastidious and precise,Enduring Innocence,1,dsk,Normal,3.21,6.49,4.93,,#656565,card advantage
 2026-10-05,25536840,9. Fastidious and precise,Monument to Endurance,1,dft,Normal,17.2,23.99,18.64,Proxied,#fa890d,card advantage
@@ -296,92 +160,32 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,25536840,9. Fastidious and precise,Lotus Vale,1,wth,Normal,46.94,54.99,29.49,Proxied,#fa890d,Land
 2026-10-05,25536840,9. Fastidious and precise,Tataru Taru,1,fic,Normal,6.52,10.99,6.8,Proxied,#fa890d,cantrips
 2026-10-05,25536840,9. Fastidious and precise,Idol of Oblivion,1,tdc,Normal,3.24,5.49,2.12,,#656565,card advantage
-2026-10-05,25536840,9. Fastidious and precise,Devout Chaplain,1,c20,Normal,0.33,0.35,0.31,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Intangible Virtue,1,inr,Normal,0.32,0.39,0.16,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,"Emeria, the Sky Ruin",1,soc,Normal,7.5,8.49,4.43,,#656565,Land
 2026-10-05,25536840,9. Fastidious and precise,War Room,1,soc,Normal,4.85,6.99,3.54,,#656565,Land
 2026-10-05,25536840,9. Fastidious and precise,Three Tree City,1,blb,Normal,47.19,69.99,33.0,,#656565,Land
-2026-10-05,25536840,9. Fastidious and precise,Coppercoat Vanguard,1,mat,Normal,0.32,0.59,0.36,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Urza's Cave,1,mh3,Normal,2.32,3.49,1.16,,#656565,Land
-2026-10-05,25536840,9. Fastidious and precise,Rent Is Due,1,spm,Normal,0.25,0.49,0.14,,#656565,Sideboard; Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Trouble in Pairs,1,mkc,Normal,24.42,29.99,21.24,,#656565,card advantage
 2026-10-05,25536840,9. Fastidious and precise,Arid Archway,1,otj,Normal,1.49,1.79,0.53,Getting,#2ccce4,Land
 2026-10-05,25536840,9. Fastidious and precise,Sand Scout,1,otc,Normal,5.67,7.49,7.19,,#656565,ramp
-2026-10-05,25536840,9. Fastidious and precise,The Mountain-king's Return,1,hob,Normal,0.17,0.35,0.08,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Glory,1,dmr,Normal,0.43,0.59,0.2,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,"Haliya, Guided by Light",1,eoe,Normal,3.51,5.49,3.64,,#656565,keep myself alive; cantrips
 2026-10-05,25536840,9. Fastidious and precise,Soul's Attendant,1,roe,Normal,7.0,9.99,5.3,,#656565,keep myself alive
 2026-10-05,25536840,9. Fastidious and precise,Authority of the Consuls,1,fdn,Normal,5.29,6.49,4.52,Proxied,#fa890d,keep myself alive
 2026-10-05,25536840,9. Fastidious and precise,Selfless Spirit,1,soc,Normal,0.43,1.49,0.66,,#656565,keep myself alive
-2026-10-05,25536840,9. Fastidious and precise,Abiding Grace,1,mh2,Normal,0.3,0.39,0.17,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,The Celestus,1,mid,Normal,0.82,1.29,0.79,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Flare of Fortitude,1,mh3,Normal,4.74,8.49,4.23,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,The Restoration of Eiganjo // Architect of Restoration,1,neo,Normal,0.51,1.29,0.79,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Winds of Abandon,1,mh1,Normal,3.93,7.49,4.13,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Excise the Imperfect,1,moc,Normal,0.4,0.99,0.33,,#656565,interaction
-2026-10-05,25536840,9. Fastidious and precise,Skyclave Apparition,1,soc,Normal,0.31,0.49,0.3,,#656565,Sideboard
 2026-10-05,25536840,9. Fastidious and precise,Approach of the Second Sun,1,sta,Normal,7.95,12.99,5.91,Proxied,#fa890d,wincons
-2026-10-05,25536840,9. Fastidious and precise,"Greymond, Avacyn's Stalwart",1,slx,Normal,65.9,79.99,59.5,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Moon-Blessed Cleric,1,dsc,Normal,0.42,0.49,0.61,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Karmic Guide,1,soc,Normal,0.69,0.99,0.28,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Moonshaker Cavalry,1,soc,Normal,9.55,10.99,7.56,Proxied,#fa890d,wincons
 2026-10-05,25536840,9. Fastidious and precise,Recruiter of the Guard,1,mh3,Normal,6.39,7.99,7.08,Proxied,#fa890d,cantrips
-2026-10-05,25536840,9. Fastidious and precise,"Mondrak, Glory Dominus",1,one,Normal,42.95,64.99,29.11,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Mirror Entity,1,otc,Normal,1.89,1.99,0.55,,#656565,wincons
-2026-10-05,25536840,9. Fastidious and precise,Mother of Runes,1,clb,Normal,12.85,12.99,10.97,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,"Boromir, Warden of the Tower",1,ltr,Normal,5.54,8.49,5.75,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Flawless Maneuver,1,cmm,Normal,22.45,24.99,18.99,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Stroke of Midnight,1,tdc,Normal,0.38,0.79,0.66,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Call the Coppercoats,1,ncc,Normal,7.45,8.49,4.35,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Parting Gust,1,blb,Foil,1.27,2.29,1.37,,#656565,interaction
-2026-10-05,25536840,9. Fastidious and precise,Tempt with Bunnies,1,blc,Normal,6.61,5.99,3.37,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Dawn's Truce,1,blb,Normal,9.25,14.99,9.27,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Lazotep Quarry,1,m3c,Normal,9.07,9.49,7.1,Proxied,#fa890d,Land
-2026-10-05,25536840,9. Fastidious and precise,Emeria Shepherd,1,znc,Normal,2.77,3.49,1.26,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Knight of the White Orchid,1,sld,Foil,,,,,#656565,ramp
-2026-10-05,25536840,9. Fastidious and precise,Rumor Gatherer,1,clb,Normal,0.45,1.49,0.48,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Gleaming Splendor,1,hob,Normal,31.6,39.99,27.96,,#656565,Sideboard
 2026-10-05,25536840,9. Fastidious and precise,Remote Farm,1,mmq,Normal,0.95,1.29,0.78,Proxied,#fa890d,Land
-2026-10-05,25536840,9. Fastidious and precise,Smothering Tithe,1,wot,Normal,63.64,74.99,40.0,,#656565,Sideboard
 2026-10-05,25536840,9. Fastidious and precise,"Boseiju, Who Shelters All",1,sld,Foil,14.24,19.99,11.0,,#656565,Land
-2026-10-05,25536840,9. Fastidious and precise,The Mind Stone,1,msh,Normal,40.84,59.99,48.01,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Skyknight Squire,1,fdn,Normal,0.72,1.79,0.99,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Generous Gift,1,blc,Normal,1.73,2.79,1.27,,#656565,Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Season of the Burrow,1,blb,Normal,2.03,3.49,1.95,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Enlightened Tutor,1,dmr,Normal,38.63,39.99,27.83,,#656565,Sideboard
 2026-10-05,25536840,9. Fastidious and precise,Chivalric Alliance,1,moc,Normal,13.42,20.99,17.95,Proxied,#fa890d,card advantage; token generators
-2026-10-05,25536840,9. Fastidious and precise,"Matzalantli, the Great Door // The Core",1,lci,Normal,3.29,3.99,1.83,,#656565,Maybeboard; Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Pyre of Heroes,1,khm,Normal,1.84,1.99,1.52,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Return to the Ranks,1,m15,Normal,0.65,0.59,0.36,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Lossarnach Captain,1,ltc,Normal,0.42,1.29,0.83,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Trove Warden,1,znc,Normal,0.54,0.79,0.49,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Court of Ardenvale,1,woc,Normal,7.82,11.99,6.12,,#656565,Sideboard; Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Ascend from Avernus,1,clb,Normal,2.38,4.49,4.4,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,"Celestine, the Living Saint",1,40k,Normal,24.91,34.99,22.3,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Frantic Purification,1,tor,Normal,0.19,0.35,0.35,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Spirit Cairn,1,c20,Normal,0.18,0.35,0.09,Have,#37d67a,Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Boss's Chauffeur,1,ncc,Normal,0.28,0.49,0.5,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Akroma's Will,1,lcc,Normal,15.79,14.99,13.0,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,"Lucy MacLean, Positively Armed",1,sld,Normal,4.59,6.49,5.82,,#656565,Maybeboard; Sideboard
 2026-10-05,25536840,9. Fastidious and precise,Archaeomancer's Map,1,soc,Normal,1.05,2.29,1.54,Getting,#2ccce4,ramp
-2026-10-05,25536840,9. Fastidious and precise,Splitskin Doll,1,dsk,Normal,0.3,0.35,0.21,,#656565,Maybeboard; Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Scapegoat,1,sth,Normal,0.53,1.29,0.4,,#656565,Maybeboard; Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Wizened Mentor,1,drc,Normal,0.21,0.49,0.14,,#656565,Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Archivist of Oghma,1,clb,Normal,6.43,7.99,6.65,,#656565,Maybeboard; Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Airbender Ascension,1,tla,Normal,1.33,1.49,1.22,,#656565,Sideboard
 2026-10-05,25536840,9. Fastidious and precise,Guardian Scalelord,1,soc,Normal,0.31,0.49,0.37,Getting,#2ccce4,recursion
-2026-10-05,25536840,9. Fastidious and precise,Victory Chimes,1,c21,Normal,5.33,5.99,6.99,,#656565,Sideboard; Artifact
-2026-10-05,25536840,9. Fastidious and precise,Settle the Wreckage,1,hob,Normal,0.6,0.49,0.33,,#656565,Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Dawn of a New Age,1,ltr,Normal,3.67,5.49,3.78,,#656565,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,The Queen of Dale,1,hob,Normal,21.0,29.99,22.36,,#656565,Commander
 2026-10-05,25536840,9. Fastidious and precise,"Legion's Landing // Adanto, the First Fort",1,xln,Normal,3.33,4.49,2.92,,#656565,ramp; token generators
-2026-10-05,25536840,9. Fastidious and precise,Phyrexian Altar,1,2x2,Normal,54.73,59.99,44.75,,#656565,Maybeboard
-2026-10-05,25536840,9. Fastidious and precise,Symmetry Matrix,1,bro,Normal,0.43,0.49,0.17,Have,#37d67a,Sideboard; Artifact
-2026-10-05,25536840,9. Fastidious and precise,Spawning Pit,1,dst,Normal,2.94,3.99,1.1,Have,#37d67a,Sideboard; Artifact
-2026-10-05,25536840,9. Fastidious and precise,Pegasus Refuge,1,tmp,Normal,0.43,0.59,0.35,Have,#37d67a,Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Teferi's Protection,1,sld,Foil,50.5,49.99,44.6,Have,#37d67a,Sideboard
-2026-10-05,25536840,9. Fastidious and precise,"Mangara, the Diplomat",1,soc,Normal,0.36,0.79,0.52,Have,#37d67a,Sideboard
-2026-10-05,25536840,9. Fastidious and precise,Land Tax,1,soc,Normal,16.74,18.99,12.09,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Fountainport,1,blb,Normal,3.33,5.49,3.61,,#656565,Land
 2026-10-05,25536840,9. Fastidious and precise,Currency Converter,1,frc,Normal,0.35,0.69,0.48,Getting,#2ccce4,token generators
 2026-10-05,25536840,9. Fastidious and precise,Skullclamp,1,blc,Normal,5.83,8.49,6.51,Proxied,#fa890d,card advantage
@@ -391,7 +195,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,25536840,9. Fastidious and precise,Abolish,1,ddf,Normal,1.45,1.29,0.23,,#656565,interaction
 2026-10-05,25536840,9. Fastidious and precise,Esper Sentinel,1,mh2,Normal,61.23,69.99,44.78,Proxied,#fa890d,card advantage
 2026-10-05,25536840,9. Fastidious and precise,"Emeria's Call // Emeria, Shattered Skyclave",1,znr,Normal,4.02,7.49,3.51,Proxied,#fa890d,Land
-2026-10-05,25536840,9. Fastidious and precise,Winnowing,1,ecl,Normal,0.36,0.49,0.38,Proxied,#fa890d,Maybeboard
 2026-10-05,25536840,9. Fastidious and precise,Kami of False Hope,1,bok,Normal,1.94,0.99,0.49,Getting,#2ccce4,keep myself alive
 2026-10-05,25536840,9. Fastidious and precise,Guide of Souls,1,mh3,Foil,3.39,3.99,2.74,,#656565,keep myself alive
 2026-10-05,25536840,9. Fastidious and precise,Loyal Warhound,1,afr,Normal,0.62,1.29,0.25,,#656565,ramp
@@ -417,13 +220,7 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,17493352,7. The Royal Syphon,Descent into Avernus,1,sld,Foil,17.65,27.99,15.0,,#656565,ramp
 2026-10-05,17493352,7. The Royal Syphon,Improvisation Capstone,1,sos,Normal,15.08,18.99,13.29,Proxied,#fa890d,card advantage
 2026-10-05,17493352,7. The Royal Syphon,Ingris Stingerquill,1,fra,Normal,12.64,14.99,8.39,Proxied,#fa890d,life totals
-2026-10-05,17493352,7. The Royal Syphon,"Grenzo, Havoc Raiser",1,tdc,Normal,0.32,0.49,0.25,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Bark of Doran,1,ecl,Normal,0.14,0.35,0.02,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Niv-Mizzet, Ghost Counsel",1,frc,Normal,4.1,10.99,3.25,,#656565,Maybeboard; Creature
-2026-10-05,17493352,7. The Royal Syphon,Starscape Cleric,1,blb,Normal,1.07,1.99,1.42,,#656565,Sideboard; Creature
 2026-10-05,17493352,7. The Royal Syphon,Tymna the Weaver,1,c16,Foil,,,,,#656565,Commander
-2026-10-05,17493352,7. The Royal Syphon,Emissary of Hope,1,dst,Normal,0.24,0.35,0.28,,#656565,Maybeboard; Creature
-2026-10-05,17493352,7. The Royal Syphon,Paladin of Prahv,1,ddg,Normal,0.12,0.35,0.02,,#656565,Maybeboard; Creature
 2026-10-05,17493352,7. The Royal Syphon,"Arabella, Abandoned Doll",1,dsk,Normal,0.85,0.79,0.23,,#656565,life totals
 2026-10-05,17493352,7. The Royal Syphon,"Vito, Thorn of the Dusk Rose",1,pm21,Foil,,,,,#656565,life totals
 2026-10-05,17493352,7. The Royal Syphon,Professional Face-Breaker,1,snc,Normal,7.04,9.99,5.96,,#656565,ramp
@@ -433,13 +230,11 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,17493352,7. The Royal Syphon,"Prosper, Tome-Bound",1,afc,Foil,,,3.09,,#656565,card advantage
 2026-10-05,17493352,7. The Royal Syphon,Access Tunnel,1,ltc,Normal,0.45,0.79,0.4,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,"Shizo, Death's Storehouse",1,dmc,Normal,33.3,37.99,31.84,,#656565,Land
-2026-10-05,17493352,7. The Royal Syphon,Seasoned Dungeoneer,1,clb,Normal,4.63,6.49,7.48,,#656565,Maybeboard
 2026-10-05,17493352,7. The Royal Syphon,Arcane Signet,1,nec,Normal,0.77,0.79,0.55,,#656565,ramp
 2026-10-05,17493352,7. The Royal Syphon,Talisman of Hierarchy,1,pip,Normal,0.7,0.99,0.96,,#656565,ramp
 2026-10-05,17493352,7. The Royal Syphon,Boros Signet,1,c15,Normal,0.54,1.49,0.58,,#656565,ramp
 2026-10-05,17493352,7. The Royal Syphon,Talisman of Conviction,1,ltc,Normal,0.39,0.99,0.5,,#656565,ramp
 2026-10-05,17493352,7. The Royal Syphon,Talisman of Indulgence,1,40k,Normal,3.86,4.49,1.81,,#656565,ramp
-2026-10-05,17493352,7. The Royal Syphon,Welcoming Vampire,1,tdc,Normal,3.71,4.99,3.68,,#656565,Sideboard
 2026-10-05,17493352,7. The Royal Syphon,"Kediss, Emberclaw Familiar",1,sld,Foil,11.67,17.99,9.09,,#656565,Commander
 2026-10-05,17493352,7. The Royal Syphon,Silver Shroud Costume,1,sld,Foil,,,,,#656565,evasion
 2026-10-05,17493352,7. The Royal Syphon,Inkshield,1,sld,Foil,10.63,9.99,8.91,,#656565,interaction
@@ -468,14 +263,11 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,17493352,7. The Royal Syphon,"Mangara, the Diplomat",1,blc,Normal,0.46,0.99,0.75,,#656565,card advantage
 2026-10-05,17493352,7. The Royal Syphon,Fellwar Stone,1,ncc,Normal,1.49,1.79,0.79,,#656565,ramp
 2026-10-05,17493352,7. The Royal Syphon,Orzhov Signet,1,brc,Normal,0.61,1.49,0.59,,#656565,ramp
-2026-10-05,17493352,7. The Royal Syphon,Path to Exile,1,ncc,Normal,1.67,2.99,1.49,,#656565,Sideboard
 2026-10-05,17493352,7. The Royal Syphon,Deadly Rollick,1,sld,Foil,26.69,34.99,19.99,,#656565,interaction
 2026-10-05,17493352,7. The Royal Syphon,"Mjölnir, Hammer of Thor",1,msh,Normal,18.21,22.99,16.97,Proxied,#fa890d,interaction
-2026-10-05,17493352,7. The Royal Syphon,Ratadrabik of Urborg,1,dmu,Normal,1.83,1.79,0.56,,#656565,Maybeboard
 2026-10-05,17493352,7. The Royal Syphon,"Shanid, Sleepers' Scourge",1,dmc,Foil,2.39,5.99,1.88,,#656565,card advantage; evasion
 2026-10-05,17493352,7. The Royal Syphon,Falcon and Redwing,1,msc,Normal,0.66,1.49,0.69,Proxied,#fa890d,tokens
 2026-10-05,17493352,7. The Royal Syphon,"Black Widow, Agile Avenger",1,msc,Normal,6.03,8.99,7.56,Proxied,#fa890d,card advantage
-2026-10-05,17493352,7. The Royal Syphon,Decorum Dissertation,1,sos,Normal,5.22,7.99,6.35,,#656565,Maybeboard
 2026-10-05,17493352,7. The Royal Syphon,"General Kreat, the Boltbringer",1,j25,Normal,6.53,9.99,8.26,,#656565,life totals
 2026-10-05,17493352,7. The Royal Syphon,Savai Triome,1,iko,Normal,17.29,27.99,17.37,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,Darkstar Augur,1,blb,Normal,1.84,2.29,1.49,,#656565,card advantage
@@ -483,7 +275,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,17493352,7. The Royal Syphon,"Lotho, Corrupt Shirriff",1,ltr,Normal,11.13,13.99,11.75,,#656565,ramp
 2026-10-05,17493352,7. The Royal Syphon,Loran of the Third Path,1,bro,Normal,7.99,11.99,5.95,,#656565,interaction
 2026-10-05,17493352,7. The Royal Syphon,"Moseo, Vein's New Dean",1,sos,Foil,0.85,1.49,0.78,,#656565,recursion
-2026-10-05,17493352,7. The Royal Syphon,Bre of Clan Stoutarm,1,ecl,Normal,0.57,0.79,0.58,,#656565,Sideboard
 2026-10-05,17493352,7. The Royal Syphon,Plaza of Heroes,1,dmu,Foil,8.78,10.99,10.37,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,"Minas Morgul, Dark Fortress",1,ltc,Foil,15.98,18.99,15.99,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,Eiganjo Castle,1,chk,Normal,14.88,10.99,8.9,,#656565,Land
@@ -493,13 +284,11 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,17493352,7. The Royal Syphon,Isolated Chapel,1,ltc,Normal,0.55,1.29,0.62,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,Fetid Heath,1,tdc,Normal,0.55,0.79,0.56,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,Knuckles the Echidna,1,sld,Foil,23.5,27.99,18.99,,#656565,ramp
-2026-10-05,17493352,7. The Royal Syphon,Meekstone,1,mb2,Normal,5.02,6.99,5.75,,#656565,Sideboard
 2026-10-05,17493352,7. The Royal Syphon,Scheming Silvertongue // Sign in Blood,1,sos,Foil,1.11,1.49,0.94,,#656565,card advantage
 2026-10-05,17493352,7. The Royal Syphon,Villainous Wrath,1,spm,Foil,1.19,0.99,0.94,,#656565,interaction
 2026-10-05,17493352,7. The Royal Syphon,Swamp,2,mkm,Foil,0.36,0.79,0.34,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,Mountain,2,mkm,Normal,0.33,0.79,0.19,,#656565,Land
 2026-10-05,17493352,7. The Royal Syphon,Plains,6,mkm,Foil,0.35,0.99,0.25,,#656565,Land
-2026-10-05,17493352,7. The Royal Syphon,Quest for the Holy Relic,1,zen,Normal,0.29,0.35,0.02,,#656565,Sideboard
 2026-10-05,17493352,7. The Royal Syphon,Plateau,1,3ed,Normal,388.13,549.99,265.0,Proxied,#fa890d,Land
 2026-10-05,17493352,7. The Royal Syphon,Blood Crypt,1,rvr,Normal,9.67,14.99,9.75,Proxied,#fa890d,Land
 2026-10-05,17493352,7. The Royal Syphon,Sacred Foundry,1,rvr,Normal,12.51,17.99,10.75,Proxied,#fa890d,Land
@@ -509,56 +298,14 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,17493352,7. The Royal Syphon,Badlands,1,3ed,Normal,586.77,699.99,375.75,Proxied,#fa890d,Land
 2026-10-05,17493352,7. The Royal Syphon,Bloodstained Mire,1,zne,Normal,38.36,47.99,27.0,Proxied,#fa890d,Land
 2026-10-05,17493352,7. The Royal Syphon,Godless Shrine,1,rvr,Normal,9.68,13.99,9.49,Proxied,#fa890d,Land
-2026-10-05,17493352,7. The Royal Syphon,"Falthis, Shadowcat Familiar",1,cmr,Normal,0.33,0.35,0.19,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,17493352,7. The Royal Syphon,Witch Enchanter // Witch-Blessed Meadow,1,mh3,Foil,5.71,9.49,4.5,,#656565,interaction
 2026-10-05,17493352,7. The Royal Syphon,Chaos Warp,1,sld,Foil,8.44,12.99,6.95,,#656565,interaction
 2026-10-05,17493352,7. The Royal Syphon,Wayfarer's Bauble,1,sld,Foil,4.92,6.99,4.95,,#656565,ramp
-2026-10-05,17493352,7. The Royal Syphon,Sheltered by Ghosts,1,sld,Foil,22.78,34.99,19.88,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,Fated Firepower,1,tla,Normal,15.29,18.99,14.48,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,"Burakos, Party Leader",1,clb,Foil,,,,,#656565,Maybeboard
 2026-10-05,17493352,7. The Royal Syphon,Aggravated Assault,1,sld,Foil,27.6,32.99,14.99,,#656565,utility
 2026-10-05,17493352,7. The Royal Syphon,"Kellan, the Fae-Blooded // Birthright Boon",1,woe,Normal,6.22,7.99,6.03,,#656565,utility
 2026-10-05,17493352,7. The Royal Syphon,The Reaver Cleaver,1,sld,Normal,26.71,34.99,17.0,Proxied,#fa890d,ramp
-2026-10-05,17493352,7. The Royal Syphon,"Firebird, Blazing Ranger",1,msc,Normal,0.28,0.49,0.19,,#656565,Maybeboard
 2026-10-05,17493352,7. The Royal Syphon,Stoneforge Mystic,1,spg,Normal,40.04,42.99,27.86,Proxied,#fa890d,utility
-2026-10-05,17493352,7. The Royal Syphon,Smile at Death,1,tdm,Normal,2.91,3.99,3.72,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Stroke of Midnight,1,woe,Normal,0.37,0.79,0.57,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,"MacCready, Lamplight Mayor",1,pip,Foil,,,,,#656565,Sideboard
 2026-10-05,17493352,7. The Royal Syphon,The Queen of Dale,1,hob,Normal,21.0,29.99,22.36,Proxied,#fa890d,card advantage
-2026-10-05,17493352,7. The Royal Syphon,"Licia, Sanguine Tribune",1,c17,Foil,,,3.49,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Senu, Keen-Eyed Protector",1,acr,Foil,1.16,2.49,1.47,Consider Cutting,#f2fa0d,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Teshar, Ancestor's Apostle",1,dom,Normal,0.39,0.49,0.21,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Tataru Taru,1,fic,Normal,6.52,10.99,6.8,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal",1,fin,Normal,1.84,2.29,0.96,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Laelia, the Blade Reforged",1,mh3,Normal,0.34,0.69,0.7,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Agent Venom,1,spm,Normal,0.37,0.49,0.1,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Kain, Traitorous Dragoon",1,fin,Normal,0.34,0.49,0.2,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Baldin, Century Herdmaster",1,tdc,Normal,0.33,0.99,0.41,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Odric, Master Tactician",1,cmm,Normal,0.39,0.79,0.2,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Odric, Lunarch Marshal",1,inr,Normal,0.95,0.99,0.5,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Layla Hassan,1,acr,Normal,0.34,0.69,0.11,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Gix, Yawgmoth Praetor",1,tdc,Normal,0.66,2.29,1.49,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Enduring Innocence,1,dsk,Normal,3.21,6.49,4.93,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Terra, Herald of Hope",1,fic,Normal,1.13,3.49,0.25,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Suspend Aggression,1,sos,Normal,0.24,0.49,0.11,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Apocalypse Runner,1,dft,Foil,0.12,0.35,0.05,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,Generous Gift,1,cmm,Normal,1.1,2.29,1.01,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,Slaughter the Strong,1,tdc,Normal,0.27,0.35,0.24,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,Dismember,1,sld,Foil,44.27,42.99,40.8,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,"Thor, Asgard's Avenger",1,msc,Normal,0.36,0.49,0.28,Proxied,#fa890d,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,Pre-War Formalwear,1,sld,Normal,2.37,5.49,5.65,,#656565,Sideboard
-2026-10-05,17493352,7. The Royal Syphon,Break Through the Line,1,frf,Normal,0.3,0.35,0.09,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Ark of Hunger,1,sos,Normal,0.36,0.49,0.19,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Secret Tunnel,1,tla,Normal,2.4,4.49,2.18,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Rankle and Torbran,1,mom,Normal,0.31,0.49,0.21,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Hatred,1,exo,Normal,66.65,57.99,29.0,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Grim Hireling,1,clb,Normal,12.27,14.99,12.73,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Hawkeye, Young Avenger",1,msh,Normal,0.28,0.59,0.19,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Hatut Zeraze Strike Force,1,msc,Normal,0.29,0.49,0.27,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,"Hulkling, Young Avenger",1,msc,Normal,0.3,0.49,0.31,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Vandalblast,1,sld,Foil,3.19,4.49,2.14,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Captain America's Shield,1,msh,Normal,1.68,1.99,0.81,,#656565,Maybeboard
-2026-10-05,17493352,7. The Royal Syphon,Authority of the Consuls,1,fdn,Normal,5.29,6.49,4.52,,#656565,Sideboard
 2026-10-05,6482039,5. Bring Out Your Dead,Bojuka Bog,1,brc,Normal,3.66,5.99,4.25,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Blood Artist,1,plst,Normal,3.83,3.99,2.0,,#656565,wincons
 2026-10-05,6482039,5. Bring Out Your Dead,Wood Elves,1,ncc,Normal,0.46,0.35,0.39,,#656565,ramp; sac fodder
@@ -613,27 +360,19 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,6482039,5. Bring Out Your Dead,Aftermath Analyst,1,mkm,Normal,2.25,1.49,0.79,,#656565,fill the yard; ramp
 2026-10-05,6482039,5. Bring Out Your Dead,Reclamation Sage,1,fdn,Normal,0.35,0.69,0.3,,#656565,interaction
 2026-10-05,6482039,5. Bring Out Your Dead,Umbral Collar Zealot,1,eoe,Foil,0.44,1.79,0.35,,#656565,fill the yard
-2026-10-05,6482039,5. Bring Out Your Dead,Saw in Half,1,sld,Foil,5.78,7.99,3.95,,#656565,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Disciple of Freyalise // Garden of Freyalise,1,mh3,Normal,4.97,7.99,3.09,,#656565,card advantage
 2026-10-05,6482039,5. Bring Out Your Dead,Living Death,1,ltc,Normal,7.1,8.49,4.78,,#656565,wincons; recursion
 2026-10-05,6482039,5. Bring Out Your Dead,Underground Mortuary,1,mkm,Normal,16.44,22.99,14.5,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Hedge Shredder,1,dsk,Normal,3.28,4.49,1.84,,#656565,ramp; fill the yard
 2026-10-05,6482039,5. Bring Out Your Dead,Altar of Dementia,1,brr,Normal,24.37,34.99,20.0,,#656565,fill the yard
-2026-10-05,6482039,5. Bring Out Your Dead,Morbid Opportunist,1,tdc,Normal,0.34,0.49,0.24,,#656565,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Skullclamp,1,brc,Normal,6.94,10.99,6.63,,#656565,card advantage
 2026-10-05,6482039,5. Bring Out Your Dead,Icetill Explorer,1,eoe,Normal,23.87,39.99,25.75,,#656565,fill the yard; ramp
 2026-10-05,6482039,5. Bring Out Your Dead,Stinkweed Imp,1,gk1,Normal,2.12,1.29,1.19,,#656565,fill the yard
-2026-10-05,6482039,5. Bring Out Your Dead,Golgari Brownscale,1,uma,Normal,0.26,0.35,0.1,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Golgari Grave-Troll,1,uma,Normal,2.36,1.79,1.98,,#656565,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Cauldron of Essence,1,sos,Normal,4.66,5.99,3.0,,#656565,recursion; wincons
-2026-10-05,6482039,5. Bring Out Your Dead,Greater Good,1,sld,Foil,,8.99,6.07,,#656565,Sideboard
-2026-10-05,6482039,5. Bring Out Your Dead,"Avacyn, Angel of Horror",1,frc,Normal,15.11,24.99,10.23,,#656565,Sideboard; Creature
-2026-10-05,6482039,5. Bring Out Your Dead,Dark Matter Manipulator,1,fra,Normal,0.87,2.29,1.81,,#656565,Sideboard
 2026-10-05,6482039,5. Bring Out Your Dead,Snow-Covered Forest,3,mb2,Normal,2.12,3.49,1.18,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Fanatic of Rhonas,1,mh3,Normal,13.01,23.99,15.75,,#656565,ramp
 2026-10-05,6482039,5. Bring Out Your Dead,Llanowar Wastes,1,bro,Normal,3.95,6.49,2.83,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Merchant of Venom,1,soc,Normal,0.31,0.49,0.17,,#656565,interaction
-2026-10-05,6482039,5. Bring Out Your Dead,Grave Researcher // Reanimate,1,sos,Normal,1.84,2.49,2.2,,#656565,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Colossal Grave-Reaver,1,tdc,Normal,10.81,18.99,11.98,,#656565,fill the yard
 2026-10-05,6482039,5. Bring Out Your Dead,"Armaggon, Future Shark",1,tmt,Foil,2.34,1.79,0.95,,#656565,interaction
 2026-10-05,6482039,5. Bring Out Your Dead,Town Greeter,1,fin,Normal,0.23,0.35,0.02,,#656565,fill the yard
@@ -643,7 +382,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,6482039,5. Bring Out Your Dead,Verdant Catacombs,1,zne,Normal,50.23,47.99,28.9,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Twilight Mire,1,blc,Normal,0.44,0.69,0.69,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Golgari Thug,1,rvr,Foil,0.61,1.29,0.5,,#656565,fill the yard; recursion
-2026-10-05,6482039,5. Bring Out Your Dead,Grim Haruspex,1,c19,Normal,2.6,3.49,2.13,,#656565,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Shifting Woodland,1,mh3,Normal,6.72,10.99,5.59,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,The Meathook Massacre,1,inr,Normal,35.19,47.99,25.0,Proxied,#fa890d,wincons; interaction
 2026-10-05,6482039,5. Bring Out Your Dead,Turbulent Fen,1,soc,Normal,8.28,9.99,6.53,Proxied,#fa890d,Land
@@ -651,36 +389,15 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,6482039,5. Bring Out Your Dead,Bayou,1,3ed,Normal,494.87,699.99,259.99,Proxied,#fa890d,Land
 2026-10-05,6482039,5. Bring Out Your Dead,"Boseiju, Who Endures",1,neo,Normal,48.3,64.99,42.18,Proxied,#fa890d,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Overgrown Tomb,1,rvr,Normal,10.55,12.99,7.5,Proxied,#fa890d,Land
-2026-10-05,6482039,5. Bring Out Your Dead,Yavimaya Dryad,1,tsr,Normal,0.24,0.35,0.2,,#656565,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,"Mole Man, Moloid Master",1,msh,Normal,1.25,2.79,2.66,,#656565,sac fodder
 2026-10-05,6482039,5. Bring Out Your Dead,Springheart Nantuko,1,mh3,Normal,8.43,10.99,6.25,Proxied,#fa890d,sac fodder
 2026-10-05,6482039,5. Bring Out Your Dead,Orcish Bowmasters,1,ltr,Normal,53.8,69.99,39.98,Proxied,#fa890d,sac fodder
 2026-10-05,6482039,5. Bring Out Your Dead,Liliana the Repentant,1,fra,Normal,4.08,6.99,3.29,Proxied,#fa890d,fill the yard; recursion
-2026-10-05,6482039,5. Bring Out Your Dead,Twilight Diviner,1,ecl,Normal,2.57,2.99,3.05,Getting,#2ccce4,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Snarling Gorehound,1,mkm,Normal,0.24,0.35,0.17,Getting,#2ccce4,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Bloodghast,1,zen,Normal,4.25,5.99,2.3,,#656565,sac fodder
-2026-10-05,6482039,5. Bring Out Your Dead,Buried Alive,1,sld,Foil,28.31,29.99,22.0,Consider Cutting,#f2fa0d,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Honest Rutstein,1,otj,Normal,0.36,0.79,0.44,Getting,#2ccce4,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Warren Soultrader,1,mh3,Normal,20.26,22.99,13.79,Getting,#2ccce4,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,The Gitrog Monster,1,inr,Foil,17.2,14.99,8.33,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Six,1,mh3,Foil,12.6,13.99,12.19,,#656565,recursion
-2026-10-05,6482039,5. Bring Out Your Dead,Marionette Apprentice,1,mh3,Normal,1.97,3.49,1.3,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Disciple of Bolas,1,tdc,Normal,0.35,1.29,1.03,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Altar of the Wretched // Wretched Bonemass,1,lcc,Normal,2.87,3.49,0.68,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Hoarding Broodlord,1,mom,Normal,5.6,7.49,5.6,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Gray Merchant of Asphodel,1,ths,Normal,0.94,1.29,1.06,Getting,#2ccce4,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Barrowgoyf,1,m3c,Normal,13.35,19.99,14.63,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Seedship Broodtender,1,eoe,Normal,0.26,0.35,0.12,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,"Yawgmoth, Thran Physician",1,dmr,Normal,28.54,29.99,28.0,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Blight Mound,1,c21,Normal,2.1,1.29,2.94,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Birthing Pod,1,nph,Normal,12.24,14.99,11.7,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Will of the Abzan,1,tdc,Normal,4.44,6.49,4.95,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Exploration Broodship,1,eoc,Normal,2.91,4.49,3.19,,#656565,Maybeboard
-2026-10-05,6482039,5. Bring Out Your Dead,Massacre Wurm,1,fdn,Normal,2.0,,3.4,,#656565,Maybeboard
 2026-10-05,6482039,5. Bring Out Your Dead,Forest,3,hob,Foil,1.12,0.69,0.35,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,Swamp,3,hob,Foil,0.33,0.49,0.24,,#656565,Land
 2026-10-05,6482039,5. Bring Out Your Dead,"Tom, Bert, and William",1,purl,Normal,,,2.14,Proxied,#fa890d,Commander
-2026-10-05,6482039,5. Bring Out Your Dead,Victimize,1,tdc,Normal,1.4,1.49,0.75,,#656565,Sideboard
 2026-10-05,5005670,2. Can't Block This,Flare of Denial,1,mh3,Normal,3.43,4.99,3.79,,#656565,interaction
 2026-10-05,5005670,2. Can't Block This,"Grazilaxx, Illithid Scholar",1,clb,Normal,1.75,7.49,1.95,,#656565,card advantage
 2026-10-05,5005670,2. Can't Block This,Inkfathom Infiltrator,1,plst,Normal,0.36,0.35,0.2,,#656565,..unblockable
@@ -764,14 +481,10 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,5005670,2. Can't Block This,Polluted Delta,1,zne,Normal,48.23,49.99,39.0,,#656565,Land
 2026-10-05,5005670,2. Can't Block This,The Destined Thief,1,fic,Foil,3.82,5.99,3.25,Proxied,#fa890d,..unblockable; card advantage
 2026-10-05,5005670,2. Can't Block This,Tezzeret the Seeker,1,sld,Normal,28.95,34.99,18.94,Proxied,#fa890d,utility
-2026-10-05,5005670,2. Can't Block This,Elegy Acolyte,1,eoe,Normal,0.38,1.29,0.58,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,5005670,2. Can't Block This,Underground Sea,1,3ed,Normal,1105.08,1499.99,670.0,Proxied,#fa890d,Land
 2026-10-05,5005670,2. Can't Block This,Tropical Island,1,3ed,Normal,600.14,749.99,366.67,Proxied,#fa890d,Land
 2026-10-05,5005670,2. Can't Block This,"Otawara, Soaring City",1,neo,Normal,25.88,39.99,22.0,,#656565,Land
 2026-10-05,5005670,2. Can't Block This,"Wan Shi Tong, Librarian",1,tla,Foil,34.44,54.99,43.61,,#656565,.evasive dudes; card advantage
-2026-10-05,5005670,2. Can't Block This,"Gríma, Saruman's Footman",1,ltc,Normal,1.79,2.99,2.66,,#656565,Maybeboard
-2026-10-05,5005670,2. Can't Block This,Lavaspur Boots,1,otj,Normal,2.21,2.99,1.23,,#656565,Maybeboard
-2026-10-05,5005670,2. Can't Block This,Lórien Revealed,1,ltr,Normal,4.42,5.99,3.88,,#656565,Maybeboard
 2026-10-05,5005670,2. Can't Block This,Skyserpent Seeker,1,dft,Normal,0.32,0.79,0.1,,#656565,.evasive dudes
 2026-10-05,5005670,2. Can't Block This,"Bilbo, Luckwearer // Burglar's Plot",1,pw26,Normal,0.53,0.99,0.44,,#656565,..unblockable; card advantage
 2026-10-05,5005670,2. Can't Block This,"Ikra Shidiqi, the Usurper",1,c16,Foil,,,,,#656565,Commander
@@ -781,8 +494,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,4279849,1. Life is a Scry-way,Leonin Elder,1,mrd,Normal,0.35,0.49,0.36,,#656565,lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Ashes of the Abhorrent,1,xln,Normal,0.78,0.79,0.55,,#656565,lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Aunt May,1,spm,Normal,0.33,0.35,0.07,,#656565,lifegain - soul sisters
-2026-10-05,4279849,1. Life is a Scry-way,Clever Concealment,1,onc,Normal,11.07,15.99,14.25,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Lifestream's Blessing,1,fic,Normal,2.27,2.99,1.91,,#656565,Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,Essence Channeler,1,blb,Foil,0.42,0.79,0.83,,#656565,the pride
 2026-10-05,4279849,1. Life is a Scry-way,Powerleech,1,atq,Normal,19.83,21.99,10.82,,#656565,lifegain
 2026-10-05,4279849,1. Life is a Scry-way,"Ajani, Strength of the Pride",1,m20,Normal,8.62,12.99,7.39,,#656565,interaction; the pride; lifegain
@@ -832,8 +543,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,4279849,1. Life is a Scry-way,Aerith Gainsborough,1,fin,Normal,2.14,4.49,1.56,,#656565,the pride; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Plains,1,eoe,Normal,1.2,2.29,0.85,,#656565,Land
 2026-10-05,4279849,1. Life is a Scry-way,"Haliya, Guided by Light",1,eoe,Normal,3.51,5.49,3.64,,#656565,lifegain - soul sisters
-2026-10-05,4279849,1. Life is a Scry-way,Serra Ascendant,1,ima,Normal,29.09,37.99,24.24,Consider Cutting,#f2fa0d,Sideboard; lifegain
-2026-10-05,4279849,1. Life is a Scry-way,Ajani's Pridemate,1,ima,Normal,0.21,0.35,0.09,Consider Cutting,#f2fa0d,Sideboard; the pride
 2026-10-05,4279849,1. Life is a Scry-way,"Lyra, Archangel of Dawn",1,fra,Normal,3.88,6.99,4.35,Proxied,#fa890d,the pride
 2026-10-05,4279849,1. Life is a Scry-way,Unflinching Hortimancer,1,fra,Normal,0.2,0.39,0.06,Proxied,#fa890d,the pride
 2026-10-05,4279849,1. Life is a Scry-way,Bloombrute,1,fra,Normal,0.25,0.35,0.15,Proxied,#fa890d,card advantage
@@ -848,7 +557,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,4279849,1. Life is a Scry-way,Shadowspear,1,thb,Normal,30.75,42.99,24.63,,#656565,voltron wincons; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Enduring Innocence,1,dsk,Normal,5.6,7.99,5.98,,#656565,card advantage; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Terrasymbiosis,1,eoe,Foil,10.08,12.99,10.95,,#656565,card advantage
-2026-10-05,4279849,1. Life is a Scry-way,Defiler of Faith,1,dmu,Normal,0.37,0.69,0.25,,#656565,Maybeboard; Creature
 2026-10-05,4279849,1. Life is a Scry-way,Solitude,1,spg,Foil,36.38,54.99,40.28,,#656565,interaction; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,City of Brass,1,2x2,Foil,27.22,27.99,21.5,,#656565,Land
 2026-10-05,4279849,1. Life is a Scry-way,Plains,1,tla,Normal,0.54,0.99,0.75,,#656565,Land
@@ -859,63 +567,32 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,4279849,1. Life is a Scry-way,Avatar's Wrath,1,tla,Foil,4.0,6.49,3.97,,#656565,interaction; voltron wincons
 2026-10-05,4279849,1. Life is a Scry-way,Guide of Souls,1,sch,Foil,,,5.8,,#656565,lifegain - soul sisters; voltron wincons
 2026-10-05,4279849,1. Life is a Scry-way,Mana Confluence,1,jou,Normal,34.9,42.99,25.12,,#656565,Land
-2026-10-05,4279849,1. Life is a Scry-way,Guardian of Faith,1,afr,Foil,3.83,4.49,6.39,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Nomad Stadium,1,ody,Normal,0.47,0.69,0.18,,#656565,Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,Plains,1,sos,Foil,1.07,2.49,1.19,,#656565,Land
 2026-10-05,4279849,1. Life is a Scry-way,Sungrass Prairie,1,c19,Normal,0.28,0.49,0.2,,#656565,Land
 2026-10-05,4279849,1. Life is a Scry-way,"Tigra, Feline Fury",1,msh,Normal,0.2,0.35,0.33,,#656565,the pride
 2026-10-05,4279849,1. Life is a Scry-way,Dr. Beverly Crusher,1,trk,Normal,52.97,9.99,,Proxied,#fa890d,the pride
-2026-10-05,4279849,1. Life is a Scry-way,"Qala, Ajani's Pridemate",1,j25,Normal,0.37,0.59,0.25,,#656565,Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,Witch Enchanter // Witch-Blessed Meadow,1,sld,Foil,59.86,69.99,45.0,,#656565,interaction
-2026-10-05,4279849,1. Life is a Scry-way,Ocelot Pride,1,mh3,Normal,80.01,94.99,80.0,Proxied,#fa890d,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Confessor,1,ody,Normal,0.15,0.35,0.33,,#656565,Sideboard; Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,"Linden, the Steadfast Queen",1,eld,Normal,0.36,0.59,0.29,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Envoy of the Ancestors,1,mh3,Normal,0.3,0.79,0.19,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Profane Memento,1,m15,Normal,1.29,1.49,0.7,,#656565,Sideboard; Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,Pest Infestation,1,otp,Normal,1.17,1.49,0.84,,#656565,interaction; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,The Great Henge,1,eld,Normal,66.29,84.99,51.63,,#656565,card advantage; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,"Leonardo, Cutting Edge",1,tmt,Normal,2.43,2.29,2.08,,#656565,the pride; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Elenda's Hierophant,1,lcc,Normal,5.15,5.99,4.59,,#656565,the pride; lifegain
-2026-10-05,4279849,1. Life is a Scry-way,Spectrum Sentinel,1,bro,Foil,0.39,0.99,0.19,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,Suture Priest,1,nph,Normal,2.08,2.49,1.97,,#656565,lifegain - soul sisters
 2026-10-05,4279849,1. Life is a Scry-way,Herd Heirloom,1,tdm,Normal,4.07,7.49,3.57,,#656565,card advantage; voltron wincons; ramp
-2026-10-05,4279849,1. Life is a Scry-way,Welcoming Vampire,1,vow,Foil,3.99,5.49,2.65,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,Ajani Resolute,1,fra,Normal,10.78,13.99,10.57,Proxied,#fa890d,the pride
 2026-10-05,4279849,1. Life is a Scry-way,Liliana the Faultless,1,fra,Normal,8.86,9.99,6.63,Proxied,#fa890d,lifegain - soul sisters
 2026-10-05,4279849,1. Life is a Scry-way,The Queen of Dale,1,hob,Normal,21.0,29.99,22.36,Proxied,#fa890d,utility
 2026-10-05,4279849,1. Life is a Scry-way,Esper Sentinel,1,mh2,Normal,61.23,69.99,44.78,Proxied,#fa890d,card advantage
-2026-10-05,4279849,1. Life is a Scry-way,Scurry Oak,1,mh2,Normal,2.73,3.49,1.02,,#656565,would i dare combo?
-2026-10-05,4279849,1. Life is a Scry-way,Spike Feeder,1,cmd,Normal,1.84,3.49,1.35,,#656565,would i dare combo?
-2026-10-05,4279849,1. Life is a Scry-way,Archangel of Thune,1,2xm,Normal,49.04,54.99,41.99,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Finale of Devastation,1,sld,Normal,32.19,34.99,24.0,,#656565,would i dare combo?
-2026-10-05,4279849,1. Life is a Scry-way,Sun Droplet,1,c21,Normal,0.39,0.79,0.2,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Lifegift,1,bok,Normal,11.11,20.99,7.2,,#656565,Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,"Boseiju, Who Endures",1,neo,Normal,48.3,64.99,42.18,,#656565,Land
-2026-10-05,4279849,1. Life is a Scry-way,Endless Foot Assault,1,tmc,Normal,2.41,3.99,2.74,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Freyalise Supplicant,1,ice,Normal,0.22,0.35,0.08,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Season of Gathering,1,blb,Normal,9.4,15.99,9.68,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Teferi's Protection,1,sld,Foil,50.5,49.99,44.6,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,March of the Multitudes,1,ncc,Normal,1.59,1.79,1.09,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Aluren,1,tmp,Normal,94.67,99.99,88.97,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Whitemane Lion,1,dmr,Normal,0.25,0.35,0.11,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Starfield Shepherd,1,eoe,Foil,0.38,0.79,0.27,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Heroic Feast,1,msh,Normal,0.26,0.49,0.14,Consider Cutting,#f2fa0d,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,"Lathiel, the Bounteous Dawn",1,mul,Foil,2.03,2.29,0.53,,#656565,Maybeboard
-2026-10-05,4279849,1. Life is a Scry-way,Excalibur II,1,fin,Normal,0.98,0.99,0.45,,#656565,Maybeboard
 2026-10-05,4279849,1. Life is a Scry-way,Haywire Mite,1,bro,Foil,1.15,0.99,1.0,,#656565,interaction; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Solarium Sentry,1,fra,Normal,0.33,0.99,0.85,Proxied,#fa890d,lifegain
 2026-10-05,4279849,1. Life is a Scry-way,"Trelasarra, Moon Dancer",1,afr,Foil,0.32,0.79,0.24,,#656565,Commander
 2026-10-05,4279849,1. Life is a Scry-way,Healer's Hawk,1,jmp,Normal,0.3,0.35,0.05,Consider Cutting,#f2fa0d,lifegain
-2026-10-05,4279849,1. Life is a Scry-way,Abiding Grace,1,mh2,Foil,0.3,0.39,0.17,Consider Cutting,#f2fa0d,Sideboard; utility; lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Righteous Cause,1,ons,Normal,0.43,0.49,0.1,,#656565,lifegain
 2026-10-05,4279849,1. Life is a Scry-way,Beast Within,1,sld,Foil,25.14,23.99,22.5,Consider Cutting,#f2fa0d,interaction
 2026-10-05,4279849,1. Life is a Scry-way,Generous Gift,1,cmm,Normal,1.1,2.29,1.01,Consider Cutting,#f2fa0d,interaction
-2026-10-05,4279849,1. Life is a Scry-way,Beast Whisperer,1,pgrn,Foil,,,6.74,Consider Cutting,#f2fa0d,Sideboard; card advantage
 2026-10-05,16293254,6. Bear Necessities,Bazaar of Baghdad,1,vma,Normal,,,747.66,,#656565,fill the yard
 2026-10-05,16293254,6. Bear Necessities,Diamond Valley,1,me1,Normal,,,1.96,,#656565,sac outlet
-2026-10-05,16293254,6. Bear Necessities,Promising Vein,1,lci,Normal,0.29,0.35,0.14,Proxied,#fa890d,Maybeboard
 2026-10-05,16293254,6. Bear Necessities,Great Hall of the Citadel,1,ltr,Normal,0.36,0.79,0.23,,#656565,simply a land
-2026-10-05,16293254,6. Bear Necessities,Naya Panorama,1,ala,Normal,0.32,0.35,0.19,,#656565,Maybeboard
 2026-10-05,16293254,6. Bear Necessities,Hall of Echoes,1,fra,Normal,3.09,3.99,2.22,,#656565,utility
 2026-10-05,16293254,6. Bear Necessities,Castle Garenbrig,1,eld,Normal,16.27,21.99,12.65,,#656565,ramp
 2026-10-05,16293254,6. Bear Necessities,Myriad Landscape,1,ltc,Normal,4.06,5.49,3.2,,#656565,ramp
@@ -923,20 +600,10 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,16293254,6. Bear Necessities,Prismatic Vista,1,zne,Normal,41.69,59.99,30.0,,#656565,fill the yard
 2026-10-05,16293254,6. Bear Necessities,Arid Archway,1,otj,Normal,1.49,1.79,0.53,,#656565,utility
 2026-10-05,16293254,6. Bear Necessities,Command Beacon,1,cmr,Normal,13.96,21.99,16.58,,#656565,utility
-2026-10-05,16293254,6. Bear Necessities,Guildless Commons,1,cmr,Normal,1.24,2.79,1.74,,#656565,Maybeboard
 2026-10-05,16293254,6. Bear Necessities,Hall of the Bandit Lord,1,chk,Normal,22.11,24.99,9.92,,#656565,wincons
 2026-10-05,16293254,6. Bear Necessities,High Market,1,eos,Normal,5.69,6.49,4.9,,#656565,sac outlet
 2026-10-05,16293254,6. Bear Necessities,Winding Canyons,1,wth,Normal,35.41,39.99,13.16,,#656565,utility
-2026-10-05,16293254,6. Bear Necessities,Fountainport,1,blb,Normal,3.33,5.49,3.61,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Geier Reach Sanitarium,1,lcc,Normal,2.14,3.49,1.07,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Conduit Pylons,1,otj,Normal,0.35,0.79,0.28,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Gallifrey Council Chamber,1,who,Normal,0.29,0.49,0.23,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Hidden Grotto,1,blb,Normal,0.27,0.39,0.13,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Glacial Chasm,1,ice,Normal,17.47,19.99,18.93,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Labyrinth of Skophos,1,mkc,Normal,0.39,0.59,0.14,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Mouth of Ronom,1,plst,Normal,0.6,0.79,0.45,,#656565,Maybeboard
 2026-10-05,16293254,6. Bear Necessities,Arena,1,mb2,Normal,1.01,3.49,0.7,,#656565,interaction
-2026-10-05,16293254,6. Bear Necessities,Capital City,1,fin,Normal,0.26,0.39,0.06,Proxied,#fa890d,Maybeboard
 2026-10-05,16293254,6. Bear Necessities,Deserted Temple,1,eos,Normal,10.63,14.99,8.98,,#656565,utility
 2026-10-05,16293254,6. Bear Necessities,City of Traitors,1,tpr,Normal,,,4.78,,#656565,ramp
 2026-10-05,16293254,6. Bear Necessities,Yavimaya Hollow,1,vma,Normal,,,,,#656565,interaction
@@ -1009,9 +676,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,16293254,6. Bear Necessities,The Tabernacle at Pendrell Vale,1,me3,Normal,,,,,#656565,interaction
 2026-10-05,16293254,6. Bear Necessities,Chocobo Camp,1,fic,Normal,8.87,18.99,4.99,,#656565,wincons
 2026-10-05,16293254,6. Bear Necessities,Wasteland,1,slc,Normal,16.06,24.99,12.99,,#656565,interaction
-2026-10-05,16293254,6. Bear Necessities,Strip Mine,1,zne,Normal,27.24,29.99,22.53,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Zoetic Cavern,1,mkc,Normal,0.33,0.35,0.15,,#656565,Maybeboard
-2026-10-05,16293254,6. Bear Necessities,Branch of Vitu-Ghazi,1,mkm,Normal,0.21,0.35,0.18,,#656565,Maybeboard
 2026-10-05,16293254,6. Bear Necessities,Scorched Ruins,1,wth,Normal,61.08,74.99,47.98,,#656565,fill the yard; ramp
 2026-10-05,16293254,6. Bear Necessities,"Lumra, Bellow of the Woods",1,blb,Foil,58.23,79.99,57.0,,#656565,Commander
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Embiggen,1,unf,Normal,0.21,0.79,1.49,,#656565,buffs - instant speed
@@ -1029,7 +693,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Ranger's Guile,1,isd,Normal,0.2,0.35,0.19,,#656565,protecc; buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Scent of Ivy,1,uds,Normal,0.23,0.35,0.08,,#656565,buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Tyvar's Stand,1,one,Normal,1.44,2.99,1.38,,#656565,protecc; buffs - instant speed
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Primal Bellow,1,zen,Normal,0.32,0.69,0.3,,#656565,Maybeboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Scale Up,1,mh1,Normal,0.46,0.79,0.3,,#656565,buffs - sorcery speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Exploration,1,dmr,Normal,29.42,37.99,33.5,,#656565,ramp
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Titanic Growth,1,one,Normal,0.22,0.35,0.03,,#656565,buffs - instant speed
@@ -1066,55 +729,29 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Horizon Canopy,1,ima,Normal,4.58,6.49,3.6,,#656565,Land
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Branchloft Pathway // Boulderloft Pathway,1,znr,Normal,3.75,4.99,3.15,,#656565,Land
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Dual-Sun Technique,1,eoe,Normal,0.23,0.35,0.15,,#656565,double strike
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Obscuring Haze,1,cmm,Normal,4.56,7.49,3.99,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Grand Abolisher,1,big,Normal,18.05,23.99,10.63,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Flawless Maneuver,1,cmm,Normal,22.45,24.99,18.99,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Burgeoning,1,sld,Normal,44.65,49.99,34.9,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Force of Vigor,1,plst,Normal,9.62,8.99,8.82,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Solitary Confinement,1,mh2,Normal,0.58,0.69,0.7,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Smothering Tithe,1,cmm,Normal,56.78,64.99,52.85,,#656565,Maybeboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Voice of Victory,1,tdm,Normal,19.64,29.99,20.5,,#656565,protecc
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Legolas's Quick Reflexes,1,ltc,Normal,52.55,79.99,39.5,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Mox Diamond,1,sth,Normal,1112.45,1599.99,782.0,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Mox Amber,1,dom,Normal,87.79,109.99,55.78,Consider Cutting,#f2fa0d,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Lion's Eye Diamond,1,mir,Normal,805.65,899.99,490.0,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Silence,1,m14,Normal,10.69,14.99,6.51,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Alms Collector,1,cmm,Normal,1.01,0.99,0.99,,#656565,Maybeboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Grow Extra Arms,1,spm,Normal,0.14,0.35,0.02,,#656565,buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Avacyn's Pilgrim,1,pf25,Foil,3.53,4.99,5.0,,#656565,ramp
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Seal of Strength,1,ema,Normal,0.26,0.35,0.02,,#656565,Maybeboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Chrome Mox,1,2xm,Normal,166.69,179.99,70.0,Proxied,#fa890d,ramp
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Crop Rotation,1,soa,Foil,3.85,5.99,3.48,,#656565,utility
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Gift of the Viper,1,mh3,Normal,0.27,0.35,0.19,Consider Cutting,#f2fa0d,buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Enlightened Tutor,1,6ed,Normal,36.47,44.99,22.43,,#656565,utility
 2026-10-05,5969200,"4. John ""Before Damage"" Benton","Heliod, Sun-Crowned",1,thb,Normal,20.6,29.99,15.38,,#656565,backup combo win
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Teferi's Protection,1,sld,Normal,50.5,49.99,44.6,Have,#37d67a,Sideboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Endurance,1,spg,Normal,9.24,13.99,9.0,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Cavern of Souls,1,lci,Normal,51.53,64.99,40.0,,#656565,Maybeboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton","Azusa, Lost but Seeking",1,m21,Normal,12.62,15.99,6.8,,#656565,Sideboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Lotus Petal,1,mb2,Normal,34.73,44.99,27.12,,#656565,ramp
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Blessed Respite,1,mh2,Normal,0.36,0.69,0.09,,#656565,Sideboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Swell of Growth,1,bfz,Normal,0.09,0.35,0.02,,#656565,Sideboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Elvish Spirit Guide,1,dmr,Normal,3.61,3.99,1.35,,#656565,ramp
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Invigorate,1,2xm,Foil,0.29,0.49,0.34,,#656565,buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Walking Ballista,1,mb2,Normal,8.87,11.99,8.98,,#656565,backup combo win
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Mutagenic Growth,1,nph,Normal,1.66,2.79,2.46,,#656565,buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Rustler Rampage,1,otj,Normal,0.27,0.39,0.21,,#656565,double strike
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Tifa's Limit Break,1,fin,Normal,0.4,0.35,0.16,,#656565,buffs - instant speed
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Flare of Faith,1,mid,Normal,0.25,0.35,0.06,,#656565,Sideboard
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Noxious Revival,1,nph,Normal,7.18,10.99,4.0,Have,#37d67a,Sideboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Feral Ferocity,1,msc,Normal,0.21,0.99,0.25,Proxied,#fa890d,buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Forest,7,dmu,Foil,0.19,0.49,0.02,,#656565,Land
-2026-10-05,5969200,"4. John ""Before Damage"" Benton","Kutzil, Malamet Exemplar",1,lci,Normal,2.87,2.99,2.55,,#656565,Maybeboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Bala Ged Recovery // Bala Ged Sanctuary,1,znr,Normal,6.63,10.99,4.72,,#656565,utility
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Graduation Day,1,sos,Normal,0.29,0.35,0.07,,#656565,utility
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Giant Growth,1,soa,Normal,0.27,0.35,0.09,,#656565,buffs - instant speed
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Enter the Avatar State,1,tla,Normal,0.29,0.49,0.2,,#656565,Maybeboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Forbidden Orchard,1,c16,Normal,10.09,16.99,5.65,,#656565,Land
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Bear Umbra,1,c18,Normal,13.01,17.99,6.93,,#656565,Maybeboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Sergeant John Benton,1,who,Foil,,,,,#656565,Commander
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Berserk,1,soa,Normal,7.16,10.99,7.33,,#656565,buffs - instant speed; interaction
-2026-10-05,5969200,"4. John ""Before Damage"" Benton",Veil of Summer,1,soa,Normal,4.44,5.49,4.16,Have,#37d67a,Sideboard
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Royal Treatment,1,soa,Normal,0.26,0.35,0.1,,#656565,protecc; buffs - instant speed
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Savannah,1,3ed,Normal,412.51,549.99,200.0,real in another deck,#bc7ee3,Land
 2026-10-05,5969200,"4. John ""Before Damage"" Benton",Mana Confluence,1,jou,Normal,34.9,42.99,25.12,real in another deck,#bc7ee3,Land
@@ -1175,7 +812,6 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,5714358,3. Hungry Detectives,Fellwar Stone,1,onc,Normal,1.69,2.49,1.32,,#656565,ramp
 2026-10-05,5714358,3. Hungry Detectives,Graham O'Brien,1,who,Foil,,,,,#656565,token generators
 2026-10-05,5714358,3. Hungry Detectives,Stridehangar Automaton,1,drc,Normal,2.13,5.49,3.31,,#656565,token modifiers
-2026-10-05,5714358,3. Hungry Detectives,Unstable Glyphbridge // Sandswirl Wanderglyph,1,lci,Normal,0.29,0.49,0.17,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,Officious Interrogation,1,mkm,Foil,0.26,0.49,0.14,,#656565,token generators
 2026-10-05,5714358,3. Hungry Detectives,Transmutation Font,1,pw24,Foil,,,,,#656565,token generators
 2026-10-05,5714358,3. Hungry Detectives,Academy Ruins,1,2xm,Normal,8.85,10.99,6.33,,#656565,Land
@@ -1191,27 +827,19 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,5714358,3. Hungry Detectives,"James, Wandering Dad // Follow Him",1,pip,Foil,,,,,#656565,token generators; ramp
 2026-10-05,5714358,3. Hungry Detectives,Spectacular Spider-Man,1,spm,Normal,7.24,11.99,5.41,,#656565,interaction
 2026-10-05,5714358,3. Hungry Detectives,The Blue Spirit,1,tle,Normal,0.85,1.99,3.95,,#656565,card advantage
-2026-10-05,5714358,3. Hungry Detectives,Inspiring Statuary,1,brr,Normal,0.8,1.79,0.98,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,The Grey Havens,1,ltr,Normal,0.33,0.49,0.14,,#656565,Land
 2026-10-05,5714358,3. Hungry Detectives,Loran of the Third Path,1,blc,Normal,5.28,7.99,4.37,,#656565,interaction; card advantage
-2026-10-05,5714358,3. Hungry Detectives,"Arixmethes, Slumbering Isle",1,mul,Normal,1.88,1.99,0.73,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,"Aang, Swift Savior // Aang and La, Ocean's Fury",1,tla,Foil,4.99,7.49,5.75,,#656565,interaction
-2026-10-05,5714358,3. Hungry Detectives,Krark-Clan Ironworks,1,slc,Normal,15.22,16.99,11.97,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,The Cabbage Merchant,1,tle,Foil,30.5,49.99,22.5,,#656565,token generators; ramp
 2026-10-05,5714358,3. Hungry Detectives,"Reki, the History of Kamigawa",1,sld,Foil,16.57,15.99,16.95,,#656565,card advantage
 2026-10-05,5714358,3. Hungry Detectives,King Solomon's Frogs,1,msc,Normal,0.28,0.49,0.28,Proxied,#fa890d,interaction
-2026-10-05,5714358,3. Hungry Detectives,Molecule Man,1,msc,Normal,5.17,8.99,8.21,Proxied,#fa890d,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,Great Hall of the Citadel,1,ltr,Foil,0.36,0.79,0.23,,#656565,Land
 2026-10-05,5714358,3. Hungry Detectives,"Mutagen Man, Living Ooze",1,tmt,Foil,3.29,5.99,3.69,,#656565,token generators
-2026-10-05,5714358,3. Hungry Detectives,Sensei's Divining Top,1,mb2,Normal,36.51,42.99,25.25,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,Dispatch,1,eoc,Normal,0.36,1.49,2.79,,#656565,interaction
 2026-10-05,5714358,3. Hungry Detectives,"Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun",1,lci,Normal,9.5,10.99,5.62,,#656565,ramp; card advantage
 2026-10-05,5714358,3. Hungry Detectives,Sol Ring,1,sld,Foil,17.67,17.99,17.5,,#656565,ramp
-2026-10-05,5714358,3. Hungry Detectives,"Uro, Titan of Nature's Wrath",1,thb,Normal,3.18,3.49,3.02,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Katara, Water Tribe's Hope",1,tla,Foil,1.65,2.29,1.66,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,Spara's Headquarters,1,psnc,Normal,14.89,17.99,13.0,,#656565,Land
 2026-10-05,5714358,3. Hungry Detectives,Plaza of Heroes,1,dmu,Foil,8.78,10.99,10.37,,#656565,Land
-2026-10-05,5714358,3. Hungry Detectives,"Search for Azcanta // Azcanta, the Sunken Ruin",1,xln,Normal,1.79,2.99,2.06,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,"Mondrak, Glory Dominus",1,one,Normal,48.78,74.99,37.62,Proxied,#fa890d,token modifiers
 2026-10-05,5714358,3. Hungry Detectives,Misty Rainforest,1,zne,Normal,54.39,57.99,35.42,Proxied,#fa890d,Land
 2026-10-05,5714358,3. Hungry Detectives,Windswept Heath,1,zne,Normal,31.86,29.99,27.99,Proxied,#fa890d,Land
@@ -1219,79 +847,25 @@ date,deck_id,deck_name,card_name,quantity,set_code,finish,price_tcgplayer,price_
 2026-10-05,5714358,3. Hungry Detectives,Savannah,1,3ed,Normal,412.51,549.99,200.0,Proxied,#fa890d,Land
 2026-10-05,5714358,3. Hungry Detectives,Tropical Island,1,3ed,Normal,600.14,749.99,366.67,Proxied,#fa890d,Land
 2026-10-05,5714358,3. Hungry Detectives,Tundra,1,3ed,Normal,690.79,849.99,394.74,Proxied,#fa890d,Land
-2026-10-05,5714358,3. Hungry Detectives,Storm the Vault // Vault of Catlacan,1,rix,Normal,5.27,8.49,6.72,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,"Mona Lisa, Ever Adaptable",1,tmc,Normal,3.57,5.49,3.46,Proxied,#fa890d,token generators
 2026-10-05,5714358,3. Hungry Detectives,"Yavimaya, Cradle of Growth",1,ltc,Normal,51.86,74.99,58.0,Proxied,#fa890d,Land
-2026-10-05,5714358,3. Hungry Detectives,Urza's Saga,1,mh2,Normal,38.65,44.99,42.83,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Bennie Bracks, Zoologist",1,ncc,Normal,12.06,12.99,7.92,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,"Adrix and Nev, Twincasters",1,c21,Foil,,,8.0,,#656565,token modifiers
 2026-10-05,5714358,3. Hungry Detectives,Academy Manufactor,1,sld,Foil,15.68,20.99,11.98,,#656565,token modifiers; ramp
 2026-10-05,5714358,3. Hungry Detectives,"Donatello, the Brains",1,tmc,Foil,1.16,2.99,0.48,,#656565,token modifiers
-2026-10-05,5714358,3. Hungry Detectives,Kappa Cannoneer,1,nec,Normal,3.18,2.49,2.49,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,The Wondrous Wasp,1,msh,Normal,0.94,1.99,1.2,,#656565,interaction
 2026-10-05,5714358,3. Hungry Detectives,"King T'Challa // Black Panther, Hope Enduring",1,msh,Normal,17.84,22.99,16.99,Proxied,#fa890d,card advantage
 2026-10-05,5714358,3. Hungry Detectives,"Mister Fantastic, Reed Richards",1,msh,Normal,0.34,0.49,0.26,,#656565,card advantage
 2026-10-05,5714358,3. Hungry Detectives,"Tippy-Toe, Terrific Partner",1,sld,Normal,11.49,16.99,17.75,Proxied,#fa890d,token modifiers; card advantage
-2026-10-05,5714358,3. Hungry Detectives,"Teshar, Ancestor's Apostle",1,dom,Normal,0.39,0.49,0.21,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Emiel the Blessed,1,2x2,Normal,22.75,29.99,15.5,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Ancestral Statue,1,jmp,Normal,0.31,0.35,0.15,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,"Justice, Vance Astrovik",1,msh,Normal,0.14,0.35,0.05,,#656565,interaction
-2026-10-05,5714358,3. Hungry Detectives,"Appa, Steadfast Guardian",1,tla,Normal,5.65,9.49,7.27,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,The Ooze,1,tmt,Normal,4.18,8.49,5.14,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Semblance Anvil,1,som,Normal,6.35,6.49,2.93,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Haliya, Guided by Light",1,eoe,Normal,3.51,5.49,3.64,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,"Meatsqueak, Hoard Lord",1,mbc,Normal,,,,Proxied,#fa890d,token generators
-2026-10-05,5714358,3. Hungry Detectives,"Derevi, Empyrial Tactician",1,blc,Normal,8.87,12.99,12.4,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Tezzeret the Seeker,1,sld,Normal,28.95,34.99,18.94,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,The Legend of Yangchen // Avatar Yangchen,1,tla,Normal,7.69,10.99,6.28,Consider Cutting,#f2fa0d,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,Cryptolith Fragment // Aurora of Emrakul,1,inr,Normal,0.36,0.69,0.09,,#656565,ramp
 2026-10-05,5714358,3. Hungry Detectives,"Lita, Little Orphan Amphibian",1,tmt,Foil,0.2,0.35,0.14,,#656565,token generators
 2026-10-05,5714358,3. Hungry Detectives,The Queen of Dale,1,hob,Normal,21.0,29.99,22.36,Proxied,#fa890d,token generators
-2026-10-05,5714358,3. Hungry Detectives,Mox Diamond,1,sth,Normal,1112.45,1599.99,782.0,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,The Goose Mother,1,woe,Normal,0.45,0.49,0.75,,#656565,token generators; card advantage
 2026-10-05,5714358,3. Hungry Detectives,"Elena, Turk Recruit",1,fic,Normal,0.24,0.49,0.29,,#656565,utility
 2026-10-05,5714358,3. Hungry Detectives,Sarah Jane Smith,1,who,Foil,,,,,#656565,Commander
-2026-10-05,5714358,3. Hungry Detectives,Nuka-Cola Vending Machine,1,pip,Normal,20.23,27.99,22.31,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,"The Theorist, Jace Beleren",1,fra,Normal,40.3,39.99,30.72,Proxied,#fa890d,interaction; card advantage
 2026-10-05,5714358,3. Hungry Detectives,Cyclonic Rift,1,soa,Normal,32.61,42.99,28.25,Proxied,#fa890d,interaction
 2026-10-05,5714358,3. Hungry Detectives,Esper Sentinel,1,mh2,Normal,61.23,69.99,44.78,Proxied,#fa890d,card advantage
 2026-10-05,5714358,3. Hungry Detectives,"Boseiju, Who Endures",1,neo,Normal,48.3,64.99,42.18,Proxied,#fa890d,Land
-2026-10-05,5714358,3. Hungry Detectives,Rosie Cotton of South Lane,1,ltr,Normal,0.36,0.49,0.13,Consider Cutting,#f2fa0d,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Cyberdrive Awakener,1,nec,Normal,5.33,5.49,4.72,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Worldwalker Helm,1,big,Normal,3.66,6.99,3.67,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Chulane, Teller of Tales",1,mkc,Normal,6.46,6.99,3.88,Consider Cutting,#f2fa0d,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Abstergo Entertainment,1,acr,Normal,3.48,5.99,4.56,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Lonis, Genetics Expert",1,clu,Normal,5.16,7.49,2.8,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Piper Wright, Publick Reporter",1,pip,Normal,1.91,2.29,0.69,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Fall of the First Civilization,1,acr,Normal,0.29,0.79,0.45,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Azusa, Lost but Seeking",1,cmm,Normal,13.01,17.99,9.29,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Chrome Mox,1,2xm,Normal,166.69,179.99,70.0,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Mox Opal,1,2xm,Normal,239.69,279.99,150.0,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Mox Amber,1,dom,Normal,87.79,109.99,55.78,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,The One Ring,1,ltr,Normal,117.88,149.99,94.28,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Gaea's Cradle,1,usg,Normal,1626.23,1899.99,1299.5,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Tezzeret, Master of the Bridge",1,war,Foil,,,11.8,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"April O'Neil, Human Element",1,tmc,Normal,4.1,6.99,3.15,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Manifold Key,1,tsr,Normal,8.39,10.99,9.3,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Voltaic Key,1,usg,Normal,7.5,6.99,2.48,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Chromatic Orrery,1,m21,Normal,32.36,47.99,24.03,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Pre-War Formalwear,1,sld,Normal,2.37,5.49,5.65,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Annie Joins Up,1,otj,Normal,3.8,3.99,3.13,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Time Sieve,1,2xm,Normal,8.13,10.99,4.0,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Irma, Part-Time Mutant",1,tmc,Normal,4.56,6.99,4.32,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Thousand Moons Smithy // Barracks of the Thousand,1,lci,Foil,3.39,3.99,1.15,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Armor Wars,1,msh,Normal,0.35,0.49,0.23,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Grinding Station,1,5dn,Normal,15.15,17.99,5.62,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Cloudstone Curio,1,rvr,Normal,17.57,18.99,7.0,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Sicarian Infiltrator,1,40k,Normal,4.9,5.49,5.45,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,War of the Last Alliance,1,ltr,Normal,1.53,2.79,0.96,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Gemstone Caverns,1,tsr,Normal,63.37,84.99,45.83,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Bootleggers' Stash,1,snc,Normal,0.66,1.29,0.74,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Jhoira's Familiar,1,2xm,Normal,2.42,2.79,1.21,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,The Reality Chip,1,neo,Normal,4.33,6.49,1.94,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Kamahl's Druidic Vow,1,dom,Normal,1.05,1.29,0.21,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,The Ring Goes South,1,ltr,Normal,0.33,0.49,0.17,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Bard, King of Dale",1,hob,Normal,15.49,15.99,17.25,Proxied,#fa890d,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,"Bilbo, Fellow Conspirator",1,hoc,Normal,7.91,9.99,10.49,,#656565,Maybeboard
-2026-10-05,5714358,3. Hungry Detectives,Bag End Banquet,1,hoc,Normal,6.93,6.99,6.34,,#656565,Maybeboard
 2026-10-05,5714358,3. Hungry Detectives,The Fourth Doctor,1,who,Foil,,,,,#656565,Commander
