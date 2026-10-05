@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck Prices</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --hover: rgba(11,11,11,0.04);
+    --series-1: #2a78d6;
+    --series-1-wash: rgba(42,120,214,0.10);
+    --up: #b42318;      /* price went up = costs more */
+    --down: #006300;    /* price went down */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19;
+      --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+      --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
+      --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
+      --up: #f07a72; --down: #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19;
+    --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10); --hover: rgba(255,255,255,0.05);
+    --series-1: #3987e5; --series-1-wash: rgba(57,135,229,0.14);
+    --up: #f07a72; --down: #0ca30c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--text-primary);
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+  h1 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: 15px; margin: 0 0 12px; }
+  .sub { color: var(--text-secondary); margin-top: 2px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  label.ctl { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 13px; }
+  select, input[type=search] {
+    font: inherit; color: var(--text-primary); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; min-height: 34px;
+  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .muted { color: var(--text-muted); }
+  .up { color: var(--up); } .down { color: var(--down); }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--grid); text-align: left; }
+  th { font-weight: 600; font-size: 12px; color: var(--text-secondary); cursor: pointer; user-select: none; white-space: nowrap; }
+  th.num { text-align: right; }
+  th[aria-sort]::after { content: " ↓"; color: var(--text-muted); }
+  th[aria-sort="ascending"]::after { content: " ↑"; }
+  tbody tr:hover { background: var(--hover); }
+  #deckTable tbody tr { cursor: pointer; }
+  #deckTable tbody tr.sel { background: var(--series-1-wash); }
+  .table-wrap { overflow-x: auto; }
+
+  .hero { display: flex; flex-wrap: wrap; gap: 28px; align-items: baseline; margin-bottom: 8px; }
+  .hero .big { font-size: 34px; font-weight: 650; letter-spacing: -0.02em; }
+  .hero .lbl { font-size: 12px; color: var(--text-secondary); }
+  .hero .delta { font-size: 15px; font-weight: 600; }
+
+  .chart { position: relative; }
+  .chart svg { display: block; width: 100%; height: 260px; overflow: visible; }
+  .chart text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .tip {
+    position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 10px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    white-space: nowrap; opacity: 0; transition: opacity .08s;
+  }
+  .tip b { font-variant-numeric: tabular-nums; }
+
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; border: 1px solid var(--border); flex: none; }
+
+  .tags { display: grid; gap: 8px; }
+  .tagrow { display: grid; grid-template-columns: minmax(110px, 200px) 1fr auto; gap: 12px; align-items: center; cursor: pointer; border-radius: 6px; padding: 2px 4px; }
+  .tagrow:hover, .tagrow.active { background: var(--hover); }
+  .bar { height: 10px; background: var(--grid); border-radius: 4px; overflow: hidden; }
+  .bar > div { height: 100%; background: var(--series-1); border-radius: 0 4px 4px 0; }
+
+  .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .empty { padding: 40px 16px; text-align: center; color: var(--text-secondary); }
+  .empty input { margin-top: 12px; }
+  .note { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+  .row-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .row-head h2 { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Deck Prices</h1>
+      <div class="sub" id="subtitle">Loading data/prices.csv…</div>
+    </div>
+    <div class="controls">
+      <label class="ctl">Prices from
+        <select id="source">
+          <option value="price_tcgplayer">TCGplayer</option>
+          <option value="price_cardkingdom">Card Kingdom</option>
+          <option value="price_cardmarket">Cardmarket</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <div id="loadError" class="card empty" hidden>
+    <div>Couldn't load <code>data/prices.csv</code> (opening this file directly from disk blocks that).</div>
+    <div>Pick the CSV to view it:</div>
+    <input type="file" id="fileInput" accept=".csv">
+  </div>
+
+  <section id="app" hidden>
+    <div class="card">
+      <h2>All decks</h2>
+      <div class="table-wrap">
+        <table id="deckTable">
+          <thead><tr>
+            <th data-k="name">Deck</th>
+            <th data-k="cards" class="num">Cards</th>
+            <th data-k="value" class="num">Value</th>
+            <th data-k="dPrev" class="num">Since last</th>
+            <th data-k="dFirst" class="num">Since first</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row-head">
+        <h2 id="deckTitle">Deck</h2>
+        <a id="deckLink" class="chip" target="_blank" rel="noopener">Open on Archidekt ↗</a>
+      </div>
+      <div class="hero">
+        <div><div class="lbl" id="heroLbl">Value</div><div class="big num" id="heroVal">–</div></div>
+        <div><div class="lbl">Since last snapshot</div><div class="delta num" id="heroPrev">–</div></div>
+        <div><div class="lbl">Since first snapshot</div><div class="delta num" id="heroFirst">–</div></div>
+      </div>
+      <div class="chart" id="chart"><svg role="img" aria-label="Deck value over time"></svg><div class="tip"></div></div>
+      <div class="note" id="chartNote"></div>
+    </div>
+
+    <div class="card">
+      <h2>Value by color tag</h2>
+      <div class="tags" id="tags"></div>
+      <div class="note">Click a tag to filter the card list below.</div>
+    </div>
+
+    <div class="card">
+      <div class="row-head">
+        <h2 id="cardsTitle">Cards</h2>
+        <input type="search" id="search" placeholder="Filter cards…">
+      </div>
+      <div class="table-wrap">
+        <table id="cardTable">
+          <thead><tr>
+            <th data-k="name">Card</th>
+            <th data-k="qty" class="num">Qty</th>
+            <th data-k="tag">Color tag</th>
+            <th data-k="price" class="num">Price</th>
+            <th data-k="total" class="num">Total</th>
+            <th data-k="dPrev" class="num">Since last</th>
+            <th data-k="dFirst" class="num">Since first</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  // ---------- CSV ----------
+  function parseCSV(text) {
+    const rows = []; let row = [], field = "", q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) {
+        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else q = false; }
+        else field += c;
+      } else if (c === '"') q = true;
+      else if (c === ",") { row.push(field); field = ""; }
+      else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(field); rows.push(row); row = []; field = "";
+      } else field += c;
+    }
+    if (field !== "" || row.length) { row.push(field); rows.push(row); }
+    const head = rows.shift() || [];
+    return rows.filter(r => r.length > 1).map(r => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ""])));
+  }
+
+  // ---------- state ----------
+  const $ = id => document.getElementById(id);
+  const money = v => v == null ? "–" : "$" + v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+  let rows = [], dates = [], decks = new Map();
+  let source = "price_tcgplayer", selected = null, tagFilter = null;
+  let deckSort = { k: "value", dir: -1 }, cardSort = { k: "total", dir: -1 };
+
+  function delta(el, d, base) {
+    if (d == null) { el.textContent = "–"; el.className = el.className.replace(/\b(up|down)\b/g, ""); return; }
+    const pct = base ? ` (${d >= 0 ? "+" : ""}${(d / base * 100).toFixed(1)}%)` : "";
+    el.textContent = (d > 0 ? "+" : d < 0 ? "−" : "±") + money(Math.abs(d)) + pct;
+    el.classList.toggle("up", d > 0.005); el.classList.toggle("down", d < -0.005);
+  }
+  function deltaCell(d) {
+    if (d == null) return `<td class="num muted">–</td>`;
+    const cls = d > 0.005 ? "up" : d < -0.005 ? "down" : "muted";
+    return `<td class="num ${cls}">${d > 0 ? "+" : d < 0 ? "−" : "±"}${money(Math.abs(d))}</td>`;
+  }
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+  function load(text) {
+    rows = parseCSV(text);
+    rows.forEach(r => { r.qty = +r.quantity || 0; r.key = `${r.card_name}|${r.set_code}|${r.finish}`; });
+    dates = [...new Set(rows.map(r => r.date))].sort();
+    decks = new Map();
+    for (const r of rows) {
+      let d = decks.get(r.deck_id);
+      if (!d) decks.set(r.deck_id, d = { id: r.deck_id, byDate: new Map() });
+      if (!d.byDate.has(r.date)) d.byDate.set(r.date, []);
+      d.byDate.get(r.date).push(r);
+      d.name = r.deck_name; // rows are in date order, so the last name wins
+    }
+    $("subtitle").textContent = `${decks.size} decks · ${dates.length} snapshot${dates.length === 1 ? "" : "s"} · ${fmtDate(dates[0])} – ${fmtDate(dates[dates.length - 1])}`;
+    $("app").hidden = false; $("loadError").hidden = true;
+    if (!(selected && decks.has(selected)))
+      selected = [...decks.values()].map(deckStats).sort((a, b) => b.value - a.value)[0].id;
+    render();
+  }
+
+  const priceOf = r => { const v = parseFloat(r[source]); return isFinite(v) ? v : null; };
+  function deckValue(d, date) {
+    const list = d.byDate.get(date); if (!list) return null;
+    return list.reduce((s, r) => s + (priceOf(r) ?? 0) * r.qty, 0);
+  }
+  function deckStats(d) {
+    const ds = dates.filter(x => d.byDate.has(x));
+    const last = ds[ds.length - 1], prev = ds[ds.length - 2], first = ds[0];
+    const value = deckValue(d, last);
+    return {
+      id: d.id, name: d.name, value, last, ds,
+      cards: d.byDate.get(last).reduce((s, r) => s + r.qty, 0),
+      dPrev: prev ? value - deckValue(d, prev) : null,
+      dFirst: ds.length > 1 ? value - deckValue(d, first) : null,
+      firstVal: deckValue(d, first), prevVal: prev ? deckValue(d, prev) : null,
+    };
+  }
+  function sortBy(arr, { k, dir }) {
+    return arr.sort((a, b) => {
+      const x = a[k], y = b[k];
+      if (x == null && y == null) return 0; if (x == null) return 1; if (y == null) return -1;
+      return (typeof x === "string" ? x.localeCompare(y) : x - y) * dir;
+    });
+  }
+  function markSort(table, s) {
+    table.querySelectorAll("th").forEach(th => {
+      if (th.dataset.k === s.k) th.setAttribute("aria-sort", s.dir > 0 ? "ascending" : "descending");
+      else th.removeAttribute("aria-sort");
+    });
+  }
+
+  // ---------- render ----------
+  function render() { renderDecks(); renderDeck(); }
+
+  function renderDecks() {
+    const stats = sortBy([...decks.values()].map(deckStats), deckSort);
+    $("deckTable").tBodies[0].innerHTML = stats.map(s => `
+      <tr data-id="${esc(s.id)}" class="${s.id === selected ? "sel" : ""}">
+        <td>${esc(s.name)} <span class="muted">#${esc(s.id)}</span></td>
+        <td class="num">${s.cards}</td>
+        <td class="num">${money(s.value)}</td>
+        ${deltaCell(s.dPrev)}${deltaCell(s.dFirst)}
+      </tr>`).join("");
+    markSort($("deckTable"), deckSort);
+  }
+
+  function renderDeck() {
+    const d = decks.get(selected), s = deckStats(d);
+    $("deckTitle").textContent = s.name;
+    $("deckLink").href = `https://archidekt.com/decks/${encodeURIComponent(s.id)}`;
+    $("heroLbl").textContent = `Value on ${fmtDate(s.last)}`;
+    $("heroVal").textContent = money(s.value);
+    delta($("heroPrev"), s.dPrev, s.prevVal);
+    delta($("heroFirst"), s.dFirst, s.firstVal);
+    const missing = d.byDate.get(s.last).filter(r => priceOf(r) == null).length;
+    $("chartNote").textContent = (s.ds.length < 2 ? "Only one snapshot so far — the line fills in as the daily job runs. " : "")
+      + (missing ? `${missing} card${missing === 1 ? " has" : "s have"} no ${$("source").selectedOptions[0].text} price and count as $0.` : "");
+    drawChart(s.ds.map(x => ({ date: x, v: deckValue(d, x) })));
+    renderTags(d, s);
+    renderCards(d, s);
+  }
+
+  function drawChart(pts) {
+    const wrap = $("chart"), svg = wrap.querySelector("svg"), tip = wrap.querySelector(".tip");
+    const W = svg.clientWidth || 800, H = 260, m = { t: 12, r: 16, b: 28, l: 56 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const vals = pts.map(p => p.v);
+    let lo = Math.min(...vals), hi = Math.max(...vals);
+    const pad = (hi - lo) * 0.15 || Math.max(hi * 0.1, 1);
+    lo = Math.max(0, lo - pad); hi = hi + pad;
+    const step = niceStep((hi - lo) / 4);
+    lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+    const t0 = +new Date(pts[0].date), t1 = +new Date(pts[pts.length - 1].date);
+    const x = p => m.l + (t1 === t0 ? iw / 2 : (+new Date(p.date) - t0) / (t1 - t0) * iw);
+    const y = v => m.t + ih - (v - lo) / (hi - lo) * ih;
+
+    let g = "";
+    for (let v = lo; v <= hi + 1e-9; v += step) {
+      g += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grid)" stroke-width="1"/>`;
+      g += `<text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">$${v >= 1000 ? (v / 1000).toFixed(v % 1000 ? 1 : 0) + "k" : Math.round(v)}</text>`;
+    }
+    g += `<line x1="${m.l}" x2="${W - m.r}" y1="${m.t + ih}" y2="${m.t + ih}" stroke="var(--axis)"/>`;
+    // x ticks: up to ~6 evenly spaced dates
+    const n = Math.min(pts.length, Math.max(2, Math.floor(iw / 110)));
+    const tickIdx = pts.length === 1 ? [0] : [...new Set(Array.from({ length: n }, (_, i) => Math.round(i * (pts.length - 1) / (n - 1))))];
+    for (const i of tickIdx) {
+      const p = pts[i], anchor = pts.length > 1 && i === 0 ? "start" : pts.length > 1 && i === pts.length - 1 ? "end" : "middle";
+      g += `<text x="${x(p)}" y="${H - 8}" text-anchor="${anchor}">${new Date(p.date + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" })}</text>`;
+    }
+    const path = pts.map((p, i) => `${i ? "L" : "M"}${x(p).toFixed(1)},${y(p.v).toFixed(1)}`).join("");
+    g += `<path d="${path}" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    const last = pts[pts.length - 1];
+    g += `<circle cx="${x(last)}" cy="${y(last.v)}" r="4" fill="var(--series-1)" stroke="var(--surface)" stroke-width="2"/>`;
+    g += `<line class="xh" y1="${m.t}" y2="${m.t + ih}" stroke="var(--axis)" stroke-dasharray="3 3" visibility="hidden"/>`;
+    g += `<circle class="hd" r="5" fill="var(--series-1)" stroke="var(--surface)" stroke-width="2" visibility="hidden"/>`;
+    g += `<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent"/>`;
+    svg.innerHTML = g;
+
+    const xh = svg.querySelector(".xh"), hd = svg.querySelector(".hd");
+    svg.onpointermove = e => {
+      const r = svg.getBoundingClientRect(), mx = (e.clientX - r.left) * (W / r.width);
+      let best = pts[0]; for (const p of pts) if (Math.abs(x(p) - mx) < Math.abs(x(best) - mx)) best = p;
+      const i = pts.indexOf(best), prev = pts[i - 1];
+      xh.setAttribute("x1", x(best)); xh.setAttribute("x2", x(best)); xh.setAttribute("visibility", "visible");
+      hd.setAttribute("cx", x(best)); hd.setAttribute("cy", y(best.v)); hd.setAttribute("visibility", "visible");
+      const dd = prev ? best.v - prev.v : null;
+      tip.innerHTML = `<div class="muted">${fmtDate(best.date)}</div><b>${money(best.v)}</b>` +
+        (dd != null ? ` <span class="${dd > 0.005 ? "up" : dd < -0.005 ? "down" : "muted"}">${dd > 0 ? "+" : dd < 0 ? "−" : "±"}${money(Math.abs(dd))}</span>` : "");
+      const px = x(best) * r.width / W, py = y(best.v) * r.height / H;
+      tip.style.left = Math.min(Math.max(px - tip.offsetWidth / 2, 0), r.width - tip.offsetWidth) + "px";
+      tip.style.top = Math.max(py - tip.offsetHeight - 12, 0) + "px";
+      tip.style.opacity = 1;
+    };
+    svg.onpointerleave = () => { tip.style.opacity = 0; xh.setAttribute("visibility", "hidden"); hd.setAttribute("visibility", "hidden"); };
+  }
+  function niceStep(raw) {
+    const p = Math.pow(10, Math.floor(Math.log10(raw || 1))), f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+  }
+
+  function tagOf(r) { return { name: r.color_tag || (r.color_tag_hex && r.color_tag_hex !== "#656565" ? "(unnamed)" : "Untagged"), hex: r.color_tag_hex || "" }; }
+
+  function renderTags(d, s) {
+    const groups = new Map();
+    for (const r of d.byDate.get(s.last)) {
+      const t = tagOf(r), g = groups.get(t.name) || { ...t, v: 0, n: 0 };
+      g.v += (priceOf(r) ?? 0) * r.qty; g.n += r.qty; groups.set(t.name, g);
+    }
+    const list = [...groups.values()].sort((a, b) => b.v - a.v);
+    const max = Math.max(...list.map(g => g.v), 0.01);
+    if (tagFilter && !groups.has(tagFilter)) tagFilter = null;
+    $("tags").innerHTML = list.map(g => `
+      <div class="tagrow ${g.name === tagFilter ? "active" : ""}" data-tag="${esc(g.name)}" title="${g.n} card${g.n === 1 ? "" : "s"}">
+        <span class="chip"><span class="swatch" style="background:${/^#[0-9a-f]{3,8}$/i.test(g.hex) ? g.hex : "transparent"}"></span>${esc(g.name)}</span>
+        <div class="bar"><div style="width:${(g.v / max * 100).toFixed(1)}%"></div></div>
+        <span class="num">${money(g.v)}</span>
+      </div>`).join("");
+  }
+
+  function renderCards(d, s) {
+    const i = s.ds.length - 1;
+    const map = date => new Map((d.byDate.get(date) || []).map(r => [r.key, priceOf(r)]));
+    const prev = i > 0 ? map(s.ds[i - 1]) : null, first = i > 0 ? map(s.ds[0]) : null;
+    const q = $("search").value.trim().toLowerCase();
+    let list = d.byDate.get(s.last).map(r => {
+      const p = priceOf(r), t = tagOf(r);
+      const ch = m => (m && p != null && m.get(r.key) != null) ? (p - m.get(r.key)) * r.qty : null;
+      return { name: r.card_name, set: r.set_code, finish: r.finish, qty: r.qty, tag: t.name, hex: t.hex,
+               price: p, total: p == null ? null : p * r.qty, dPrev: ch(prev), dFirst: ch(first) };
+    });
+    if (tagFilter) list = list.filter(c => c.tag === tagFilter);
+    if (q) list = list.filter(c => c.name.toLowerCase().includes(q));
+    sortBy(list, cardSort);
+    $("cardsTitle").textContent = `Cards${tagFilter ? ` · ${tagFilter}` : ""} (${list.length})`;
+    $("cardTable").tBodies[0].innerHTML = list.map(c => `
+      <tr>
+        <td>${esc(c.name)} <span class="muted">${esc(c.set.toUpperCase())}${c.finish && c.finish !== "Normal" ? " · " + esc(c.finish) : ""}</span></td>
+        <td class="num">${c.qty}</td>
+        <td><span class="chip"><span class="swatch" style="background:${/^#[0-9a-f]{3,8}$/i.test(c.hex) ? c.hex : "transparent"}"></span>${esc(c.tag)}</span></td>
+        <td class="num">${money(c.price)}</td>
+        <td class="num">${money(c.total)}</td>
+        ${deltaCell(c.dPrev)}${deltaCell(c.dFirst)}
+      </tr>`).join("") || `<tr><td colspan="7" class="muted">No matching cards.</td></tr>`;
+    markSort($("cardTable"), cardSort);
+  }
+
+  // ---------- events ----------
+  function sortClick(table, state, after) {
+    table.tHead.addEventListener("click", e => {
+      const k = e.target.closest("th")?.dataset.k; if (!k) return;
+      state.dir = state.k === k ? -state.dir : (k === "name" || k === "tag" ? 1 : -1); state.k = k; after();
+    });
+  }
+  sortClick($("deckTable"), deckSort, renderDecks);
+  sortClick($("cardTable"), cardSort, () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
+  $("deckTable").tBodies[0].addEventListener("click", e => {
+    const tr = e.target.closest("tr[data-id]"); if (!tr) return;
+    selected = tr.dataset.id; tagFilter = null; $("search").value = ""; render();
+    $("deckTitle").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  $("tags").addEventListener("click", e => {
+    const row = e.target.closest(".tagrow"); if (!row) return;
+    tagFilter = tagFilter === row.dataset.tag ? null : row.dataset.tag; renderDeck();
+  });
+  $("search").addEventListener("input", () => { const d = decks.get(selected); renderCards(d, deckStats(d)); });
+  $("source").addEventListener("change", e => { source = e.target.value; render(); });
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => decks.size && renderDeck(), 150); });
+  $("fileInput").addEventListener("change", async e => { const f = e.target.files[0]; if (f) load(await f.text()); });
+
+  fetch("data/prices.csv", { cache: "no-store" })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(load)
+    .catch(() => { $("subtitle").textContent = "No data loaded"; $("loadError").hidden = false; });
+})();
+</script>
+</body>
+</html>
