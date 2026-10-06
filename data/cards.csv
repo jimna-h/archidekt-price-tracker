@@ -132,6 +132,7 @@ Colossal Grave-Reaver,Creature — Dragon,8,BG
 Command Beacon,Land,0,
 Command Tower,Land,0,
 Commander Liara Portyr,Legendary Creature — Human Soldier,5,WR
+Commercial District,Land — Mountain Forest,0,RG
 Conjurer's Closet,Artifact,5,
 Crop Rotation,Instant,1,G
 Cryptolith Fragment // Aurora of Emrakul,Artifact,3,
@@ -317,6 +318,7 @@ Isolated Chapel,Land,0,WB
 "Ixidor, Reality Sculptor",Legendary Creature — Human Wizard,5,U
 "Jaheira, Friend of the Forest",Legendary Creature — Human Elf Druid,3,G
 "James, Wandering Dad // Follow Him",Legendary Creature — Human Scientist,3,U
+Jetmir's Garden,Land — Plains Mountain Forest,0,WRG
 "Journey to Eternity // Atzal, Cave of Eternity",Legendary Enchantment — Aura,3,BG
 Jund Panorama,Land,0,
 "Justice, Vance Astrovik",Legendary Creature — Mutant Hero,3,U
@@ -356,6 +358,7 @@ Lotus Vale,Land,0,
 Loyal Warhound,Creature — Dog,2,W
 "Lumra, Bellow of the Woods",Legendary Creature — Elemental Bear,6,G
 Lunarch Veteran // Luminous Phantom,Creature — Human Cleric,1,W
+Lush Portico,Land — Plains Forest,0,WG
 "Lyra, Archangel of Dawn",Legendary Creature — Knight Angel,3,W
 Mage-Ring Network,Land,0,
 "Malcolm, Alluring Scoundrel",Legendary Creature — Pirate Siren,2,U
@@ -472,7 +475,9 @@ Rise of the Witch-king,Sorcery,4,BG
 Rivendell,Legendary Land,0,U
 River of Tears,Land,0,UB
 "Rocco, Street Chef",Legendary Creature — Elf Druid,3,WRG
+Rockfall Vale,Land,0,RG
 Rogue's Passage,Land,0,
+Rootbound Crag,Land,0,RG
 Rosie Cotton of South Lane,Legendary Creature — Peasant Halfling,3,W
 Royal Treatment,Instant,1,G
 Rushwood Grove,Land,0,G
@@ -547,10 +552,12 @@ Sovereign Okinec Ahau,Legendary Creature — Cat Noble,4,WG
 Spara's Headquarters,Land — Plains Island Forest,0,WUG
 Speaker of the Heavens,Creature — Human Cleric,1,W
 Spectacular Spider-Man,Legendary Creature — Human Spider Hero,2,W
+Spectator Seating,Land,0,WR
 Spectral Sailor,Creature — Spirit Pirate,1,U
 Spellbook,Artifact — Book,0,
 Spellskite,Artifact Creature — Horror Phyrexian,2,U
 Spinner of Souls,Creature — Spirit Spider,3,G
+Spire Garden,Land,0,RG
 Spirited Companion,Enchantment Creature — Dog,2,W
 Springheart Nantuko,Enchantment Creature — Monk Insect,2,G
 Spry and Mighty,Sorcery,5,G
@@ -558,6 +565,7 @@ Spyglass Siren,Creature — Pirate Siren,1,U
 Steelshaper's Gift,Sorcery,1,W
 Stinkweed Imp,Creature — Imp,3,B
 Stitcher's Supplier,Creature — Zombie,1,B
+Stomping Ground,Land — Mountain Forest,0,RG
 Stoneforge Mystic,Creature — Artificer Kor,2,W
 Stonespeaker Crystal,Artifact,4,
 Stratus Dancer,Creature — Djinn Monk,2,U
@@ -566,7 +574,9 @@ Studious First-Year // Rampant Growth,Creature — Wizard Bear,1,G
 "Subira, Tulzidi Caravanner",Legendary Creature — Human Shaman,3,R
 Summer Bloom,Sorcery,2,G
 Sun Titan,Creature — Giant,6,W
+Sunbillow Verge,Land,0,WR
 Sundering Eruption // Volcanic Fissure,Sorcery,3,R
+Sundown Pass,Land,0,WR
 Sungrass Prairie,Land,0,WG
 Sunken Citadel,Land — Cave,0,
 Sunken Ruins,Land,0,UB
@@ -577,6 +587,7 @@ Swamp,Basic Land — Swamp,0,B
 Sword of Hearth and Home,Artifact — Equipment,3,
 Swords to Plowshares,Instant,1,W
 Sylvan Library,Enchantment,2,G
+Taiga,Land — Mountain Forest,0,RG
 "Takenuma, Abandoned Mire",Legendary Land,0,B
 Talisman of Conviction,Artifact,2,WR
 Talisman of Hierarchy,Artifact,2,WB
@@ -619,6 +630,7 @@ Thespian's Stage,Land,0,
 Thieves' Tools,Artifact — Equipment,2,B
 Thieving Skydiver,Creature — Merfolk Rogue,2,U
 Thornglint Bridge,Artifact Land,0,WG
+Thornspire Verge,Land,0,RG
 Thran Dynamo,Artifact,4,
 Three Tree City,Legendary Land,0,
 Three Visits,Sorcery,2,G

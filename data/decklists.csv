@@ -869,3 +869,382 @@ date,deck_id,card_name,set_code,finish,proxied,quantity
 2026-10-05,26722467,Utopia Sprawl,pf26,Foil,false,1
 2026-10-05,26722467,Wild Wasteland,pip,Normal,false,1
 2026-10-05,26722467,Yotian Dissident,bro,Normal,false,1
+2026-10-06,5969200,"Boseiju, Who Endures",neo,Normal,false,0
+2026-10-06,5969200,"Boseiju, Who Endures",neo,Normal,true,1
+2026-10-06,5969200,Bountiful Promenade,clb,Normal,false,0
+2026-10-06,5969200,Bountiful Promenade,clb,Normal,true,1
+2026-10-06,5969200,Brushland,bro,Normal,false,0
+2026-10-06,5969200,Brushland,bro,Normal,true,1
+2026-10-06,5969200,City of Brass,2x2,Normal,false,0
+2026-10-06,5969200,City of Brass,2x2,Normal,true,1
+2026-10-06,5969200,Gemstone Caverns,eos,Normal,false,0
+2026-10-06,5969200,Gemstone Caverns,eos,Normal,true,1
+2026-10-06,5969200,Mana Confluence,jou,Normal,false,0
+2026-10-06,5969200,Mana Confluence,jou,Normal,true,1
+2026-10-06,5969200,Misty Rainforest,zne,Normal,false,0
+2026-10-06,5969200,Misty Rainforest,zne,Normal,true,1
+2026-10-06,5969200,Savannah,3ed,Normal,false,0
+2026-10-06,5969200,Savannah,3ed,Normal,true,1
+2026-10-06,5969200,Temple Garden,rvr,Normal,false,0
+2026-10-06,5969200,Temple Garden,rvr,Normal,true,1
+2026-10-06,5969200,Verdant Catacombs,zne,Normal,false,0
+2026-10-06,5969200,Verdant Catacombs,zne,Normal,true,1
+2026-10-06,5969200,Windswept Heath,zne,Normal,false,0
+2026-10-06,5969200,Windswept Heath,zne,Normal,true,1
+2026-10-06,16293254,Ancient Tomb,zne,Normal,false,0
+2026-10-06,16293254,Ancient Tomb,zne,Normal,true,1
+2026-10-06,16293254,Arena,mb2,Normal,false,0
+2026-10-06,16293254,Arena,mb2,Normal,true,1
+2026-10-06,16293254,Ash Barrens,cmm,Normal,false,0
+2026-10-06,16293254,Ash Barrens,cmm,Normal,true,1
+2026-10-06,16293254,Bant Panorama,ala,Normal,false,0
+2026-10-06,16293254,Bant Panorama,ala,Normal,true,1
+2026-10-06,16293254,Bazaar of Baghdad,vma,Normal,false,0
+2026-10-06,16293254,Bazaar of Baghdad,vma,Normal,true,1
+2026-10-06,16293254,"Boseiju, Who Endures",neo,Normal,false,0
+2026-10-06,16293254,"Boseiju, Who Endures",neo,Normal,true,1
+2026-10-06,16293254,Castle Garenbrig,eld,Normal,false,0
+2026-10-06,16293254,Castle Garenbrig,eld,Normal,true,1
+2026-10-06,16293254,Cavern of Souls,lci,Normal,true,1
+2026-10-06,16293254,Cavern of Souls,zne,Normal,false,0
+2026-10-06,16293254,Chocobo Camp,fic,Normal,false,0
+2026-10-06,16293254,Chocobo Camp,fic,Normal,true,1
+2026-10-06,16293254,City of Shadows,me3,Normal,false,0
+2026-10-06,16293254,City of Shadows,me3,Normal,true,1
+2026-10-06,16293254,City of Traitors,tpr,Normal,false,0
+2026-10-06,16293254,City of Traitors,tpr,Normal,true,1
+2026-10-06,16293254,Command Beacon,cmr,Normal,false,0
+2026-10-06,16293254,Command Beacon,cmr,Normal,true,1
+2026-10-06,16293254,Crystal Vein,cma,Normal,false,0
+2026-10-06,16293254,Crystal Vein,cma,Normal,true,1
+2026-10-06,16293254,Desert of the Indomitable,hou,Normal,false,0
+2026-10-06,16293254,Desert of the Indomitable,m3c,Normal,true,1
+2026-10-06,16293254,Deserted Temple,eos,Normal,false,0
+2026-10-06,16293254,Deserted Temple,mh3,Normal,true,1
+2026-10-06,16293254,Diamond Valley,me1,Normal,false,0
+2026-10-06,16293254,Diamond Valley,me1,Normal,true,1
+2026-10-06,16293254,Dryad Arbor,mb2,Normal,true,1
+2026-10-06,16293254,Dryad Arbor,sld,Normal,false,0
+2026-10-06,16293254,Echoing Deeps,eos,Normal,false,0
+2026-10-06,16293254,Echoing Deeps,lci,Normal,true,1
+2026-10-06,16293254,Emergence Zone,war,Normal,false,0
+2026-10-06,16293254,Emergence Zone,war,Normal,true,1
+2026-10-06,16293254,Fabled Passage,blb,Normal,false,0
+2026-10-06,16293254,Fabled Passage,tmc,Normal,false,1
+2026-10-06,16293254,Field of the Dead,m20,Normal,true,1
+2026-10-06,16293254,Field of the Dead,slc,Normal,false,0
+2026-10-06,16293254,Gemstone Caverns,eos,Normal,false,0
+2026-10-06,16293254,Gemstone Caverns,plst,Normal,true,1
+2026-10-06,16293254,Ghost Quarter,ltc,Normal,false,0
+2026-10-06,16293254,Ghost Quarter,ltc,Normal,true,1
+2026-10-06,16293254,Grasslands,cmm,Normal,false,0
+2026-10-06,16293254,Grasslands,cmm,Normal,true,1
+2026-10-06,16293254,Hall of Echoes,fra,Normal,false,0
+2026-10-06,16293254,Hall of Echoes,fra,Normal,true,1
+2026-10-06,16293254,Hall of the Bandit Lord,chk,Normal,false,0
+2026-10-06,16293254,Hall of the Bandit Lord,chk,Normal,true,1
+2026-10-06,16293254,Havenwood Battleground,c14,Normal,false,0
+2026-10-06,16293254,Havenwood Battleground,c14,Normal,true,1
+2026-10-06,16293254,High Market,c21,Normal,false,1
+2026-10-06,16293254,High Market,eos,Normal,false,0
+2026-10-06,16293254,Hollow Trees,5ed,Normal,false,0
+2026-10-06,16293254,Hollow Trees,5ed,Normal,true,1
+2026-10-06,16293254,Homeward Path,ltc,Normal,false,0
+2026-10-06,16293254,Homeward Path,ltc,Normal,true,1
+2026-10-06,16293254,Horizon of Progress,m3c,Normal,false,0
+2026-10-06,16293254,Horizon of Progress,m3c,Normal,true,1
+2026-10-06,16293254,Jund Panorama,ala,Normal,false,0
+2026-10-06,16293254,Jund Panorama,ala,Normal,true,1
+2026-10-06,16293254,Lazotep Quarry,m3c,Normal,false,0
+2026-10-06,16293254,Lazotep Quarry,m3c,Normal,true,1
+2026-10-06,16293254,Lotus Field,eos,Normal,false,0
+2026-10-06,16293254,Lotus Field,soc,Normal,false,1
+2026-10-06,16293254,Lotus Vale,wth,Normal,false,0
+2026-10-06,16293254,Lotus Vale,wth,Normal,true,1
+2026-10-06,16293254,"Lumra, Bellow of the Woods",blb,Foil,false,0
+2026-10-06,16293254,"Lumra, Bellow of the Woods",blb,Foil,true,1
+2026-10-06,16293254,Mage-Ring Network,cmm,Normal,false,0
+2026-10-06,16293254,Mage-Ring Network,cmm,Normal,true,1
+2026-10-06,16293254,Mariposa Military Base,pip,Normal,false,0
+2026-10-06,16293254,Mariposa Military Base,pip,Normal,true,1
+2026-10-06,16293254,Maze of Ith,dmr,Foil,false,1
+2026-10-06,16293254,Maze of Ith,dmr,Normal,false,0
+2026-10-06,16293254,"Miren, the Moaning Well",sok,Normal,false,0
+2026-10-06,16293254,"Miren, the Moaning Well",sok,Normal,true,1
+2026-10-06,16293254,Mirrorpool,cmm,Normal,true,1
+2026-10-06,16293254,Mirrorpool,eos,Normal,false,0
+2026-10-06,16293254,Misty Rainforest,zne,Normal,false,0
+2026-10-06,16293254,Misty Rainforest,zne,Normal,true,1
+2026-10-06,16293254,Myriad Landscape,ltc,Foil,false,1
+2026-10-06,16293254,Myriad Landscape,ltc,Normal,false,0
+2026-10-06,16293254,Mystifying Maze,eos,Normal,false,0
+2026-10-06,16293254,Mystifying Maze,eos,Normal,true,1
+2026-10-06,16293254,Ominous Cemetery,who,Normal,false,0
+2026-10-06,16293254,Ominous Cemetery,who,Normal,true,1
+2026-10-06,16293254,Pit of Offerings,lci,Normal,false,0
+2026-10-06,16293254,Pit of Offerings,lci,Normal,true,1
+2026-10-06,16293254,Plaza of Heroes,dmu,Normal,true,1
+2026-10-06,16293254,Plaza of Heroes,eos,Normal,false,0
+2026-10-06,16293254,Prismatic Vista,mh1,Normal,true,1
+2026-10-06,16293254,Prismatic Vista,zne,Normal,false,0
+2026-10-06,16293254,Rogue's Passage,ltc,Normal,false,1
+2026-10-06,16293254,Rogue's Passage,sld,Foil,false,0
+2026-10-06,16293254,Safe Haven,tsb,Normal,false,0
+2026-10-06,16293254,Safe Haven,tsb,Normal,true,1
+2026-10-06,16293254,Sanctum of Eternity,c19,Normal,false,0
+2026-10-06,16293254,Sanctum of Eternity,c19,Normal,true,1
+2026-10-06,16293254,Sandstorm Verge,otj,Normal,false,0
+2026-10-06,16293254,Sandstorm Verge,otj,Normal,true,1
+2026-10-06,16293254,Scavenger Grounds,c21,Normal,false,1
+2026-10-06,16293254,Scavenger Grounds,eos,Normal,false,0
+2026-10-06,16293254,Scorched Ruins,wth,Normal,false,0
+2026-10-06,16293254,Scorched Ruins,wth,Normal,true,1
+2026-10-06,16293254,Sequestered Stash,kld,Normal,false,0
+2026-10-06,16293254,Sequestered Stash,kld,Normal,true,1
+2026-10-06,16293254,Sunken Citadel,eos,Normal,false,0
+2026-10-06,16293254,Sunken Citadel,lci,Normal,true,1
+2026-10-06,16293254,Talon Gates of Madara,m3c,Normal,false,0
+2026-10-06,16293254,Talon Gates of Madara,m3c,Normal,true,1
+2026-10-06,16293254,Temple of the False God,cm2,Normal,false,1
+2026-10-06,16293254,Temple of the False God,slc,Normal,false,0
+2026-10-06,16293254,Terrain Generator,clb,Normal,true,1
+2026-10-06,16293254,Terrain Generator,eos,Normal,false,0
+2026-10-06,16293254,The Tabernacle at Pendrell Vale,me3,Normal,false,0
+2026-10-06,16293254,The Tabernacle at Pendrell Vale,me3,Normal,true,1
+2026-10-06,16293254,Thespian's Stage,eos,Normal,false,0
+2026-10-06,16293254,Thespian's Stage,who,Normal,true,1
+2026-10-06,16293254,Tower of the Magistrate,mb2,Normal,false,0
+2026-10-06,16293254,Tower of the Magistrate,mb2,Normal,true,1
+2026-10-06,16293254,Tranquil Thicket,mh1,Normal,false,1
+2026-10-06,16293254,Tranquil Thicket,pf23,Normal,false,0
+2026-10-06,16293254,Underdark Rift,afc,Normal,false,0
+2026-10-06,16293254,Underdark Rift,afc,Normal,true,1
+2026-10-06,16293254,"Untaidake, the Cloud Keeper",chk,Normal,false,0
+2026-10-06,16293254,"Untaidake, the Cloud Keeper",chk,Normal,true,1
+2026-10-06,16293254,"Urborg, Tomb of Yawgmoth",ltc,Normal,false,0
+2026-10-06,16293254,"Urborg, Tomb of Yawgmoth",tsr,Normal,true,1
+2026-10-06,16293254,Urza's Cave,mh3,Normal,false,0
+2026-10-06,16293254,Urza's Cave,mh3,Normal,true,1
+2026-10-06,16293254,Verdant Catacombs,zne,Normal,false,0
+2026-10-06,16293254,Verdant Catacombs,zne,Normal,true,1
+2026-10-06,16293254,Winding Canyons,wth,Normal,false,0
+2026-10-06,16293254,Winding Canyons,wth,Normal,true,1
+2026-10-06,16293254,Windswept Heath,zne,Normal,false,0
+2026-10-06,16293254,Windswept Heath,zne,Normal,true,1
+2026-10-06,16293254,Witch's Clinic,c21,Normal,false,0
+2026-10-06,16293254,Witch's Clinic,c21,Normal,true,1
+2026-10-06,16293254,Wooded Foothills,zne,Normal,false,0
+2026-10-06,16293254,Wooded Foothills,zne,Normal,true,1
+2026-10-06,16293254,Yavimaya Hollow,vma,Normal,false,0
+2026-10-06,16293254,Yavimaya Hollow,vma,Normal,true,1
+2026-10-06,16293254,"Yavimaya, Cradle of Growth",ltc,Normal,false,0
+2026-10-06,16293254,"Yavimaya, Cradle of Growth",mh2,Normal,true,1
+2026-10-06,17493352,Command Tower,40k,Normal,false,0
+2026-10-06,17493352,Command Tower,pw25,Foil,false,1
+2026-10-06,24974478,Abhorrent Oculus,dsk,Normal,false,0
+2026-10-06,24974478,Abhorrent Oculus,pdsk,Normal,false,1
+2026-10-06,24974478,Baboon Spirit,tle,Foil,false,1
+2026-10-06,24974478,Baboon Spirit,tle,Normal,false,0
+2026-10-06,24974478,Brass Infiniscope,soc,Normal,false,1
+2026-10-06,24974478,Brass Infiniscope,soc,Normal,true,0
+2026-10-06,24974478,Cavalier of Gales,j25,Normal,false,1
+2026-10-06,24974478,Cavalier of Gales,m20,Normal,true,0
+2026-10-06,24974478,Dreamstone Hedron,cmm,Normal,false,0
+2026-10-06,24974478,Dreamstone Hedron,cmr,Normal,false,1
+2026-10-06,24974478,Ghostly Flicker,cmm,Normal,false,0
+2026-10-06,24974478,Ghostly Flicker,sld,Foil,false,1
+2026-10-06,24974478,Gilded Lotus,msc,Normal,false,1
+2026-10-06,24974478,Gilded Lotus,msc,Normal,true,0
+2026-10-06,24974478,Gossip's Talent,blb,Foil,false,1
+2026-10-06,24974478,Gossip's Talent,blb,Normal,false,0
+2026-10-06,24974478,"Grazilaxx, Illithid Scholar",clb,Normal,true,0
+2026-10-06,24974478,"Grazilaxx, Illithid Scholar",sld,Normal,true,1
+2026-10-06,24974478,Hedron Archive,c21,Normal,false,1
+2026-10-06,24974478,Hedron Archive,fdn,Foil,false,0
+2026-10-06,24974478,Illusionist's Bracers,rvr,Foil,false,1
+2026-10-06,24974478,Illusionist's Bracers,rvr,Normal,false,0
+2026-10-06,24974478,Marang River Regent // Coil and Catch,tdm,Foil,false,1
+2026-10-06,24974478,Marang River Regent // Coil and Catch,tdm,Normal,false,0
+2026-10-06,24974478,Relic of Legends,dmu,Normal,false,1
+2026-10-06,24974478,Relic of Legends,msc,Normal,false,0
+2026-10-06,24974478,Ring of the Lucii,fin,Normal,false,1
+2026-10-06,24974478,Ring of the Lucii,fin,Normal,true,0
+2026-10-06,24974478,"Sash and Waistcoat, Unmen",mbc,Normal,false,0
+2026-10-06,24974478,"Sash and Waistcoat, Unmen",mbc,Normal,true,1
+2026-10-06,24974478,Scourge of Fleets,cmr,Normal,true,0
+2026-10-06,24974478,Scourge of Fleets,jou,Normal,false,1
+2026-10-06,24974478,Scroll of Fate,c19,Normal,false,1
+2026-10-06,24974478,Scroll of Fate,dsc,Normal,false,0
+2026-10-06,24974478,Siren Stormtamer,cmr,Normal,false,1
+2026-10-06,24974478,Siren Stormtamer,lcc,Normal,false,0
+2026-10-06,24974478,Sol Ring,blc,Normal,false,1
+2026-10-06,24974478,Sol Ring,msc,Normal,false,0
+2026-10-06,24974478,Sol Talisman,mh2,Normal,false,1
+2026-10-06,24974478,Sol Talisman,mh2,Normal,true,0
+2026-10-06,24974478,Spellskite,clb,Normal,true,0
+2026-10-06,24974478,Spellskite,sld,Normal,true,1
+2026-10-06,24974478,"Thassa, Deep-Dwelling",thb,Foil,false,1
+2026-10-06,24974478,"Thassa, Deep-Dwelling",thb,Normal,false,0
+2026-10-06,24974478,Thran Dynamo,blc,Normal,false,1
+2026-10-06,24974478,Thran Dynamo,cmm,Normal,false,0
+2026-10-06,24974478,Ur-Golem's Eye,c14,Normal,true,0
+2026-10-06,24974478,Ur-Golem's Eye,dst,Normal,false,1
+2026-10-06,24974478,"Wan Shi Tong, All-Knowing",tle,Foil,false,1
+2026-10-06,24974478,"Wan Shi Tong, All-Knowing",tle,Normal,false,0
+2026-10-06,24974478,Willbender,lgn,Normal,false,1
+2026-10-06,24974478,Willbender,tsb,Normal,false,0
+2026-10-06,24974478,Wurmcoil Engine,sld,Foil,false,1
+2026-10-06,24974478,Wurmcoil Engine,sld,Normal,false,0
+2026-10-06,25536840,Abolish,ddf,Normal,false,0
+2026-10-06,25536840,Abolish,pcy,Normal,false,1
+2026-10-06,25536840,Cathar Commando,inr,Normal,false,0
+2026-10-06,25536840,Cathar Commando,mid,Normal,false,1
+2026-10-06,25536840,Guardian Scalelord,moc,Normal,false,1
+2026-10-06,25536840,Guardian Scalelord,soc,Normal,false,0
+2026-10-06,25536840,Horn of Gondor,ltr,Foil,false,1
+2026-10-06,25536840,Horn of Gondor,ltr,Normal,false,0
+2026-10-06,25536840,Idol of Oblivion,c19,Normal,false,1
+2026-10-06,25536840,Idol of Oblivion,tdc,Normal,false,0
+2026-10-06,25536840,Inspiring Overseer,fdn,Normal,false,0
+2026-10-06,25536840,Inspiring Overseer,snc,Normal,false,1
+2026-10-06,25536840,Loran of the Third Path,blc,Normal,false,1
+2026-10-06,25536840,Loran of the Third Path,mkc,Normal,true,0
+2026-10-06,25536840,Loyal Warhound,afr,Normal,false,0
+2026-10-06,25536840,Loyal Warhound,blc,Normal,false,1
+2026-10-06,25536840,Mentor of the Meek,2x2,Normal,false,1
+2026-10-06,25536840,Mentor of the Meek,ltc,Normal,false,0
+2026-10-06,25536840,Mirror Entity,otc,Normal,false,0
+2026-10-06,25536840,Mirror Entity,plst,Normal,false,1
+2026-10-06,25536840,Path to Exile,ltc,Normal,false,1
+2026-10-06,25536840,Path to Exile,msc,Normal,false,0
+2026-10-06,25536840,Selfless Spirit,blc,Normal,false,1
+2026-10-06,25536840,Selfless Spirit,soc,Normal,false,0
+2026-10-06,25536840,Sevinne's Reclamation,c19,Normal,false,1
+2026-10-06,25536840,Sevinne's Reclamation,soc,Normal,false,0
+2026-10-06,25536840,Soul Warden,exo,Normal,false,1
+2026-10-06,25536840,Soul Warden,mm3,Normal,false,0
+2026-10-06,25536840,Spirited Companion,cmm,Normal,false,0
+2026-10-06,25536840,Spirited Companion,plst,Normal,false,1
+2026-10-06,25536840,Swords to Plowshares,dmr,Normal,false,1
+2026-10-06,25536840,Swords to Plowshares,msc,Normal,false,0
+2026-10-06,25536840,The Echoverse Fulcrum,fra,Normal,false,0
+2026-10-06,25536840,The Echoverse Fulcrum,fra,Normal,true,1
+2026-10-06,25536840,Tocasia's Welcome,bro,Normal,false,1
+2026-10-06,25536840,Tocasia's Welcome,soc,Normal,false,0
+2026-10-06,25536840,Wall of Omens,plst,Normal,false,1
+2026-10-06,25536840,Wall of Omens,tdc,Normal,false,0
+2026-10-06,25536840,Welcoming Vampire,tdc,Normal,false,0
+2026-10-06,25536840,Welcoming Vampire,vow,Normal,false,1
+2026-10-06,25536840,Whitemane Lion,dmr,Normal,false,0
+2026-10-06,25536840,Whitemane Lion,plc,Normal,false,1
+2026-10-06,26722467,Aerial Responder,c20,Normal,false,0
+2026-10-06,26722467,Aerial Responder,kld,Normal,true,1
+2026-10-06,26722467,Agatha's Soul Cauldron,woe,Normal,false,0
+2026-10-06,26722467,Agatha's Soul Cauldron,woe,Normal,true,1
+2026-10-06,26722467,"Agent Bishop, Man in Black",tmt,Normal,false,0
+2026-10-06,26722467,"Agent Bishop, Man in Black",tmt,Normal,true,1
+2026-10-06,26722467,"Anim Pakal, Thousandth Moon",lci,Normal,false,0
+2026-10-06,26722467,"Anim Pakal, Thousandth Moon",lci,Normal,true,1
+2026-10-06,26722467,Arid Mesa,mh2,Normal,true,1
+2026-10-06,26722467,Avatar's Wrath,tla,Normal,false,0
+2026-10-06,26722467,Avatar's Wrath,tla,Normal,true,1
+2026-10-06,26722467,Beast Within,cmr,Normal,false,1
+2026-10-06,26722467,Beast Within,msc,Normal,false,0
+2026-10-06,26722467,Bigger on the Inside,who,Normal,false,0
+2026-10-06,26722467,Bigger on the Inside,who,Normal,true,1
+2026-10-06,26722467,"Boseiju, Who Endures",neo,Normal,true,1
+2026-10-06,26722467,Bountiful Promenade,clb,Normal,true,1
+2026-10-06,26722467,Call Forth the Tempest,hoc,Normal,true,1
+2026-10-06,26722467,Call Forth the Tempest,ltc,Normal,false,0
+2026-10-06,26722467,Champion of Lambholt,moc,Normal,false,0
+2026-10-06,26722467,Champion of Lambholt,ncc,Normal,false,1
+2026-10-06,26722467,Chaos Warp,c20,Normal,false,1
+2026-10-06,26722467,Chaos Warp,msc,Normal,false,0
+2026-10-06,26722467,Clifftop Retreat,tdc,Normal,true,1
+2026-10-06,26722467,Command Tower,c17,Normal,false,1
+2026-10-06,26722467,Commander Liara Portyr,clb,Normal,false,0
+2026-10-06,26722467,Commander Liara Portyr,clb,Normal,true,1
+2026-10-06,26722467,Commercial District,mkm,Normal,true,1
+2026-10-06,26722467,Dispatch,eoc,Normal,true,1
+2026-10-06,26722467,Dispatch,msc,Normal,false,0
+2026-10-06,26722467,Esper Sentinel,h2r,Normal,false,0
+2026-10-06,26722467,Esper Sentinel,mh2,Normal,true,1
+2026-10-06,26722467,Exotic Orchard,c21,Normal,false,1
+2026-10-06,26722467,Exploration,dmr,Normal,false,0
+2026-10-06,26722467,Exploration,dmr,Normal,true,1
+2026-10-06,26722467,Falcon and Redwing,msc,Normal,false,0
+2026-10-06,26722467,Falcon and Redwing,msc,Normal,true,1
+2026-10-06,26722467,Farseek,ltc,Normal,false,1
+2026-10-06,26722467,Farseek,pf27,Normal,false,0
+2026-10-06,26722467,Forest,otj,Foil,false,3
+2026-10-06,26722467,Forest,snc,Normal,false,0
+2026-10-06,26722467,Generous Gift,blc,Normal,false,1
+2026-10-06,26722467,Generous Gift,msc,Normal,false,0
+2026-10-06,26722467,Germination Practicum,sos,Normal,false,0
+2026-10-06,26722467,Germination Practicum,sos,Normal,true,1
+2026-10-06,26722467,Guff Rewrites History,cmm,Normal,false,0
+2026-10-06,26722467,Guff Rewrites History,cmm,Normal,true,1
+2026-10-06,26722467,"Halana and Alena, Partners",fdn,Normal,false,0
+2026-10-06,26722467,"Halana and Alena, Partners",fdn,Normal,true,1
+2026-10-06,26722467,Healer's Hawk,fdn,Foil,false,1
+2026-10-06,26722467,Healer's Hawk,fdn,Normal,false,0
+2026-10-06,26722467,Heartwood Crafter // Soul Tether,fra,Normal,false,0
+2026-10-06,26722467,Heartwood Crafter // Soul Tether,fra,Normal,true,1
+2026-10-06,26722467,Hushwood Verge,dsk,Normal,false,1
+2026-10-06,26722467,Improvisation Capstone,sos,Normal,false,0
+2026-10-06,26722467,Improvisation Capstone,sos,Normal,true,1
+2026-10-06,26722467,Jetmir's Garden,snc,Normal,true,1
+2026-10-06,26722467,Kodama of the West Tree,j25,Normal,false,0
+2026-10-06,26722467,Kodama of the West Tree,neo,Normal,false,1
+2026-10-06,26722467,"Laelia, the Blade Reforged",mh3,Normal,true,1
+2026-10-06,26722467,"Laelia, the Blade Reforged",soc,Normal,false,0
+2026-10-06,26722467,Lush Portico,mkm,Normal,true,1
+2026-10-06,26722467,Mosswort Bridge,c18,Normal,false,1
+2026-10-06,26722467,Mosswort Bridge,tdc,Normal,false,0
+2026-10-06,26722467,Mountain,otj,Foil,false,2
+2026-10-06,26722467,Mountain,trk,Normal,false,1
+2026-10-06,26722467,Overgrown Farmland,inr,Normal,true,1
+2026-10-06,26722467,"Ozolith, the Shattered Spire",mom,Foil,false,1
+2026-10-06,26722467,"Ozolith, the Shattered Spire",soc,Normal,false,0
+2026-10-06,26722467,Path to Exile,frc,Normal,false,0
+2026-10-06,26722467,Path to Exile,who,Normal,false,1
+2026-10-06,26722467,Plains,otj,Foil,false,3
+2026-10-06,26722467,Plateau,3ed,Normal,true,1
+2026-10-06,26722467,Rockfall Vale,inr,Normal,true,1
+2026-10-06,26722467,Rootbound Crag,tdc,Normal,true,1
+2026-10-06,26722467,Sacred Foundry,rvr,Normal,true,1
+2026-10-06,26722467,Savannah,3ed,Normal,true,1
+2026-10-06,26722467,Share the Spoils,afc,Normal,false,0
+2026-10-06,26722467,Share the Spoils,afc,Normal,true,1
+2026-10-06,26722467,Sovereign Okinec Ahau,lci,Normal,false,0
+2026-10-06,26722467,Sovereign Okinec Ahau,lci,Normal,true,1
+2026-10-06,26722467,Speaker of the Heavens,m21,Normal,false,0
+2026-10-06,26722467,Speaker of the Heavens,plst,Normal,false,1
+2026-10-06,26722467,Spectator Seating,cmm,Normal,true,1
+2026-10-06,26722467,Spire Garden,clb,Normal,true,1
+2026-10-06,26722467,Stomping Ground,rvr,Normal,true,1
+2026-10-06,26722467,Studious First-Year // Rampant Growth,sos,Normal,false,0
+2026-10-06,26722467,Studious First-Year // Rampant Growth,sos,Normal,true,1
+2026-10-06,26722467,Sunbillow Verge,dft,Normal,true,1
+2026-10-06,26722467,Sundown Pass,inr,Normal,true,1
+2026-10-06,26722467,Sunpetal Grove,tdc,Normal,true,1
+2026-10-06,26722467,Suspend Aggression,sos,Normal,false,0
+2026-10-06,26722467,Suspend Aggression,sos,Normal,true,1
+2026-10-06,26722467,Swords to Plowshares,brc,Normal,false,1
+2026-10-06,26722467,Swords to Plowshares,frc,Normal,false,0
+2026-10-06,26722467,Taiga,3ed,Normal,true,1
+2026-10-06,26722467,Temple Garden,rvr,Normal,true,1
+2026-10-06,26722467,The Ooze,tmt,Normal,false,0
+2026-10-06,26722467,The Ooze,tmt,Normal,true,1
+2026-10-06,26722467,Thornspire Verge,dsk,Normal,true,1
+2026-10-06,26722467,Thundering Raiju,neo,Foil,false,1
+2026-10-06,26722467,Thundering Raiju,neo,Normal,false,0
+2026-10-06,26722467,Utopia Sprawl,pf26,Foil,false,0
+2026-10-06,26722467,Utopia Sprawl,wot,Foil,false,1
+2026-10-06,26722467,Wild Wasteland,pip,Normal,false,0
+2026-10-06,26722467,Wild Wasteland,pip,Normal,true,1
+2026-10-06,26722467,Windswept Heath,mh3,Normal,true,1
+2026-10-06,26722467,Wooded Foothills,mh3,Normal,true,1
+2026-10-06,26722467,"Yavimaya, Cradle of Growth",mh2,Normal,true,1
+2026-10-06,26722467,Yotian Dissident,bro,Normal,false,0
+2026-10-06,26722467,Yotian Dissident,bro,Normal,true,1
