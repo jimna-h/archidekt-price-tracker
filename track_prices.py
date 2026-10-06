@@ -28,7 +28,8 @@ import os
 import re
 import sys
 import time
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
 from requests import RequestException, Session
@@ -44,6 +45,7 @@ DECKS_PATH = os.path.join(DATA_DIR, "decks.csv")
 CARDS_PATH = os.path.join(DATA_DIR, "cards.csv")
 LEGACY_PRICES_PATH = os.path.join(DATA_DIR, "prices.csv")  # old single-file format, migrated on sight
 PRUNE_AFTER_DAYS = 10
+TIMEZONE = ZoneInfo("America/Denver")  # snapshot dates are Mountain time
 PROXY_TAG = "proxied"  # color tag name (any capitalization) that marks a card as a proxy
 
 # Archidekt's price keys -> CSV column names
@@ -398,7 +400,7 @@ def main():
     if not folder_id:
         sys.exit("Give a folder id: python track_prices.py <folder_id> (or set ARCHIDEKT_FOLDER_ID)")
 
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(TIMEZONE).strftime("%Y-%m-%d")
     deck_ids = get_deck_ids(folder_id)
     print(f"Folder {folder_id}: {len(deck_ids)} deck(s): {deck_ids}")
     if not deck_ids:

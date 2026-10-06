@@ -18,7 +18,7 @@ Builds on the Archidekt API approach from [LandBase](https://github.com/jimna-h/
 1. Find your folder's id — it's the number in the folder URL, e.g. `https://archidekt.com/folders/781767` → `781767`. The folder and its decks must be **public**.
 2. In this repo on GitHub: **Settings → Secrets and variables → Actions → Variables → New repository variable**, name `ARCHIDEKT_FOLDER_ID`, value your folder id.
 3. **Settings → Actions → General → Workflow permissions**: choose **Read and write permissions** (so the action can commit the CSV).
-4. Run it once by hand from the **Actions** tab ("Daily snapshot" → *Run workflow*) to check it works. After that it runs daily at 13:17 UTC.
+4. Run it once by hand from the **Actions** tab ("Daily snapshot" → *Run workflow*) to check it works. After that it runs every morning (13:17 UTC, which is 7:17am Mountain in summer and 6:17am in winter). Snapshot dates are Mountain time.
 
 Only decks directly inside the folder are tracked; subfolders are ignored.
 
