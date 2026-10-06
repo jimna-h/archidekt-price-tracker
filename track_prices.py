@@ -31,7 +31,7 @@ import time
 from datetime import date, datetime, timedelta, timezone
 
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import RequestException, Session
 
 API = "https://archidekt.com/api"
 SITE = "https://archidekt.com"
@@ -78,10 +78,18 @@ session.headers.update({"User-Agent": "Mozilla/5.0 (archidekt-price-tracker)"})
 
 
 def get(url, **kwargs):
-    """GET with a few retries, since a daily job shouldn't die on one hiccup."""
-    for attempt in range(4):
-        response = session.get(url, timeout=30, **kwargs)
-        if response.status_code == 429 or response.status_code >= 500:
+    """GET with retries, since a daily job shouldn't die on one hiccup. Retries rate limits,
+    server errors and dropped connections, waiting 5s, 10s, 20s, 40s between tries."""
+    for attempt in range(5):
+        try:
+            response = session.get(url, timeout=30, **kwargs)
+        except RequestException as error:
+            if attempt == 4:
+                raise
+            print(f"  retrying {url} after {type(error).__name__}")
+            time.sleep(2 ** attempt * 5)
+            continue
+        if (response.status_code == 429 or response.status_code >= 500) and attempt < 4:
             time.sleep(2 ** attempt * 5)
             continue
         return response
