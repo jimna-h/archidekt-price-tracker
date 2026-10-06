@@ -192,6 +192,8 @@
   .ix-bar { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 16px 18px; margin-bottom: 16px; }
   .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .filters input[type=search], .filters input[type=text] { min-width: 0; flex: 1 1 170px; max-width: 280px; }
+  #ixSets { flex-basis: 150px; max-width: 200px; text-transform: uppercase; }
+  #ixSets::placeholder { text-transform: none; }
   .pip { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 700; color: #15171c; flex: none; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
   .pip.W { background: #f2e8c9; } .pip.U { background: #a9d0ee; } .pip.B { background: #bdb6b0; }
   .pip.R { background: #f0a184; } .pip.G { background: #9ccfa7; } .pip.C { background: #d9d8d4; }
@@ -367,7 +369,7 @@
         <div class="ctoggles" id="ixColors" title="Color identity (shows cards with any selected color)"></div>
         <details class="dd" id="ixTypeDD"><summary>Type <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <input type="text" id="ixSubtype" placeholder="Subtype, e.g. Bird" aria-label="Subtype">
-        <details class="dd" id="ixSetDD"><summary>Sets <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
+        <input type="text" id="ixSets" placeholder="Sets, e.g. SLD, LTR" aria-label="Set codes" autocomplete="off" spellcheck="false">
         <details class="dd" id="ixDeckDD"><summary>Decks <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <select id="ixMatch" aria-label="Which selected decks" hidden>
           <option value="any">In any selected deck</option>
@@ -400,7 +402,7 @@
           <tbody></tbody>
         </table>
       </div>
-      <div class="note">Sets lists the printings you play, with copy counts when there's more than one. Choosing sets in the Sets filter limits everything, copies, decks and prices included, to cards from those sets. Price is per copy, from the store chosen in "Prices from". If you play more than one printing of a card, it shows the cheapest. Bold decks run the card as a commander; dashed ones run it as a proxy.</div>
+      <div class="note">Sets lists the printings you play, with copy counts when there's more than one. Typing set codes in the Sets box (separated by commas or spaces) limits everything, copies, decks and prices included, to cards from those sets. A partial code matches every set starting with it, so "MH" covers MH1, MH2 and MH3. Price is per copy, from the store chosen in "Prices from". If you play more than one printing of a card, it shows the cheapest. Bold decks run the card as a commander; dashed ones run it as a proxy.</div>
     </div>
   </section>
 
@@ -1085,7 +1087,7 @@
       const cmds = commandersOf.get(d.id) || new Set();
       for (const r of d.rows) {
         // with a set filter on, only copies from those sets count
-        if (ix.sets.size && !ix.sets.has(r.set_code.toUpperCase())) continue;
+        if (setFilter && !setFilter.has(r.set_code.toUpperCase())) continue;
         let c = byName.get(r.card_name);
         if (!c) {
           const info = cardInfo.get(r.card_name) || {};
@@ -1110,12 +1112,27 @@
       setList: [...c.sets.keys()].sort().join(", ") }));
   }
   // Every set you play, with how many copies come from it (for the Sets dropdown).
+  // Typed codes -> the set codes they cover. An exact code matches itself; otherwise it
+  // matches every set you play that starts with it ("MH" -> MH1, MH2, MH3).
+  let setFilter = null;
+  function resolveSets() {
+    if (!ix.sets.size) { setFilter = null; return { matched: [], unknown: [] }; }
+    const all = setCounts().map(([set]) => set), matched = new Set(), unknown = [];
+    for (const t of ix.sets) {
+      const hits = all.includes(t) ? [t] : all.filter(x => x.startsWith(t));
+      hits.length ? hits.forEach(h => matched.add(h)) : unknown.push(t);
+    }
+    setFilter = matched;
+    return { matched: [...matched].sort(), unknown };
+  }
+  let setCountsCache = null;
   function setCounts() {
+    if (setCountsCache) return setCountsCache;
     const m = new Map();
     for (const d of realDecks()) if (!isStale(d)) for (const r of d.rows) {
       const set = r.set_code.toUpperCase(); m.set(set, (m.get(set) || 0) + r.qty);
     }
-    return [...m].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    return setCountsCache = [...m].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   }
   function ixMatches(c) {
     if (ix.search && !c.name.toLowerCase().includes(ix.search)) return false;
@@ -1140,9 +1157,7 @@
       `<label><input type="checkbox" value="${t}" ${ix.types.has(t) ? "checked" : ""}> ${t}</label>`).join("") || `<div class="muted">Nothing yet</div>`;
     const tb = $("ixTypeDD").querySelector(".count-badge"); tb.hidden = !ix.types.size; tb.textContent = ix.types.size;
     fillDeckDropdown($("ixDeckDD"), ix.decks);
-    $("ixSetDD").querySelector(".panel").innerHTML = setCounts().map(([set, n]) =>
-      `<label><input type="checkbox" value="${esc(set)}" ${ix.sets.has(set) ? "checked" : ""}> <span class="set-code">${esc(set)}</span> <span class="muted">${n} ${n === 1 ? "copy" : "copies"}</span></label>`).join("");
-    const sb = $("ixSetDD").querySelector(".count-badge"); sb.hidden = !ix.sets.size; sb.textContent = ix.sets.size;
+    const sets = resolveSets();
     $("ixMatch").hidden = ix.decks.size < 2; $("ixMatch").value = ix.match;
     $("ixColors").innerHTML = "WUBRGC".split("").map(k =>
       `<button data-c="${k}" aria-pressed="${ix.colors.has(k)}" title="${{ W: "White", U: "Blue", B: "Black", R: "Red", G: "Green", C: "Colorless" }[k]}"><span class="pip ${k}">${k}</span></button>`).join("");
@@ -1150,7 +1165,9 @@
     const all = indexCards(), list = sortBy(all.filter(ixMatches), ixSort);
     const copies = list.reduce((s, c) => s + c.qty, 0);
     $("ixResult").textContent = `Showing ${list.length} of ${all.length} cards (${copies} copies)` +
-      (ix.sets.size ? ` from ${[...ix.sets].sort().join(", ")}` : "") + ` in the ${fmtDate(latestDate)} snapshot` +
+      (ix.sets.size ? (sets.matched.length ? ` from ${sets.matched.join(", ")}` : ` from no set you play`) : "") +
+      (sets.unknown.length ? ` (none of your cards are from ${sets.unknown.join(", ")})` : "") +
+      ` in the ${fmtDate(latestDate)} snapshot` +
       (cardInfo.size ? "" : ". Card types and colors arrive with the next daily run.");
     const MAX = 400;
     $("indexTable").tBodies[0].innerHTML = list.slice(0, MAX).map(c => `
@@ -1202,11 +1219,12 @@
     ix.colors.has(b.dataset.c) ? ix.colors.delete(b.dataset.c) : ix.colors.add(b.dataset.c); renderIndex();
   });
   $("ixTypeDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? ix.types.add(v) : ix.types.delete(v); renderIndex(); });
-  $("ixSetDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? ix.sets.add(v) : ix.sets.delete(v); renderIndex(); });
+  const parseSets = text => new Set(text.toUpperCase().split(/[\s,;]+/).map(x => x.replace(/[^A-Z0-9]/g, "")).filter(Boolean));
+  $("ixSets").addEventListener("input", e => { ix.sets = parseSets(e.target.value); renderIndex(); });
   $("ixDeckDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? ix.decks.add(v) : ix.decks.delete(v); renderIndex(); });
   $("ixClear").addEventListener("click", () => {
     Object.assign(ix, { search: "", subtype: "", commanders: false, proxies: false, match: "any" }); ix.colors.clear(); ix.types.clear(); ix.sets.clear(); ix.decks.clear();
-    $("ixSearch").value = $("ixSubtype").value = ""; $("ixCommanders").checked = $("ixProxies").checked = false; renderIndex();
+    $("ixSearch").value = $("ixSubtype").value = $("ixSets").value = ""; $("ixCommanders").checked = $("ixProxies").checked = false; renderIndex();
   });
   document.addEventListener("click", e => document.querySelectorAll("details.dd[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));
 
@@ -1306,7 +1324,7 @@
     // put the form controls in step with the state
     $("deckSortSel").value = deckSort.k;
     document.querySelectorAll(".px-store").forEach(c => c.checked = px.stores.has(c.value));
-    $("ixSearch").value = ix.search; $("ixSubtype").value = ix.subtype;
+    $("ixSearch").value = ix.search; $("ixSubtype").value = ix.subtype; $("ixSets").value = [...ix.sets].join(", ");
     $("ixCommanders").checked = ix.commanders; $("ixProxies").checked = ix.proxies;
     lastNav = view + "|" + (view === "pricesView" ? selected : "");
   }
