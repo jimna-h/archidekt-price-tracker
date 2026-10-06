@@ -1,11 +1,11 @@
-deck_id,deck_name,commanders,first_seen,last_seen
-4279849,1. Life is a Scry-way,"Trelasarra, Moon Dancer",2026-10-05,2026-10-06
-5005670,2. Can't Block This,"Ikra Shidiqi, the Usurper | Malcolm, Keen-Eyed Navigator",2026-10-05,2026-10-06
-5714358,3. Hungry Detectives,Sarah Jane Smith | The Fourth Doctor,2026-10-05,2026-10-06
-5969200,"4. John ""Before Damage"" Benton",Sergeant John Benton,2026-10-05,2026-10-06
-6482039,5. Bring Out Your Dead,"Tom, Bert, and William",2026-10-05,2026-10-06
-16293254,6. Bear Necessities,"Lumra, Bellow of the Woods",2026-10-05,2026-10-06
-17493352,7. The Royal Syphon,"Tymna the Weaver | Kediss, Emberclaw Familiar",2026-10-05,2026-10-06
-24974478,8. i literally hate their faces,"Sash and Waistcoat, Unmen",2026-10-05,2026-10-06
-25536840,9. Fastidious and precise,The Queen of Dale,2026-10-05,2026-10-06
-26722467,10. wait let him cook,"Rocco, Street Chef",2026-10-05,2026-10-06
+deck_id,deck_name,commanders,commander_ids,first_seen,last_seen
+4279849,1. Life is a Scry-way,"Trelasarra, Moon Dancer",f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5,2026-10-05,2026-10-06
+5005670,2. Can't Block This,"Ikra Shidiqi, the Usurper | Malcolm, Keen-Eyed Navigator",460165df-32db-4773-805e-edd6f18af5d6 | cfcb3051-161f-42f8-bfec-db03b349ff00,2026-10-05,2026-10-06
+5714358,3. Hungry Detectives,Sarah Jane Smith | The Fourth Doctor,5f1a86e0-413c-45a0-a4c0-d85fe74361c1 | d7ae754d-33a2-4a07-8b10-fe4dda9af745,2026-10-05,2026-10-06
+5969200,"4. John ""Before Damage"" Benton",Sergeant John Benton,26393e65-d137-4c36-ba39-6da7e32b16d0,2026-10-05,2026-10-06
+6482039,5. Bring Out Your Dead,"Tom, Bert, and William",1bc9137e-a1e0-4412-8034-8471ae308bc7,2026-10-05,2026-10-06
+16293254,6. Bear Necessities,"Lumra, Bellow of the Woods",b43b3c33-aa44-4001-87ff-695bf04f51be,2026-10-05,2026-10-06
+17493352,7. The Royal Syphon,"Tymna the Weaver | Kediss, Emberclaw Familiar",bc7cbe9b-324e-42b8-94e2-36e91cb32163 | aa1c4ada-a218-4701-a293-ae6cbbe5c4d8,2026-10-05,2026-10-06
+24974478,8. i literally hate their faces,"Sash and Waistcoat, Unmen",7ee28c45-01c4-4f15-83d5-ede29f05a256,2026-10-05,2026-10-06
+25536840,9. Fastidious and precise,The Queen of Dale,7d635dfb-0a48-4965-82d1-d98f943bb28d,2026-10-05,2026-10-06
+26722467,10. wait let him cook,"Rocco, Street Chef",421c2ed3-be60-4814-a82c-a0e3fbb97e63,2026-10-05,2026-10-06
