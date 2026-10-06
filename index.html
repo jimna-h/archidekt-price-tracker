@@ -91,6 +91,9 @@
 
   /* ---------- tabs ---------- */
   .tabbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 20px; }
+  .tablinks { display: flex; gap: 4px 12px; align-items: center; flex-wrap: wrap; }
+  a.ghost { font-size: 14px; color: var(--text-secondary); padding: 6px 8px; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--axis); }
+  a.ghost:hover { color: var(--text-primary); }
   .tabs { display: inline-flex; gap: 2px; padding: 3px; background: var(--grid); border-radius: 10px; }
   .tabs button { font: inherit; font-weight: 500; font-size: 15px; color: var(--text-secondary); background: none; border: 0; border-radius: 8px; padding: 6px 16px; cursor: pointer; }
   .tabs button:hover { color: var(--text-primary); }
@@ -345,7 +348,11 @@
     <button role="tab" data-view="proxyView" aria-selected="false">Proxies</button>
     <button role="tab" data-view="indexView" aria-selected="false">Search all decks</button>
   </nav>
-  <button class="ghost" id="copyLink" title="Copies a link to exactly what you're looking at, filters included">Copy link</button>
+  <div class="tablinks">
+    <a class="ghost" id="hqLink" target="_blank" rel="noopener" hidden
+       title="Opens EDH Hipster Quotient with every current deck's commanders filled in">Hipster Quotient ↗</a>
+    <button class="ghost" id="copyLink" title="Copies a link to exactly what you're looking at, filters included">Copy link</button>
+  </div>
   </div>
 
   <section id="proxyView" hidden>
@@ -657,6 +664,7 @@
     $("subtitle").textContent = `${current} deck${current === 1 ? "" : "s"}, last snapshot ${fmtDate(latestDate)}` +
       (dates.length > 1 ? `, history since ${fmtDate(dates[0])}` : "");
     $("tabs").hidden = false;
+    setHipsterLink();
     applyUrl();
     urlReady = true;
     history.replaceState(null, "", buildUrl());
@@ -1328,6 +1336,22 @@
   // close open dropdowns on outside clicks; composedPath() still knows where the click
   // started even if that element was just redrawn
   document.addEventListener("click", e => { const path = e.composedPath(); document.querySelectorAll("details.dd[open]").forEach(d => { if (!path.includes(d)) d.open = false; }); });
+
+  // ---------- EDH Hipster Quotient ----------
+  // Sends every current deck's commanders over in its link: one "c" per deck, "|" between
+  // partners (see that project's README).
+  const HQ_URL = "https://jimna-h.github.io/edhrec-hipster-quotient/";
+  function setHipsterLink() {
+    const q = new URLSearchParams();
+    for (const d of sortBy(realDecks().filter(d => !isStale(d)), { k: "name", dir: 1 })) {
+      const cmds = [...(commandersOf.get(d.id) || [])].slice(0, 2);
+      if (cmds.length) q.append("c", cmds.join("|"));
+    }
+    const n = q.getAll("c").length;
+    $("hqLink").hidden = !n;
+    $("hqLink").href = HQ_URL + "#" + q.toString().replace(/%7C/g, "|");
+    $("hqLink").title = `Opens EDH Hipster Quotient with the commanders of your ${n} deck${n === 1 ? "" : "s"} filled in`;
+  }
 
   // ---------- shareable links ----------
   // The address holds the tab plus that tab's deck and filters, e.g.
