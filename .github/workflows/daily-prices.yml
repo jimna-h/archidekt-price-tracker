@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   snapshot:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04     # pinned so the Ubuntu 26 switch (Oct 19, 2026) can't break the job
     steps:
       - uses: actions/checkout@v5
 
