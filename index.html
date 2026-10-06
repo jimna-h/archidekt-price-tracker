@@ -201,7 +201,6 @@
   .ctoggles { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--raised); }
   .ctoggles button { padding: 3px; border-radius: 50%; border: 0; background: none; cursor: pointer; opacity: 0.45; filter: saturate(0.6); }
   .ctoggles button:hover { opacity: 0.8; }
-  .ctoggles button[aria-pressed="true"] { opacity: 1; filter: none; box-shadow: 0 0 0 2px var(--series-1); }
   details.dd { position: relative; }
   details.dd summary { list-style: none; cursor: pointer; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; min-height: 36px; display: flex; align-items: center; gap: 6px; background: var(--surface); font-size: 15px; }
   details.dd summary::after { content: "▾"; color: var(--text-muted); font-size: 12px; }
@@ -210,6 +209,19 @@
   #ixDeckDD .panel { left: auto; right: 0; }
   details.dd .panel label { display: flex; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 6px; white-space: nowrap; cursor: pointer; font-size: 15px; }
   details.dd .panel label:hover { background: var(--hover); }
+  .ctoggles button[data-state="in"] { opacity: 1; filter: none; box-shadow: 0 0 0 2px var(--series-1); }
+  .ctoggles button[data-state="out"] { opacity: 1; filter: none; position: relative; box-shadow: 0 0 0 2px var(--down); }
+  .ctoggles button[data-state="out"]::after { content: ""; position: absolute; left: 2px; right: 2px; top: 50%; height: 2px; margin-top: -1px; background: var(--down); transform: rotate(-45deg); border-radius: 1px; }
+  .tri-hint { font-size: 12px; color: var(--text-muted); padding: 4px 8px 6px; }
+  button.tri { display: flex; gap: 8px; align-items: center; width: 100%; text-align: left; font: inherit; font-size: 15px; color: inherit; background: none; border: 0; padding: 5px 8px; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+  button.tri:hover { background: var(--hover); }
+  button.tri .box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--axis); display: grid; place-items: center; font-size: 12px; font-weight: 700; line-height: 1; flex: none; }
+  button.tri[data-state="in"] .box { background: var(--series-1); border-color: var(--series-1); color: #fff; }
+  button.tri[data-state="in"] .box::after { content: "✓"; }
+  button.tri[data-state="out"] .box { border-color: var(--down); color: var(--down); }
+  button.tri[data-state="out"] .box::after { content: "✕"; }
+  button.tri[data-state="out"] { color: var(--text-secondary); text-decoration: line-through; text-decoration-color: var(--down); }
+  .count-badge.not { background: var(--down); }
   .count-badge { font-size: 12px; background: var(--series-1); color: #fff; border-radius: 999px; padding: 0 7px; line-height: 18px; }
   label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--text-secondary); font-size: 15px; cursor: pointer; }
   button.ghost { font: inherit; font-size: 14px; color: var(--text-secondary); background: none; border: 0; padding: 6px 8px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--axis); }
@@ -372,20 +384,29 @@
     <div class="ix-bar">
       <div class="filters">
         <input type="search" id="ixSearch" placeholder="Card name, across every deck" aria-label="Search all decks by card name">
-        <div class="ctoggles" id="ixColors" title="Color identity (shows cards with any selected color)"></div>
+        <div class="ctoggles" id="ixColors"></div>
         <details class="dd" id="ixTypeDD"><summary>Type <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
-        <input type="text" id="ixSubtype" placeholder="Subtype, e.g. Bird" aria-label="Subtype">
-        <input type="text" id="ixSets" placeholder="Sets, e.g. SLD, LTR" aria-label="Set codes" autocomplete="off" spellcheck="false">
+        <input type="text" id="ixSubtype" placeholder="Subtypes, e.g. Elf -Druid" aria-label="Subtypes">
+        <input type="text" id="ixSets" placeholder="Sets, e.g. SLD -LTR" aria-label="Set codes" autocomplete="off" spellcheck="false">
         <details class="dd" id="ixDeckDD"><summary>Decks <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <select id="ixMatch" aria-label="Which selected decks" hidden>
           <option value="any">In any selected deck</option>
           <option value="every">In every selected deck</option>
         </select>
-        <label class="check"><input type="checkbox" id="ixCommanders"> Commanders only</label>
-        <label class="check"><input type="checkbox" id="ixProxies"> Proxied somewhere</label>
+        <select id="ixCommanders" aria-label="Commanders">
+          <option value="">Commanders or not</option>
+          <option value="only">Commanders only</option>
+          <option value="none">Not commanders</option>
+        </select>
+        <select id="ixProxies" aria-label="Proxies">
+          <option value="">Proxied or not</option>
+          <option value="only">Proxied somewhere</option>
+          <option value="none">Never proxied</option>
+        </select>
         <button class="ghost" id="ixClear">Clear filters</button>
       </div>
       <div class="result-line" id="ixResult"></div>
+      <div class="note">To leave something out: click a color, type or deck twice, or start a word with a minus sign. For example, "-sol" in the name box, "Elf -Druid" for subtypes, or "-SLD" for sets.</div>
     </div>
     <details class="ix-bar overlap" id="overlapBox">
       <summary><h3>Deck overlap</h3><span class="muted">How many cards each pair of decks shares, not counting basic lands. Select a number to list those cards.</span></summary>
@@ -1087,19 +1108,44 @@
   }
 
   // ---------- search all decks ----------
-  const ix = { search: "", colors: new Set(), types: new Set(), subtype: "", sets: new Set(), decks: new Set(), match: "any", commanders: false, proxies: false };
+  // Every filter can say "not":
+  //   colors / types / decks  Map(value -> "in" | "out"); clicking cycles off -> in -> out -> off
+  //   name search             a leading "-" excludes names containing the rest
+  //   subtype / sets          space- or comma-separated terms; a leading "-" excludes that term
+  //   commanders / proxies    "" (either), "only", or "none"
+  const ix = { search: "", colors: new Map(), types: new Map(), subtype: "", sets: [], decks: new Map(), match: "any", commanders: "", proxies: "" };
   let ixSort = { k: "decks", dir: -1 };
   const MAIN_TYPES = ["Creature", "Instant", "Sorcery", "Artifact", "Enchantment", "Planeswalker", "Battle", "Land", "Legendary", "Tribal", "Kindred"];
+  const COLOR_NAMES = { W: "White", U: "Blue", B: "Black", R: "Red", G: "Green", C: "Colorless" };
   const isBasic = name => (cardInfo.get(name)?.type_line || "").startsWith("Basic ");
+  const keysWith = (map, mode) => [...map].filter(([, m]) => m === mode).map(([k]) => k);
+  const cycle = (map, key) => { const m = map.get(key); m === "in" ? map.set(key, "out") : m === "out" ? map.delete(key) : map.set(key, "in"); };
+  // "elf -druid, bird" -> { yes: ["elf", "bird"], no: ["druid"] }
+  const splitTerms = text => {
+    const yes = [], no = [];
+    for (const t of text.split(/[\s,;]+/).filter(Boolean)) {
+      if (/^[-!]./.test(t)) no.push(t.slice(1)); else if (!/^[-!]$/.test(t)) yes.push(t);
+    }
+    return { yes, no };
+  };
+
+  // Card names in each current deck, for "not in deck X".
+  let deckNamesCache = null;
+  const namesInDeck = id => {
+    if (!deckNamesCache) deckNamesCache = new Map(realDecks().map(d => [d.id, new Set(d.rows.map(r => r.card_name))]));
+    return deckNamesCache.get(id) || new Set();
+  };
 
   function indexCards() {
-    const byName = new Map();
+    const byName = new Map(), inDecks = keysWith(ix.decks, "in");
     for (const d of realDecks()) {
-      if (isStale(d) || (ix.decks.size && !ix.decks.has(d.id))) continue;
+      if (isStale(d) || (inDecks.length && !inDecks.includes(d.id))) continue;
       const cmds = commandersOf.get(d.id) || new Set();
       for (const r of d.rows) {
-        // with a set filter on, only copies from those sets count
-        if (setFilter && !setFilter.has(r.set_code.toUpperCase())) continue;
+        // a set filter limits which copies count
+        const set = r.set_code.toUpperCase();
+        if (setFilter.yes && !setFilter.yes.has(set)) continue;
+        if (setFilter.no.has(set)) continue;
         let c = byName.get(r.card_name);
         if (!c) {
           const info = cardInfo.get(r.card_name) || {};
@@ -1112,7 +1158,7 @@
         c.qty += r.qty;
         // price = the cheapest printing among the ones you play
         c.printings.add(printKey(r));
-        const set = r.set_code.toUpperCase(); c.sets.set(set, (c.sets.get(set) || 0) + r.qty);
+        c.sets.set(set, (c.sets.get(set) || 0) + r.qty);
         const p = priceIn(r); if (p != null && (c.price == null || p < c.price)) c.price = p;
         const e = c.perDeck.get(d.id) || { qty: 0, cmd: false, proxy: false };
         e.qty += r.qty; e.cmd ||= cmds.has(r.card_name); e.proxy ||= isProxy(r);
@@ -1123,19 +1169,23 @@
     return [...byName.values()].map(c => ({ ...c, decks: c.perDeck.size,
       setList: [...c.sets.keys()].sort().join(", ") }));
   }
-  // Every set you play, with how many copies come from it (for the Sets dropdown).
-  // Typed codes -> the set codes they cover. An exact code matches itself; otherwise it
-  // matches every set you play that starts with it ("MH" -> MH1, MH2, MH3).
-  let setFilter = null;
+
+  // Typed set terms -> set codes. An exact code matches itself; otherwise it matches every
+  // set you play that starts with it ("MH" -> MH1, MH2, MH3). "-LTR" excludes.
+  let setFilter = { yes: null, no: new Set() };
   function resolveSets() {
-    if (!ix.sets.size) { setFilter = null; return { matched: [], unknown: [] }; }
-    const all = setCounts().map(([set]) => set), matched = new Set(), unknown = [];
-    for (const t of ix.sets) {
-      const hits = all.includes(t) ? [t] : all.filter(x => x.startsWith(t));
-      hits.length ? hits.forEach(h => matched.add(h)) : unknown.push(t);
-    }
-    setFilter = matched;
-    return { matched: [...matched].sort(), unknown };
+    const all = setCounts().map(([set]) => set), unknown = [];
+    const expand = (terms, label) => {
+      const out = new Set();
+      for (const t of terms) {
+        const hits = all.includes(t) ? [t] : all.filter(x => x.startsWith(t));
+        hits.length ? hits.forEach(h => out.add(h)) : unknown.push(label + t);
+      }
+      return out;
+    };
+    const { yes, no } = splitTerms(ix.sets.join(" "));
+    setFilter = { yes: yes.length ? expand(yes, "") : null, no: expand(no, "-") };
+    return { matched: setFilter.yes ? [...setFilter.yes].filter(x => !setFilter.no.has(x)).sort() : [], excluded: [...setFilter.no].sort(), unknown };
   }
   let setCountsCache = null;
   function setCounts() {
@@ -1146,39 +1196,69 @@
     }
     return setCountsCache = [...m].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   }
+
   function ixMatches(c) {
-    if (ix.search && !c.name.toLowerCase().includes(ix.search)) return false;
-    if (ix.subtype && !c.subtypes.toLowerCase().includes(ix.subtype)) return false;
-    if (ix.colors.size) {
-      const id = c.color || "";
-      if (![...ix.colors].some(k => k === "C" ? id === "" && c.color != null : id.includes(k))) return false;
+    const name = c.name.toLowerCase();
+    if (ix.search) {
+      const neg = /^[-!]/.test(ix.search), term = neg ? ix.search.slice(1) : ix.search;
+      if (term && name.includes(term) === neg) return false;
     }
-    if (ix.types.size && !c.types.some(t => ix.types.has(t))) return false;
-    if (ix.commanders && !c.commander) return false;
-    if (ix.proxies && !c.proxied) return false;
-    if (ix.match === "every" && ix.decks.size > 1 && c.perDeck.size < ix.decks.size) return false;
+    if (ix.subtype) {
+      const sub = c.subtypes.toLowerCase(), { yes, no } = splitTerms(ix.subtype);
+      if (yes.length && !yes.some(t => sub.includes(t))) return false;
+      if (no.some(t => sub.includes(t))) return false;
+    }
+    const id = c.color || "", hasColor = k => k === "C" ? id === "" && c.color != null : id.includes(k);
+    const colorsIn = keysWith(ix.colors, "in"), colorsOut = keysWith(ix.colors, "out");
+    if (colorsIn.length && !colorsIn.some(hasColor)) return false;
+    if (colorsOut.some(hasColor)) return false;
+    const typesIn = keysWith(ix.types, "in"), typesOut = keysWith(ix.types, "out");
+    if (typesIn.length && !c.types.some(t => typesIn.includes(t))) return false;
+    if (typesOut.some(t => c.types.includes(t))) return false;
+    if (keysWith(ix.decks, "out").some(id => namesInDeck(id).has(c.name))) return false;
+    const inDecks = keysWith(ix.decks, "in");
+    if (ix.match === "every" && inDecks.length > 1 && c.perDeck.size < inDecks.length) return false;
+    if (ix.commanders === "only" && !c.commander) return false;
+    if (ix.commanders === "none" && c.commander) return false;
+    if (ix.proxies === "only" && !c.proxied) return false;
+    if (ix.proxies === "none" && c.proxied) return false;
     return true;
   }
   const pipsHtml = id => id == null ? `<span class="muted">?</span>` :
     `<span class="pips">${(id || "C").split("").map(k => `<span class="pip ${k}">${k}</span>`).join("")}</span>`;
 
+  // Dropdown whose rows cycle off -> include -> exclude.
+  function triDropdown(dd, items, map) {
+    dd.querySelector(".panel").innerHTML = `<div class="tri-hint">Click once to include, twice to exclude</div>` +
+      (items.map(([v, label]) => {
+        const st = map.get(v) || "";
+        return `<button type="button" class="tri" data-v="${esc(v)}" data-state="${st}" role="checkbox"
+          aria-checked="${st === "in"}" aria-label="${esc(label)}${st === "out" ? ", excluded" : ""}"><span class="box"></span>${esc(label)}</button>`;
+      }).join("") || `<div class="muted">Nothing yet</div>`);
+    const nIn = keysWith(map, "in").length, nOut = keysWith(map, "out").length, badge = dd.querySelector(".count-badge");
+    badge.hidden = !map.size;
+    badge.textContent = nIn && nOut ? `${nIn} · not ${nOut}` : nOut ? `not ${nOut}` : nIn;
+    badge.classList.toggle("not", !nIn && nOut > 0);
+  }
+
   function renderIndex() {
     const typesPresent = new Set([...cardInfo.values()].flatMap(c => (c.type_line || "").split(" — ")[0].split(" ")));
-    const typePanel = $("ixTypeDD").querySelector(".panel");
-    typePanel.innerHTML = MAIN_TYPES.filter(t => typesPresent.has(t)).map(t =>
-      `<label><input type="checkbox" value="${t}" ${ix.types.has(t) ? "checked" : ""}> ${t}</label>`).join("") || `<div class="muted">Nothing yet</div>`;
-    const tb = $("ixTypeDD").querySelector(".count-badge"); tb.hidden = !ix.types.size; tb.textContent = ix.types.size;
-    fillDeckDropdown($("ixDeckDD"), ix.decks);
+    triDropdown($("ixTypeDD"), MAIN_TYPES.filter(t => typesPresent.has(t)).map(t => [t, t]), ix.types);
+    triDropdown($("ixDeckDD"), sortBy(realDecks().filter(d => !isStale(d)).map(d => ({ id: d.id, name: d.name })), { k: "name", dir: 1 }).map(d => [d.id, d.name]), ix.decks);
     const sets = resolveSets();
-    $("ixMatch").hidden = ix.decks.size < 2; $("ixMatch").value = ix.match;
-    $("ixColors").innerHTML = "WUBRGC".split("").map(k =>
-      `<button data-c="${k}" aria-pressed="${ix.colors.has(k)}" title="${{ W: "White", U: "Blue", B: "Black", R: "Red", G: "Green", C: "Colorless" }[k]}"><span class="pip ${k}">${k}</span></button>`).join("");
+    $("ixMatch").hidden = keysWith(ix.decks, "in").length < 2; $("ixMatch").value = ix.match;
+    $("ixColors").innerHTML = "WUBRGC".split("").map(k => {
+      const st = ix.colors.get(k) || "";
+      return `<button data-c="${k}" data-state="${st}" aria-pressed="${st === "in"}"
+        title="${COLOR_NAMES[k]}${st === "in" ? " (included)" : st === "out" ? " (excluded)" : ""}. Click to include, again to exclude."><span class="pip ${k}">${k}</span></button>`;
+    }).join("");
 
     const all = indexCards(), list = sortBy(all.filter(ixMatches), ixSort);
     const copies = list.reduce((s, c) => s + c.qty, 0);
     $("ixResult").textContent = `Showing ${list.length} of ${all.length} cards (${copies} copies)` +
-      (ix.sets.size ? (sets.matched.length ? ` from ${sets.matched.join(", ")}` : ` from no set you play`) : "") +
-      (sets.unknown.length ? ` (none of your cards are from ${sets.unknown.join(", ")})` : "") +
+      (sets.matched.length ? ` from ${sets.matched.join(", ")}` : setFilter.yes ? ` from no set you play` : "") +
+      (sets.excluded.length ? `, not from ${sets.excluded.join(", ")}` : "") +
+      (sets.unknown.length ? ` (no cards match ${sets.unknown.join(", ")})` : "") +
       ` in the ${fmtDate(latestDate)} snapshot` +
       (cardInfo.size ? "" : ". Card types and colors arrive with the next daily run.");
     const MAX = 400;
@@ -1217,35 +1297,43 @@
   }
   $("overlapGrid").addEventListener("click", e => {
     const b = e.target.closest("button[data-a]"); if (!b) return;
-    ix.decks = new Set([b.dataset.a, b.dataset.b]); ix.match = "every";
+    ix.decks = new Map([[b.dataset.a, "in"], [b.dataset.b, "in"]]); ix.match = "every";
     renderIndex();
     $("indexTable").scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   });
 
   $("ixSearch").addEventListener("input", e => { ix.search = e.target.value.trim().toLowerCase(); renderIndex(); });
   $("ixSubtype").addEventListener("input", e => { ix.subtype = e.target.value.trim().toLowerCase(); renderIndex(); });
-  $("ixCommanders").addEventListener("change", e => { ix.commanders = e.target.checked; renderIndex(); });
-  $("ixProxies").addEventListener("change", e => { ix.proxies = e.target.checked; renderIndex(); });
+  $("ixCommanders").addEventListener("change", e => { ix.commanders = e.target.value; renderIndex(); });
+  $("ixProxies").addEventListener("change", e => { ix.proxies = e.target.value; renderIndex(); });
   $("ixMatch").addEventListener("change", e => { ix.match = e.target.value; renderIndex(); });
   $("ixColors").addEventListener("click", e => {
     const b = e.target.closest("button[data-c]"); if (!b) return;
-    ix.colors.has(b.dataset.c) ? ix.colors.delete(b.dataset.c) : ix.colors.add(b.dataset.c); renderIndex();
+    cycle(ix.colors, b.dataset.c); renderIndex();
   });
-  $("ixTypeDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? ix.types.add(v) : ix.types.delete(v); renderIndex(); });
-  const parseSets = text => new Set(text.toUpperCase().split(/[\s,;]+/).map(x => x.replace(/[^A-Z0-9]/g, "")).filter(Boolean));
+  // keep the dropdown open (and focus on the same row) while clicking through states
+  for (const [dd, map] of [["ixTypeDD", () => ix.types], ["ixDeckDD", () => ix.decks]])
+    $(dd).addEventListener("click", e => {
+      const b = e.target.closest("button.tri"); if (!b) return;
+      cycle(map(), b.dataset.v); renderIndex();
+      $(dd).querySelector(`button.tri[data-v="${CSS.escape(b.dataset.v)}"]`)?.focus();
+    });
+  const parseSets = text => text.toUpperCase().split(/[\s,;]+/).map(x => x.replace(/[^A-Z0-9!-]/g, "")).filter(Boolean);
   $("ixSets").addEventListener("input", e => { ix.sets = parseSets(e.target.value); renderIndex(); });
-  $("ixDeckDD").addEventListener("change", e => { const v = e.target.value; e.target.checked ? ix.decks.add(v) : ix.decks.delete(v); renderIndex(); });
   $("ixClear").addEventListener("click", () => {
-    Object.assign(ix, { search: "", subtype: "", commanders: false, proxies: false, match: "any" }); ix.colors.clear(); ix.types.clear(); ix.sets.clear(); ix.decks.clear();
-    $("ixSearch").value = $("ixSubtype").value = $("ixSets").value = ""; $("ixCommanders").checked = $("ixProxies").checked = false; renderIndex();
+    Object.assign(ix, { search: "", subtype: "", sets: [], commanders: "", proxies: "", match: "any" });
+    ix.colors.clear(); ix.types.clear(); ix.decks.clear();
+    $("ixSearch").value = $("ixSubtype").value = $("ixSets").value = ""; $("ixCommanders").value = $("ixProxies").value = ""; renderIndex();
   });
-  document.addEventListener("click", e => document.querySelectorAll("details.dd[open]").forEach(d => { if (!d.contains(e.target)) d.open = false; }));
+  // close open dropdowns on outside clicks; composedPath() still knows where the click
+  // started even if that element was just redrawn
+  document.addEventListener("click", e => { const path = e.composedPath(); document.querySelectorAll("details.dd[open]").forEach(d => { if (!path.includes(d)) d.open = false; }); });
 
   // ---------- shareable links ----------
   // The address holds the tab plus that tab's deck and filters, e.g.
   //   #decks?deck=4279849&price=ck&on=2026-09-11&show=proxied&q=sol
   //   #proxies?decks=4279849,5005670&stores=tcg,ck,cm&sort=-best
-  //   #search?q=elf&colors=WG&types=Creature&decks=1,2&match=every&cmd=1&sort=-price
+  //   #search?q=elf&colors=W,G,-R&types=Creature,-Land&decks=1,-2&sets=SLD,-LTR&cmd=only&proxied=none
   // Switching tab or deck adds a history entry (so Back works); filter tweaks replace it.
   const VIEW_SLUG = { pricesView: "decks", proxyView: "proxies", indexView: "search" };
   const SLUG_VIEW = Object.fromEntries(Object.entries(VIEW_SLUG).map(([k, v]) => [v, k]));
@@ -1272,15 +1360,16 @@
       if ([...px.stores].sort().join(",") !== "ck,tcg") q.set("stores", [...px.stores].join(","));
       if (sortStr(pxSort) !== "best") q.set("sort", sortStr(pxSort));
     } else {
+      const modes = map => [...map].map(([k, m]) => (m === "out" ? "-" : "") + k).join(",");
       if (ix.search) q.set("q", ix.search);
-      if (ix.colors.size) q.set("colors", [...ix.colors].join(""));
-      if (ix.types.size) q.set("types", [...ix.types].join(","));
+      if (ix.colors.size) q.set("colors", modes(ix.colors));
+      if (ix.types.size) q.set("types", modes(ix.types));
       if (ix.subtype) q.set("sub", ix.subtype);
-      if (ix.sets.size) q.set("sets", [...ix.sets].join(","));
-      if (ix.decks.size) q.set("decks", [...ix.decks].join(","));
-      if (ix.decks.size > 1 && ix.match === "every") q.set("match", "every");
-      if (ix.commanders) q.set("cmd", "1");
-      if (ix.proxies) q.set("proxied", "1");
+      if (ix.sets.length) q.set("sets", ix.sets.join(","));
+      if (ix.decks.size) q.set("decks", modes(ix.decks));
+      if (keysWith(ix.decks, "in").length > 1 && ix.match === "every") q.set("match", "every");
+      if (ix.commanders) q.set("cmd", ix.commanders);
+      if (ix.proxies) q.set("proxied", ix.proxies);
       if (sortStr(ixSort) !== "-decks") q.set("sort", sortStr(ixSort));
     }
     const qs = q.toString().replace(/%2C/g, ",");
@@ -1306,8 +1395,8 @@
     selected = ALL; asOf = null; tagFilter = null; moverWindow = 30; $("search").value = "";
     Object.assign(deckSort, { k: "name", dir: 1 }); Object.assign(cardSort, { k: "total", dir: -1 });
     px.decks = new Set(); px.stores = new Set(["tcg", "ck"]); Object.assign(pxSort, { k: "best", dir: 1 });
-    Object.assign(ix, { search: "", subtype: "", match: "any", commanders: false, proxies: false });
-    ix.colors = new Set(); ix.types = new Set(); ix.sets = new Set(); ix.decks = new Set(); Object.assign(ixSort, { k: "decks", dir: -1 });
+    Object.assign(ix, { search: "", subtype: "", sets: [], match: "any", commanders: "", proxies: "" });
+    ix.colors = new Map(); ix.types = new Map(); ix.decks = new Map(); Object.assign(ixSort, { k: "decks", dir: -1 });
     const known = id => decks.has(id) && !decks.get(id).virtual;
 
     if (view === "pricesView") {
@@ -1324,21 +1413,25 @@
       if (st.length) px.stores = new Set(st);
       readSort(q.get("sort"), pxSort);
     } else {
+      // "W,-R" style lists ("-" = excluded); older links used "WG" for colors
+      const readModes = (str, ok = () => true) => new Map(csvList(str).map(x => x.startsWith("-") ? [x.slice(1), "out"] : [x, "in"]).filter(([k]) => ok(k)));
+      const colorStr = (q.get("colors") || "").toUpperCase();
+      ix.colors = readModes(/[,-]/.test(colorStr) ? colorStr : colorStr.split("").join(","), k => k in COLOR_NAMES);
       ix.search = (q.get("q") || "").toLowerCase();
-      ix.colors = new Set((q.get("colors") || "").toUpperCase().split("").filter(c => "WUBRGC".includes(c)));
-      ix.types = new Set(csvList(q.get("types")));
+      ix.types = readModes(q.get("types"));
       ix.subtype = (q.get("sub") || "").toLowerCase();
-      ix.sets = new Set(csvList(q.get("sets")).map(x => x.toUpperCase()));
-      ix.decks = new Set(csvList(q.get("decks")).filter(known));
+      ix.sets = csvList(q.get("sets")).map(x => x.toUpperCase());
+      ix.decks = readModes(q.get("decks"), known);
       ix.match = q.get("match") === "every" ? "every" : "any";
-      ix.commanders = q.get("cmd") === "1"; ix.proxies = q.get("proxied") === "1";
+      const tri = v => v === "1" || v === "only" ? "only" : v === "none" ? "none" : "";
+      ix.commanders = tri(q.get("cmd")); ix.proxies = tri(q.get("proxied"));
       readSort(q.get("sort"), ixSort);
     }
     // put the form controls in step with the state
     $("deckSortSel").value = deckSort.k;
     document.querySelectorAll(".px-store").forEach(c => c.checked = px.stores.has(c.value));
-    $("ixSearch").value = ix.search; $("ixSubtype").value = ix.subtype; $("ixSets").value = [...ix.sets].join(", ");
-    $("ixCommanders").checked = ix.commanders; $("ixProxies").checked = ix.proxies;
+    $("ixSearch").value = ix.search; $("ixSubtype").value = ix.subtype; $("ixSets").value = ix.sets.join(" ");
+    $("ixCommanders").value = ix.commanders; $("ixProxies").value = ix.proxies;
     lastNav = view + "|" + (view === "pricesView" ? selected : "");
   }
 
