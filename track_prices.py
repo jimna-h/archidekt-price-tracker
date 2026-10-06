@@ -10,7 +10,9 @@ identified by their Archidekt deck id. Each run writes:
                            it's seen, then only the entries that changed (quantity 0 = removed)
   data/card_prices/YYYY-MM.csv
                            one price row per printing per day, shared by every deck
-  data/decks.csv           one row per deck: latest name, commanders, first and last seen
+  data/decks.csv           one row per deck: latest name, commanders (with the Scryfall id of
+                           each commander's printing), first and last seen
+  data/folder.csv          the Archidekt folder id, so the page can link to it
   data/cards.csv           one row per card name: type line, mana value, color identity
 
 A deck missing from the folder for PRUNE_AFTER_DAYS days has all of its history deleted.
@@ -42,6 +44,7 @@ TOTALS_PATH = os.path.join(DATA_DIR, "totals.csv")
 DECKLISTS_PATH = os.path.join(DATA_DIR, "decklists.csv")
 CARD_PRICES_DIR = os.path.join(DATA_DIR, "card_prices")
 DECKS_PATH = os.path.join(DATA_DIR, "decks.csv")
+FOLDER_PATH = os.path.join(DATA_DIR, "folder.csv")
 CARDS_PATH = os.path.join(DATA_DIR, "cards.csv")
 LEGACY_PRICES_PATH = os.path.join(DATA_DIR, "prices.csv")  # old single-file format, migrated on sight
 PRUNE_AFTER_DAYS = 10
@@ -66,7 +69,7 @@ FIELDNAMES = [
     "proxied",
 ]
 
-DECK_FIELDNAMES = ["deck_id", "deck_name", "commanders", "first_seen", "last_seen"]
+DECK_FIELDNAMES = ["deck_id", "deck_name", "commanders", "commander_ids", "first_seen", "last_seen"]
 TOTAL_FIELDNAMES = ["date", "deck_id", "cards"] + [
     f"{src}_{part}" for src in ("tcg", "ck", "cm") for part in ("total", "paper", "proxy")]
 SOURCE_COLUMNS = {"tcg": "price_tcgplayer", "ck": "price_cardkingdom", "cm": "price_cardmarket"}
@@ -221,7 +224,8 @@ def fetch_deck(deck_id, today):
         oracle = card.get("oracleCard", {})
         infos.append(card_info(oracle))
         if categories and categories[0] in premier:
-            commanders.append(oracle.get("name", ""))
+            # keep the exact printing (its Scryfall id), so the page can show that art
+            commanders.append((oracle.get("name", ""), card.get("uid") or ""))
         foil = (entry.get("modifier") or "").lower() == "foil"
         prices = card.get("prices") or {}
         row = {
@@ -346,7 +350,8 @@ def write_deck_names(names, commanders, listed_ids, today):
         row["last_seen"] = today
         if deck_id in names:
             row["deck_name"] = names[deck_id]
-            row["commanders"] = " | ".join(commanders.get(deck_id, []))
+            row["commanders"] = " | ".join(name for name, _ in commanders.get(deck_id, []))
+            row["commander_ids"] = " | ".join(uid for _, uid in commanders.get(deck_id, []))
     write_csv(DECKS_PATH, DECK_FIELDNAMES, sorted(decks.values(), key=lambda d: int(d["deck_id"])))
 
 
@@ -430,6 +435,7 @@ def main():
     changed = write_decklists(rows, today, names.keys())
     write_card_prices(rows, today)
     write_deck_names(names, commanders, deck_ids, today)
+    write_csv(FOLDER_PATH, ["folder_id"], [{"folder_id": folder_id}])
     write_card_info(infos)
     pruned = prune_missing_decks(today)
     print(f"{today}: {len(rows)} card rows from {len(names)} decks, {changed} decklist changes"

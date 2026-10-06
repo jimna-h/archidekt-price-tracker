@@ -107,17 +107,26 @@
   .sidebar-head select { min-height: 30px; padding: 2px 26px 2px 8px; font-size: 14px; }
   .deck-list { display: grid; gap: 2px; max-height: calc(100vh - 120px); overflow-y: auto; padding: 2px; }
   .deck-item {
-    display: grid; grid-template-columns: 1fr auto; gap: 0 12px; text-align: left; width: 100%;
+    display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 0 12px; align-items: center; text-align: left; width: 100%;
     font: inherit; color: inherit; background: none; border: 0; border-radius: 10px; padding: 9px 12px; cursor: pointer;
   }
   .deck-item:hover { background: var(--hover); }
   .deck-item.sel { background: var(--surface); box-shadow: var(--shadow); }
+  .deck-item .thumb { grid-row: span 2; }
   .deck-item .dname { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .deck-item .dval { font-weight: 500; }
   .deck-item .dmeta { font-size: 13px; color: var(--text-muted); }
   .deck-item .ddelta { font-size: 13px; text-align: right; }
   .deck-item.stale { opacity: 0.6; }
   .deck-item.combined .dname { font-family: var(--serif); font-weight: 700; }
+  .thumb { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; display: flex; background: var(--raised); box-shadow: inset 0 0 0 1px var(--border); }
+  .thumb.none { background: none; box-shadow: none; }
+  .thumb img, .thumb .art-missing { width: 100%; height: 100%; object-fit: cover; display: block; flex: 1 1 0; min-width: 0; }
+  .thumb.pair img + img, .thumb.pair .art-missing + * { border-left: 1px solid var(--surface); }
+  .art-missing { background: var(--raised); }
+  .cmd-banner { display: flex; gap: 4px; height: 180px; margin: -28px -28px 20px; border-radius: 16px 16px 0 0; overflow: hidden; background: var(--raised); }
+  .cmd-banner img, .cmd-banner .art-missing { flex: 1 1 0; min-width: 0; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .cmd-names { color: var(--text-secondary); font-size: 15px; margin-top: 4px; }
   .deck-sep { height: 1px; background: var(--axis); margin: 8px 12px; }
 
   .panel-main { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 28px 28px 32px; min-width: 0; }
@@ -303,6 +312,7 @@
     .sidebar { position: static; }
     .deck-list { max-height: 320px; background: var(--raised); border-radius: 12px; padding: 4px; }
     .panel-main { padding: 20px 16px 24px; border-radius: 14px; }
+    .cmd-banner { margin: -20px -16px 16px; height: 140px; border-radius: 14px 14px 0 0; }
     .detail-head h2 { font-size: 26px; }
     .hero .big { font-size: 40px; }
   }
@@ -349,6 +359,7 @@
     <button role="tab" data-view="indexView" aria-selected="false">Search all decks</button>
   </nav>
   <div class="tablinks">
+    <a class="ghost" id="folderLink" target="_blank" rel="noopener" hidden title="Opens the tracked folder on Archidekt">Archidekt folder ↗</a>
     <a class="ghost" id="hqLink" target="_blank" rel="noopener" hidden
        title="Opens EDH Hipster Quotient with every current deck's commanders filled in">Hipster Quotient ↗</a>
     <button class="ghost" id="copyLink" title="Copies a link to exactly what you're looking at, filters included">Copy link</button>
@@ -465,10 +476,12 @@
 
       <div class="panel-main">
         <section>
+          <div class="cmd-banner" id="cmdBanner" hidden></div>
           <div class="detail-head">
             <h2 id="deckTitle">Deck</h2>
             <a id="deckLink" class="ext" target="_blank" rel="noopener">Open on Archidekt ↗</a>
           </div>
+          <div class="cmd-names" id="cmdNames" hidden></div>
           <div class="hero">
             <div><div class="lbl" id="heroLbl">Value</div><div class="big num" id="heroVal">–</div></div>
             <div><div class="lbl">Since first snapshot</div><div class="delta num" id="heroFirst">–</div></div>
@@ -613,7 +626,7 @@
 
   let dates = [], latestDate = null;
   let decks = new Map();              // id -> { id, name, virtual, totals: Map(date -> row), rows: [latest rows], log: [] }
-  let cardInfo = new Map(), commandersOf = new Map();
+  let cardInfo = new Map(), commandersOf = new Map(), commanderArt = new Map();
   const priceDays = new Map();         // date -> Map(printKey -> row)   (loaded months only)
   const loadedMonths = new Set();
   let selected = ALL, tagFilter = null, asOf = null, moverWindow = 30, view = "pricesView";
@@ -641,13 +654,19 @@
   const prevMonth = d => { const t = new Date(d.slice(0, 7) + "-01T00:00:00Z"); t.setUTCMonth(t.getUTCMonth() - 1); return t.toISOString().slice(0, 7); };
 
   async function start() {
-    const [totalsT, latestT, logT, decksT, cardsT] = await Promise.all([
+    const [totalsT, latestT, logT, decksT, cardsT, folderT] = await Promise.all([
       getText("data/totals.csv"), getText("data/latest.csv"), getText("data/decklists.csv"),
-      getText("data/decks.csv", true), getText("data/cards.csv", true)]);
+      getText("data/decks.csv", true), getText("data/cards.csv", true), getText("data/folder.csv", true)]);
+    const folderId = folderT ? parseCSV(folderT)[0]?.folder_id : null;
+    if (folderId) { $("folderLink").href = `https://archidekt.com/folders/${encodeURIComponent(folderId)}`; $("folderLink").hidden = false; }
     const totals = parseCSV(totalsT), latest = parseCSV(latestT), log = parseCSV(logT);
     const deckRows = decksT ? parseCSV(decksT) : [];
     cardInfo = new Map((cardsT ? parseCSV(cardsT) : []).map(c => [c.card_name, c]));
     commandersOf = new Map(deckRows.map(d => [d.deck_id, new Set((d.commanders || "").split(" | ").filter(Boolean))]));
+    commanderArt = new Map(deckRows.map(d => {
+      const names = (d.commanders || "").split(" | "), ids = (d.commander_ids || "").split(" | ");
+      return [d.deck_id, names.map((name, i) => ({ name, id: ids[i] || "" })).filter(c => c.name)];
+    }));
     const names = new Map(deckRows.map(d => [d.deck_id, d.deck_name]));
 
     dates = [...new Set(totals.map(r => r.date))].sort();
@@ -786,6 +805,23 @@
     };
   }
 
+  // ---------- commander art (Scryfall) ----------
+  // The art crop of the exact printing in the deck, from Scryfall's image server. If that file
+  // isn't there, fall back to Scryfall's API, which redirects to the right image.
+  const SCRYFALL_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  const artUrl = id => `https://cards.scryfall.io/art_crop/front/${id[0]}/${id[1]}/${id}.jpg`;
+  const artFallback = id => `https://api.scryfall.com/cards/${id}?format=image&version=art_crop`;
+  function artImg(c, cls = "") {
+    if (!SCRYFALL_ID.test(c.id)) return `<span class="art-missing ${cls}" title="${esc(c.name)}"></span>`;
+    return `<img class="${cls}" src="${artUrl(c.id)}" alt="${esc(c.name)}" loading="lazy" decoding="async"
+      onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='${artFallback(c.id)}'}else{this.replaceWith(Object.assign(document.createElement('span'),{className:'art-missing ${cls}'}))}">`;
+  }
+  // Deck thumbnail: one art, or two halves for a partner pair.
+  const thumbHtml = id => {
+    const cs = (commanderArt.get(id) || []).slice(0, 2);
+    return `<span class="thumb ${cs.length > 1 ? "pair" : ""}" aria-hidden="true">${cs.map(c => artImg(c)).join("")}</span>`;
+  };
+
   // ---------- views ----------
   function showView(v) {
     view = v;
@@ -801,6 +837,7 @@
   function renderDecks() {
     const item = st => `
       <button class="deck-item ${st.id === selected ? "sel" : ""} ${st.virtual ? "combined" : ""} ${st.stale ? "stale" : ""}" data-id="${esc(st.id)}" aria-current="${st.id === selected}">
+        ${st.virtual ? `<span class="thumb none" aria-hidden="true"></span>` : thumbHtml(st.id)}
         <span class="dname" title="${esc(st.name)}">${esc(st.name)}</span>
         <span class="dval num">${money(st.value)}</span>
         <span class="dmeta">${st.stale ? `Last in folder ${fmtDate(st.last)}` : `${fmtCount(st.cards)} cards`}${!st.stale && st.lastSwap ? `, swapped ${shortDate(st.lastSwap)}` : ""}</span>
@@ -814,6 +851,11 @@
   function renderDeck() {
     const d = decks.get(selected), s = deckStats(d);
     $("deckTitle").textContent = s.name;
+    const cmds = d.virtual ? [] : (commanderArt.get(d.id) || []);
+    $("cmdBanner").hidden = $("cmdNames").hidden = !cmds.length;
+    $("cmdBanner").className = "cmd-banner" + (cmds.length > 1 ? " pair" : "");
+    $("cmdBanner").innerHTML = cmds.slice(0, 2).map(c => artImg(c)).join("");
+    $("cmdNames").textContent = cmds.map(c => c.name).join(" and ");
     $("deckLink").hidden = s.virtual;
     if (!s.virtual) $("deckLink").href = `https://archidekt.com/decks/${encodeURIComponent(s.id)}`;
     for (const id of ["swapsCard", "cardsCard", "moversCard", "curveCard"]) $(id).hidden = !!d.noCards;
