@@ -1,8 +1,12 @@
 name: Daily snapshot
 
 on:
+  # GitHub's scheduled runs are best-effort and occasionally get skipped, so there are two
+  # backup times. A backup run does nothing if that day's snapshot already exists.
   schedule:
-    - cron: "17 13 * * *"   # once a day at 13:17 UTC: 7:17am Mountain in summer, 6:17am in winter
+    - cron: "17 13 * * *"   # main run, 13:17 UTC: 7:17am Mountain in summer, 6:17am in winter
+    - cron: "47 16 * * *"   # backup, 16:47 UTC: 10:47am / 9:47am Mountain
+    - cron: "23 21 * * *"   # backup, 21:23 UTC: 3:23pm / 2:23pm Mountain
   workflow_dispatch:         # lets you run it by hand from the Actions tab
   push:                      # re-snapshot today whenever the script changes
     branches: [main]
@@ -32,7 +36,15 @@ jobs:
       - name: Snapshot folder
         env:
           ARCHIDEKT_FOLDER_ID: ${{ vars.ARCHIDEKT_FOLDER_ID }}
-        run: python track_prices.py
+          EVENT: ${{ github.event_name }}
+          CRON: ${{ github.event.schedule }}
+        run: |
+          today=$(TZ=America/Denver date +%Y-%m-%d)
+          if [ "$EVENT" = "schedule" ] && [ "$CRON" != "17 13 * * *" ] && grep -q "^$today," data/totals.csv 2>/dev/null; then
+            echo "Backup run: today's snapshot ($today) already exists, nothing to do."
+            exit 0
+          fi
+          python track_prices.py
 
       - name: Commit CSV
         run: |
