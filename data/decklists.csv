@@ -480,19 +480,19 @@ date,deck_id,card_name,set_code,finish,proxied,quantity
 2026-10-05,16293254,Arid Archway,otj,Normal,false,1
 2026-10-05,16293254,Ash Barrens,cmm,Normal,true,1
 2026-10-05,16293254,Bant Panorama,ala,Normal,true,1
-2026-10-05,16293254,Bazaar of Baghdad,arn,Normal,true,1
+2026-10-05,16293254,Bazaar of Baghdad,vma,Normal,true,1
 2026-10-05,16293254,"Boseiju, Who Endures",neo,Normal,true,1
 2026-10-05,16293254,Castle Garenbrig,eld,Normal,true,1
 2026-10-05,16293254,Cavern of Souls,lci,Normal,true,1
 2026-10-05,16293254,Chocobo Camp,fic,Normal,true,1
-2026-10-05,16293254,City of Shadows,drk,Normal,true,1
-2026-10-05,16293254,City of Traitors,exo,Normal,true,1
+2026-10-05,16293254,City of Shadows,me3,Normal,true,1
+2026-10-05,16293254,City of Traitors,tpr,Normal,true,1
 2026-10-05,16293254,Command Beacon,cmr,Normal,true,1
 2026-10-05,16293254,Crystal Vein,cma,Normal,true,1
 2026-10-05,16293254,Daily Bugle Building,spm,Normal,false,1
 2026-10-05,16293254,Desert of the Indomitable,m3c,Normal,true,1
 2026-10-05,16293254,Deserted Temple,mh3,Normal,true,1
-2026-10-05,16293254,Diamond Valley,arn,Normal,true,1
+2026-10-05,16293254,Diamond Valley,me1,Normal,true,1
 2026-10-05,16293254,Dryad Arbor,mb2,Normal,true,1
 2026-10-05,16293254,Echoing Deeps,lci,Normal,true,1
 2026-10-05,16293254,Emergence Zone,war,Normal,true,1
@@ -545,7 +545,7 @@ date,deck_id,card_name,set_code,finish,proxied,quantity
 2026-10-05,16293254,Talon Gates of Madara,m3c,Normal,true,1
 2026-10-05,16293254,Temple of the False God,cm2,Normal,false,1
 2026-10-05,16293254,Terrain Generator,clb,Normal,true,1
-2026-10-05,16293254,The Tabernacle at Pendrell Vale,leg,Normal,true,1
+2026-10-05,16293254,The Tabernacle at Pendrell Vale,me3,Normal,true,1
 2026-10-05,16293254,Thespian's Stage,who,Normal,true,1
 2026-10-05,16293254,Tower of the Magistrate,mb2,Normal,true,1
 2026-10-05,16293254,Tranquil Thicket,mh1,Normal,false,1
@@ -560,7 +560,7 @@ date,deck_id,card_name,set_code,finish,proxied,quantity
 2026-10-05,16293254,Windswept Heath,zne,Normal,true,1
 2026-10-05,16293254,Witch's Clinic,c21,Normal,true,1
 2026-10-05,16293254,Wooded Foothills,zne,Normal,true,1
-2026-10-05,16293254,Yavimaya Hollow,uds,Normal,true,1
+2026-10-05,16293254,Yavimaya Hollow,vma,Normal,true,1
 2026-10-05,16293254,"Yavimaya, Cradle of Growth",mh2,Normal,true,1
 2026-10-05,17493352,Access Tunnel,ltc,Normal,false,1
 2026-10-05,17493352,Aggravated Assault,sld,Foil,false,1

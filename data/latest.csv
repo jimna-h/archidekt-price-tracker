@@ -5,7 +5,7 @@ date,deck_id,card_name,quantity,set_code,finish,price_tcgplayer,price_cardkingdo
 2026-10-05,16293254,Arid Archway,1,otj,Normal,1.47,1.79,0.53,false
 2026-10-05,16293254,Arena,1,mb2,Normal,1.01,3.49,0.7,true
 2026-10-05,16293254,Cavern of Souls,1,lci,Normal,51.81,64.99,40.0,true
-2026-10-05,16293254,City of Shadows,1,drk,Normal,75.41,59.99,38.89,true
+2026-10-05,16293254,City of Shadows,1,me3,Normal,,,121.65,true
 2026-10-05,16293254,Maze of Ith,1,dmr,Foil,16.83,22.99,16.75,false
 2026-10-05,16293254,Desert of the Indomitable,1,m3c,Normal,0.29,0.35,0.18,true
 2026-10-05,16293254,Wasteland,1,slc,Normal,16.07,24.99,12.99,false
@@ -34,8 +34,8 @@ date,deck_id,card_name,quantity,set_code,finish,price_tcgplayer,price_cardkingdo
 2026-10-05,16293254,Gemstone Caverns,1,plst,Normal,62.59,84.99,42.3,true
 2026-10-05,16293254,High Market,1,c21,Normal,2.49,1.49,1.89,false
 2026-10-05,16293254,Horizon of Progress,1,m3c,Normal,4.54,4.99,2.53,true
-2026-10-05,16293254,City of Traitors,1,exo,Normal,549.38,799.99,480.0,true
-2026-10-05,16293254,Diamond Valley,1,arn,Normal,690.0,899.99,650.0,true
+2026-10-05,16293254,Diamond Valley,1,me1,Normal,,,1.96,true
+2026-10-05,16293254,City of Traitors,1,tpr,Normal,,,4.78,true
 2026-10-05,16293254,Jund Panorama,1,ala,Normal,0.41,0.35,0.22,true
 2026-10-05,16293254,Lotus Vale,1,wth,Normal,47.38,54.99,29.49,true
 2026-10-05,16293254,Mage-Ring Network,1,cmm,Normal,0.36,0.35,0.1,true
@@ -81,12 +81,12 @@ date,deck_id,card_name,quantity,set_code,finish,price_tcgplayer,price_cardkingdo
 2026-10-05,16293254,"Urborg, Tomb of Yawgmoth",1,tsr,Normal,55.42,59.99,41.71,true
 2026-10-05,16293254,Witch's Clinic,1,c21,Normal,14.88,18.99,13.47,true
 2026-10-05,16293254,"Yavimaya, Cradle of Growth",1,mh2,Normal,17.19,21.99,13.45,true
-2026-10-05,16293254,Bazaar of Baghdad,1,arn,Normal,1900.49,2899.99,1999.99,true
-2026-10-05,16293254,The Tabernacle at Pendrell Vale,1,leg,Normal,3239.0,3999.99,2100.0,true
+2026-10-05,16293254,The Tabernacle at Pendrell Vale,1,me3,Normal,,,,true
+2026-10-05,16293254,Bazaar of Baghdad,1,vma,Normal,,,747.66,true
 2026-10-05,16293254,Mirrorpool,1,cmm,Normal,2.88,2.99,2.11,true
 2026-10-05,16293254,Thespian's Stage,1,who,Normal,0.43,0.79,0.31,true
 2026-10-05,16293254,"Lumra, Bellow of the Woods",1,blb,Foil,116.69,149.99,145.0,true
-2026-10-05,16293254,Yavimaya Hollow,1,uds,Normal,82.57,84.99,48.96,true
+2026-10-05,16293254,Yavimaya Hollow,1,vma,Normal,,,,true
 2026-10-05,5969200,Embiggen,1,unf,Normal,0.22,0.79,1.49,false
 2026-10-05,5969200,Empyrial Armor,1,wth,Normal,0.3,0.35,0.58,false
 2026-10-05,5969200,Empyrial Plate,1,c16,Normal,1.85,2.79,1.21,false

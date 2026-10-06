@@ -5,7 +5,7 @@ date,card_name,set_code,finish,price_tcgplayer,price_cardkingdom,price_cardmarke
 2026-10-05,Arid Archway,otj,Normal,1.47,1.79,0.53
 2026-10-05,Arena,mb2,Normal,1.01,3.49,0.7
 2026-10-05,Cavern of Souls,lci,Normal,51.81,64.99,40.0
-2026-10-05,City of Shadows,drk,Normal,75.41,59.99,38.89
+2026-10-05,City of Shadows,me3,Normal,,,121.65
 2026-10-05,Maze of Ith,dmr,Foil,16.83,22.99,16.75
 2026-10-05,Desert of the Indomitable,m3c,Normal,0.29,0.35,0.18
 2026-10-05,Wasteland,slc,Normal,16.07,24.99,12.99
@@ -34,8 +34,8 @@ date,card_name,set_code,finish,price_tcgplayer,price_cardkingdom,price_cardmarke
 2026-10-05,Gemstone Caverns,plst,Normal,62.59,84.99,42.3
 2026-10-05,High Market,c21,Normal,2.49,1.49,1.89
 2026-10-05,Horizon of Progress,m3c,Normal,4.54,4.99,2.53
-2026-10-05,City of Traitors,exo,Normal,549.38,799.99,480.0
-2026-10-05,Diamond Valley,arn,Normal,690.0,899.99,650.0
+2026-10-05,Diamond Valley,me1,Normal,,,1.96
+2026-10-05,City of Traitors,tpr,Normal,,,4.78
 2026-10-05,Jund Panorama,ala,Normal,0.41,0.35,0.22
 2026-10-05,Lotus Vale,wth,Normal,47.38,54.99,29.49
 2026-10-05,Mage-Ring Network,cmm,Normal,0.36,0.35,0.1
@@ -81,12 +81,12 @@ date,card_name,set_code,finish,price_tcgplayer,price_cardkingdom,price_cardmarke
 2026-10-05,"Urborg, Tomb of Yawgmoth",tsr,Normal,55.42,59.99,41.71
 2026-10-05,Witch's Clinic,c21,Normal,14.88,18.99,13.47
 2026-10-05,"Yavimaya, Cradle of Growth",mh2,Normal,17.19,21.99,13.45
-2026-10-05,Bazaar of Baghdad,arn,Normal,1900.49,2899.99,1999.99
-2026-10-05,The Tabernacle at Pendrell Vale,leg,Normal,3239.0,3999.99,2100.0
+2026-10-05,The Tabernacle at Pendrell Vale,me3,Normal,,,
+2026-10-05,Bazaar of Baghdad,vma,Normal,,,747.66
 2026-10-05,Mirrorpool,cmm,Normal,2.88,2.99,2.11
 2026-10-05,Thespian's Stage,who,Normal,0.43,0.79,0.31
 2026-10-05,"Lumra, Bellow of the Woods",blb,Foil,116.69,149.99,145.0
-2026-10-05,Yavimaya Hollow,uds,Normal,82.57,84.99,48.96
+2026-10-05,Yavimaya Hollow,vma,Normal,,,
 2026-10-05,Embiggen,unf,Normal,0.22,0.79,1.49
 2026-10-05,Empyrial Armor,wth,Normal,0.3,0.35,0.58
 2026-10-05,Empyrial Plate,c16,Normal,1.85,2.79,1.21
