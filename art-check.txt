@@ -1,0 +1,26 @@
+direct	200	image/jpeg	79627	Trelasarra, Moon Dancer	https://cards.scryfall.io/art_crop/front/f/6/f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5.jpg
+api	200	image/jpeg	79627	Trelasarra, Moon Dancer	https://cards.scryfall.io/art_crop/front/f/6/f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5.jpg?1783
+direct	200	image/jpeg	109779	Ikra Shidiqi, the Usurper	https://cards.scryfall.io/art_crop/front/4/6/460165df-32db-4773-805e-edd6f18af5d6.jpg
+api	200	image/jpeg	109779	Ikra Shidiqi, the Usurper	https://cards.scryfall.io/art_crop/front/4/6/460165df-32db-4773-805e-edd6f18af5d6.jpg?1783
+direct	200	image/jpeg	61477	Malcolm, Keen-Eyed Navigator	https://cards.scryfall.io/art_crop/front/c/f/cfcb3051-161f-42f8-bfec-db03b349ff00.jpg
+api	200	image/jpeg	61477	Malcolm, Keen-Eyed Navigator	https://cards.scryfall.io/art_crop/front/c/f/cfcb3051-161f-42f8-bfec-db03b349ff00.jpg?1783
+direct	200	image/jpeg	39645	Sarah Jane Smith	https://cards.scryfall.io/art_crop/front/5/f/5f1a86e0-413c-45a0-a4c0-d85fe74361c1.jpg
+api	200	image/jpeg	39645	Sarah Jane Smith	https://cards.scryfall.io/art_crop/front/5/f/5f1a86e0-413c-45a0-a4c0-d85fe74361c1.jpg?1783
+direct	200	image/jpeg	47186	The Fourth Doctor	https://cards.scryfall.io/art_crop/front/d/7/d7ae754d-33a2-4a07-8b10-fe4dda9af745.jpg
+api	200	image/jpeg	47186	The Fourth Doctor	https://cards.scryfall.io/art_crop/front/d/7/d7ae754d-33a2-4a07-8b10-fe4dda9af745.jpg?1783
+direct	200	image/jpeg	60476	Sergeant John Benton	https://cards.scryfall.io/art_crop/front/2/6/26393e65-d137-4c36-ba39-6da7e32b16d0.jpg
+api	200	image/jpeg	60476	Sergeant John Benton	https://cards.scryfall.io/art_crop/front/2/6/26393e65-d137-4c36-ba39-6da7e32b16d0.jpg?1783
+direct	200	image/jpeg	53494	Tom, Bert, and William	https://cards.scryfall.io/art_crop/front/1/b/1bc9137e-a1e0-4412-8034-8471ae308bc7.jpg
+api	200	image/jpeg	53494	Tom, Bert, and William	https://cards.scryfall.io/art_crop/front/1/b/1bc9137e-a1e0-4412-8034-8471ae308bc7.jpg?1788
+direct	200	image/jpeg	84361	Lumra, Bellow of the Woods	https://cards.scryfall.io/art_crop/front/b/4/b43b3c33-aa44-4001-87ff-695bf04f51be.jpg
+api	200	image/jpeg	84361	Lumra, Bellow of the Woods	https://cards.scryfall.io/art_crop/front/b/4/b43b3c33-aa44-4001-87ff-695bf04f51be.jpg?1783
+direct	200	image/jpeg	123781	Tymna the Weaver	https://cards.scryfall.io/art_crop/front/b/c/bc7cbe9b-324e-42b8-94e2-36e91cb32163.jpg
+api	200	image/jpeg	123781	Tymna the Weaver	https://cards.scryfall.io/art_crop/front/b/c/bc7cbe9b-324e-42b8-94e2-36e91cb32163.jpg?1783
+direct	200	image/jpeg	79702	Kediss, Emberclaw Familiar	https://cards.scryfall.io/art_crop/front/a/a/aa1c4ada-a218-4701-a293-ae6cbbe5c4d8.jpg
+api	200	image/jpeg	79702	Kediss, Emberclaw Familiar	https://cards.scryfall.io/art_crop/front/a/a/aa1c4ada-a218-4701-a293-ae6cbbe5c4d8.jpg?1783
+direct	200	image/jpeg	57382	Sash and Waistcoat, Unmen	https://cards.scryfall.io/art_crop/front/7/e/7ee28c45-01c4-4f15-83d5-ede29f05a256.jpg
+api	200	image/jpeg	57382	Sash and Waistcoat, Unmen	https://cards.scryfall.io/art_crop/front/7/e/7ee28c45-01c4-4f15-83d5-ede29f05a256.jpg?1785
+direct	200	image/jpeg	58836	The Queen of Dale	https://cards.scryfall.io/art_crop/front/7/d/7d635dfb-0a48-4965-82d1-d98f943bb28d.jpg
+api	200	image/jpeg	58836	The Queen of Dale	https://cards.scryfall.io/art_crop/front/7/d/7d635dfb-0a48-4965-82d1-d98f943bb28d.jpg?1784
+direct	200	image/jpeg	88614	Rocco, Street Chef	https://cards.scryfall.io/art_crop/front/4/2/421c2ed3-be60-4814-a82c-a0e3fbb97e63.jpg
+api	200	image/jpeg	88614	Rocco, Street Chef	https://cards.scryfall.io/art_crop/front/4/2/421c2ed3-be60-4814-a82c-a0e3fbb97e63.jpg?1783
