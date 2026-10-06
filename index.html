@@ -222,6 +222,11 @@
   .dchip.cmd { font-weight: 700; color: var(--text-primary); border-color: var(--text-secondary); }
   .dchip.proxy { border-style: dashed; border-color: var(--series-proxy); }
   #indexTable td { vertical-align: top; }
+  /* fixed column widths, so sorting or filtering never reshuffles the layout */
+  #indexTable { table-layout: fixed; min-width: 1060px; }
+  #indexTable td { overflow-wrap: anywhere; }
+  #indexTable td.num, #indexTable th { overflow-wrap: normal; }
+  #indexTable .pips { flex-wrap: wrap; }
   .type-col { color: var(--text-secondary); }
   th.rownum, td.rownum { width: 1%; text-align: right; color: var(--text-muted); font-size: 13px; font-variant-numeric: lining-nums tabular-nums; padding-right: 4px; cursor: default; }
   .printings-note { font-size: 12px; color: var(--text-muted); }
@@ -389,6 +394,11 @@
     <div class="ix-table">
       <div class="table-wrap">
         <table id="indexTable">
+          <colgroup>
+            <col style="width:40px"><col style="width:19%"><col style="width:17%"><col style="width:44px">
+            <col style="width:92px"><col style="width:60px"><col style="width:66px"><col style="width:86px">
+            <col style="width:84px"><col>
+          </colgroup>
           <thead><tr>
             <th class="rownum" aria-label="Row"></th>
             <th data-k="name">Card</th>
