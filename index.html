@@ -578,7 +578,7 @@
     }
     if (field !== "" || row.length) { row.push(field); rows.push(row); }
     const head = rows.shift() || [];
-    return rows.filter(r => r.length > 1).map(r => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ""])));
+    return rows.filter(r => r.some(v => v !== "")).map(r => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ""])));
   }
 
   // ---------- helpers ----------
