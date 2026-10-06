@@ -223,6 +223,7 @@
   .dchip.proxy { border-style: dashed; border-color: var(--series-proxy); }
   #indexTable td { vertical-align: top; }
   .type-col { color: var(--text-secondary); }
+  th.rownum, td.rownum { width: 1%; text-align: right; color: var(--text-muted); font-size: 13px; font-variant-numeric: lining-nums tabular-nums; padding-right: 4px; cursor: default; }
   .printings-note { font-size: 12px; color: var(--text-muted); }
   .set-code { font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--text-secondary); white-space: nowrap; }
   td.sets-col { max-width: 160px; }
@@ -389,6 +390,7 @@
       <div class="table-wrap">
         <table id="indexTable">
           <thead><tr>
+            <th class="rownum" aria-label="Row"></th>
             <th data-k="name">Card</th>
             <th data-k="type">Type</th>
             <th data-k="mv" class="num">MV</th>
@@ -1170,8 +1172,9 @@
       ` in the ${fmtDate(latestDate)} snapshot` +
       (cardInfo.size ? "" : ". Card types and colors arrive with the next daily run.");
     const MAX = 400;
-    $("indexTable").tBodies[0].innerHTML = list.slice(0, MAX).map(c => `
+    $("indexTable").tBodies[0].innerHTML = list.slice(0, MAX).map((c, i) => `
       <tr>
+        <td class="rownum">${i + 1}</td>
         <td><span class="card-name">${esc(c.name)}</span>${c.commander ? ` <span class="badge">Commander</span>` : ""}</td>
         <td class="type-col">${esc(c.type || "–")}</td>
         <td class="num">${c.mv ?? "–"}</td>
@@ -1183,8 +1186,8 @@
           `<span class="set-code" title="${n} ${n === 1 ? "copy" : "copies"} from ${esc(set)}">${esc(set)}${c.sets.size > 1 && n > 1 ? `<span class="muted"> ×${n}</span>` : ""}</span>`).join(" ")}</td>
         <td><div class="where">${sortBy([...c.perDeck].map(([id, e]) => ({ e, name: deckName(id) })), { k: "name", dir: 1 })
           .map(({ name, e }) => `<span class="dchip ${e.cmd ? "cmd" : ""} ${e.proxy ? "proxy" : ""}">${esc(name)}${e.qty > 1 ? " ×" + e.qty : ""}</span>`).join("")}</div></td>
-      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="9" class="muted">Showing the first ${MAX}. Narrow the filters to see the rest.</td></tr>` : "")
-      || `<tr><td colspan="9" class="muted">No cards match these filters.</td></tr>`;
+      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="10" class="muted">Showing the first ${MAX}. Narrow the filters to see the rest.</td></tr>` : "")
+      || `<tr><td colspan="10" class="muted">No cards match these filters.</td></tr>`;
     markSort($("indexTable"), ixSort);
     renderOverlap();
     syncUrl();
