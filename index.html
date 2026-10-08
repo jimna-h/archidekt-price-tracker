@@ -307,6 +307,61 @@
   .empty { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 40px 20px; text-align: center; color: var(--text-secondary); display: grid; gap: 8px; justify-items: center; }
 
   /* ---------- small screens ---------- */
+  /* ---------- deck cards ---------- */
+  button.primary { font: inherit; font-weight: 600; font-size: 15px; color: #fff; background: var(--series-1); border: 0; border-radius: 8px; padding: 8px 16px; cursor: pointer; white-space: nowrap; }
+  button.primary:hover { filter: brightness(1.08); }
+  .cards-bar { display: flex; gap: 12px 24px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+  .cards-bar .note { max-width: 70ch; }
+  /* cards are drawn at true size in CSS px (96 per inch: 240 × 336 = 2.5 × 3.5 in), and enlarged on screen */
+  .card-sheet { --zoom: 1.45; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 8px 0 24px; }
+  .card-sheet .mcard { zoom: var(--zoom); }
+  .mcard {
+    width: 240px; height: 336px; box-sizing: border-box; position: relative; flex: none;
+    background: #121110; border-radius: 12px; padding: 8px 8px 17px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 10px 24px -12px rgba(0,0,0,0.5);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #1b1712;
+    font-family: var(--sans); font-variant-numeric: lining-nums;
+  }
+  .mc-frame { position: relative; height: 100%; box-sizing: border-box; border-radius: 6px; padding: 5px 5px 7px; background: var(--frame);
+    display: flex; flex-direction: column; gap: 4px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.25); }
+  .mc-title, .mc-type { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 0 7px;
+    background: linear-gradient(#fbf7ee, #e9e1cf); border-radius: 10px / 50%;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.55), 0 1px 1px rgba(0,0,0,0.35); }
+  .mc-title { height: 22px; flex: none; }
+  .mc-name { font-family: var(--serif); font-weight: 700; font-size: 12px; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.005em; }
+  .mc-pips { display: flex; gap: 1px; flex: none; }
+  .mc-pips .pip { width: 12px; height: 12px; font-size: 7px; box-shadow: 0 1px 0 rgba(0,0,0,0.6); }
+  .mc-art { height: 112px; flex: none; display: flex; gap: 1px; overflow: hidden; margin: 0 3px; background: #2a2622;
+    box-shadow: 0 0 0 1.5px rgba(0,0,0,0.75); }
+  .mc-art img, .mc-art .art-missing { flex: 1 1 0; min-width: 0; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
+  .mc-type { height: 17px; flex: none; font-size: 8.5px; font-weight: 500; }
+  .mc-type span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mc-text { flex: 1; min-height: 0; margin: 0 3px; padding: 5px 7px 6px; background: #f6f1e4; box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
+    display: flex; flex-direction: column; font-size: 9px; line-height: 1.25; }
+  .mc-row { display: flex; justify-content: space-between; gap: 6px; font-weight: 600; }
+  .mc-row b { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .mc-list { font-size: 8px; font-style: italic; color: #4a4239; margin: 0 0 4px 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mc-none { color: #8b8276; }
+  .mc-bottom { margin-top: auto; display: flex; gap: 8px; align-items: flex-end; }
+  .mc-qr { width: 46px; height: 46px; flex: none; }
+  .mc-qr svg { width: 100%; height: 100%; display: block; }
+  .mc-small { flex: 1; align-self: flex-start; padding-bottom: 8px; }
+  .mc-small .mc-row { font-weight: 500; font-size: 8.5px; }
+  .mc-pt { position: absolute; right: 10px; bottom: -4px; height: 19px; padding: 0 7px; display: flex; align-items: baseline; gap: 4px;
+    background: linear-gradient(#fbf7ee, #e9e1cf); border-radius: 4px; box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.4); }
+  .mc-pt span { font-size: 7px; font-weight: 600; line-height: 19px; color: #4a4239; }
+  .mc-pt b { font-family: var(--serif); font-size: 13px; line-height: 19px; }
+  .mc-foot { position: absolute; left: 12px; right: 12px; bottom: 3px; display: flex; justify-content: space-between; font-size: 6.5px; line-height: 11px; color: #e9e4da; letter-spacing: 0.02em; }
+
+  @media print {
+    @page { size: letter; margin: 0.25in; }
+    html[data-view="cardsView"] body { background: #fff !important; }
+    html[data-view="cardsView"] main { max-width: none; padding: 0; }
+    html[data-view="cardsView"] main > *:not(#cardsView), html[data-view="cardsView"] .cards-bar { display: none !important; }
+    .card-sheet { --zoom: 1; display: grid; grid-template-columns: repeat(3, 2.5in); gap: 0; justify-content: center; padding: 0; }
+    .mcard { width: 2.5in; height: 3.5in; box-shadow: none; break-inside: avoid; page-break-inside: avoid; }
+  }
+
   @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { position: static; }
@@ -317,6 +372,9 @@
     .hero .big { font-size: 40px; }
   }
   @media (max-width: 560px) {
+    .card-sheet { --zoom: 1.2; }
+    .tabs { max-width: 100%; overflow-x: auto; }
+    .tabs button { padding: 6px 10px; white-space: nowrap; font-size: 14px; }
     main { padding: 20px 16px 56px; }
     .brand h1 { font-size: 26px; }
     .mark { width: 38px; height: 38px; }
@@ -357,6 +415,7 @@
     <button role="tab" data-view="pricesView" aria-selected="true">Decks</button>
     <button role="tab" data-view="proxyView" aria-selected="false">Proxies</button>
     <button role="tab" data-view="indexView" aria-selected="false">Search all decks</button>
+    <button role="tab" data-view="cardsView" aria-selected="false">Deck cards</button>
   </nav>
   <div class="tablinks">
     <a class="ghost" id="folderLink" target="_blank" rel="noopener" hidden title="Opens the tracked folder on Archidekt">Archidekt folder ↗</a>
@@ -396,6 +455,17 @@
       </div>
       <div class="note">Store prices are per copy, for the printing in your deck. The cheapest is in bold.</div>
     </div>
+  </section>
+
+  <section id="cardsView" hidden>
+    <div class="ix-bar cards-bar">
+      <div>
+        <h3>Deck cards</h3>
+        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. Bracket and its cards come from your Archidekt settings; the art is the deck's featured image, or the commander's.</div>
+      </div>
+      <button class="primary" id="printCards">Print cards</button>
+    </div>
+    <div class="card-sheet" id="cardSheet"></div>
   </section>
 
   <section id="indexView" hidden>
@@ -549,6 +619,7 @@
   </section>
 </main>
 
+<script src="vendor/qrcode.js"></script>
 <script>
 (() => {
   // =====================================================================================
@@ -626,7 +697,7 @@
 
   let dates = [], latestDate = null;
   let decks = new Map();              // id -> { id, name, virtual, totals: Map(date -> row), rows: [latest rows], log: [] }
-  let cardInfo = new Map(), commandersOf = new Map(), commanderArt = new Map();
+  let cardInfo = new Map(), commandersOf = new Map(), commanderArt = new Map(), deckMeta = new Map();
   const priceDays = new Map();         // date -> Map(printKey -> row)   (loaded months only)
   const loadedMonths = new Set();
   let selected = ALL, tagFilter = null, asOf = null, moverWindow = 30, view = "pricesView";
@@ -661,6 +732,7 @@
     if (folderId) { $("folderLink").href = `https://archidekt.com/folders/${encodeURIComponent(folderId)}`; $("folderLink").hidden = false; }
     const totals = parseCSV(totalsT), latest = parseCSV(latestT), log = parseCSV(logT);
     const deckRows = decksT ? parseCSV(decksT) : [];
+    deckMeta = new Map(deckRows.map(d => [d.deck_id, d]));
     cardInfo = new Map((cardsT ? parseCSV(cardsT) : []).map(c => [c.card_name, c]));
     commandersOf = new Map(deckRows.map(d => [d.deck_id, new Set((d.commanders || "").split(" | ").filter(Boolean))]));
     commanderArt = new Map(deckRows.map(d => {
@@ -684,6 +756,7 @@
       (dates.length > 1 ? `, history since ${fmtDate(dates[0])}` : "");
     $("tabs").hidden = false;
     setHipsterLink();
+    renderDeckCards();
     applyUrl();
     urlReady = true;
     history.replaceState(null, "", buildUrl());
@@ -825,8 +898,9 @@
   // ---------- views ----------
   function showView(v) {
     view = v;
-    for (const id of ["pricesView", "proxyView", "indexView"]) $(id === "pricesView" ? "app" : id).hidden = v !== id;
-    $("source").closest("label").hidden = v === "proxyView";
+    for (const id of ["pricesView", "proxyView", "indexView", "cardsView"]) $(id === "pricesView" ? "app" : id).hidden = v !== id;
+    $("source").closest("label").hidden = v === "proxyView" || v === "cardsView";
+    document.documentElement.dataset.view = v;   // print styles only apply on the Deck cards tab
     $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
     syncUrl();
   }
@@ -1379,6 +1453,85 @@
   // started even if that element was just redrawn
   document.addEventListener("click", e => { const path = e.composedPath(); document.querySelectorAll("details.dd[open]").forEach(d => { if (!path.includes(d)) d.open = false; }); });
 
+  // ---------- deck cards ----------
+  // One Magic-card-sized (2.5 × 3.5 in) card per deck: color-identity frame, art, the deck's
+  // Archidekt bracket and the cards behind it, and a QR code to the deck. Laid out like a
+  // Magic card: name + color "mana cost", art, type line (commanders), text box, and the
+  // bracket where power/toughness would be.
+  const FRAME = { W: "#e8dcbc", U: "#2268ad", B: "#36302e", R: "#c4402c", G: "#2a7748", gold: "#c9a03a", C: "#a3a8ad" };
+  // Magic's own ordering for color pairs and triples (e.g. Bant is G-W-U, Rakdos is B-R)
+  const PAIR_ORDER = ["WU", "UB", "BR", "RG", "GW", "WB", "UR", "BG", "RW", "GU"];
+  const TRIO_ORDER = ["WUB", "UBR", "BRG", "RGW", "GWU", "WBG", "URW", "BGU", "RWB", "GUR"];
+  const sameLetters = (a, b) => a.length === b.length && [...a].every(c => b.includes(c));
+  function orderedColors(id) {
+    const list = id.length === 2 ? PAIR_ORDER : id.length === 3 ? TRIO_ORDER : null;
+    return (list && list.find(x => sameLetters(x, id))) || "WUBRG".split("").filter(c => id.includes(c)).join("");
+  }
+  // The frame: one color solid, two or three as bands, four or more gold, none silver.
+  function frameFill(id) {
+    if (!id) return FRAME.C;
+    if (id.length >= 4) return `linear-gradient(135deg, #b98a26, ${FRAME.gold} 45%, #e2c46e 70%, #b98a26)`;
+    const cs = orderedColors(id).split(""), w = 100 / cs.length;
+    return cs.length === 1 ? FRAME[cs[0]]
+      : `linear-gradient(90deg, ${cs.map((c, i) => `${FRAME[c]} ${i * w}% ${(i + 1) * w}%`).join(", ")})`;
+  }
+  const deckIdentity = id => {
+    const letters = new Set();
+    for (const c of commanderArt.get(id) || []) for (const l of cardInfo.get(c.name)?.color_identity || "") letters.add(l);
+    return "WUBRG".split("").filter(l => letters.has(l)).join("");
+  };
+  const listOf = s => (s || "").split(" | ").filter(Boolean);
+  const cardTitle = name => name.replace(/^\d+\.\s*/, "");   // drop the folder numbering ("3. ")
+
+  function qrSvg(text) {
+    if (typeof qrcode !== "function") return "";
+    const qr = qrcode(0, "M"); qr.addData(text); qr.make();
+    return qr.createSvgTag({ cellSize: 2, margin: 0, scalable: true, alt: "QR code to the deck on Archidekt" });
+  }
+
+  function deckCardHtml(d) {
+    const meta = deckMeta.get(d.id) || {}, id = deckIdentity(d.id);
+    const cmds = commanderArt.get(d.id) || [];
+    const gc = listOf(meta.game_changers), tutors = listOf(meta.nonland_tutors);
+    const mld = listOf(meta.mass_land_denial), turns = listOf(meta.extra_turns);
+    const combos = listOf(meta.combos).map(c => { const m = c.match(/^(.*) \((\d+)\)$/); return m ? { pieces: m[1], mv: +m[2] } : { pieces: c, mv: null }; });
+    const url = `https://archidekt.com/decks/${d.id}`;
+    const art = meta.featured_art
+      ? `<img src="${esc(meta.featured_art)}" alt="" decoding="async" onerror="this.remove()">`
+      : cmds.slice(0, 2).map(c => artImg(c)).join("");
+    const pips = (orderedColors(id) || "C").split("").map(k => `<span class="pip ${k}">${k}</span>`).join("");
+    const count = (label, items) => `<div class="mc-row" ${items.length ? `title="${esc(items.join(", "))}"` : ""}><span>${label}</span><b>${items.length}</b></div>`;
+    const more = (arr, n) => arr.length > n ? `, +${arr.length - n} more` : "";
+    return `
+      <article class="mcard" style="--frame:${frameFill(id)}" aria-label="${esc(cardTitle(d.name))} deck card">
+        <div class="mc-frame">
+          <header class="mc-title"><span class="mc-name">${esc(cardTitle(d.name))}</span><span class="mc-pips">${pips}</span></header>
+          <div class="mc-art ${!meta.featured_art && cmds.length > 1 ? "pair" : ""}">${art}</div>
+          <div class="mc-type"><span>${cmds.length ? `Commander — ${esc(cmds.map(c => c.name.split(" // ")[0]).join(" & "))}` : "Commander deck"}</span></div>
+          <div class="mc-text">
+            ${count("Game Changers", gc)}
+            <div class="mc-list">${gc.length ? esc(gc.slice(0, 3).join(", ")) + more(gc, 3) : `<span class="mc-none">None</span>`}</div>
+            ${count("Two-card combos", combos)}
+            <div class="mc-list">${combos.length ? `${esc(combos[0].pieces)}${combos[0].mv != null ? `, ${combos[0].mv} mana` : ""}${more(combos, 1)}` : `<span class="mc-none">None</span>`}</div>
+            <div class="mc-bottom">
+              <div class="mc-qr">${qrSvg(url)}</div>
+              <div class="mc-small">${count("Nonland tutors", tutors)}${count("Mass land denial", mld)}${count("Extra turns", turns)}</div>
+            </div>
+          </div>
+          <div class="mc-pt" ${meta.bracket ? "" : "hidden"}><span>Bracket</span><b>${esc(meta.bracket || "")}</b></div>
+        </div>
+        <footer class="mc-foot"><span>archidekt.com/decks/${esc(d.id)}</span><span>${esc(meta.owner || "")}</span></footer>
+      </article>`;
+  }
+
+  function renderDeckCards() {
+    const list = sortBy(realDecks().filter(d => !isStale(d)), { k: "name", dir: 1 });
+    $("cardSheet").innerHTML = list.map(deckCardHtml).join("") || `<div class="muted">No decks yet.</div>`;
+    // load every card's art up front, so printing never catches an image that hasn't loaded yet
+    $("cardSheet").querySelectorAll("img").forEach(img => img.loading = "eager");
+  }
+  $("printCards").addEventListener("click", () => window.print());
+
   // ---------- EDH Hipster Quotient ----------
   // Sends every current deck's commanders over in its link: one "c" per deck, "|" between
   // partners (see that project's README).
@@ -1401,7 +1554,7 @@
   //   #proxies?decks=4279849,5005670&stores=tcg,ck,cm&sort=-best
   //   #search?q=elf&colors=W,G,-R&types=Creature,-Land&decks=1,-2&sets=SLD,-LTR&cmd=only&proxied=none
   // Switching tab or deck adds a history entry (so Back works); filter tweaks replace it.
-  const VIEW_SLUG = { pricesView: "decks", proxyView: "proxies", indexView: "search" };
+  const VIEW_SLUG = { pricesView: "decks", proxyView: "proxies", indexView: "search", cardsView: "cards" };
   const SLUG_VIEW = Object.fromEntries(Object.entries(VIEW_SLUG).map(([k, v]) => [v, k]));
   const PRICE_SLUG = { price_tcgplayer: "tcg", price_cardkingdom: "ck", price_cardmarket: "cm" };
   const SLUG_PRICE = Object.fromEntries(Object.entries(PRICE_SLUG).map(([k, v]) => [v, k]));
@@ -1425,7 +1578,7 @@
       if (px.decks.size) q.set("decks", [...px.decks].join(","));
       if ([...px.stores].sort().join(",") !== "ck,tcg") q.set("stores", [...px.stores].join(","));
       if (sortStr(pxSort) !== "best") q.set("sort", sortStr(pxSort));
-    } else {
+    } else if (view === "indexView") {
       const modes = map => [...map].map(([k, m]) => (m === "out" ? "-" : "") + k).join(",");
       if (ix.search) q.set("q", ix.search);
       if (ix.colors.size) q.set("colors", modes(ix.colors));
@@ -1478,7 +1631,7 @@
       const st = csvList(q.get("stores")).filter(x => STORE_NAMES[x]);
       if (st.length) px.stores = new Set(st);
       readSort(q.get("sort"), pxSort);
-    } else {
+    } else if (view === "indexView") {
       // "W,-R" style lists ("-" = excluded); older links used "WG" for colors
       const readModes = (str, ok = () => true) => new Map(csvList(str).map(x => x.startsWith("-") ? [x.slice(1), "out"] : [x, "in"]).filter(([k]) => ok(k)));
       const colorStr = (q.get("colors") || "").toUpperCase();
