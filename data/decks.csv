@@ -1,11 +1,11 @@
-deck_id,deck_name,commanders,commander_ids,first_seen,last_seen
-4279849,1. Life is a Scry-way,"Trelasarra, Moon Dancer",f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5,2026-10-05,2026-10-08
-5005670,2. Can't Block This,"Ikra Shidiqi, the Usurper | Malcolm, Keen-Eyed Navigator",460165df-32db-4773-805e-edd6f18af5d6 | cfcb3051-161f-42f8-bfec-db03b349ff00,2026-10-05,2026-10-08
-5714358,3. Hungry Detectives,Sarah Jane Smith | The Fourth Doctor,5f1a86e0-413c-45a0-a4c0-d85fe74361c1 | d7ae754d-33a2-4a07-8b10-fe4dda9af745,2026-10-05,2026-10-08
-5969200,"4. John ""Before Damage"" Benton",Sergeant John Benton,26393e65-d137-4c36-ba39-6da7e32b16d0,2026-10-05,2026-10-08
-6482039,5. Bring Out Your Dead,"Tom, Bert, and William",1bc9137e-a1e0-4412-8034-8471ae308bc7,2026-10-05,2026-10-08
-16293254,6. Bear Necessities,"Lumra, Bellow of the Woods",b43b3c33-aa44-4001-87ff-695bf04f51be,2026-10-05,2026-10-08
-17493352,7. The Royal Syphon,"Tymna the Weaver | Kediss, Emberclaw Familiar",bc7cbe9b-324e-42b8-94e2-36e91cb32163 | aa1c4ada-a218-4701-a293-ae6cbbe5c4d8,2026-10-05,2026-10-08
-24974478,8. i literally hate their faces,"Sash and Waistcoat, Unmen",7ee28c45-01c4-4f15-83d5-ede29f05a256,2026-10-05,2026-10-08
-25536840,9. Fastidious and precise,The Queen of Dale,7d635dfb-0a48-4965-82d1-d98f943bb28d,2026-10-05,2026-10-08
-26722467,"10. First Breakfast: Protein, Second Breakfast: Banana Pancakes","Rocco, Street Chef",421c2ed3-be60-4814-a82c-a0e3fbb97e63,2026-10-05,2026-10-08
+deck_id,deck_name,commanders,commander_ids,first_seen,last_seen,bracket,owner,featured_art,game_changers,nonland_tutors,mass_land_denial,extra_turns,combos
+4279849,1. Life is a Scry-way,"Trelasarra, Moon Dancer",f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5,2026-10-05,2026-10-08,3,Jimnah,,Ancient Tomb | The One Ring,,,,"Heliod, Sun-Crowned + The Destined White Mage (6)"
+5005670,2. Can't Block This,"Ikra Shidiqi, the Usurper | Malcolm, Keen-Eyed Navigator",460165df-32db-4773-805e-edd6f18af5d6 | cfcb3051-161f-42f8-bfec-db03b349ff00,2026-10-05,2026-10-08,2,Jimnah,,,Tezzeret the Seeker,,Notorious Throng,
+5714358,3. Hungry Like the Sleuth,Sarah Jane Smith | The Fourth Doctor,5f1a86e0-413c-45a0-a4c0-d85fe74361c1 | d7ae754d-33a2-4a07-8b10-fe4dda9af745,2026-10-05,2026-10-08,3,Jimnah,https://storage.googleapis.com/archidekt-card-images/who/c84ea0fd-efc7-4614-9f8f-41a3c71fceaa_art_crop.jpg,Cyclonic Rift,Transmutation Font,,,"Adrix and Nev, Twincasters + Mondrak, Glory Dominus (8)"
+5969200,4. Sgt. Pumper’s Lonely Hearts Club Band,Sergeant John Benton,26393e65-d137-4c36-ba39-6da7e32b16d0,2026-10-05,2026-10-08,4,Jimnah,,Chrome Mox | Crop Rotation | Enlightened Tutor,Enlightened Tutor,,,
+6482039,5. Bring Out Your Dead,"Tom, Bert, and William",1bc9137e-a1e0-4412-8034-8471ae308bc7,2026-10-05,2026-10-08,3,Jimnah,https://storage.googleapis.com/archidekt-card-images/purl/1bc9137e-a1e0-4412-8034-8471ae308bc7_art_crop.jpg,Field of the Dead | Orcish Bowmasters,"Pia, Aether Ascetic",,,
+16293254,6. Bear Necessities,"Lumra, Bellow of the Woods",b43b3c33-aa44-4001-87ff-695bf04f51be,2026-10-05,2026-10-08,3,Jimnah,,Ancient Tomb | Field of the Dead | The Tabernacle at Pendrell Vale,,,,
+17493352,"7. Ring of Fire, Circle of Life","Tymna the Weaver | Kediss, Emberclaw Familiar",bc7cbe9b-324e-42b8-94e2-36e91cb32163 | aa1c4ada-a218-4701-a293-ae6cbbe5c4d8,2026-10-05,2026-10-08,2,Jimnah,https://storage.googleapis.com/archidekt-card-images/c16/bc7cbe9b-324e-42b8-94e2-36e91cb32163_art_crop.jpg,,"Kellan, the Fae-Blooded // Birthright Boon | Steelshaper's Gift | Stoneforge Mystic",,,
+24974478,8. All the Manifests on a Saturday Night,"Sash and Waistcoat, Unmen",7ee28c45-01c4-4f15-83d5-ede29f05a256,2026-10-05,2026-10-08,2,Jimnah,,,,,,
+25536840,9. Fastidious and Precise,The Queen of Dale,7d635dfb-0a48-4965-82d1-d98f943bb28d,2026-10-05,2026-10-08,2,Jimnah,,,Recruiter of the Guard,,,
+26722467,10. Banana Pancakes with Extra Protein,"Rocco, Street Chef",421c2ed3-be60-4814-a82c-a0e3fbb97e63,2026-10-05,2026-10-08,2,Jimnah,,,,,,"Arwen, Weaver of Hope + Rhythm of the Wild (6) | Bigger on the Inside + Kami of Whispered Hopes (8)"
