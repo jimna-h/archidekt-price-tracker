@@ -317,40 +317,31 @@
   .card-sheet .mcard { zoom: var(--zoom); }
   .mcard {
     width: 240px; height: 336px; box-sizing: border-box; position: relative; flex: none;
-    background: #121110; border-radius: 12px; padding: 8px 8px 17px;
+    background: #141312; border-radius: 12px; padding: 8px 8px 17px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 10px 24px -12px rgba(0,0,0,0.5);
-    -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #1b1712;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #1c1915;
     font-family: var(--sans); font-variant-numeric: lining-nums;
   }
-  .mc-frame { position: relative; height: 100%; box-sizing: border-box; border-radius: 6px; padding: 5px 5px 7px; background: var(--frame);
-    display: flex; flex-direction: column; gap: 4px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.25); }
-  .mc-title, .mc-type { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 0 7px;
-    background: linear-gradient(#fbf7ee, #e9e1cf); border-radius: 10px / 50%;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.55), 0 1px 1px rgba(0,0,0,0.35); }
-  .mc-title { height: 22px; flex: none; }
-  .mc-name { font-family: var(--serif); font-weight: 700; font-size: 12px; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.005em; }
-  .mc-pips { display: flex; gap: 1px; flex: none; }
-  .mc-pips .pip { width: 12px; height: 12px; font-size: 7px; box-shadow: 0 1px 0 rgba(0,0,0,0.6); }
-  .mc-art { height: 112px; flex: none; display: flex; gap: 1px; overflow: hidden; margin: 0 3px; background: #2a2622;
-    box-shadow: 0 0 0 1.5px rgba(0,0,0,0.75); }
-  .mc-art img, .mc-art .art-missing { flex: 1 1 0; min-width: 0; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
-  .mc-type { height: 17px; flex: none; font-size: 8.5px; font-weight: 500; }
-  .mc-type span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .mc-text { flex: 1; min-height: 0; margin: 0 3px; padding: 5px 7px 6px; background: #f6f1e4; box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
-    display: flex; flex-direction: column; font-size: 9px; line-height: 1.25; }
-  .mc-row { display: flex; justify-content: space-between; gap: 6px; font-weight: 600; }
-  .mc-row b { font-weight: 700; font-variant-numeric: tabular-nums; }
-  .mc-list { font-size: 8px; font-style: italic; color: #4a4239; margin: 0 0 4px 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .mc-none { color: #8b8276; }
-  .mc-bottom { margin-top: auto; display: flex; gap: 8px; align-items: flex-end; }
-  .mc-qr { width: 46px; height: 46px; flex: none; }
+  .mc-frame { height: 100%; box-sizing: border-box; border-radius: 8px; padding: 6px; background: var(--frame); }
+  .mc-inner { height: 100%; border-radius: 4px; overflow: hidden; background: #fbf9f4; display: flex; flex-direction: column; }
+  .mc-art { height: 116px; flex: none; display: flex; gap: 2px; background: #2a2622; }
+  .mc-art img, .mc-art .art-missing { flex: 1 1 0; min-width: 0; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .mc-body { flex: 1; min-height: 0; padding: 8px 10px 8px; display: flex; flex-direction: column; }
+  .mc-name { font-family: var(--serif); font-weight: 700; font-size: 14px; line-height: 1.1; margin: 0; letter-spacing: -0.005em;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mc-cmd { font-size: 8.5px; color: #6b6358; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mc-section { margin-top: 7px; padding-top: 6px; border-top: 1px solid #e3ddd0; }
+  .mc-label { display: flex; justify-content: space-between; font-size: 9px; font-weight: 600; line-height: 1.3; }
+  .mc-label b { font-variant-numeric: tabular-nums; }
+  .mc-list { list-style: none; margin: 1px 0 4px; padding: 0 0 0 7px; font-size: 8.5px; line-height: 1.3; color: #3f3931; }
+  .mc-list li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mc-none { color: #9a9286; font-style: italic; }
+  .mc-bottom { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; }
+  .mc-qr { width: 44px; height: 44px; flex: none; }
   .mc-qr svg { width: 100%; height: 100%; display: block; }
-  .mc-small { flex: 1; align-self: flex-start; padding-bottom: 8px; }
-  .mc-small .mc-row { font-weight: 500; font-size: 8.5px; }
-  .mc-pt { position: absolute; right: 10px; bottom: -4px; height: 19px; padding: 0 7px; display: flex; align-items: baseline; gap: 4px;
-    background: linear-gradient(#fbf7ee, #e9e1cf); border-radius: 4px; box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.4); }
-  .mc-pt span { font-size: 7px; font-weight: 600; line-height: 19px; color: #4a4239; }
-  .mc-pt b { font-family: var(--serif); font-size: 13px; line-height: 19px; }
+  .mc-bracket { text-align: right; line-height: 1; }
+  .mc-bracket span { display: block; font-size: 8px; font-weight: 600; color: #6b6358; margin-bottom: 1px; }
+  .mc-bracket b { font-family: var(--serif); font-size: 30px; font-weight: 700; line-height: 0.9; }
   .mc-foot { position: absolute; left: 12px; right: 12px; bottom: 3px; display: flex; justify-content: space-between; font-size: 6.5px; line-height: 11px; color: #e9e4da; letter-spacing: 0.02em; }
 
   @media print {
@@ -461,7 +452,7 @@
     <div class="ix-bar cards-bar">
       <div>
         <h3>Deck cards</h3>
-        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. Bracket and its cards come from your Archidekt settings; the art is the deck's featured image, or the commander's.</div>
+        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt.</div>
       </div>
       <button class="primary" id="printCards">Print cards</button>
     </div>
@@ -1492,34 +1483,30 @@
   function deckCardHtml(d) {
     const meta = deckMeta.get(d.id) || {}, id = deckIdentity(d.id);
     const cmds = commanderArt.get(d.id) || [];
-    const gc = listOf(meta.game_changers), tutors = listOf(meta.nonland_tutors);
-    const mld = listOf(meta.mass_land_denial), turns = listOf(meta.extra_turns);
-    const combos = listOf(meta.combos).map(c => { const m = c.match(/^(.*) \((\d+)\)$/); return m ? { pieces: m[1], mv: +m[2] } : { pieces: c, mv: null }; });
-    const url = `https://archidekt.com/decks/${d.id}`;
-    const art = meta.featured_art
-      ? `<img src="${esc(meta.featured_art)}" alt="" decoding="async" onerror="this.remove()">`
-      : cmds.slice(0, 2).map(c => artImg(c)).join("");
-    const pips = (orderedColors(id) || "C").split("").map(k => `<span class="pip ${k}">${k}</span>`).join("");
-    const count = (label, items) => `<div class="mc-row" ${items.length ? `title="${esc(items.join(", "))}"` : ""}><span>${label}</span><b>${items.length}</b></div>`;
-    const more = (arr, n) => arr.length > n ? `, +${arr.length - n} more` : "";
+    const gc = listOf(meta.game_changers), turns = listOf(meta.extra_turns);
+    const url = `https://archidekt.com/decks/${d.id}`, MAX_GC = 5;
+    const gcRows = gc.length
+      ? gc.slice(0, gc.length > MAX_GC ? MAX_GC - 1 : MAX_GC).map(n => `<li>${esc(n)}</li>`).join("") +
+        (gc.length > MAX_GC ? `<li class="mc-none">and ${gc.length - MAX_GC + 1} more</li>` : "")
+      : `<li class="mc-none">None</li>`;
     return `
       <article class="mcard" style="--frame:${frameFill(id)}" aria-label="${esc(cardTitle(d.name))} deck card">
-        <div class="mc-frame">
-          <header class="mc-title"><span class="mc-name">${esc(cardTitle(d.name))}</span><span class="mc-pips">${pips}</span></header>
-          <div class="mc-art ${!meta.featured_art && cmds.length > 1 ? "pair" : ""}">${art}</div>
-          <div class="mc-type"><span>${cmds.length ? `Commander — ${esc(cmds.map(c => c.name.split(" // ")[0]).join(" & "))}` : "Commander deck"}</span></div>
-          <div class="mc-text">
-            ${count("Game Changers", gc)}
-            <div class="mc-list">${gc.length ? esc(gc.slice(0, 3).join(", ")) + more(gc, 3) : `<span class="mc-none">None</span>`}</div>
-            ${count("Two-card combos", combos)}
-            <div class="mc-list">${combos.length ? `${esc(combos[0].pieces)}${combos[0].mv != null ? `, ${combos[0].mv} mana` : ""}${more(combos, 1)}` : `<span class="mc-none">None</span>`}</div>
+        <div class="mc-frame"><div class="mc-inner">
+          <div class="mc-art ${cmds.length > 1 ? "pair" : ""}">${cmds.slice(0, 2).map(c => artImg(c)).join("")}</div>
+          <div class="mc-body">
+            <h4 class="mc-name">${esc(cardTitle(d.name))}</h4>
+            <div class="mc-cmd">${esc(cmds.map(c => c.name.split(" // ")[0]).join(" & "))}</div>
+            <div class="mc-section">
+              <div class="mc-label"><span>Game Changers</span><b>${gc.length}</b></div>
+              <ul class="mc-list">${gcRows}</ul>
+              ${turns.length ? `<div class="mc-label" title="${esc(turns.join(", "))}"><span>Extra turns</span><b>${turns.length}</b></div>` : ""}
+            </div>
             <div class="mc-bottom">
               <div class="mc-qr">${qrSvg(url)}</div>
-              <div class="mc-small">${count("Nonland tutors", tutors)}${count("Mass land denial", mld)}${count("Extra turns", turns)}</div>
+              ${meta.bracket ? `<div class="mc-bracket"><span>Bracket</span><b>${esc(meta.bracket)}</b></div>` : ""}
             </div>
           </div>
-          <div class="mc-pt" ${meta.bracket ? "" : "hidden"}><span>Bracket</span><b>${esc(meta.bracket || "")}</b></div>
-        </div>
+        </div></div>
         <footer class="mc-foot"><span>archidekt.com/decks/${esc(d.id)}</span><span>${esc(meta.owner || "")}</span></footer>
       </article>`;
   }
