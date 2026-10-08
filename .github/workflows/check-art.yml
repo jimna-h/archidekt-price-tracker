@@ -1,4 +1,4 @@
-name: Check commander art (temporary)
+name: Inspect deck data (temporary)
 on:
   push:
     branches: [check-art]
@@ -10,28 +10,27 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: |
-          python3 - > art-check.txt <<'PY'
-          import csv, urllib.request
-          rows = list(csv.DictReader(open("data/decks.csv")))
-          for r in rows:
-              for name, i in zip(r["commanders"].split(" | "), r["commander_ids"].split(" | ")):
-                  for label, url in (("direct", f"https://cards.scryfall.io/art_crop/front/{i[0]}/{i[1]}/{i}.jpg"),
-                                     ("api", f"https://api.scryfall.com/cards/{i}?format=image&version=art_crop")):
-                      req = urllib.request.Request(url, headers={"User-Agent": "archidekt-snapshot/1.0", "Accept": "*/*"})
-                      try:
-                          with urllib.request.urlopen(req, timeout=20) as resp:
-                              body = resp.read()
-                              print(f"{label}\t{resp.status}\t{resp.headers.get('Content-Type')}\t{len(body)}\t{name}\t{resp.url[:90]}")
-                      except Exception as e:
-                          print(f"{label}\tERR\t{e}\t\t{name}")
+          python3 - > deck-inspect.txt <<'PY'
+          import json, urllib.request
+          def get(url):
+              req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (archidekt-price-tracker)"})
+              return json.load(urllib.request.urlopen(req, timeout=30))
+          for deck_id in (5714358, 4279849):
+              d = get(f"https://archidekt.com/api/decks/{deck_id}/")
+              print("=== deck", deck_id, d.get("name"))
+              for k, v in d.items():
+                  if k in ("cards",): continue
+                  s = json.dumps(v, default=str)
+                  print(f"  {k}: {s[:300]}")
+              flags = ("gameChanger", "tutor", "extraTurns", "massLandDenial", "twoCardComboSingelton", "twoCardComboIds", "atomicCombos", "potentialCombos")
+              for c in d["cards"]:
+                  o = c["card"]["oracleCard"]
+                  hit = {f: o.get(f) for f in flags if o.get(f)}
+                  if hit:
+                      print("  CARD", o["name"], "| cats:", c.get("categories"), "|", json.dumps(hit)[:400])
+              print("  oracle id example:", d["cards"][0]["card"]["oracleCard"].get("id"), d["cards"][0]["card"]["oracleCard"].get("uid"))
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p art && python3 - <<'PY'
-          import csv, urllib.request
-          for r in csv.DictReader(open("data/decks.csv")):
-              for i in r["commander_ids"].split(" | "):
-                  req = urllib.request.Request(f"https://cards.scryfall.io/art_crop/front/{i[0]}/{i[1]}/{i}.jpg", headers={"User-Agent": "archidekt-snapshot/1.0"})
-                  open(f"art/{i}.jpg", "wb").write(urllib.request.urlopen(req, timeout=20).read())
-          PY
-          git add art-check.txt art && git commit -m "art check" && git push
+          git rm -rq --cached art art-check.txt 2>/dev/null || true
+          git add deck-inspect.txt && git commit -m "deck inspect" && git push
