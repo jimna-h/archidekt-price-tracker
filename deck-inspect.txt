@@ -1,0 +1,117 @@
+=== deck 5714358 3. Hungry Like the Sleuth
+  id: 5714358
+  name: "3. Hungry Like the Sleuth"
+  createdAt: "2023-10-25T13:19:17.100844Z"
+  updatedAt: "2026-10-08T21:04:27.380851Z"
+  deckFormat: 3
+  edhBracket: 3
+  game: null
+  description: "{\"ops\":[{\"insert\":\"other deck name ideas:\\n+ Hungry Detectives\\n\"}]}"
+  viewCount: 21742
+  featured: "https://storage.googleapis.com/archidekt-card-images/who/5f1a86e0-413c-45a0-a4c0-d85fe74361c1_art_crop.jpg"
+  customFeatured: "https://storage.googleapis.com/archidekt-card-images/who/c84ea0fd-efc7-4614-9f8f-41a3c71fceaa_art_crop.jpg"
+  hasPrimer: false
+  private: false
+  unlisted: false
+  theorycrafted: false
+  points: 4
+  userInput: 0
+  owner: {"id": 143040, "username": "Jimnah", "avatar": "https://storage.googleapis.com/topdekt-user/avatars/default/avatar_garcia_selesnya.jpg", "frame": null, "ckAffiliate": "", "tcgAffiliate": "", "referrerEnum": null}
+  commentRoot: 5718640
+  editors: null
+  parentFolder: 359477
+  bookmarked: false
+  categories: [{"id": 55058782, "name": "card advantage", "isPremier": false, "includedInDeck": true, "includedInPrice": true}, {"id": 291022908, "name": "token modifiers", "isPremier": false, "includedInDeck": true, "includedInPrice": true}, {"id": 285946082, "name": "if i had more colors", "isPremier": false, "
+  deckTags: [{"id": 232870, "tag": 75, "deck": 5714358, "name": "Clues", "position": "M-500000"}, {"id": 232871, "tag": 266, "deck": 5714358, "name": "Food", "position": "M-510000"}, {"id": 232872, "tag": 42, "deck": 5714358, "name": "Legends", "position": "M-520000"}, {"id": 232873, "tag": 57, "deck": 5714358,
+  playgroupDeckUrl: null
+  cardPackage: null
+  deckHelp: null
+  customCards: []
+  intentionallySkippedCardData: false
+  CARD Venser, Shaper Savant | cats: ['interaction'] | {"potentialCombos": ["8302"]}
+  CARD Five Hundred Year Diary | cats: ['ramp'] | {"potentialCombos": ["5660"]}
+  CARD Inventors' Fair | cats: ['Land'] | {"tutor": true}
+  CARD Stridehangar Automaton | cats: ['token modifiers'] | {"atomicCombos": ["40750"]}
+  CARD Transmutation Font | cats: ['token generators'] | {"tutor": true}
+  CARD Clock of Omens | cats: ['utility'] | {"atomicCombos": ["9806"], "potentialCombos": ["17198"]}
+  CARD Arixmethes, Slumbering Isle | cats: ['Maybeboard'] | {"potentialCombos": ["6065", "11973"]}
+  CARD Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun | cats: ['ramp', 'card advantage'] | {"potentialCombos": ["26895", "19925"]}
+  CARD Sol Ring | cats: ['ramp'] | {"atomicCombos": ["17151"]}
+  CARD Mondrak, Glory Dominus | cats: ['token modifiers'] | {"twoCardComboIds": ["15524"], "atomicCombos": ["15524", "17271"]}
+  CARD Storm the Vault // Vault of Catlacan | cats: ['Maybeboard'] | {"potentialCombos": ["26895"]}
+  CARD Urza's Saga | cats: ['Maybeboard'] | {"tutor": true}
+  CARD Adrix and Nev, Twincasters | cats: ['token modifiers'] | {"twoCardComboIds": ["15524"], "atomicCombos": ["17271"], "potentialCombos": ["15524"]}
+  CARD Donatello, the Brains | cats: ['token modifiers'] | {"atomicCombos": ["40584"]}
+  CARD Tippy-Toe, Terrific Partner | cats: ['token modifiers', 'card advantage'] | {"potentialCombos": ["17271"]}
+  CARD Emiel the Blessed | cats: ['Maybeboard'] | {"twoCardComboIds": ["2082", "4991", "12429", "12434"], "atomicCombos": ["11996", "11828", "2082", "7015", "19051", "4991", "46316", "12955"], "potentialCombos": ["18178", "8302", "26891", "43730", "9907", "15086", "12429", "12434", "21764", "24579", "20118"]}
+  CARD Ancestral Statue | cats: ['Maybeboard'] | {"atomicCombos": ["570", "12869", "10866"], "potentialCombos": ["8302", "45779", "46899", "22370", "32850", "23122", "19447", "26350", "9907"]}
+  CARD Derevi, Empyrial Tactician | cats: ['Maybeboard'] | {"atomicCombos": ["15736"], "potentialCombos": ["10951", "39667", "17198"]}
+  CARD Tezzeret the Seeker | cats: ['Maybeboard'] | {"tutor": true, "twoCardComboIds": ["17198"], "atomicCombos": ["17198"]}
+  CARD Mox Diamond | cats: ['Maybeboard'] | {"gameChanger": true}
+  CARD Cyclonic Rift | cats: ['interaction'] | {"gameChanger": true}
+  CARD Rosie Cotton of South Lane | cats: ['Maybeboard'] | {"atomicCombos": ["40584", "23671", "23717", "38979"]}
+  CARD Cyberdrive Awakener | cats: ['Maybeboard'] | {"potentialCombos": ["177"]}
+  CARD Lonis, Genetics Expert | cats: ['Maybeboard'] | {"atomicCombos": ["5333", "33875", "41812"], "potentialCombos": ["31569", "47086"]}
+  CARD Piper Wright, Publick Reporter | cats: ['Maybeboard'] | {"atomicCombos": ["17189"]}
+  CARD Chrome Mox | cats: ['Maybeboard'] | {"gameChanger": true}
+  CARD Mox Opal | cats: ['Maybeboard'] | {"atomicCombos": ["17151"]}
+  CARD Mox Amber | cats: ['Maybeboard'] | {"potentialCombos": ["25358", "17151"]}
+  CARD The One Ring | cats: ['Maybeboard'] | {"gameChanger": true}
+  CARD Gaea's Cradle | cats: ['Maybeboard'] | {"gameChanger": true, "potentialCombos": ["26895", "19925"]}
+  CARD Tezzeret, Master of the Bridge | cats: ['Maybeboard'] | {"potentialCombos": ["467"]}
+  CARD Manifold Key | cats: ['Maybeboard'] | {"twoCardComboIds": ["17198"], "atomicCombos": ["17198"]}
+  CARD Voltaic Key | cats: ['Maybeboard'] | {"twoCardComboIds": ["17198"], "atomicCombos": ["17198"]}
+  CARD Chromatic Orrery | cats: ['Maybeboard'] | {"twoCardComboIds": ["5660"], "atomicCombos": ["5660"]}
+  CARD Time Sieve | cats: ['Maybeboard'] | {"extraTurns": true, "atomicCombos": ["16961", "39299", "27734", "24269", "30401", "26467", "32135", "25347"], "potentialCombos": ["41428", "37114", "26480", "28322", "25019", "39688", "33156", "26976", "26495", "52053", "52785"]}
+  CARD Irma, Part-Time Mutant | cats: ['Maybeboard'] | {"atomicCombos": ["26072", "35149"]}
+  CARD Cloudstone Curio | cats: ['Maybeboard'] | {"atomicCombos": ["407"], "potentialCombos": ["35132", "20118"]}
+  CARD War of the Last Alliance | cats: ['Maybeboard'] | {"tutor": true}
+  CARD Bootleggers' Stash | cats: ['Maybeboard'] | {"atomicCombos": ["17189"]}
+  CARD Bard, King of Dale | cats: ['Maybeboard'] | {"atomicCombos": ["15524"], "potentialCombos": ["21412", "17271"]}
+  CARD Bag End Banquet | cats: ['Maybeboard'] | {"atomicCombos": ["49434", "2935"]}
+  oracle id example: 20089 0bc7f093-bef0-4f1a-852c-4b75ebf54838
+=== deck 4279849 1. Life is a Scry-way
+  id: 4279849
+  name: "1. Life is a Scry-way"
+  createdAt: "2023-04-02T23:20:04.966000Z"
+  updatedAt: "2026-10-05T17:32:56.580143Z"
+  deckFormat: 3
+  edhBracket: 3
+  game: null
+  description: "{\"ops\":[]}"
+  viewCount: 50122
+  featured: "https://card-images.archidekt.com/art/front/f/6/f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5.webp"
+  customFeatured: ""
+  hasPrimer: false
+  private: false
+  unlisted: false
+  theorycrafted: false
+  points: 10
+  userInput: 0
+  owner: {"id": 143040, "username": "Jimnah", "avatar": "https://storage.googleapis.com/topdekt-user/avatars/default/avatar_garcia_selesnya.jpg", "frame": null, "ckAffiliate": "", "tcgAffiliate": "", "referrerEnum": null}
+  commentRoot: 4277150
+  editors: null
+  parentFolder: 359477
+  bookmarked: false
+  categories: [{"id": 317375400, "name": "would i dare combo?", "isPremier": false, "includedInDeck": false, "includedInPrice": false}, {"id": 37041091, "name": "voltron wincons", "isPremier": false, "includedInDeck": true, "includedInPrice": true}, {"id": 209771070, "name": "utility", "isPremier": false, "includ
+  deckTags: [{"id": 65626, "tag": 25, "deck": 4279849, "name": "Lifegain", "position": "M-490000"}, {"id": 2521407, "tag": 28, "deck": 4279849, "name": "+1/+1 Counters", "position": "M-510000"}]
+  playgroupDeckUrl: null
+  cardPackage: null
+  deckHelp: null
+  customCards: []
+  intentionallySkippedCardData: false
+  CARD Ancient Tomb | cats: ['Land'] | {"gameChanger": true}
+  CARD Heliod, Sun-Crowned | cats: ['the pride', 'lifegain'] | {"twoCardComboIds": ["17527", "18342"], "atomicCombos": ["18435", "17527", "15628", "33163", "49696", "3781"], "potentialCombos": ["18342", "52728"]}
+  CARD The One Ring | cats: ['card advantage'] | {"gameChanger": true}
+  CARD The Destined White Mage | cats: ['the pride', 'lifegain'] | {"atomicCombos": ["18435", "17527", "15628", "33163", "49696", "3781"], "potentialCombos": ["52728"]}
+  CARD Scurry Oak | cats: ['would i dare combo?'] | {"twoCardComboIds": ["8404", "2411"], "atomicCombos": ["8404", "33875", "2411", "2917", "49927", "53112"]}
+  CARD Spike Feeder | cats: ['would i dare combo?'] | {"atomicCombos": ["20684", "705", "24265", "21492", "16253", "47912"], "potentialCombos": ["52061", "47285"]}
+  CARD Archangel of Thune | cats: ['Maybeboard'] | {"atomicCombos": ["15628"], "potentialCombos": ["18435", "17527", "33163", "49696", "3781", "52728"]}
+  CARD Finale of Devastation | cats: ['would i dare combo?'] | {"tutor": true}
+  CARD Season of Gathering | cats: ['Maybeboard'] | {"twoCardComboIds": ["22907"], "atomicCombos": ["22907"]}
+  CARD Teferi's Protection | cats: ['Maybeboard'] | {"gameChanger": true, "twoCardComboIds": ["120"], "atomicCombos": ["120"]}
+  CARD Aluren | cats: ['Maybeboard'] | {"twoCardComboIds": ["18787", "14752", "5829", "9951", "2440", "16011", "7083", "7779", "168", "14897", "9288"], "atomicCombos": ["2892", "5829", "2440", "7083", "9288"], "potentialCombos": ["14752", "18787", "9951", "16011", "7779", "168", "14897"]}
+  CARD Whitemane Lion | cats: ['Maybeboard'] | {"twoCardComboIds": ["407"], "potentialCombos": ["407", "8302", "11853"]}
+  CARD Starfield Shepherd | cats: ['Maybeboard'] | {"tutor": true}
+  CARD Heroic Feast | cats: ['Maybeboard'] | {"potentialCombos": ["15628", "18435", "33163", "49696", "17527", "3781"]}
+  oracle id example: 34167 a177295e-3b58-4e46-a1cb-fc003a7a0848
