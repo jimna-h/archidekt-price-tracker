@@ -900,6 +900,8 @@ date,deck_id,card_name,set_code,finish,proxied,quantity
 2026-10-05,26722467,"Yavimaya, Cradle of Growth",mh2,Normal,true,1
 2026-10-05,26722467,Yotian Dissident,bro,Normal,true,1
 2026-10-08,6482039,Dark Matter Manipulator,fra,Normal,false,1
+2026-10-08,6482039,Overgrown Tomb,ecl,Normal,false,1
+2026-10-08,6482039,Overgrown Tomb,rvr,Normal,true,0
 2026-10-08,6482039,Town Greeter,fin,Normal,false,0
 2026-10-08,6482039,Wood Elves,ncc,Normal,false,0
 2026-10-08,6482039,Wood Elves,s99,Normal,false,1
