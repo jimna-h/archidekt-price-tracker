@@ -35,6 +35,7 @@ Decks are always identified by their Archidekt deck id. The files are laid out s
 | `data/decklists.csv` | Change log of deck contents. A deck's full list on its first day, then only entries whose quantity changed (`0` = removed). Swaps and decklist history are rebuilt from this | Grows only when you change decks |
 | `data/card_prices/YYYY-MM.csv` | One row per printing per day with the three prices, shared across decks | ~1.3 MB a month; the page loads the last two months |
 | `data/decks.csv` | One row per deck: latest name, commanders, the Scryfall id of each commander's printing (for its art), first and last seen | Tiny |
+| `data/decks.csv` (continued) | Also each deck's Archidekt bracket, owner, custom featured art, and the cards behind its bracket: Game Changers, nonland tutors, mass land denial, extra turns, and complete two-card combos with their total mana value | |
 | `data/folder.csv` | The Archidekt folder id, for the page's folder link | Tiny |
 | `data/cards.csv` | One row per card name: type line, mana value, color identity | Tiny |
 

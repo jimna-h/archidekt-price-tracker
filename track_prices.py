@@ -69,7 +69,11 @@ FIELDNAMES = [
     "proxied",
 ]
 
-DECK_FIELDNAMES = ["deck_id", "deck_name", "commanders", "commander_ids", "first_seen", "last_seen"]
+DECK_FIELDNAMES = ["deck_id", "deck_name", "commanders", "commander_ids", "first_seen", "last_seen",
+                   # for the deck cards: Archidekt's bracket setting and the cards behind it
+                   "bracket", "owner", "featured_art", "game_changers", "nonland_tutors",
+                   "mass_land_denial", "extra_turns", "combos"]
+PROFILE_FIELDS = DECK_FIELDNAMES[6:]
 TOTAL_FIELDNAMES = ["date", "deck_id", "cards"] + [
     f"{src}_{part}" for src in ("tcg", "ck", "cm") for part in ("total", "paper", "proxy")]
 SOURCE_COLUMNS = {"tcg": "price_tcgplayer", "ck": "price_cardkingdom", "cm": "price_cardmarket"}
@@ -197,8 +201,47 @@ def card_info(oracle):
     }
 
 
+def deck_profile(deck, entries):
+    """Bracket-related facts about the cards actually in the deck (Maybeboard etc. excluded).
+
+    Archidekt flags each card as a Game Changer, tutor, extra-turn or mass land denial card,
+    and lists the Commander Spellbook combos it belongs to. A two-card combo counts as in the
+    deck when a card lists it as two-card and at least two cards in the deck list it at all.
+    """
+    flagged = {"gameChanger": set(), "tutor": set(), "massLandDenial": set(), "extraTurns": set()}
+    two_card, members, mana = set(), {}, {}
+    for entry in entries:
+        oracle = entry.get("card", {}).get("oracleCard", {})
+        name = oracle.get("name", "")
+        is_land = "Land" in (oracle.get("types") or [])
+        for flag, names in flagged.items():
+            if oracle.get(flag) and not (flag == "tutor" and is_land):
+                names.add(name)
+        mana[name] = oracle.get("cmc") or 0
+        two_card.update(oracle.get("twoCardComboIds") or [])
+        for combo in set(oracle.get("twoCardComboIds") or []) | set(oracle.get("atomicCombos") or []):
+            members.setdefault(combo, set()).add(name)
+    combos = {}
+    for combo in two_card:
+        pieces = sorted(members.get(combo, ()), key=lambda n: (mana[n], n))
+        if len(pieces) >= 2:
+            pair = tuple(sorted(pieces[:2]))
+            combos[pair] = int(sum(mana[n] for n in pair))
+    combo_text = " | ".join(f"{a} + {b} ({mv})" for (a, b), mv in sorted(combos.items(), key=lambda x: (x[1], x[0])))
+    return {
+        "bracket": deck.get("edhBracket") or "",
+        "owner": (deck.get("owner") or {}).get("username", ""),
+        "featured_art": deck.get("customFeatured") or "",
+        "game_changers": " | ".join(sorted(flagged["gameChanger"])),
+        "nonland_tutors": " | ".join(sorted(flagged["tutor"])),
+        "mass_land_denial": " | ".join(sorted(flagged["massLandDenial"])),
+        "extra_turns": " | ".join(sorted(flagged["extraTurns"])),
+        "combos": combo_text,
+    }
+
+
 def fetch_deck(deck_id, today):
-    """Returns (deck name, commander names, card rows, card info) for one deck."""
+    """Returns (deck name, commander names, card rows, card info, profile) for one deck."""
     response = get(f"{API}/decks/{deck_id}/")
     response.raise_for_status()
     deck = response.json()
@@ -213,12 +256,13 @@ def fetch_deck(deck_id, today):
     # The commander zone is Archidekt's "premier" category (normally called "Commander").
     premier = {category.get("name") for category in deck.get("categories") or [] if category.get("isPremier")} or {"Commander"}
 
-    rows, commanders, infos = [], [], []
+    rows, commanders, infos, included = [], [], [], []
     for entry in deck.get("cards", []):
         # A card's primary category is the first one listed; uncategorized cards count.
         categories = entry.get("categories") or []
         if categories and categories[0] in excluded:
             continue
+        included.append(entry)
 
         card = entry.get("card", {})
         oracle = card.get("oracleCard", {})
@@ -240,7 +284,7 @@ def fetch_deck(deck_id, today):
         for key, column in PRICE_SOURCES.items():
             row[column] = price(prices, key, foil)
         rows.append(row)
-    return deck.get("name", ""), commanders, rows, infos
+    return deck.get("name", ""), commanders, rows, infos, deck_profile(deck, included)
 
 
 # ---------------------------------------------------------------- csv helpers
@@ -340,7 +384,7 @@ def write_card_prices(rows, today):
     write_csv(path, CARD_PRICE_FIELDNAMES, old + new)
 
 
-def write_deck_names(names, commanders, listed_ids, today):
+def write_deck_names(names, commanders, listed_ids, today, profiles=None):
     """One row per deck: latest name and commanders. `last_seen` moves forward whenever the
     deck is listed in the folder, even if fetching it failed that day."""
     decks = {row["deck_id"]: row for row in read_csv(DECKS_PATH)}
@@ -352,6 +396,7 @@ def write_deck_names(names, commanders, listed_ids, today):
             row["deck_name"] = names[deck_id]
             row["commanders"] = " | ".join(name for name, _ in commanders.get(deck_id, []))
             row["commander_ids"] = " | ".join(uid for _, uid in commanders.get(deck_id, []))
+            row.update((profiles or {}).get(deck_id, {}))
     write_csv(DECKS_PATH, DECK_FIELDNAMES, sorted(decks.values(), key=lambda d: int(d["deck_id"])))
 
 
@@ -413,10 +458,10 @@ def main():
 
     migrate_legacy_prices()
 
-    rows, names, commanders, infos, failed = [], {}, {}, [], []
+    rows, names, commanders, infos, profiles, failed = [], {}, {}, [], {}, []
     for deck_id in deck_ids:
         try:
-            name, deck_commanders, these, these_infos = fetch_deck(deck_id, today)
+            name, deck_commanders, these, these_infos, profiles[deck_id] = fetch_deck(deck_id, today)
             print(f"  deck {deck_id} ({name}): {len(these)} card entries")
             names[deck_id] = name
             commanders[deck_id] = deck_commanders
@@ -434,7 +479,7 @@ def main():
     write_totals(rows, today)
     changed = write_decklists(rows, today, names.keys())
     write_card_prices(rows, today)
-    write_deck_names(names, commanders, deck_ids, today)
+    write_deck_names(names, commanders, deck_ids, today, profiles)
     write_csv(FOLDER_PATH, ["folder_id"], [{"folder_id": folder_id}])
     write_card_info(infos)
     pruned = prune_missing_decks(today)
