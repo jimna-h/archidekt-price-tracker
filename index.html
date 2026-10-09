@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M11.58%2014.73L7.18%203.86A15%2015%200%200%201%2024.82%203.86L15.84%2011.40Z%22%20fill%3D%22%23f2e8c9%22/%3E%3Cpath%20d%3D%22M15.84%2011.40L24.82%203.86A15%2015%200%200%201%2030.27%2020.64L20.32%2014.43Z%22%20fill%3D%22%233d8fd1%22/%3E%3Cpath%20d%3D%22M20.32%2014.43L30.27%2020.64A15%2015%200%200%201%2016.00%2031.00L18.83%2019.62Z%22%20fill%3D%22%233b3733%22/%3E%3Cpath%20d%3D%22M18.83%2019.62L16.00%2031.00A15%2015%200%200%201%201.73%2020.64L13.43%2019.81Z%22%20fill%3D%22%23d9533b%22/%3E%3Cpath%20d%3D%22M13.43%2019.81L1.73%2020.64A15%2015%200%200%201%207.18%203.86L11.58%2014.73Z%22%20fill%3D%22%232f8a52%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%2315171c%22%20stroke-opacity%3D%22.18%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: light;
@@ -314,7 +314,11 @@
   .cards-bar .note { max-width: 70ch; }
   .print-controls { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
   .print-pick { font-size: 13px; color: var(--text-secondary); display: flex; gap: 6px; align-items: center; }
-  button.primary:disabled { opacity: 0.45; cursor: default; filter: none; }
+  button.primary:disabled, button.secondary:disabled { opacity: 0.45; cursor: default; filter: none; }
+  .print-buttons { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  button.secondary { font: inherit; font-weight: 600; font-size: 15px; color: var(--series-1); background: var(--surface); border: 1.5px solid var(--series-1); border-radius: 8px; padding: 7px 15px; cursor: pointer; white-space: nowrap; }
+  button.secondary:hover:not(:disabled) { background: var(--series-1-wash); }
+  .png-stage { position: fixed; left: -10000px; top: 0; }   /* true-size copy for PNG export */
   .card-sheet .mcard { cursor: pointer; transition: opacity .15s, filter .15s; }
   .card-sheet .mcard.skip { opacity: 0.35; filter: grayscale(1); }
   .card-sheet .mcard:focus-visible { outline: 3px solid var(--series-1); outline-offset: 3px; }
@@ -461,10 +465,13 @@
     <div class="ix-bar cards-bar">
       <div>
         <h3>Deck cards</h3>
-        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt, and the date along the bottom is when the deck was last edited there, so you can tell when a printed card is out of date. Click a card to leave it out of the printout. In the print dialog, turn on background graphics and print at 100% scale.</div>
+        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt, and the date along the bottom is when the deck was last edited there, so you can tell when a printed card is out of date. Click a card to leave it out of the printout and the downloads. Download PNGs saves one 300 dpi image per card; your browser may ask once to allow several downloads. In the print dialog, turn on background graphics and print at 100% scale.</div>
       </div>
       <div class="print-controls">
-        <button class="primary" id="printCards">Print cards</button>
+        <div class="print-buttons">
+          <button class="primary" id="printCards">Print cards</button>
+          <button class="secondary" id="pngCards">Download PNGs</button>
+        </div>
         <div class="print-pick"><span id="printCount"></span> <button class="ghost" id="printAll" hidden>Include all</button></div>
       </div>
     </div>
@@ -623,6 +630,7 @@
 </main>
 
 <script src="vendor/qrcode.js"></script>
+<script src="vendor/html-to-image.js"></script>
 <script>
 (() => {
   // =====================================================================================
@@ -1531,7 +1539,7 @@
   function updatePrintCount() {
     const all = $("cardSheet").querySelectorAll(".mcard").length, n = all - skipPrint.size;
     $("printCount").textContent = skipPrint.size ? `Printing ${n} of ${all}` : `All ${all} will print`;
-    $("printAll").hidden = !skipPrint.size; $("printCards").disabled = !n;
+    $("printAll").hidden = !skipPrint.size; $("printCards").disabled = $("pngCards").disabled = !n;
   }
   $("cardSheet").addEventListener("click", e => {
     const c = e.target.closest(".mcard"); if (!c) return;
@@ -1569,6 +1577,40 @@
     updatePrintCount();
   }
   $("printCards").addEventListener("click", () => window.print());
+
+  // One PNG per selected card, at 300 dpi for the card's real size (750 × 1050 px).
+  // Each card is copied into an off-screen spot at true size first, because the on-screen
+  // cards are enlarged.
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const fileName = name => (cardTitle(name).replace(/[\\/:*?"<>|]+/g, "").replace(/\s+/g, " ").trim() || "deck") + ".png";
+  $("pngCards").addEventListener("click", async () => {
+    const btn = $("pngCards"), label = btn.textContent;
+    const cards = [...$("cardSheet").querySelectorAll(".mcard:not(.skip)")];
+    if (!cards.length || typeof htmlToImage === "undefined") return;
+    btn.disabled = true;
+    const stage = Object.assign(document.createElement("div"), { className: "png-stage" });
+    document.body.append(stage);
+    try {
+      for (const [i, card] of cards.entries()) {
+        btn.textContent = `Making ${i + 1} of ${cards.length}…`;
+        const copy = card.cloneNode(true);
+        copy.classList.remove("skip");
+        stage.replaceChildren(copy);
+        const png = await htmlToImage.toPng(copy, { pixelRatio: 750 / 240, width: 240, height: 336,
+          style: { zoom: "1", margin: "0", boxShadow: "none", transform: "none" } });
+        const deck = decks.get(card.dataset.id);
+        const a = Object.assign(document.createElement("a"), { href: png, download: fileName(deck ? deck.name : card.dataset.id) });
+        a.click();
+        await sleep(400);   // spacing the downloads out keeps browsers from dropping some
+      }
+      btn.textContent = `Downloaded ${cards.length}`;
+    } catch (err) {
+      console.error(err); btn.textContent = "Couldn't make the images";
+    } finally {
+      stage.remove();
+      setTimeout(() => { btn.textContent = label; btn.disabled = false; }, 2000);
+    }
+  });
 
   // ---------- EDH Hipster Quotient ----------
   // Sends every current deck's commanders over in its link: one "c" per deck, "|" between
