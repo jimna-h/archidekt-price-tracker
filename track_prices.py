@@ -242,6 +242,42 @@ def deck_profile(deck, entries):
     }
 
 
+UUID = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", re.I)
+
+
+def scryfall_name(printing_id):
+    """Card name for a Scryfall printing id, or None if Scryfall can't be reached."""
+    try:
+        response = get(f"https://api.scryfall.com/cards/{printing_id}", headers={"Accept": "application/json"})
+        return response.json().get("name") if response.status_code == 200 else None
+    except Exception:
+        return None
+
+
+def order_by_featured(deck, commanders):
+    """Put the deck's featured commander first, so partners show in the order you chose.
+
+    The featured image's address holds a Scryfall printing id. Your own pick
+    ("customFeatured") wins over Archidekt's automatic one ("featured"). The pick may be a
+    different printing from the one in the deck, so it's matched by card name if needed,
+    and that commander then shows the art you picked.
+    """
+    for source in ("customFeatured", "featured"):
+        found = UUID.search(deck.get(source) or "")
+        if not found:
+            continue
+        pick = found.group(0).lower()
+        index = next((i for i, (_, uid) in enumerate(commanders) if uid and uid.lower() == pick), None)
+        if index is None:
+            name = (scryfall_name(pick) or "").split(" // ")[0].lower()
+            index = next((i for i, (n, _) in enumerate(commanders) if name and n.split(" // ")[0].lower() == name), None)
+            if index is not None:
+                commanders[index] = (commanders[index][0], pick)   # show the art you picked
+        if index is not None:
+            commanders.insert(0, commanders.pop(index))
+            return
+
+
 def fetch_deck(deck_id, today):
     """Returns (deck name, commander names, card rows, card info, profile) for one deck."""
     response = get(f"{API}/decks/{deck_id}/")
@@ -286,10 +322,7 @@ def fetch_deck(deck_id, today):
         for key, column in PRICE_SOURCES.items():
             row[column] = price(prices, key, foil)
         rows.append(row)
-    # Put the commander marked as featured on Archidekt first (its printing id is in the
-    # featured image's address), so partner pairs show in the order you chose.
-    featured = (deck.get("featured") or "").lower()
-    commanders.sort(key=lambda c: not (c[1] and c[1].lower() in featured))
+    order_by_featured(deck, commanders)
     return deck.get("name", ""), commanders, rows, infos, deck_profile(deck, included)
 
 
