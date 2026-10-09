@@ -1,0 +1,26 @@
+== https://cards.scryfall.io/art_crop/front/f/6/f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5.jpg
+HTTP/2 200 
+content-type: image/jpeg
+x-content-type-options: nosniff
+access-control-allow-origin: *
+access-control-allow-methods: GET, OPTIONS
+access-control-allow-headers: Accept, Accept-Charset, Accept-Language, Cache-Control, Content-Language, Content-Type, DNT, Host, If-Modified-Since, Keep-Alive, Origin, Referer, User-Agent, X-Requested-With
+== https://api.scryfall.com/cards/f6a4b54c-a8fa-464e-a3dd-f3f3a08606f5?format=image&version=art_crop
+HTTP/2 302 
+content-type: text/html; charset=utf-8
+access-control-allow-headers: Accept, Accept-Charset, Accept-Language, Authorization, Cache-Control, Content-Language, Content-Type, DNT, Host, If-Modified-Since, Keep-Alive, Origin, Referer, User-Agent, X-Requested-With
+access-control-allow-methods: GET, POST, DELETE, OPTIONS
+access-control-allow-origin: *
+access-control-max-age: 300
+x-content-type-options: nosniff
+HTTP/2 200 
+content-type: image/jpeg
+x-content-type-options: nosniff
+access-control-allow-origin: *
+access-control-allow-methods: GET, OPTIONS
+access-control-allow-headers: Accept, Accept-Charset, Accept-Language, Cache-Control, Content-Language, Content-Type, DNT, Host, If-Modified-Since, Keep-Alive, Origin, Referer, User-Agent, X-Requested-With
+== https://fonts.googleapis.com/css2?family=Alegreya:wght@700&display=swap
+HTTP/2 200 
+content-type: text/css; charset=utf-8
+access-control-allow-origin: *
+x-content-type-options: nosniff
