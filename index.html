@@ -464,7 +464,7 @@
     <div class="ix-bar cards-bar">
       <div>
         <h3>Deck cards</h3>
-        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt. Click a card to leave it out of the printout. In the print dialog, turn on background graphics and print at 100% scale.</div>
+        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt, and the date along the bottom is when the deck was last edited there, so you can tell when a printed card is out of date. Click a card to leave it out of the printout. In the print dialog, turn on background graphics and print at 100% scale.</div>
       </div>
       <div class="print-controls">
         <button class="primary" id="printCards">Print cards</button>
@@ -1489,6 +1489,7 @@
   const listOf = s => (s || "").split(" | ").filter(Boolean);
   const BRACKET_NAMES = { 1: "Exhibition", 2: "Core", 3: "Upgraded", 4: "Optimized", 5: "cEDH" };
   const cardTitle = name => name.replace(/^\d+\.\s*/, "");   // drop the folder numbering ("3. ")
+  const shortYear = d => new Date(d + "T00:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
 
   function qrSvg(text) {
     if (typeof qrcode !== "function") return "";
@@ -1526,7 +1527,7 @@
             </div>
           </div>
         </div></div>
-        <footer class="mc-foot"><span>archidekt.com/decks/${esc(d.id)}</span><span>${esc(meta.owner || "")}</span></footer>
+        <footer class="mc-foot"><span>archidekt.com/decks/${esc(d.id)}</span><span>${esc([meta.owner, meta.updated ? `updated ${shortYear(meta.updated)}` : ""].filter(Boolean).join(", "))}</span></footer>
       </article>`;
   }
 

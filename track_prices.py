@@ -71,7 +71,7 @@ FIELDNAMES = [
 
 DECK_FIELDNAMES = ["deck_id", "deck_name", "commanders", "commander_ids", "first_seen", "last_seen",
                    # for the deck cards: Archidekt's bracket setting and the cards behind it
-                   "bracket", "owner", "featured_art", "game_changers", "nonland_tutors",
+                   "bracket", "owner", "updated", "game_changers", "nonland_tutors",
                    "mass_land_denial", "extra_turns", "combos"]
 PROFILE_FIELDS = DECK_FIELDNAMES[6:]
 TOTAL_FIELDNAMES = ["date", "deck_id", "cards"] + [
@@ -231,7 +231,9 @@ def deck_profile(deck, entries):
     return {
         "bracket": deck.get("edhBracket") or "",
         "owner": (deck.get("owner") or {}).get("username", ""),
-        "featured_art": deck.get("customFeatured") or "",
+        # when the deck was last edited on Archidekt, as a Mountain-time date
+        "updated": (datetime.fromisoformat(deck["updatedAt"].replace("Z", "+00:00")).astimezone(TIMEZONE).strftime("%Y-%m-%d")
+                    if deck.get("updatedAt") else ""),
         "game_changers": " | ".join(sorted(flagged["gameChanger"])),
         "nonland_tutors": " | ".join(sorted(flagged["tutor"])),
         "mass_land_denial": " | ".join(sorted(flagged["massLandDenial"])),
@@ -284,6 +286,10 @@ def fetch_deck(deck_id, today):
         for key, column in PRICE_SOURCES.items():
             row[column] = price(prices, key, foil)
         rows.append(row)
+    # Put the commander marked as featured on Archidekt first (its printing id is in the
+    # featured image's address), so partner pairs show in the order you chose.
+    featured = (deck.get("featured") or "").lower()
+    commanders.sort(key=lambda c: not (c[1] and c[1].lower() in featured))
     return deck.get("name", ""), commanders, rows, infos, deck_profile(deck, included)
 
 
