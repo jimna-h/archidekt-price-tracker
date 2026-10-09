@@ -331,28 +331,25 @@
   .mc-frame { height: 100%; box-sizing: border-box; border-radius: 8px; padding: 6px; background: var(--frame); }
   .mc-inner { height: 100%; border-radius: 4px; overflow: hidden; background: #fbf9f4; display: flex; flex-direction: column;
     box-shadow: 0 0 0 1px rgba(0,0,0,0.45); }   /* keeps a pale (white) frame distinct from the panel */
-  /* the art takes whatever height the text doesn't need, so there's no empty space */
-  .mc-art { flex: 1 1 auto; min-height: 110px; display: flex; gap: 2px; background: #2a2622; }
+  /* the art is always the same size; the text below it flows down, and the QR code stays in the bottom corner */
+  .mc-art { flex: none; height: 126px; display: flex; gap: 2px; background: #2a2622; }
   .mc-art img, .mc-art .art-missing { flex: 1 1 0; min-width: 0; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
-  .mc-body { flex: none; padding: 8px 10px 9px; }
+  .mc-body { flex: 1; min-height: 0; padding: 8px 10px 9px; display: flex; flex-direction: column; }
   .mc-name { font-family: var(--serif); font-weight: 700; font-size: 15.5px; line-height: 1.08; margin: 0; letter-spacing: -0.005em;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .mc-cmd { font-size: 9px; line-height: 1.25; color: #6b6358; margin-top: 2px; }
   .mc-cmd span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }   /* partners: one per line */
-  .mc-row { display: flex; gap: 10px; align-items: flex-start; margin-top: 7px; padding-top: 7px; border-top: 1px solid #e3ddd0; }
-  .mc-section { flex: 1; min-width: 0; }
+  .mc-row { flex: 1; min-height: 0; display: flex; gap: 10px; align-items: stretch; margin-top: 7px; padding-top: 7px; border-top: 1px solid #e3ddd0; }
+  .mc-section { flex: 1; min-width: 0; overflow: hidden; }
   .mc-label { display: flex; gap: 5px; font-size: 10px; font-weight: 600; line-height: 1.3; }
   .mc-label b { font-variant-numeric: tabular-nums; color: #6b6358; font-weight: 600; }
   .mc-list { list-style: none; margin: 2px 0 4px; padding: 0 0 0 7px; font-size: 9.5px; line-height: 1.32; color: #3f3931; }
   .mc-list li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .mc-none { color: #9a9286; font-style: italic; }
-  .mc-side { flex: none; width: 54px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .mc-side { flex: none; width: 54px; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 4px; }
   .mc-qr { width: 54px; height: 54px; margin: -3px -3px -3px 0; }   /* the code's own white margin bleeds into the padding */
   .mc-qr svg { width: 100%; height: 100%; display: block; }
-  .mc-bracket { text-align: right; line-height: 1; }
-  .mc-bracket span { display: block; font-size: 8.5px; font-weight: 600; color: #6b6358; margin-bottom: 1px; }
-  .mc-bracket b { font-family: var(--serif); font-size: 30px; font-weight: 700; line-height: 0.9; display: block; }
-  .mc-bracket i { display: block; font-style: normal; font-size: 7.5px; font-weight: 600; color: #6b6358; margin-top: 1px; }
+  .mc-bracket { font-family: var(--serif); font-size: 22px; font-weight: 700; line-height: 0.9; letter-spacing: -0.01em; }
   .mc-foot { position: absolute; left: 12px; right: 12px; bottom: 3px; display: flex; justify-content: space-between; font-size: 6.5px; line-height: 11px; color: #e9e4da; letter-spacing: 0.02em; }
 
   @media print {
@@ -1502,7 +1499,7 @@
     const meta = deckMeta.get(d.id) || {}, id = deckIdentity(d.id);
     const cmds = commanderArt.get(d.id) || [];
     const gc = listOf(meta.game_changers), turns = listOf(meta.extra_turns);
-    const url = `https://archidekt.com/decks/${d.id}`, MAX_GC = 5;
+    const url = `https://archidekt.com/decks/${d.id}`, MAX_GC = 4;   // 4 rows always fit under the fixed-size art
     const gcRows = gc.length
       ? gc.slice(0, gc.length > MAX_GC ? MAX_GC - 1 : MAX_GC).map(n => `<li>${esc(n)}</li>`).join("") +
         (gc.length > MAX_GC ? `<li class="mc-none">and ${gc.length - MAX_GC + 1} more</li>` : "")
@@ -1521,7 +1518,7 @@
                 ${turns.length ? `<div class="mc-label" title="${esc(turns.join(", "))}"><span>Extra turns</span><b>${turns.length}</b></div>` : ""}
               </div>
               <div class="mc-side">
-                ${meta.bracket ? `<div class="mc-bracket"><span>Bracket</span><b>${esc(meta.bracket)}</b>${BRACKET_NAMES[meta.bracket] ? `<i>${BRACKET_NAMES[meta.bracket]}</i>` : ""}</div>` : ""}
+                ${meta.bracket ? `<div class="mc-bracket" title="Bracket ${esc(meta.bracket)}${BRACKET_NAMES[meta.bracket] ? ": " + BRACKET_NAMES[meta.bracket] : ""}">B${esc(meta.bracket)}</div>` : `<span></span>`}
                 <div class="mc-qr">${qrSvg(url)}</div>
               </div>
             </div>
