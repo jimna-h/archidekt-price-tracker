@@ -465,7 +465,7 @@
     <div class="ix-bar cards-bar">
       <div>
         <h3>Deck cards</h3>
-        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt, and the date along the bottom is when the deck was last edited there, so you can tell when a printed card is out of date. Click a card to leave it out of the printout and the downloads. Download PNGs saves one 300 dpi image per card; your browser may ask once to allow several downloads. In the print dialog, turn on background graphics and print at 100% scale.</div>
+        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt, and the date along the bottom is when the deck was last edited there, so you can tell when a printed card is out of date. Click a card to leave it out of the printout and the downloads. Download PNGs saves a zip with one 300 dpi image per card. In the print dialog, turn on background graphics and print at 100% scale.</div>
       </div>
       <div class="print-controls">
         <div class="print-buttons">
@@ -1578,11 +1578,43 @@
   }
   $("printCards").addEventListener("click", () => window.print());
 
-  // One PNG per selected card, at 300 dpi for the card's real size (750 × 1050 px).
-  // Each card is copied into an off-screen spot at true size first, because the on-screen
-  // cards are enlarged.
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  // A minimal zip writer. PNGs are already compressed, so files are stored as-is
+  // (no compression), which keeps this to a few lines instead of another library.
+  const CRC_TABLE = Array.from({ length: 256 }, (_, n) => { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
+  const crc32 = bytes => { let c = 0xFFFFFFFF; for (const b of bytes) c = CRC_TABLE[(c ^ b) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+  function makeZip(files) {   // files: [{ name, bytes: Uint8Array }]
+    const enc = new TextEncoder(), now = new Date(), parts = [], central = [];
+    const time = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+    const date = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+    let offset = 0;
+    for (const f of files) {
+      const name = enc.encode(f.name), crc = crc32(f.bytes), size = f.bytes.length;
+      const local = new DataView(new ArrayBuffer(30));
+      [[0, 0x04034b50, 4], [4, 20, 2], [6, 0x0800, 2], [8, 0, 2], [10, time, 2], [12, date, 2], [14, crc, 4], [18, size, 4], [22, size, 4], [26, name.length, 2], [28, 0, 2]]
+        .forEach(([at, v, n]) => n === 4 ? local.setUint32(at, v, true) : local.setUint16(at, v, true));
+      parts.push(new Uint8Array(local.buffer), name, f.bytes);
+      const cd = new DataView(new ArrayBuffer(46));
+      [[0, 0x02014b50, 4], [4, 20, 2], [6, 20, 2], [8, 0x0800, 2], [10, 0, 2], [12, time, 2], [14, date, 2], [16, crc, 4], [20, size, 4], [24, size, 4],
+       [28, name.length, 2], [30, 0, 2], [32, 0, 2], [34, 0, 2], [36, 0, 2], [38, 0, 4], [42, offset, 4]]
+        .forEach(([at, v, n]) => n === 4 ? cd.setUint32(at, v, true) : cd.setUint16(at, v, true));
+      central.push(new Uint8Array(cd.buffer), name);
+      offset += 30 + name.length + size;
+    }
+    const cdSize = central.reduce((t, p) => t + p.length, 0), end = new DataView(new ArrayBuffer(22));
+    [[0, 0x06054b50, 4], [4, 0, 2], [6, 0, 2], [8, files.length, 2], [10, files.length, 2], [12, cdSize, 4], [16, offset, 4], [20, 0, 2]]
+      .forEach(([at, v, n]) => n === 4 ? end.setUint32(at, v, true) : end.setUint16(at, v, true));
+    return new Blob([...parts, ...central, new Uint8Array(end.buffer)], { type: "application/zip" });
+  }
+
+  // One PNG per selected card, at 300 dpi for the card's real size (750 × 1050 px), all in a
+  // zip (or just the PNG when only one card is selected). Each card is copied into an
+  // off-screen spot at true size first, because the on-screen cards are enlarged.
   const fileName = name => (cardTitle(name).replace(/[\\/:*?"<>|]+/g, "").replace(/\s+/g, " ").trim() || "deck") + ".png";
+  const saveBlob = (blob, name) => {
+    const url = URL.createObjectURL(blob);
+    Object.assign(document.createElement("a"), { href: url, download: name }).click();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  };
   $("pngCards").addEventListener("click", async () => {
     const btn = $("pngCards"), label = btn.textContent;
     const cards = [...$("cardSheet").querySelectorAll(".mcard:not(.skip)")];
@@ -1591,19 +1623,23 @@
     const stage = Object.assign(document.createElement("div"), { className: "png-stage" });
     document.body.append(stage);
     try {
+      const files = [], used = new Set();
       for (const [i, card] of cards.entries()) {
         btn.textContent = `Making ${i + 1} of ${cards.length}…`;
         const copy = card.cloneNode(true);
         copy.classList.remove("skip");
         stage.replaceChildren(copy);
-        const png = await htmlToImage.toPng(copy, { pixelRatio: 750 / 240, width: 240, height: 336,
+        const blob = await htmlToImage.toBlob(copy, { pixelRatio: 750 / 240, width: 240, height: 336,
           style: { zoom: "1", margin: "0", boxShadow: "none", transform: "none" } });
         const deck = decks.get(card.dataset.id);
-        const a = Object.assign(document.createElement("a"), { href: png, download: fileName(deck ? deck.name : card.dataset.id) });
-        a.click();
-        await sleep(400);   // spacing the downloads out keeps browsers from dropping some
+        let name = fileName(deck ? deck.name : card.dataset.id);
+        for (let n = 2; used.has(name.toLowerCase()); n++) name = name.replace(/( \(\d+\))?\.png$/, ` (${n}).png`);
+        used.add(name.toLowerCase());
+        files.push({ name, blob, bytes: new Uint8Array(await blob.arrayBuffer()) });
       }
-      btn.textContent = `Downloaded ${cards.length}`;
+      if (files.length === 1) saveBlob(files[0].blob, files[0].name);
+      else saveBlob(makeZip(files), `Deck cards ${latestDate}.zip`);
+      btn.textContent = files.length === 1 ? "Downloaded" : `Zipped ${files.length}`;
     } catch (err) {
       console.error(err); btn.textContent = "Couldn't make the images";
     } finally {
