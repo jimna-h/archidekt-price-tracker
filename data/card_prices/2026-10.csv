@@ -3315,3 +3315,832 @@ date,card_name,set_code,finish,price_tcgplayer,price_cardkingdom,price_cardmarke
 2026-10-08,"Ikra Shidiqi, the Usurper",c16,Foil,1.23,1.79,1.24
 2026-10-08,Skateboard,tmt,Normal,0.31,0.79,0.24
 2026-10-08,"Malcolm, Keen-Eyed Navigator",spg,Foil,14.86,17.99,16.9
+2026-10-09,Battlefield Forge,c21,Normal,0.43,0.69,0.8
+2026-10-09,Path of Ancestry,m3c,Normal,0.31,0.35,0.17
+2026-10-09,The Gaffer,ltc,Normal,6.91,9.99,8.16
+2026-10-09,Genji Glove,fin,Normal,8.14,13.99,5.74
+2026-10-09,Descent into Avernus,sld,Foil,17.65,24.99,19.99
+2026-10-09,Improvisation Capstone,sos,Normal,13.73,18.99,15.99
+2026-10-09,Ingris Stingerquill,fra,Normal,14.27,13.99,7.76
+2026-10-09,Tymna the Weaver,c16,Foil,31.54,29.99,29.97
+2026-10-09,"Arabella, Abandoned Doll",dsk,Normal,0.86,0.79,0.35
+2026-10-09,"Vito, Thorn of the Dusk Rose",pm21,Foil,11.24,15.99,10.69
+2026-10-09,Professional Face-Breaker,snc,Normal,6.24,9.99,4.99
+2026-10-09,Guild Artisan,clb,Normal,0.25,0.59,0.21
+2026-10-09,"Elas il-Kor, Sadistic Pilgrim",dmu,Normal,0.71,2.29,0.82
+2026-10-09,Arbaaz Mir,acr,Normal,0.29,0.35,0.05
+2026-10-09,"Prosper, Tome-Bound",afc,Foil,6.9,8.49,6.99
+2026-10-09,Access Tunnel,ltc,Normal,0.41,0.79,0.61
+2026-10-09,"Shizo, Death's Storehouse",dmc,Normal,34.19,34.99,22.39
+2026-10-09,Arcane Signet,nec,Normal,0.74,0.79,0.45
+2026-10-09,Talisman of Hierarchy,pip,Normal,0.67,0.99,1.01
+2026-10-09,Boros Signet,c15,Normal,0.54,1.49,0.74
+2026-10-09,Talisman of Conviction,ltc,Normal,0.4,0.99,0.29
+2026-10-09,Talisman of Indulgence,40k,Normal,3.62,4.99,2.19
+2026-10-09,Silver Shroud Costume,sld,Foil,10.98,16.99,8.97
+2026-10-09,Inkshield,sld,Foil,10.7,13.99,9.0
+2026-10-09,Damn,mh2,Normal,1.79,3.49,1.98
+2026-10-09,Sundering Eruption // Volcanic Fissure,mh3,Normal,1.53,3.49,1.42
+2026-10-09,Steelshaper's Gift,sld,Foil,13.74,18.99,9.95
+2026-10-09,Avatar's Wrath,tla,Normal,3.9,6.99,4.02
+2026-10-09,Dusk // Dawn,blc,Normal,0.28,0.59,0.25
+2026-10-09,Swords to Plowshares,dmr,Normal,2.12,2.99,1.38
+2026-10-09,Duelist's Heritage,tle,Normal,2.47,5.49,2.98
+2026-10-09,Thieves' Tools,clb,Foil,0.3,0.49,0.1
+2026-10-09,Lightning Greaves,c19,Normal,4.97,7.49,3.89
+2026-10-09,"Daxos, Blessed by the Sun",thb,Normal,0.28,0.49,0.08
+2026-10-09,"Delney, Streetwise Lookout",mkm,Normal,34.73,47.99,32.5
+2026-10-09,"Gollum, Obsessed Stalker",ltc,Normal,0.32,0.49,0.4
+2026-10-09,"Anim Pakal, Thousandth Moon",lci,Normal,4.3,5.99,5.23
+2026-10-09,"Elena, Turk Recruit",fic,Normal,0.23,0.49,0.17
+2026-10-09,"Subira, Tulzidi Caravanner",m21,Normal,0.3,0.49,0.27
+2026-10-09,"Deadpool, Trading Card",sld,Foil,15.21,18.99,19.0
+2026-10-09,Brash Taunter,m21,Normal,4.05,3.99,1.07
+2026-10-09,Exotic Orchard,c19,Normal,0.33,0.49,0.17
+2026-10-09,Great Hall of the Citadel,ltr,Foil,0.42,0.99,0.14
+2026-10-09,Rogue's Passage,ltc,Normal,0.78,1.29,0.46
+2026-10-09,"Saradoc, Master of Buckland",ltr,Normal,0.33,0.69,0.28
+2026-10-09,"Mangara, the Diplomat",blc,Normal,0.49,0.99,0.75
+2026-10-09,Fellwar Stone,ncc,Normal,1.44,1.79,1.03
+2026-10-09,Orzhov Signet,brc,Normal,0.6,1.29,0.59
+2026-10-09,Deadly Rollick,sld,Foil,26.79,37.99,20.3
+2026-10-09,"Mjölnir, Hammer of Thor",msh,Normal,15.3,22.99,16.87
+2026-10-09,"Shanid, Sleepers' Scourge",dmc,Foil,3.0,3.99,0.8
+2026-10-09,Falcon and Redwing,msc,Normal,0.64,1.49,0.52
+2026-10-09,"Black Widow, Agile Avenger",msc,Normal,6.04,8.99,7.45
+2026-10-09,"General Kreat, the Boltbringer",j25,Normal,6.69,10.99,7.8
+2026-10-09,Savai Triome,iko,Normal,17.44,27.99,17.98
+2026-10-09,Darkstar Augur,blb,Normal,2.0,2.29,1.16
+2026-10-09,Brotherhood Regalia,acr,Foil,10.19,17.99,9.77
+2026-10-09,"Lotho, Corrupt Shirriff",ltr,Normal,11.09,13.99,12.65
+2026-10-09,Loran of the Third Path,bro,Normal,7.89,11.99,5.95
+2026-10-09,"Moseo, Vein's New Dean",sos,Foil,1.02,0.99,1.07
+2026-10-09,Plaza of Heroes,dmu,Foil,10.13,14.99,8.74
+2026-10-09,"Minas Morgul, Dark Fortress",ltc,Foil,11.37,16.99,19.25
+2026-10-09,Eiganjo Castle,chk,Normal,14.88,10.99,8.02
+2026-10-09,Fabled Passage,tmc,Normal,1.6,1.79,1.77
+2026-10-09,Clifftop Retreat,pip,Normal,0.34,0.69,0.37
+2026-10-09,Caves of Koilos,dmu,Normal,3.11,6.49,2.99
+2026-10-09,Isolated Chapel,ltc,Normal,0.44,1.29,1.49
+2026-10-09,Fetid Heath,tdc,Normal,0.53,0.79,0.56
+2026-10-09,Knuckles the Echidna,sld,Foil,23.62,27.99,23.22
+2026-10-09,Scheming Silvertongue // Sign in Blood,sos,Foil,1.68,1.99,1.44
+2026-10-09,Villainous Wrath,spm,Foil,1.22,1.49,1.0
+2026-10-09,Swamp,mkm,Foil,0.64,1.49,0.4
+2026-10-09,Mountain,mkm,Normal,0.32,0.79,0.2
+2026-10-09,Plains,mkm,Foil,0.34,1.99,0.63
+2026-10-09,Plateau,3ed,Normal,390.15,499.99,241.32
+2026-10-09,Blood Crypt,rvr,Normal,10.03,14.99,11.99
+2026-10-09,Sacred Foundry,rvr,Normal,11.79,17.99,10.75
+2026-10-09,Scrubland,3ed,Normal,452.56,599.99,238.0
+2026-10-09,Arid Mesa,zne,Normal,46.97,54.99,32.99
+2026-10-09,Marsh Flats,zne,Normal,46.38,74.99,33.66
+2026-10-09,Badlands,3ed,Normal,590.77,749.99,250.0
+2026-10-09,Bloodstained Mire,zne,Normal,38.32,44.99,25.93
+2026-10-09,Godless Shrine,rvr,Normal,9.66,13.99,11.99
+2026-10-09,Witch Enchanter // Witch-Blessed Meadow,mh3,Foil,7.37,10.99,4.98
+2026-10-09,Chaos Warp,sld,Foil,10.54,12.99,7.25
+2026-10-09,Wayfarer's Bauble,sld,Foil,5.07,7.49,1.67
+2026-10-09,Aggravated Assault,sld,Foil,31.61,32.99,16.97
+2026-10-09,"Kellan, the Fae-Blooded // Birthright Boon",woe,Normal,6.38,7.49,5.5
+2026-10-09,The Reaver Cleaver,sld,Normal,26.85,34.99,17.0
+2026-10-09,Stoneforge Mystic,spg,Normal,40.04,42.99,25.0
+2026-10-09,The Queen of Dale,hob,Normal,20.5,24.99,20.2
+2026-10-09,"Kediss, Emberclaw Familiar",sld,Foil,14.88,14.99,13.45
+2026-10-09,Command Tower,pw25,Foil,11.17,12.99,6.48
+2026-10-09,Abandoned Air Temple,tla,Normal,5.73,9.99,7.3
+2026-10-09,"Agent Bishop, Man in Black",tmt,Normal,0.32,0.99,0.18
+2026-10-09,Sakura-Tribe Elder,plg24,Foil,3.39,3.99,2.15
+2026-10-09,Birds of Paradise,sld,Foil,55.85,64.99,66.45
+2026-10-09,Farseek,ltc,Normal,1.7,1.99,1.29
+2026-10-09,Three Visits,sld,Foil,53.19,69.99,36.95
+2026-10-09,Utopia Sprawl,pf26,Foil,4.29,5.49,5.0
+2026-10-09,Nature's Lore,sld,Foil,12.28,11.99,8.8
+2026-10-09,Botanical Brawler,mom,Normal,0.3,0.35,0.21
+2026-10-09,Commander Liara Portyr,clb,Normal,0.23,0.35,0.23
+2026-10-09,Dusk Legion Duelist,mom,Normal,2.44,3.49,1.7
+2026-10-09,"Etali, Primal Conqueror // Etali, Primal Sickness",mom,Normal,29.61,37.99,21.29
+2026-10-09,Path to Exile,who,Normal,1.69,2.79,1.42
+2026-10-09,Healer's Hawk,fdn,Foil,0.31,0.49,0.06
+2026-10-09,"Kutzil, Malamet Exemplar",lci,Normal,3.41,3.49,2.73
+2026-10-09,Peregrin Took,ltr,Normal,1.01,0.79,0.17
+2026-10-09,"Ozolith, the Shattered Spire",mom,Foil,8.89,11.99,5.49
+2026-10-09,Kami of Whispered Hopes,mom,Normal,6.12,7.49,2.57
+2026-10-09,Rosie Cotton of South Lane,ltr,Normal,0.37,0.49,0.38
+2026-10-09,Share the Spoils,afc,Normal,3.68,6.99,5.37
+2026-10-09,Sovereign Okinec Ahau,lci,Normal,4.96,3.99,3.04
+2026-10-09,Swords to Plowshares,brc,Normal,2.0,3.99,2.99
+2026-10-09,The Ozolith,sld,Foil,69.74,79.99,46.79
+2026-10-09,Germination Practicum,sos,Normal,12.58,13.99,6.29
+2026-10-09,Patrolling Peacemaker,eoc,Normal,2.08,2.79,1.87
+2026-10-09,Bigger on the Inside,who,Normal,0.49,0.59,0.62
+2026-10-09,Exploration,dmr,Normal,30.54,37.99,26.75
+2026-10-09,Generous Pup,j25,Normal,8.03,12.99,6.4
+2026-10-09,Esper Sentinel,mh2,Normal,60.55,74.99,41.0
+2026-10-09,Kami of Celebration,nec,Normal,1.09,0.99,0.43
+2026-10-09,Terrasymbiosis,eoe,Normal,9.98,12.99,11.76
+2026-10-09,Rhythm of the Wild,sld,Foil,15.51,16.99,8.5
+2026-10-09,"Mikey & Leo, Chaos & Order",tmt,Normal,3.86,5.49,3.44
+2026-10-09,Kodama of the West Tree,neo,Normal,20.47,24.99,16.14
+2026-10-09,"Halana and Alena, Partners",fdn,Normal,0.35,0.69,0.75
+2026-10-09,Ouroboroid,eoe,Normal,44.06,57.99,36.0
+2026-10-09,The Ooze,tmt,Normal,4.57,8.49,5.12
+2026-10-09,Agatha's Soul Cauldron,woe,Normal,41.3,54.99,32.53
+2026-10-09,Hardened Scales,wot,Normal,4.83,5.99,3.59
+2026-10-09,"Laelia, the Blade Reforged",mh3,Normal,2.07,2.79,0.94
+2026-10-09,Champion of Lambholt,ncc,Normal,4.11,4.49,2.5
+2026-10-09,Speaker of the Heavens,plst,Normal,0.47,0.69,0.57
+2026-10-09,Beast Within,cmr,Normal,1.06,1.49,1.35
+2026-10-09,Suspend Aggression,sos,Normal,0.22,0.49,0.11
+2026-10-09,Generous Gift,blc,Normal,1.89,2.79,1.41
+2026-10-09,Call Forth the Tempest,hoc,Normal,19.07,27.99,18.33
+2026-10-09,Guff Rewrites History,cmm,Normal,3.04,4.49,4.14
+2026-10-09,Dispatch,eoc,Normal,0.39,1.79,2.74
+2026-10-09,Chaos Warp,c20,Normal,0.7,0.79,0.74
+2026-10-09,"Arwen, Weaver of Hope",ltc,Normal,5.06,5.99,5.58
+2026-10-09,Heartwood Crafter // Soul Tether,fra,Normal,0.25,0.59,0.15
+2026-10-09,Studious First-Year // Rampant Growth,sos,Normal,0.28,0.39,0.19
+2026-10-09,Shroofus Sproutsire,j25,Normal,5.32,8.99,5.0
+2026-10-09,Wild Wasteland,pip,Normal,1.2,2.99,2.11
+2026-10-09,Mosswort Bridge,c18,Normal,0.42,0.69,0.24
+2026-10-09,Yotian Dissident,bro,Normal,0.28,0.35,0.09
+2026-10-09,Inspiring Statuary,brr,Normal,0.78,1.79,0.65
+2026-10-09,"Rocco, Street Chef",mat,Foil,0.65,2.99,0.94
+2026-10-09,Aerial Responder,kld,Normal,0.14,0.35,0.1
+2026-10-09,Thundering Raiju,neo,Foil,0.65,0.79,0.62
+2026-10-09,Forest,otj,Foil,0.34,0.99,0.31
+2026-10-09,Mountain,otj,Foil,0.35,0.79,0.24
+2026-10-09,Plains,otj,Foil,0.39,0.79,0.15
+2026-10-09,Command Tower,c17,Normal,0.37,0.79,0.1
+2026-10-09,Hushwood Verge,dsk,Normal,9.62,13.99,6.66
+2026-10-09,Jetmir's Garden,snc,Normal,15.25,21.99,13.32
+2026-10-09,Thornspire Verge,dsk,Normal,5.86,8.99,4.98
+2026-10-09,Exotic Orchard,c21,Normal,0.3,0.59,0.18
+2026-10-09,Sunbillow Verge,dft,Normal,11.37,19.99,9.96
+2026-10-09,"Yavimaya, Cradle of Growth",mh2,Normal,16.88,21.99,11.61
+2026-10-09,"Boseiju, Who Endures",neo,Normal,48.88,64.99,40.4
+2026-10-09,Commercial District,mkm,Normal,7.66,11.99,7.15
+2026-10-09,Lush Portico,mkm,Normal,7.12,9.99,6.39
+2026-10-09,Rockfall Vale,inr,Normal,3.86,4.99,1.25
+2026-10-09,Wooded Foothills,mh3,Normal,19.38,29.99,16.47
+2026-10-09,Taiga,3ed,Normal,449.66,549.99,271.64
+2026-10-09,Stomping Ground,rvr,Normal,8.71,9.99,6.5
+2026-10-09,Bountiful Promenade,clb,Normal,8.84,12.99,9.0
+2026-10-09,Clifftop Retreat,tdc,Normal,0.33,0.69,0.39
+2026-10-09,Rootbound Crag,tdc,Normal,0.41,1.29,0.46
+2026-10-09,Overgrown Farmland,inr,Normal,4.32,5.49,1.0
+2026-10-09,Spectator Seating,cmm,Normal,11.43,12.99,13.42
+2026-10-09,Sundown Pass,inr,Normal,3.2,5.99,3.42
+2026-10-09,Spire Garden,clb,Normal,7.14,9.49,7.36
+2026-10-09,Temple Garden,rvr,Normal,8.6,11.99,8.98
+2026-10-09,Savannah,3ed,Normal,412.51,549.99,209.0
+2026-10-09,Arid Mesa,mh2,Normal,30.97,42.99,27.58
+2026-10-09,Sunpetal Grove,tdc,Normal,0.51,0.99,0.9
+2026-10-09,Windswept Heath,mh3,Normal,12.51,17.99,10.95
+2026-10-09,Sire of Seven Deaths,fdn,Normal,33.86,47.99,36.74
+2026-10-09,"Elrond, Moon-Reader",hob,Normal,1.79,1.99,2.92
+2026-10-09,Exit Specialist,mkm,Normal,0.21,0.35,0.25
+2026-10-09,Dreamstone Hedron,cmr,Normal,0.32,0.35,0.09
+2026-10-09,Stonespeaker Crystal,clb,Normal,0.37,1.29,0.49
+2026-10-09,The Eternity Elevator,eoe,Normal,3.11,3.49,2.0
+2026-10-09,Waterbender's Restoration,tle,Normal,3.86,5.49,3.65
+2026-10-09,Lord of Change,40k,Normal,2.9,3.99,4.16
+2026-10-09,Fear of Sleep Paralysis,dsc,Normal,0.39,1.49,0.54
+2026-10-09,Sol Ring,blc,Normal,2.22,2.79,1.33
+2026-10-09,Scroll Rack,cmr,Normal,31.05,44.99,29.4
+2026-10-09,Illusionist's Bracers,rvr,Foil,5.49,6.99,3.8
+2026-10-09,Wonder,cma,Normal,3.54,3.49,1.3
+2026-10-09,Cavalier of Gales,j25,Normal,1.56,2.99,3.05
+2026-10-09,Glasspool Mimic // Glasspool Shore,znr,Normal,6.46,10.99,6.24
+2026-10-09,Heartstone,plst,Normal,1.78,2.49,1.49
+2026-10-09,"Silver Surfer, Cosmic Voyager",msc,Normal,0.61,1.29,1.06
+2026-10-09,Displacer Kitten,pclb,Foil,23.18,89.99,34.99
+2026-10-09,Training Grounds,mat,Normal,10.03,10.99,5.5
+2026-10-09,"Grazilaxx, Illithid Scholar",sld,Normal,2.98,,3.0
+2026-10-09,Stratus Dancer,c19,Normal,0.38,0.49,0.25
+2026-10-09,Y'shtola Rhul,fin,Normal,5.2,6.99,4.72
+2026-10-09,Unstoppable Plan,dft,Normal,2.33,3.99,1.89
+2026-10-09,Gilded Lotus,msc,Normal,0.59,1.49,0.6
+2026-10-09,Sceptre of Eternal Glory,40k,Normal,20.19,23.99,19.5
+2026-10-09,Chromatic Orrery,m21,Normal,32.8,47.99,18.69
+2026-10-09,Ring of the Lucii,fin,Normal,0.3,0.49,0.2
+2026-10-09,Brass Infiniscope,soc,Normal,0.28,0.49,0.37
+2026-10-09,"Galactus, Devourer of Worlds",msc,Normal,3.96,5.99,4.22
+2026-10-09,"Tri-Sentinel, Act of Vengeance",msc,Normal,0.39,0.59,0.38
+2026-10-09,Displace,emn,Normal,0.34,0.59,0.46
+2026-10-09,Conjurer's Closet,inr,Normal,6.69,10.99,6.0
+2026-10-09,Baboon Spirit,tle,Foil,0.44,0.49,0.22
+2026-10-09,"Gandalf, Shadow's Foe",hoc,Normal,20.65,32.99,19.44
+2026-10-09,"Ixidor, Reality Sculptor",ons,Normal,2.09,4.49,2.49
+2026-10-09,Branch of Vitu-Ghazi,mkm,Normal,0.98,0.35,0.18
+2026-10-09,"Otawara, Soaring City",neo,Normal,26.21,42.99,24.35
+2026-10-09,Dowsing Dagger // Lost Vale,xln,Normal,7.48,7.99,5.87
+2026-10-09,Sword of Hearth and Home,tmc,Foil,12.75,14.99,9.07
+2026-10-09,Abhorrent Oculus,pdsk,Normal,11.71,16.99,14.0
+2026-10-09,Dour Port-Mage,blb,Normal,3.61,4.99,2.54
+2026-10-09,"Thassa, Deep-Dwelling",thb,Foil,35.04,44.99,25.0
+2026-10-09,Bender's Waterskin,tla,Normal,0.92,1.79,0.97
+2026-10-09,Island,j25,Normal,0.16,0.35,0.1
+2026-10-09,Hide on the Ceiling,spm,Normal,0.82,1.79,1.02
+2026-10-09,Relic of Legends,dmu,Normal,2.61,2.29,1.32
+2026-10-09,"Wan Shi Tong, All-Knowing",tle,Foil,3.74,4.49,3.63
+2026-10-09,Wurmcoil Engine,sld,Foil,10.18,11.99,10.97
+2026-10-09,Essence Flux,inr,Normal,1.86,1.99,0.85
+2026-10-09,Siren Stormtamer,cmr,Normal,0.47,0.69,0.67
+2026-10-09,Glitch Interpreter,dsc,Normal,0.33,0.49,0.3
+2026-10-09,Enigma Thief,znc,Normal,0.38,0.99,0.34
+2026-10-09,Primordial Mist,dsc,Normal,0.35,0.49,0.25
+2026-10-09,"Sash and Waistcoat, Unmen",mbc,Normal,,,
+2026-10-09,Ur-Golem's Eye,dst,Normal,0.32,0.39,0.09
+2026-10-09,Scourge of Fleets,jou,Normal,0.54,1.49,0.99
+2026-10-09,Spellskite,sld,Normal,15.49,16.99,16.44
+2026-10-09,Sol Talisman,mh2,Normal,1.14,1.79,0.81
+2026-10-09,Gossip's Talent,blb,Foil,0.39,0.49,0.25
+2026-10-09,Voidwalk,gtc,Normal,0.25,0.35,0.44
+2026-10-09,Zoetic Cavern,fut,Normal,0.4,0.39,0.26
+2026-10-09,Scroll of Fate,c19,Normal,0.3,0.49,0.1
+2026-10-09,Willbender,lgn,Normal,0.25,0.35,0.2
+2026-10-09,Ghostly Flicker,sld,Foil,6.24,14.99,9.0
+2026-10-09,Thran Dynamo,blc,Normal,4.5,3.49,2.57
+2026-10-09,Hedron Archive,c21,Normal,0.32,0.59,0.25
+2026-10-09,Marang River Regent // Coil and Catch,tdm,Foil,2.08,2.49,2.5
+2026-10-09,The Echoverse Fulcrum,fra,Normal,3.67,5.99,6.28
+2026-10-09,Castle Ardenvale,peld,Normal,2.78,0.79,0.42
+2026-10-09,Alhammarret's Archive,c21,Normal,10.51,13.99,9.7
+2026-10-09,Loran of the Third Path,blc,Normal,5.43,8.49,4.77
+2026-10-09,Claim Jumper,otj,Foil,0.89,1.49,2.0
+2026-10-09,Spirited Companion,plst,Normal,0.22,0.59,0.19
+2026-10-09,Inspiring Overseer,snc,Normal,0.31,0.69,0.23
+2026-10-09,Helpful Hunter,fdn,Normal,0.31,0.59,0.12
+2026-10-09,Sun Titan,sld,Normal,6.33,7.99,6.73
+2026-10-09,Witch Enchanter // Witch-Blessed Meadow,mh3,Normal,6.36,9.49,4.5
+2026-10-09,Pearl Medallion,mh3,Normal,7.54,9.49,4.29
+2026-10-09,Clever Concealment,msc,Normal,3.6,5.99,4.56
+2026-10-09,Tocasia's Welcome,bro,Normal,3.92,4.49,3.5
+2026-10-09,Path to Exile,ltc,Normal,2.11,3.99,1.3
+2026-10-09,Plains,hob,Foil,0.41,0.49,0.56
+2026-10-09,Enduring Innocence,dsk,Normal,3.16,5.49,4.27
+2026-10-09,Monument to Endurance,dft,Normal,16.98,22.99,18.12
+2026-10-09,Razorgrass Ambush // Razorgrass Field,mh3,Normal,0.39,0.39,0.35
+2026-10-09,Illustrious Wanderglyph,lcc,Normal,15.21,21.99,18.24
+2026-10-09,Charismatic Conqueror,lcc,Normal,23.89,34.99,20.99
+2026-10-09,Lotus Field,soc,Normal,2.62,3.49,2.56
+2026-10-09,Redemption Choir,lcc,Normal,0.38,0.69,0.64
+2026-10-09,Lotus Vale,wth,Normal,45.46,57.99,21.34
+2026-10-09,Tataru Taru,fic,Normal,5.81,9.49,6.65
+2026-10-09,"Emeria, the Sky Ruin",soc,Normal,7.29,8.49,4.53
+2026-10-09,War Room,soc,Normal,5.22,6.49,4.26
+2026-10-09,Three Tree City,blb,Normal,47.94,69.99,33.0
+2026-10-09,Urza's Cave,mh3,Normal,2.49,3.49,1.41
+2026-10-09,Trouble in Pairs,mkc,Normal,25.48,32.99,22.25
+2026-10-09,Arid Archway,otj,Normal,1.52,1.79,0.66
+2026-10-09,Sand Scout,otc,Normal,5.84,7.99,6.02
+2026-10-09,"Haliya, Guided by Light",eoe,Normal,3.9,5.99,3.83
+2026-10-09,Soul's Attendant,roe,Normal,7.55,10.99,5.57
+2026-10-09,Idol of Oblivion,c19,Normal,2.47,4.99,1.57
+2026-10-09,Selfless Spirit,blc,Normal,0.96,1.49,1.05
+2026-10-09,Authority of the Consuls,fdn,Normal,5.32,6.49,4.47
+2026-10-09,Excise the Imperfect,moc,Normal,0.4,0.99,0.96
+2026-10-09,Approach of the Second Sun,sta,Normal,7.85,12.99,8.06
+2026-10-09,Moonshaker Cavalry,soc,Normal,9.6,10.99,8.15
+2026-10-09,Recruiter of the Guard,mh3,Normal,6.77,7.99,7.07
+2026-10-09,Mirror Entity,plst,Normal,1.04,1.99,0.81
+2026-10-09,Parting Gust,blb,Foil,1.59,2.49,2.09
+2026-10-09,Lazotep Quarry,m3c,Normal,9.07,9.99,6.99
+2026-10-09,Knight of the White Orchid,sld,Foil,0.83,3.49,1.92
+2026-10-09,Remote Farm,mmq,Normal,0.84,1.29,1.15
+2026-10-09,"Boseiju, Who Shelters All",sld,Foil,15.09,20.99,10.9
+2026-10-09,Chivalric Alliance,moc,Normal,13.21,20.99,17.36
+2026-10-09,Archaeomancer's Map,soc,Normal,1.12,2.29,1.55
+2026-10-09,Guardian Scalelord,moc,Normal,3.85,3.49,3.43
+2026-10-09,"Legion's Landing // Adanto, the First Fort",xln,Normal,3.49,4.49,2.73
+2026-10-09,Fountainport,blb,Normal,2.9,5.49,3.45
+2026-10-09,Currency Converter,frc,Normal,0.24,0.49,0.36
+2026-10-09,Erode,sos,Normal,7.42,12.99,8.26
+2026-10-09,Galadriel's Dismissal,ltc,Normal,29.4,49.99,22.28
+2026-10-09,Caretaker's Talent,blb,Normal,11.89,16.99,9.12
+2026-10-09,Abolish,pcy,Normal,0.98,1.49,0.67
+2026-10-09,"Emeria's Call // Emeria, Shattered Skyclave",znr,Normal,4.24,7.49,3.48
+2026-10-09,Kami of False Hope,bok,Normal,1.74,0.99,0.73
+2026-10-09,Guide of Souls,mh3,Foil,3.65,4.99,3.0
+2026-10-09,Loyal Warhound,blc,Normal,0.56,1.29,0.72
+2026-10-09,Kindly Customer,tle,Normal,0.27,0.99,0.49
+2026-10-09,Cathar Commando,mid,Normal,0.23,0.35,0.04
+2026-10-09,Mentor of the Meek,2x2,Normal,0.56,1.49,0.43
+2026-10-09,"Bennie Bracks, Zoologist",mkc,Normal,11.34,12.99,7.77
+2026-10-09,Deserted Temple,mh3,Normal,0.83,1.79,0.5
+2026-10-09,Scavenger Grounds,msc,Normal,0.31,0.49,0.31
+2026-10-09,Welcoming Vampire,vow,Normal,4.06,5.49,2.5
+2026-10-09,Angel of Indemnity,soc,Normal,0.37,0.79,0.52
+2026-10-09,Horn of Gondor,ltr,Foil,3.35,3.99,0.99
+2026-10-09,Touch the Spirit Realm,neo,Normal,0.57,1.79,1.03
+2026-10-09,Haunted Library,voc,Normal,0.42,1.29,1.16
+2026-10-09,Restoration Seminar,sos,Normal,3.66,5.49,2.52
+2026-10-09,Skullclamp,brc,Normal,6.89,10.99,7.33
+2026-10-09,Sevinne's Reclamation,c19,Normal,0.52,0.69,0.48
+2026-10-09,Soul Warden,exo,Normal,3.91,5.49,2.3
+2026-10-09,Whitemane Lion,plc,Normal,0.25,0.39,0.04
+2026-10-09,Wall of Omens,plst,Normal,0.33,0.35,0.27
+2026-10-09,Arcane Signet,p30m,Etched,,,
+2026-10-09,"Lonis, Cryptozoologist",mh2,Normal,0.32,0.49,0.33
+2026-10-09,Samwise Gamgee,ltr,Foil,3.86,4.49,2.5
+2026-10-09,Minas Tirith,ltr,Foil,7.82,9.99,5.99
+2026-10-09,Pendelhaven,ath,Normal,3.79,4.49,4.37
+2026-10-09,Razortide Bridge,brc,Normal,1.98,2.29,1.36
+2026-10-09,Seat of the Synod,brc,Normal,3.18,4.49,1.55
+2026-10-09,Trenzalore Clocktower,who,Normal,0.31,0.49,0.18
+2026-10-09,"Osgood, Operation Double",who,Normal,0.32,0.49,0.14
+2026-10-09,"Venser, Shaper Savant",tsr,Normal,1.4,0.69,0.15
+2026-10-09,"Raff Capashen, Ship's Mage",cmm,Normal,0.27,0.35,0.1
+2026-10-09,The Shire,ltr,Normal,3.16,3.49,2.69
+2026-10-09,Rivendell,ltr,Normal,1.8,3.49,1.99
+2026-10-09,"Eiganjo, Seat of the Empire",neo,Foil,6.13,9.99,8.19
+2026-10-09,Trial of a Time Lord,who,Normal,0.3,0.49,0.32
+2026-10-09,Talisman of Progress,who,Normal,0.46,0.69,0.39
+2026-10-09,"Jaheira, Friend of the Forest",clb,Normal,12.78,13.99,7.16
+2026-10-09,Ancient Den,mrd,Normal,2.57,3.99,1.7
+2026-10-09,Command Tower,who,Normal,0.37,0.69,0.21
+2026-10-09,Tree of Tales,mrd,Normal,1.66,2.49,0.67
+2026-10-09,Thornglint Bridge,mh2,Normal,0.34,0.35,0.18
+2026-10-09,Braided Net // Braided Quipu,lci,Normal,0.3,0.49,0.6
+2026-10-09,Flagstones of Trokair,tsr,Normal,3.4,3.99,3.72
+2026-10-09,"Okina, Temple to the Grandfathers",chk,Normal,4.72,9.49,3.12
+2026-10-09,Tolaria,leg,Normal,7.49,8.49,4.86
+2026-10-09,Five Hundred Year Diary,who,Foil,0.8,0.99,0.5
+2026-10-09,"Oko, Thief of Crowns",otp,Normal,5.08,6.99,4.29
+2026-10-09,Island,who,Foil,0.32,0.79,0.18
+2026-10-09,Path of Ancestry,who,Normal,0.27,0.35,0.13
+2026-10-09,Inventors' Fair,sld,Foil,22.39,21.99,20.52
+2026-10-09,"Crystal Skull, Isu Spyglass",acr,Etched,,,
+2026-10-09,Tanglepool Bridge,mh2,Normal,0.27,0.35,0.21
+2026-10-09,"Minamo, School at Water's Edge",ltc,Foil,66.54,84.99,46.94
+2026-10-09,Haywire Mite,dsc,Normal,1.16,1.29,1.57
+2026-10-09,Gandalf the White,ltr,Normal,10.16,13.99,7.9
+2026-10-09,"Urza, Lord High Artificer",dmr,Normal,14.9,20.99,14.95
+2026-10-09,Azorius Signet,gk2,Normal,0.39,0.79,0.24
+2026-10-09,Fellwar Stone,onc,Normal,1.68,2.29,1.12
+2026-10-09,Graham O'Brien,who,Foil,0.81,0.49,0.5
+2026-10-09,Stridehangar Automaton,drc,Normal,2.59,5.49,3.36
+2026-10-09,Officious Interrogation,mkm,Foil,0.22,0.49,0.1
+2026-10-09,Transmutation Font,pw24,Foil,1.79,2.29,1.24
+2026-10-09,Academy Ruins,2xm,Normal,8.93,10.99,5.9
+2026-10-09,Ignis Scientia,fin,Normal,0.25,0.35,0.08
+2026-10-09,Serah Farron // Crystallized Serah,fin,Normal,5.02,5.49,4.56
+2026-10-09,Eiganjo Castle,sld,Normal,8.55,9.49,20.59
+2026-10-09,"Oboro, Palace in the Clouds",ltc,Foil,18.75,32.99,19.0
+2026-10-09,Clock of Omens,5dn,Normal,10.0,4.99,3.47
+2026-10-09,Forest,who,Normal,0.25,0.49,0.04
+2026-10-09,Plains,who,Normal,0.29,0.49,0.05
+2026-10-09,Sonic Screwdriver,sld,Foil,49.14,39.99,17.24
+2026-10-09,Astrid Peth,who,Normal,4.22,6.49,3.52
+2026-10-09,"James, Wandering Dad // Follow Him",pip,Foil,3.0,1.49,1.0
+2026-10-09,Spectacular Spider-Man,spm,Normal,6.94,11.99,4.07
+2026-10-09,The Blue Spirit,tle,Normal,0.81,1.79,2.31
+2026-10-09,The Grey Havens,ltr,Normal,0.34,0.49,0.15
+2026-10-09,"Aang, Swift Savior // Aang and La, Ocean's Fury",tla,Foil,7.09,6.99,7.5
+2026-10-09,The Cabbage Merchant,tle,Foil,34.25,54.99,27.0
+2026-10-09,"Reki, the History of Kamigawa",sld,Foil,16.59,16.99,15.95
+2026-10-09,King Solomon's Frogs,msc,Normal,0.27,0.49,0.26
+2026-10-09,"Mutagen Man, Living Ooze",tmt,Foil,3.76,4.99,2.97
+2026-10-09,"Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun",lci,Normal,8.92,10.99,5.77
+2026-10-09,Sol Ring,sld,Foil,17.73,20.99,18.5
+2026-10-09,Spara's Headquarters,psnc,Normal,14.92,17.99,10.9
+2026-10-09,"Mondrak, Glory Dominus",one,Normal,49.2,74.99,31.0
+2026-10-09,Misty Rainforest,zne,Normal,54.1,57.99,38.77
+2026-10-09,Windswept Heath,zne,Normal,31.86,32.99,28.99
+2026-10-09,Flooded Strand,zne,Normal,34.37,39.99,26.25
+2026-10-09,Tropical Island,3ed,Normal,593.21,699.99,376.62
+2026-10-09,Tundra,3ed,Normal,695.59,849.99,300.0
+2026-10-09,"Mona Lisa, Ever Adaptable",tmc,Normal,3.55,5.49,3.55
+2026-10-09,"Yavimaya, Cradle of Growth",ltc,Normal,52.27,74.99,58.0
+2026-10-09,"Adrix and Nev, Twincasters",c21,Foil,8.3,8.99,7.24
+2026-10-09,Academy Manufactor,sld,Foil,15.61,20.99,9.99
+2026-10-09,"Donatello, the Brains",tmc,Foil,0.72,0.99,0.57
+2026-10-09,The Wondrous Wasp,msh,Normal,0.62,1.99,1.1
+2026-10-09,"King T'Challa // Black Panther, Hope Enduring",msh,Normal,17.41,21.99,16.9
+2026-10-09,"Mister Fantastic, Reed Richards",msh,Normal,0.32,0.59,0.31
+2026-10-09,"Tippy-Toe, Terrific Partner",sld,Normal,11.48,16.99,20.69
+2026-10-09,"Justice, Vance Astrovik",msh,Normal,0.13,0.35,0.15
+2026-10-09,"Meatsqueak, Hoard Lord",mbc,Normal,,,
+2026-10-09,Cryptolith Fragment // Aurora of Emrakul,inr,Normal,0.36,0.69,0.15
+2026-10-09,"Lita, Little Orphan Amphibian",tmt,Foil,0.3,0.49,0.19
+2026-10-09,The Goose Mother,woe,Normal,0.43,0.49,0.5
+2026-10-09,Sarah Jane Smith,who,Foil,1.71,0.99,0.59
+2026-10-09,"The Theorist, Jace Beleren",fra,Normal,46.63,42.99,30.49
+2026-10-09,Cyclonic Rift,soa,Normal,33.17,42.99,26.33
+2026-10-09,The Fourth Doctor,who,Foil,1.22,0.99,1.0
+2026-10-09,Embiggen,unf,Normal,0.22,0.79,0.1
+2026-10-09,Empyrial Armor,wth,Normal,0.31,0.35,0.15
+2026-10-09,Empyrial Plate,c16,Normal,1.85,2.79,0.78
+2026-10-09,"Inner Calm, Outer Strength",sok,Normal,0.28,0.35,0.02
+2026-10-09,Wild Defiance,avr,Normal,0.68,0.99,0.66
+2026-10-09,Reliquary Tower,brc,Normal,5.86,8.99,4.87
+2026-10-09,Llanowar Elves,7ed,Normal,0.53,0.69,1.42
+2026-10-09,Phytoburst,dgm,Normal,0.18,0.35,0.18
+2026-10-09,Flaming Fist,clb,Normal,0.27,0.35,0.09
+2026-10-09,Might of the Nephilim,dis,Normal,0.58,1.29,0.59
+2026-10-09,Tamiyo's Safekeeping,neo,Normal,4.61,8.49,3.69
+2026-10-09,Ranger's Guile,isd,Normal,0.2,0.35,0.19
+2026-10-09,Scent of Ivy,uds,Normal,0.23,0.35,0.25
+2026-10-09,Tyvar's Stand,one,Normal,1.52,3.49,1.2
+2026-10-09,Scale Up,mh1,Normal,0.46,0.79,0.22
+2026-10-09,Titanic Growth,one,Normal,0.22,0.35,0.16
+2026-10-09,Arbor Elf,pw21,Normal,0.48,1.49,0.75
+2026-10-09,Swords to Plowshares,40k,Normal,2.35,3.99,1.3
+2026-10-09,Path to Exile,ss2,Normal,2.01,2.79,1.49
+2026-10-09,Blossoming Defense,kld,Normal,0.32,0.79,0.17
+2026-10-09,Summer Bloom,2x2,Normal,1.79,1.99,0.22
+2026-10-09,Spellbook,9ed,Normal,2.86,4.99,1.18
+2026-10-09,Revive,mmq,Normal,0.2,0.39,0.05
+2026-10-09,Regrowth,sta,Normal,1.43,1.49,0.56
+2026-10-09,Groundswell,wwk,Normal,0.33,0.59,0.23
+2026-10-09,Birds of Paradise,dmr,Normal,11.37,15.99,15.97
+2026-10-09,Bridgeworks Battle // Tanglespan Bridgeworks,mh3,Normal,1.3,1.99,1.13
+2026-10-09,Choose Your Weapon,afr,Normal,0.24,0.35,0.1
+2026-10-09,Bounty of the Hunt,all,Normal,0.42,0.69,0.47
+2026-10-09,Become Immense,ktk,Normal,0.27,0.35,0.14
+2026-10-09,Collective Resistance,mh3,Normal,2.34,2.99,2.14
+2026-10-09,Snakeskin Veil,sta,Normal,0.31,1.29,0.24
+2026-10-09,Elvish Mystic,m15,Normal,0.59,1.79,0.68
+2026-10-09,Vines of Vastwood,zen,Normal,1.68,2.49,1.41
+2026-10-09,Wild Growth,ice,Normal,0.64,0.99,0.58
+2026-10-09,Fyndhorn Elves,p30a,Foil,,7.49,4.91
+2026-10-09,Might of Old Krosa,tsp,Normal,0.3,0.39,0.26
+2026-10-09,Overprotect,blb,Foil,2.36,3.49,1.38
+2026-10-09,Ram Through,iko,Normal,0.43,0.79,0.56
+2026-10-09,Command Tower,cmr,Normal,0.3,0.69,0.15
+2026-10-09,Sol Ring,c14,Normal,1.99,2.99,1.55
+2026-10-09,Blacksmith's Skill,mh2,Normal,0.37,0.79,0.16
+2026-10-09,Defend the Rider,dft,Normal,0.82,2.49,1.63
+2026-10-09,Delighted Halfling,ltr,Normal,25.15,32.99,21.34
+2026-10-09,Razorverge Thicket,blc,Normal,0.4,0.99,0.8
+2026-10-09,Horizon Canopy,ima,Normal,4.58,6.49,2.49
+2026-10-09,Branchloft Pathway // Boulderloft Pathway,znr,Normal,3.48,4.99,3.7
+2026-10-09,Dual-Sun Technique,eoe,Normal,0.25,0.35,0.14
+2026-10-09,Voice of Victory,tdm,Normal,20.12,29.99,20.8
+2026-10-09,Grow Extra Arms,spm,Normal,0.13,0.35,0.05
+2026-10-09,Avacyn's Pilgrim,pf25,Foil,4.24,6.49,7.49
+2026-10-09,Chrome Mox,2xm,Normal,167.03,179.99,119.99
+2026-10-09,Crop Rotation,soa,Foil,4.65,6.99,4.33
+2026-10-09,Gift of the Viper,mh3,Normal,0.31,0.39,0.35
+2026-10-09,Enlightened Tutor,6ed,Normal,36.48,47.99,24.12
+2026-10-09,"Heliod, Sun-Crowned",thb,Normal,19.66,29.99,16.45
+2026-10-09,Lotus Petal,mb2,Normal,35.22,44.99,26.66
+2026-10-09,Elvish Spirit Guide,dmr,Normal,3.32,3.99,1.54
+2026-10-09,Invigorate,2xm,Foil,0.45,0.79,0.51
+2026-10-09,Walking Ballista,mb2,Normal,8.81,11.99,8.0
+2026-10-09,Mutagenic Growth,nph,Normal,1.62,2.79,2.57
+2026-10-09,Rustler Rampage,otj,Normal,0.27,0.39,0.02
+2026-10-09,Tifa's Limit Break,fin,Normal,0.29,0.35,0.19
+2026-10-09,Feral Ferocity,msc,Normal,0.21,0.99,0.25
+2026-10-09,Forest,dmu,Foil,0.22,0.49,0.24
+2026-10-09,Bala Ged Recovery // Bala Ged Sanctuary,znr,Normal,7.34,10.99,5.39
+2026-10-09,Graduation Day,sos,Normal,0.27,0.35,0.11
+2026-10-09,Giant Growth,soa,Normal,0.23,0.35,0.11
+2026-10-09,Forbidden Orchard,c16,Normal,10.15,16.99,6.11
+2026-10-09,Berserk,soa,Normal,7.27,10.99,9.02
+2026-10-09,Royal Treatment,soa,Normal,0.24,0.35,0.37
+2026-10-09,Mana Confluence,jou,Normal,34.87,44.99,24.23
+2026-10-09,Plains,40k,Foil,1.15,,
+2026-10-09,Verdant Catacombs,zne,Normal,50.23,49.99,31.94
+2026-10-09,Prismatic Vista,zne,Normal,41.45,59.99,30.0
+2026-10-09,Wooded Foothills,zne,Normal,31.74,37.99,24.95
+2026-10-09,Brushland,bro,Normal,4.23,4.49,2.32
+2026-10-09,Utopia Sprawl,sld,Foil,7.78,10.99,7.3
+2026-10-09,Gemstone Caverns,eos,Normal,90.26,109.99,74.98
+2026-10-09,Sergeant John Benton,who,Foil,11.91,9.99,7.5
+2026-10-09,City of Brass,2x2,Normal,27.37,27.99,23.31
+2026-10-09,Bojuka Bog,brc,Normal,3.65,6.49,2.8
+2026-10-09,Blood Artist,plst,Normal,3.93,4.49,2.27
+2026-10-09,"Journey to Eternity // Atzal, Cave of Eternity",rix,Normal,4.96,6.49,4.6
+2026-10-09,Dread Return,cmm,Normal,0.69,1.29,0.81
+2026-10-09,Viridian Emissary,mbs,Normal,0.25,0.35,0.15
+2026-10-09,Woodland Cemetery,sld,Foil,18.04,18.99,13.02
+2026-10-09,Thespian's Stage,who,Normal,0.43,0.99,0.71
+2026-10-09,Stitcher's Supplier,m19,Normal,0.48,1.29,0.79
+2026-10-09,Noxious Gearhulk,moc,Normal,0.84,1.29,0.75
+2026-10-09,Command Tower,cc1,Normal,4.29,4.49,1.99
+2026-10-09,Necron Deathmark,40k,Normal,4.75,5.99,6.44
+2026-10-09,Satyr Wayfinder,znc,Normal,0.2,0.35,0.05
+2026-10-09,Skullwinder,m3c,Normal,0.36,0.35,0.14
+2026-10-09,Chthonian Nightmare,mh3,Foil,4.56,9.99,5.99
+2026-10-09,Rise of the Witch-king,ltr,Normal,0.51,0.79,0.3
+2026-10-09,Fabled Passage,eoc,Normal,1.26,2.79,1.5
+2026-10-09,Clifftop Lookout,blb,Normal,0.28,0.39,0.1
+2026-10-09,Ripples of Undeath,mh3,Normal,8.79,11.99,6.64
+2026-10-09,Primal Druid,emn,Normal,0.22,0.35,0.05
+2026-10-09,Undergrowth Stadium,cmr,Normal,6.64,10.99,7.47
+2026-10-09,"Takenuma, Abandoned Mire",neo,Normal,10.49,17.99,10.27
+2026-10-09,Eternal Witness,m3c,Normal,2.18,2.49,1.37
+2026-10-09,Zulaport Cutthroat,bfz,Normal,1.73,2.79,1.44
+2026-10-09,"Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel",fin,Normal,27.77,42.99,30.55
+2026-10-09,Field of the Dead,slc,Normal,26.95,32.99,21.58
+2026-10-09,Haywire Mite,bro,Normal,1.4,0.99,0.95
+2026-10-09,Blossoming Tortoise,woe,Normal,4.92,6.99,5.25
+2026-10-09,Deathcap Glade,vow,Foil,7.41,6.99,5.99
+2026-10-09,Metamorphosis Fanatic,dsc,Normal,5.76,8.99,6.75
+2026-10-09,Prowling Geistcatcher,mic,Normal,0.57,0.99,0.71
+2026-10-09,Wastewood Verge,dft,Normal,9.66,14.99,8.63
+2026-10-09,Accursed Marauder,mh3,Normal,0.33,0.69,0.38
+2026-10-09,Vein Ripper,mkm,Foil,7.28,11.99,7.77
+2026-10-09,"Urborg, Tomb of Yawgmoth",tsr,Normal,55.48,59.99,38.12
+2026-10-09,Birthing Ritual,mh3,Normal,3.99,5.99,5.77
+2026-10-09,"Braids, Arisen Nightmare",dmu,Normal,4.17,6.99,3.32
+2026-10-09,Wight of the Reliquary,mh3,Normal,0.84,1.29,0.62
+2026-10-09,Spinner of Souls,fdn,Normal,0.86,0.99,0.93
+2026-10-09,"Lumra, Bellow of the Woods",blb,Normal,28.68,39.99,27.62
+2026-10-09,Incarnation Technique,c21,Normal,9.35,18.99,12.2
+2026-10-09,Skyfisher Spider,bro,Normal,0.25,0.39,0.12
+2026-10-09,Vernal Fen,eoc,Normal,2.57,2.29,1.74
+2026-10-09,"Vraska, the Cutting Glare",fra,Normal,0.4,0.49,0.6
+2026-10-09,"Pia, Aether Ascetic",fra,Normal,1.13,2.49,0.5
+2026-10-09,"Winter, Tormented Loner",fra,Normal,0.42,0.35,0.38
+2026-10-09,Simulacrum Shaper,fra,Normal,1.8,2.49,2.59
+2026-10-09,Primal Witchstalker,fra,Normal,0.28,0.35,0.18
+2026-10-09,Aftermath Analyst,mkm,Normal,1.67,1.79,1.53
+2026-10-09,Reclamation Sage,fdn,Normal,0.33,0.69,0.35
+2026-10-09,Umbral Collar Zealot,eoe,Foil,1.06,2.49,1.54
+2026-10-09,Disciple of Freyalise // Garden of Freyalise,mh3,Normal,5.4,7.99,3.27
+2026-10-09,Living Death,ltc,Normal,7.46,8.49,3.94
+2026-10-09,Underground Mortuary,mkm,Normal,16.3,22.99,15.71
+2026-10-09,Hedge Shredder,dsk,Normal,3.21,3.99,1.79
+2026-10-09,Altar of Dementia,brr,Normal,24.37,34.99,23.35
+2026-10-09,Icetill Explorer,eoe,Normal,23.88,39.99,27.27
+2026-10-09,Stinkweed Imp,gk1,Normal,2.12,1.29,1.19
+2026-10-09,Cauldron of Essence,sos,Normal,4.44,5.49,3.99
+2026-10-09,Dark Matter Manipulator,fra,Normal,0.92,2.99,1.26
+2026-10-09,Snow-Covered Forest,mb2,Normal,2.14,3.49,1.99
+2026-10-09,Fanatic of Rhonas,mh3,Normal,15.78,23.99,15.87
+2026-10-09,Llanowar Wastes,bro,Normal,4.06,6.49,3.99
+2026-10-09,Merchant of Venom,soc,Normal,0.31,0.49,0.2
+2026-10-09,Colossal Grave-Reaver,tdc,Normal,10.58,17.99,11.16
+2026-10-09,"Armaggon, Future Shark",tmt,Foil,2.36,1.99,1.94
+2026-10-09,Snow-Covered Swamp,mb2,Normal,1.95,3.99,1.89
+2026-10-09,Nurturing Peatland,mh1,Normal,6.46,8.99,5.88
+2026-10-09,Phyrexian Tower,jmp,Normal,29.39,44.99,26.99
+2026-10-09,Twilight Mire,blc,Normal,0.44,0.79,0.54
+2026-10-09,Golgari Thug,rvr,Foil,2.91,4.49,2.0
+2026-10-09,Shifting Woodland,mh3,Normal,7.08,11.99,5.38
+2026-10-09,The Meathook Massacre,inr,Normal,35.32,49.99,27.5
+2026-10-09,Turbulent Fen,soc,Normal,8.37,9.99,6.46
+2026-10-09,Bayou,3ed,Normal,496.92,699.99,284.99
+2026-10-09,"Mole Man, Moloid Master",msh,Normal,1.31,2.99,2.51
+2026-10-09,Springheart Nantuko,mh3,Normal,8.5,11.99,5.12
+2026-10-09,Orcish Bowmasters,ltr,Normal,52.22,69.99,39.5
+2026-10-09,Liliana the Repentant,fra,Normal,5.07,7.49,3.34
+2026-10-09,Bloodghast,zen,Normal,4.25,5.99,2.33
+2026-10-09,Six,mh3,Foil,30.0,44.99,19.67
+2026-10-09,Wood Elves,s99,Normal,5.42,6.99,1.99
+2026-10-09,Forest,hob,Foil,0.38,0.49,0.42
+2026-10-09,Swamp,hob,Foil,0.34,0.49,0.46
+2026-10-09,Overgrown Tomb,ecl,Normal,9.01,13.99,8.43
+2026-10-09,"Tom, Bert, and William",purl,Normal,,,2.07
+2026-10-09,Great Hall of the Citadel,ltr,Normal,0.33,0.99,0.2
+2026-10-09,Hall of Echoes,fra,Normal,5.62,6.49,4.93
+2026-10-09,Plaza of Heroes,dmu,Normal,6.18,7.49,7.11
+2026-10-09,Arena,mb2,Normal,1.03,3.49,2.05
+2026-10-09,Cavern of Souls,lci,Normal,51.06,64.99,35.5
+2026-10-09,City of Shadows,me3,Normal,,,121.65
+2026-10-09,Maze of Ith,dmr,Foil,16.76,22.99,16.75
+2026-10-09,Desert of the Indomitable,m3c,Normal,0.3,0.35,0.12
+2026-10-09,Wasteland,slc,Normal,16.07,23.99,11.0
+2026-10-09,Scorched Ruins,wth,Normal,61.76,74.99,37.99
+2026-10-09,Castle Garenbrig,eld,Normal,10.75,13.99,6.39
+2026-10-09,Ancient Tomb,zne,Normal,139.31,179.99,125.96
+2026-10-09,Ash Barrens,cmm,Normal,0.24,0.35,0.12
+2026-10-09,Bant Panorama,ala,Normal,0.65,0.49,0.23
+2026-10-09,Crystal Vein,cma,Normal,8.74,9.49,5.85
+2026-10-09,Emergence Zone,war,Normal,4.11,4.49,2.04
+2026-10-09,Forest,blb,Foil,0.31,1.49,0.46
+2026-10-09,Ghost Quarter,ltc,Normal,0.65,0.99,0.98
+2026-10-09,Grasslands,cmm,Normal,0.36,0.35,0.15
+2026-10-09,Hall of the Bandit Lord,chk,Normal,22.11,24.99,10.04
+2026-10-09,Havenwood Battleground,c14,Normal,0.39,0.49,0.32
+2026-10-09,Hickory Woodlot,mmq,Normal,4.59,6.99,4.19
+2026-10-09,Hollow Trees,5ed,Normal,0.81,1.49,0.97
+2026-10-09,Homeward Path,ltc,Normal,12.87,20.99,11.94
+2026-10-09,Command Beacon,cmr,Normal,9.46,13.99,8.58
+2026-10-09,Dryad Arbor,mb2,Normal,3.27,4.49,2.49
+2026-10-09,Echoing Deeps,lci,Normal,0.76,0.59,0.89
+2026-10-09,Field of the Dead,m20,Normal,28.94,32.99,25.49
+2026-10-09,Gemstone Caverns,plst,Normal,63.18,84.99,42.3
+2026-10-09,High Market,c21,Normal,2.63,1.29,1.56
+2026-10-09,Horizon of Progress,m3c,Normal,4.58,4.99,2.87
+2026-10-09,Diamond Valley,me1,Normal,,,1.96
+2026-10-09,City of Traitors,tpr,Normal,,,4.78
+2026-10-09,Jund Panorama,ala,Normal,0.44,0.39,0.27
+2026-10-09,Mage-Ring Network,cmm,Normal,0.36,0.39,0.14
+2026-10-09,"Miren, the Moaning Well",sok,Normal,22.53,37.99,8.0
+2026-10-09,Mountain Valley,eoc,Normal,0.26,0.35,0.11
+2026-10-09,Myriad Landscape,ltc,Foil,3.98,3.99,3.89
+2026-10-09,Mystifying Maze,eos,Normal,2.15,2.99,0.9
+2026-10-09,Ominous Cemetery,who,Normal,0.32,0.35,0.18
+2026-10-09,Pit of Offerings,lci,Normal,0.36,0.69,0.23
+2026-10-09,Rushwood Grove,mmq,Normal,0.6,0.79,0.75
+2026-10-09,Safe Haven,tsb,Normal,0.49,0.99,0.3
+2026-10-09,Sanctum of Eternity,c19,Normal,6.86,9.99,6.44
+2026-10-09,Sandstorm Verge,otj,Normal,0.28,0.35,0.08
+2026-10-09,Sequestered Stash,kld,Normal,0.15,0.35,0.24
+2026-10-09,Shire Terrace,ltr,Normal,0.28,0.35,0.15
+2026-10-09,Slippery Karst,dmr,Normal,0.24,0.35,0.05
+2026-10-09,Snow-Covered Forest,mh1,Normal,1.14,1.49,0.77
+2026-10-09,Tower of the Magistrate,mb2,Normal,1.42,2.29,2.55
+2026-10-09,Underdark Rift,afc,Normal,0.48,0.69,0.1
+2026-10-09,"Untaidake, the Cloud Keeper",chk,Normal,5.44,5.99,1.0
+2026-10-09,Vesuva,slc,Normal,5.07,6.49,3.99
+2026-10-09,Winding Canyons,wth,Normal,35.72,42.99,12.0
+2026-10-09,Daily Bugle Building,spm,Normal,0.27,0.39,0.08
+2026-10-09,"Argoth, Sanctum of Nature",bro,Normal,3.38,5.49,0.91
+2026-10-09,Chocobo Camp,fic,Normal,8.87,18.99,4.99
+2026-10-09,Northampton Farm,tmt,Normal,0.29,0.49,0.4
+2026-10-09,Tranquil Thicket,mh1,Normal,0.22,0.35,0.02
+2026-10-09,Sunken Citadel,lci,Normal,0.51,0.69,1.15
+2026-10-09,Temple of the False God,cm2,Normal,0.31,0.35,0.89
+2026-10-09,Scavenger Grounds,c21,Normal,0.44,0.59,0.5
+2026-10-09,Mariposa Military Base,pip,Normal,0.42,0.69,0.19
+2026-10-09,Prismatic Vista,mh1,Normal,30.31,39.99,31.28
+2026-10-09,Talon Gates of Madara,m3c,Normal,30.61,42.99,25.65
+2026-10-09,Terrain Generator,clb,Normal,2.24,3.49,1.8
+2026-10-09,Witch's Clinic,c21,Normal,14.97,18.99,11.95
+2026-10-09,The Tabernacle at Pendrell Vale,me3,Normal,,,
+2026-10-09,Bazaar of Baghdad,vma,Normal,,,747.66
+2026-10-09,Mirrorpool,cmm,Normal,2.8,2.99,2.13
+2026-10-09,"Lumra, Bellow of the Woods",blb,Foil,116.69,149.99,145.0
+2026-10-09,Yavimaya Hollow,vma,Normal,,,
+2026-10-09,Leonin Elder,mrd,Normal,0.36,0.49,0.4
+2026-10-09,Ashes of the Abhorrent,xln,Normal,0.78,0.99,0.91
+2026-10-09,Aunt May,spm,Normal,0.29,0.35,0.06
+2026-10-09,Essence Channeler,blb,Foil,1.24,1.49,1.0
+2026-10-09,Powerleech,atq,Normal,20.46,21.99,9.94
+2026-10-09,"Ajani, Strength of the Pride",m20,Normal,8.58,12.99,6.11
+2026-10-09,Ancient Tomb,zne,Foil,173.11,279.99,179.9
+2026-10-09,"Yavimaya, Cradle of Growth",mh2,Foil,24.32,24.99,34.95
+2026-10-09,Shefet Dunes,otc,Normal,0.3,0.35,0.37
+2026-10-09,Branchloft Pathway // Boulderloft Pathway,znr,Foil,4.68,7.99,4.95
+2026-10-09,Brushland,bro,Foil,11.25,14.99,5.85
+2026-10-09,"Heliod, Sun-Crowned",sld,Foil,31.93,44.99,33.19
+2026-10-09,Exemplar of Light,fdn,Foil,51.84,74.99,33.45
+2026-10-09,Swords to Plowshares,sld,Foil,24.19,34.99,24.0
+2026-10-09,The One Ring,ltr,Foil,113.62,139.99,97.39
+2026-10-09,Kodama of the West Tree,j25,Normal,19.41,24.99,16.32
+2026-10-09,Voice of the Blessed,vow,Foil,4.11,5.99,2.99
+2026-10-09,Return of the Wildspeaker,znc,Normal,2.32,3.99,1.24
+2026-10-09,Archivist of Oghma,clb,Normal,6.65,7.99,7.16
+2026-10-09,Sylvan Library,cc1,Normal,27.07,32.99,22.62
+2026-10-09,Temple Garden,unf,Normal,19.16,23.99,18.0
+2026-10-09,Soul's Attendant,ltc,Foil,10.62,10.99,11.12
+2026-10-09,Rogue's Passage,sld,Foil,53.86,49.99,44.98
+2026-10-09,Auriok Champion,ima,Normal,11.56,17.99,6.41
+2026-10-09,Augur of Autumn,mid,Foil,1.44,0.99,2.5
+2026-10-09,Overgrown Farmland,dbl,Normal,5.03,6.99,3.94
+2026-10-09,Canopy Vista,ltc,Normal,0.38,0.69,0.45
+2026-10-09,Horizon Canopy,zne,Normal,6.3,8.99,6.29
+2026-10-09,Windswept Heath,ktk,Normal,12.45,20.99,9.93
+2026-10-09,Sunpetal Grove,m10,Normal,1.92,2.79,0.25
+2026-10-09,Command Tower,sld,Foil,6.74,7.49,9.95
+2026-10-09,Wooded Bastion,shm,Normal,17.39,23.99,11.15
+2026-10-09,Hashep Oasis,otc,Normal,0.24,0.35,0.09
+2026-10-09,Plains,sld,Foil,6.92,7.49,12.66
+2026-10-09,Forest,snc,Normal,0.37,0.49,0.4
+2026-10-09,Plains,one,Foil,8.42,10.99,5.63
+2026-10-09,Plains,blb,Foil,1.62,1.99,1.49
+2026-10-09,Plains,dmu,Foil,4.39,6.99,2.77
+2026-10-09,Forest,ltr,Normal,0.8,1.29,0.57
+2026-10-09,Plains,thb,Normal,1.31,0.99,0.54
+2026-10-09,Plains,neo,Normal,2.97,5.99,2.64
+2026-10-09,Plains,ugl,Normal,6.8,7.49,4.8
+2026-10-09,Forest,und,Foil,4.27,4.99,4.15
+2026-10-09,Forest,tdm,Foil,1.65,1.99,1.94
+2026-10-09,Path to Exile,otp,Normal,2.49,2.79,1.31
+2026-10-09,Aerith Gainsborough,fin,Normal,2.71,4.49,1.53
+2026-10-09,Plains,eoe,Normal,1.1,1.99,0.75
+2026-10-09,"Lyra, Archangel of Dawn",fra,Normal,3.86,6.49,3.56
+2026-10-09,Unflinching Hortimancer,fra,Normal,0.17,0.35,0.14
+2026-10-09,Bloombrute,fra,Normal,0.25,0.35,0.13
+2026-10-09,"Celestine, the Living Saint",40k,Normal,25.03,27.99,25.43
+2026-10-09,Essence Warden,plc,Normal,8.09,12.99,3.44
+2026-10-09,Lunarch Veteran // Luminous Phantom,mid,Normal,0.37,0.79,0.26
+2026-10-09,Soul Warden,m10,Foil,10.75,12.99,3.4
+2026-10-09,Authority of the Consuls,kld,Normal,5.59,7.49,4.05
+2026-10-09,Hinterland Sanctifier,j25,Normal,0.45,0.79,0.33
+2026-10-09,Scavenging Ooze,plg21,Foil,0.36,0.59,0.35
+2026-10-09,Case of the Uneaten Feast,mkm,Foil,1.64,1.99,0.91
+2026-10-09,Shadowspear,thb,Normal,29.86,42.99,22.58
+2026-10-09,Terrasymbiosis,eoe,Foil,10.18,14.99,10.95
+2026-10-09,Solitude,spg,Foil,48.76,79.99,54.9
+2026-10-09,City of Brass,2x2,Foil,40.78,49.99,37.95
+2026-10-09,Plains,tla,Normal,0.54,1.29,0.51
+2026-10-09,The Destined White Mage,fic,Foil,14.86,17.99,13.99
+2026-10-09,Spry and Mighty,ecl,Normal,0.49,0.59,0.4
+2026-10-09,Virulent Emissary,ecl,Foil,1.08,0.99,0.5
+2026-10-09,Avatar's Wrath,tla,Foil,4.36,5.99,4.25
+2026-10-09,Guide of Souls,sch,Foil,7.55,9.49,5.11
+2026-10-09,Plains,sos,Foil,1.11,1.99,0.89
+2026-10-09,Sungrass Prairie,c19,Normal,0.28,0.49,0.56
+2026-10-09,"Tigra, Feline Fury",msh,Normal,0.22,0.35,0.21
+2026-10-09,Dr. Beverly Crusher,trk,Normal,52.97,9.99,
+2026-10-09,Pest Infestation,otp,Normal,1.13,1.49,1.08
+2026-10-09,The Great Henge,eld,Normal,65.28,89.99,46.16
+2026-10-09,"Leonardo, Cutting Edge",tmt,Normal,2.68,2.29,2.53
+2026-10-09,Elenda's Hierophant,lcc,Normal,4.94,6.49,5.38
+2026-10-09,Suture Priest,nph,Normal,1.86,2.79,1.96
+2026-10-09,Herd Heirloom,tdm,Normal,4.3,7.49,3.99
+2026-10-09,Ajani Resolute,fra,Normal,11.35,14.99,10.49
+2026-10-09,Liliana the Faultless,fra,Normal,8.59,9.99,6.45
+2026-10-09,Haywire Mite,bro,Foil,3.12,3.49,2.2
+2026-10-09,Solarium Sentry,fra,Normal,0.46,0.99,0.86
+2026-10-09,"Trelasarra, Moon Dancer",afr,Foil,0.39,1.99,0.3
+2026-10-09,Healer's Hawk,jmp,Normal,0.31,0.35,0.51
+2026-10-09,Righteous Cause,ons,Normal,0.42,0.49,0.15
+2026-10-09,Beast Within,sld,Foil,29.83,29.99,24.95
+2026-10-09,Generous Gift,cmm,Normal,1.15,2.29,1.28
+2026-10-09,Witch Enchanter // Witch-Blessed Meadow,sld,Foil,76.27,79.99,55.0
+2026-10-09,Flare of Denial,mh3,Normal,3.69,4.99,4.28
+2026-10-09,"Grazilaxx, Illithid Scholar",clb,Normal,1.77,7.49,1.8
+2026-10-09,Inkfathom Infiltrator,plst,Normal,0.37,0.35,0.19
+2026-10-09,Lightning Greaves,who,Normal,4.88,6.49,3.82
+2026-10-09,Reconnaissance Mission,iko,Normal,0.59,0.99,1.08
+2026-10-09,Gudul Lurker,dtk,Normal,0.46,1.29,1.0
+2026-10-09,Mist-Cloaked Herald,rix,Normal,0.37,0.69,0.5
+2026-10-09,The Indomitable,lcc,Normal,3.54,3.49,2.31
+2026-10-09,Dreamroot Cascade,who,Normal,1.06,1.79,0.89
+2026-10-09,Beastmaster Ascension,ncc,Normal,7.03,7.99,3.66
+2026-10-09,Ohran Frostfang,c19,Normal,7.49,9.99,6.24
+2026-10-09,Brazen Borrower // Petty Theft,spg,Normal,6.06,7.49,5.0
+2026-10-09,Shipwreck Marsh,mid,Normal,6.96,9.49,6.28
+2026-10-09,Morphic Pool,clb,Normal,28.03,39.99,27.85
+2026-10-09,Nether Traitor,tsp,Normal,9.64,3.99,2.54
+2026-10-09,Clearwater Pathway // Murkwater Pathway,znr,Normal,4.89,5.99,5.22
+2026-10-09,Slither Blade,znc,Normal,0.42,0.79,0.2
+2026-10-09,Tormented Soul,m12,Normal,0.25,0.35,0.45
+2026-10-09,Triton Shorestalker,znc,Normal,0.35,0.79,0.39
+2026-10-09,Changeling Outcast,h1r,Foil,5.09,6.99,3.94
+2026-10-09,Invisible Stalker,znc,Normal,1.2,1.29,0.6
+2026-10-09,Looter il-Kor,ncc,Normal,0.33,0.35,0.05
+2026-10-09,"Edric, Spymaster of Trest",cns,Normal,2.81,4.99,1.26
+2026-10-09,Bident of Thassa,ths,Normal,0.61,0.79,1.23
+2026-10-09,Coastal Piracy,jmp,Normal,1.45,1.99,0.99
+2026-10-09,Beast Within,ncc,Normal,1.03,1.49,0.7
+2026-10-09,Command Tower,brc,Normal,2.49,3.49,1.45
+2026-10-09,Exotic Orchard,brc,Normal,0.59,0.99,0.36
+2026-10-09,Path of Ancestry,brc,Normal,0.43,0.59,0.19
+2026-10-09,Island,brc,Normal,0.25,0.49,0.1
+2026-10-09,Hinterland Harbor,ltc,Normal,0.4,0.69,0.5
+2026-10-09,Drowned Catacomb,ltc,Normal,2.46,2.79,2.19
+2026-10-09,Enduring Curiosity,dsk,Normal,7.91,11.99,6.6
+2026-10-09,"Gix, Yawgmoth Praetor",pbro,Normal,2.2,1.99,2.58
+2026-10-09,Rejuvenating Springs,ltc,Normal,4.77,5.99,4.99
+2026-10-09,Wu Light Cavalry,ptk,Normal,3.84,1.29,1.21
+2026-10-09,Barkchannel Pathway // Tidechannel Pathway,khm,Normal,4.97,7.49,4.98
+2026-10-09,Mockingbird,blb,Normal,3.47,4.99,2.83
+2026-10-09,Zagoth Triome,iko,Normal,21.77,29.99,17.96
+2026-10-09,Breeding Pool,gtc,Normal,10.03,17.99,9.49
+2026-10-09,Watery Grave,grn,Normal,9.79,13.99,10.12
+2026-10-09,Baleful Strix,blc,Normal,14.15,16.99,13.5
+2026-10-09,Sink into Stupor // Soporific Springs,mh3,Normal,9.52,13.99,7.42
+2026-10-09,Cephalid Facetaker,ncc,Normal,3.94,3.99,3.58
+2026-10-09,Into the Flood Maw,blb,Normal,3.15,3.99,1.7
+2026-10-09,Willowrush Verge,dft,Normal,4.75,9.49,8.28
+2026-10-09,Shoreline Looter,blb,Foil,1.22,2.99,1.98
+2026-10-09,Unsubstantiate,m21,Normal,0.34,0.69,0.12
+2026-10-09,Ledger Shredder,snc,Normal,9.94,12.99,8.14
+2026-10-09,Gloomlake Verge,dsk,Normal,10.72,17.99,10.3
+2026-10-09,Flooded Grove,ltc,Normal,0.35,0.49,0.33
+2026-10-09,Sunken Ruins,fic,Normal,2.27,3.49,2.99
+2026-10-09,Departed Deckhand,lcc,Normal,0.34,0.35,0.1
+2026-10-09,Notorious Throng,znc,Normal,3.33,3.49,2.97
+2026-10-09,Dauthi Voidwalker,sld,Foil,15.27,14.99,12.49
+2026-10-09,Silent Hallcreeper,dsk,Normal,1.19,2.29,1.75
+2026-10-09,Thieving Skydiver,znr,Normal,0.24,0.69,0.41
+2026-10-09,Faerie Mastermind,pmom,Normal,11.82,17.99,10.42
+2026-10-09,Swamp,brc,Normal,0.36,0.49,0.19
+2026-10-09,Geist of Saint Thalia,fra,Normal,9.06,8.99,4.55
+2026-10-09,Orochi Soul-Reaver,otc,Normal,9.76,9.49,8.74
+2026-10-09,Grim Hireling,afc,Normal,13.19,15.99,21.62
+2026-10-09,Vedalken Infiltrator,mh2,Normal,0.23,0.35,0.2
+2026-10-09,Bitterbloom Bearer,ecl,Normal,18.05,24.99,23.98
+2026-10-09,Spectral Sailor,lcc,Normal,0.35,0.35,0.1
+2026-10-09,"Malcolm, Alluring Scoundrel",plci,Normal,3.64,4.99,1.99
+2026-10-09,Spyglass Siren,lci,Normal,0.31,0.69,0.86
+2026-10-09,Waterbender Ascension,tla,Normal,0.63,1.29,0.76
+2026-10-09,Flitterwing Nuisance,ecl,Normal,0.68,0.99,1.06
+2026-10-09,Siren Stormtamer,lcc,Normal,0.48,0.69,0.93
+2026-10-09,Cloud Pirates,por,Normal,1.88,2.49,1.2
+2026-10-09,River of Tears,fut,Normal,1.78,3.49,1.75
+2026-10-09,"Irma, Part-Time Mutant",tmc,Normal,4.69,6.99,4.27
+2026-10-09,Scale Up,h1r,Foil,1.44,1.79,1.49
+2026-10-09,"Toski, Bearer of Secrets",spg,Normal,16.5,22.99,12.0
+2026-10-09,Faerie Slumber Party,woe,Normal,1.9,2.79,0.99
+2026-10-09,Tegwyll's Scouring,woc,Normal,1.01,1.99,0.69
+2026-10-09,Fell the Profane // Fell Mire,mh3,Normal,5.61,7.99,4.47
+2026-10-09,Forest,inr,Normal,0.48,0.79,0.39
+2026-10-09,Polluted Delta,zne,Normal,47.88,49.99,39.0
+2026-10-09,The Destined Thief,fic,Foil,3.03,5.99,4.06
+2026-10-09,Tezzeret the Seeker,sld,Normal,28.95,34.99,18.94
+2026-10-09,Underground Sea,3ed,Normal,1105.08,1499.99,520.0
+2026-10-09,"Wan Shi Tong, Librarian",tla,Foil,37.79,54.99,72.0
+2026-10-09,Skyserpent Seeker,dft,Normal,0.32,0.79,0.1
+2026-10-09,"Bilbo, Luckwearer // Burglar's Plot",pw26,Normal,0.53,0.79,0.74
+2026-10-09,"Ikra Shidiqi, the Usurper",c16,Foil,1.23,1.79,0.7
+2026-10-09,Skateboard,tmt,Normal,0.33,0.79,0.24
+2026-10-09,"Malcolm, Keen-Eyed Navigator",spg,Foil,15.2,17.99,16.9

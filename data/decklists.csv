@@ -909,3 +909,7 @@ date,deck_id,card_name,set_code,finish,proxied,quantity
 2026-10-08,24974478,Heartstone,sth,Normal,true,0
 2026-10-08,26722467,Utopia Sprawl,pf26,Foil,false,1
 2026-10-08,26722467,Utopia Sprawl,wot,Foil,false,0
+2026-10-09,26722467,Aerial Responder,kld,Normal,false,1
+2026-10-09,26722467,Aerial Responder,kld,Normal,true,0
+2026-10-09,26722467,"Mikey & Leo, Chaos & Order",tmt,Normal,false,0
+2026-10-09,26722467,"Mikey & Leo, Chaos & Order",tmt,Normal,true,1
