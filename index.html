@@ -437,9 +437,8 @@
         <span class="filter-label">Compare stores</span>
         <label class="check"><input type="checkbox" class="px-store" value="tcg" checked> TCGplayer</label>
         <label class="check"><input type="checkbox" class="px-store" value="ck" checked> Card Kingdom</label>
-        <label class="check"><input type="checkbox" class="px-store" value="cm"> Cardmarket</label>
+        <label class="check" title="European store; prices may not be in dollars"><input type="checkbox" class="px-store" value="cm"> Cardmarket</label>
       </div>
-      <div class="note">Cardmarket is off by default: it's a European store, and its prices may not be in dollars. The list starts with the cheapest cards, and the running total adds up rows in the order shown, so you can see how far a budget goes.</div>
     </div>
     <div class="ix-table">
       <div class="table-wrap">
@@ -448,16 +447,15 @@
             <th data-k="name">Card</th>
             <th>Decks</th>
             <th data-k="qty" class="num">Qty</th>
-            <th data-k="tcg" class="num">TCGplayer</th>
-            <th data-k="ck" class="num">Card Kingdom</th>
-            <th data-k="cm" class="num">Cardmarket</th>
+            <th data-k="tcg" class="num" title="Per copy; cheapest store in bold">TCGplayer</th>
+            <th data-k="ck" class="num" title="Per copy; cheapest store in bold">Card Kingdom</th>
+            <th data-k="cm" class="num" title="Per copy; cheapest store in bold">Cardmarket</th>
             <th data-k="best" class="num">Cheapest total</th>
-            <th class="num">Running total</th>
+            <th class="num" title="Adds up the rows in the order shown">Running total</th>
           </tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <div class="note">Store prices are per copy, for the printing in your deck. The cheapest is in bold.</div>
     </div>
   </section>
 
@@ -465,12 +463,12 @@
     <div class="ix-bar cards-bar">
       <div>
         <h3>Deck cards</h3>
-        <div class="note">One card per deck, the size of a Magic card (2.5 × 3.5 in), so you can print it and sleeve it with the deck. The QR code opens the deck on Archidekt. The bracket is the one you set on Archidekt, and the date along the bottom is when the deck was last edited there, so you can tell when a printed card is out of date. Click a card to leave it out of the printout and the downloads. Download PNGs saves a zip with one 300 dpi image per card. In the print dialog, turn on background graphics and print at 100% scale.</div>
+        <div class="note">Magic-card size, nine to a page. Click a card to skip it.</div>
       </div>
       <div class="print-controls">
         <div class="print-buttons">
-          <button class="primary" id="printCards">Print cards</button>
-          <button class="secondary" id="pngCards">Download PNGs</button>
+          <button class="primary" id="printCards" title="In the print dialog, turn on background graphics and print at 100% scale">Print cards</button>
+          <button class="secondary" id="pngCards" title="A zip with one 300 dpi PNG per card">Download PNGs</button>
         </div>
         <div class="print-pick"><span id="printCount"></span> <button class="ghost" id="printAll" hidden>Include all</button></div>
       </div>
@@ -480,12 +478,12 @@
 
   <section id="indexView" hidden>
     <div class="ix-bar">
-      <div class="filters">
-        <input type="search" id="ixSearch" placeholder="Card name, across every deck" aria-label="Search all decks by card name">
+      <div class="filters" title="Click a color, type or deck twice, or put a minus before a word, to leave it out">
+        <input type="search" id="ixSearch" placeholder="Card name, e.g. bolt -lightning" aria-label="Search all decks by card name">
         <div class="ctoggles" id="ixColors"></div>
         <details class="dd" id="ixTypeDD"><summary>Type <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <input type="text" id="ixSubtype" placeholder="Subtypes, e.g. Elf -Druid" aria-label="Subtypes">
-        <input type="text" id="ixSets" placeholder="Sets, e.g. SLD -LTR" aria-label="Set codes" autocomplete="off" spellcheck="false">
+        <input type="text" id="ixSets" placeholder="Sets, e.g. MH -SLD" title="Set codes; a prefix like MH matches MH1, MH2 and MH3" aria-label="Set codes" autocomplete="off" spellcheck="false">
         <details class="dd" id="ixDeckDD"><summary>Decks <span class="count-badge" hidden></span></summary><div class="panel"></div></details>
         <select id="ixMatch" aria-label="Which selected decks" hidden>
           <option value="any">In any selected deck</option>
@@ -504,10 +502,9 @@
         <button class="ghost" id="ixClear">Clear filters</button>
       </div>
       <div class="result-line" id="ixResult"></div>
-      <div class="note">To leave something out: click a color, type or deck twice, or start a word with a minus sign. For example, "-sol" in the name box, "Elf -Druid" for subtypes, or "-SLD" for sets.</div>
     </div>
     <details class="ix-bar overlap" id="overlapBox">
-      <summary><h3>Deck overlap</h3><span class="muted">How many cards each pair of decks shares, not counting basic lands. Select a number to list those cards.</span></summary>
+      <summary><h3>Deck overlap</h3><span class="muted">Cards each pair of decks shares</span></summary>
       <div class="table-wrap"><table class="overlap-grid" id="overlapGrid"></table></div>
     </details>
     <div class="ix-table">
@@ -526,14 +523,13 @@
             <th data-k="color">Color</th>
             <th data-k="decks" class="num">Decks</th>
             <th data-k="qty" class="num">Copies</th>
-            <th data-k="price" class="num">Price</th>
+            <th data-k="price" class="num" title="Per copy, cheapest printing you play">Price</th>
             <th data-k="setList">Sets</th>
-            <th>Where</th>
+            <th title="Bold: commander. Dashed: proxy.">Where</th>
           </tr></thead>
           <tbody></tbody>
         </table>
       </div>
-      <div class="note">Sets lists the printings you play, with copy counts when there's more than one. Typing set codes in the Sets box (separated by commas or spaces) limits everything, copies, decks and prices included, to cards from those sets. A partial code matches every set starting with it, so "MH" covers MH1, MH2 and MH3. Price is per copy, from the store chosen in "Prices from". If you play more than one printing of a card, it shows the cheapest. Bold decks run the card as a commander; dashed ones run it as a proxy.</div>
     </div>
   </section>
 
@@ -589,17 +585,16 @@
 
         <section>
           <div class="section-head"><h3>Paper vs proxied</h3></div>
-          <div class="tags" id="tags"></div>
-          <div class="note">Proxies are cards with the "Proxied" color tag on Archidekt. <span id="tagHint">Select a row to filter the card list.</span></div>
+          <div class="tags" id="tags" title="Select a row to filter the card list. Proxies are cards tagged &quot;Proxied&quot; on Archidekt."></div>
+          
         </section>
 
         <section id="curveCard">
           <div class="section-head"><h3>Mana curve and card types</h3></div>
           <div class="curve-wrap">
-            <div><div class="mini-h">Mana value, lands excluded</div><div class="curve" id="curve"></div></div>
-            <div><div class="mini-h">Card types</div><div class="types" id="types"></div></div>
+            <div><div class="mini-h">Mana value</div><div class="curve" id="curve"></div></div>
+            <div><div class="mini-h" title="Cards with more than one type count toward each">Card types</div><div class="types" id="types"></div></div>
           </div>
-          <div class="note">Cards with more than one type, like artifact creatures, count toward each.</div>
         </section>
 
         <section id="cardsCard">
@@ -763,8 +758,8 @@
     await Promise.all([loadMonth(monthOf(latestDate)), loadMonth(prevMonth(latestDate))]);
 
     const current = realDecks().filter(d => !isStale(d)).length;
-    $("subtitle").textContent = `${current} deck${current === 1 ? "" : "s"}, last snapshot ${fmtDate(latestDate)}` +
-      (dates.length > 1 ? `, history since ${fmtDate(dates[0])}` : "");
+    $("subtitle").textContent = `${current} deck${current === 1 ? "" : "s"} · updated ${fmtDate(latestDate)}` +
+      (dates.length > 1 ? ` · tracked since ${fmtDate(dates[0])}` : "");
     $("tabs").hidden = false;
     setHipsterLink();
     renderDeckCards();
@@ -945,17 +940,17 @@
     $("deckLink").hidden = s.virtual;
     if (!s.virtual) $("deckLink").href = `https://archidekt.com/decks/${encodeURIComponent(s.id)}`;
     for (const id of ["swapsCard", "cardsCard", "moversCard", "curveCard"]) $(id).hidden = !!d.noCards;
-    $("tagHint").hidden = !!d.noCards;
-    if (d.noCards) tagFilter = null;
-    $("heroLbl").textContent = s.stale ? `Value on ${fmtDate(s.last)}, its last snapshot before leaving the folder` : `Value on ${fmtDate(s.last)}`;
+        if (d.noCards) tagFilter = null;
+    $("heroLbl").textContent = s.stale ? `Value on ${fmtDate(s.last)} (left folder)` : `Value on ${fmtDate(s.last)}`;
     $("heroVal").textContent = money(s.value);
     delta($("heroFirst"), s.dFirst, s.firstVal);
     const missing = d.rows.filter(r => priceIn(r) == null).length;
     const swaps = d.noCards ? [] : deckSwaps(d);
-    $("chartNote").textContent = (s.ds.length < 2 ? "Only one snapshot so far. The lines fill in as the daily job runs. " : "")
-      + (selected === AVG ? "Each day is the collection total divided by the number of decks that day. " : "")
-      + (swaps.length ? "Hollow points mark days the decklist changed. " : "")
-      + (missing ? `${missing} card${missing === 1 ? " has" : "s have"} no ${STORE_NAMES[src()]} price and count as $0.` : "");
+    $("chartNote").textContent = [
+      s.ds.length < 2 ? "First snapshot" : "",
+      swaps.length ? "○ decklist changed" : "",
+      missing ? `${missing} unpriced` : "",
+    ].filter(Boolean).join(" · ");
     drawChart(s.ds.map(x => ({ date: x, total: val(d, x), paper: val(d, x, "paper"), proxy: val(d, x, "proxy") })), swaps);
     renderTags(d, s);
     if (d.noCards) return;
@@ -1047,7 +1042,7 @@
     $("moverWindow").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.w === moverWindow));
     const from = dayOnOrAfter(addDays(latestDate, -moverWindow));
     const box = $("movers");
-    if (!from || from === latestDate) { box.innerHTML = `<div class="swaps-empty">Price changes show up here once there's more than a day of history.</div>`; return; }
+    if (!from || from === latestDate) { box.innerHTML = `<div class="swaps-empty">Needs more than a day of history.</div>`; return; }
     const seen = new Set(), list = [];
     for (const r of d.rows) {
       const k = printKey(r); if (seen.has(k)) continue; seen.add(k);
@@ -1072,7 +1067,7 @@
   function renderSwaps(changes) {
     const box = $("changes");
     if (!changes.length) {
-      box.innerHTML = `<div class="swaps-empty">No swaps recorded yet. Cards entering or leaving ${selected === ALL ? "the collection" : "this deck"} between daily snapshots will show up here.${selected === ALL ? " Moving a card from one deck to another doesn't count." : ""}</div>`;
+      box.innerHTML = `<div class="swaps-empty">No swaps yet.</div>`;
       return;
     }
     const n = l => l.reduce((s, c) => s + c.qty, 0);
@@ -1209,10 +1204,10 @@
     const storeTotal = s => rows.reduce((t, r) => t + (r[s] ?? 0) * r.qty, 0);
     const deckCount = new Set(rows.flatMap(r => [...r.decks.keys()])).size;
     $("pxSummary").innerHTML = rows.length ? `
-      <div><div class="lbl">Cost to replace every proxy, buying each card where it's cheapest</div><div class="big num" style="text-align:left">${money(total)}</div></div>
-      <div class="alt">${copies} proxied ${copies === 1 ? "copy" : "copies"} across ${deckCount} deck${deckCount === 1 ? "" : "s"}<br>
-        ${[...px.stores].map(s => `All from ${STORE_NAMES[s]}: ${money(storeTotal(s))}`).join("<br>")}</div>`
-      : `<div class="alt">No proxies${px.decks.size ? " in the selected decks" : ""}. Cards with the "Proxied" color tag on Archidekt show up here.</div>`;
+      <div><div class="lbl" title="Buying each card where it's cheapest">Cost to replace every proxy</div><div class="big num" style="text-align:left">${money(total)}</div></div>
+      <div class="alt">${copies} ${copies === 1 ? "copy" : "copies"} · ${deckCount} deck${deckCount === 1 ? "" : "s"}<br>
+        ${[...px.stores].map(s => `${STORE_NAMES[s]} only: ${money(storeTotal(s))}`).join("<br>")}</div>`
+      : `<div class="alt">No proxies${px.decks.size ? " in the selected decks" : ""}. Tag cards "Proxied" on Archidekt.</div>`;
     let running = 0;
     $("proxyTable").tBodies[0].innerHTML = rows.map(r => {
       running += r.best ?? 0;
@@ -1391,12 +1386,11 @@
 
     const all = indexCards(), list = sortBy(all.filter(ixMatches), ixSort);
     const copies = list.reduce((s, c) => s + c.qty, 0);
-    $("ixResult").textContent = `Showing ${list.length} of ${all.length} cards (${copies} copies)` +
+    $("ixResult").textContent = `${list.length} of ${all.length} cards · ${copies} copies` +
       (sets.matched.length ? ` from ${sets.matched.join(", ")}` : setFilter.yes ? ` from no set you play` : "") +
       (sets.excluded.length ? `, not from ${sets.excluded.join(", ")}` : "") +
       (sets.unknown.length ? ` (no cards match ${sets.unknown.join(", ")})` : "") +
-      ` in the ${fmtDate(latestDate)} snapshot` +
-      (cardInfo.size ? "" : ". Card types and colors arrive with the next daily run.");
+      (cardInfo.size ? "" : " · types arrive with the next run");
     const MAX = 400;
     $("indexTable").tBodies[0].innerHTML = list.slice(0, MAX).map((c, i) => `
       <tr>
@@ -1412,7 +1406,7 @@
           `<span class="set-code" title="${n} ${n === 1 ? "copy" : "copies"} from ${esc(set)}">${esc(set)}${c.sets.size > 1 && n > 1 ? `<span class="muted"> ×${n}</span>` : ""}</span>`).join(" ")}</td>
         <td><div class="where">${sortBy([...c.perDeck].map(([id, e]) => ({ e, name: deckName(id) })), { k: "name", dir: 1 })
           .map(({ name, e }) => `<span class="dchip ${e.cmd ? "cmd" : ""} ${e.proxy ? "proxy" : ""}">${esc(name)}${e.qty > 1 ? " ×" + e.qty : ""}</span>`).join("")}</div></td>
-      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="10" class="muted">Showing the first ${MAX}. Narrow the filters to see the rest.</td></tr>` : "")
+      </tr>`).join("") + (list.length > MAX ? `<tr><td colspan="10" class="muted">First ${MAX} shown. Narrow the filters for more.</td></tr>` : "")
       || `<tr><td colspan="10" class="muted">No cards match these filters.</td></tr>`;
     markSort($("indexTable"), ixSort);
     renderOverlap();
