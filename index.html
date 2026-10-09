@@ -904,6 +904,7 @@
     for (const id of ["pricesView", "proxyView", "indexView", "cardsView"]) $(id === "pricesView" ? "app" : id).hidden = v !== id;
     $("source").closest("label").hidden = v === "proxyView" || v === "cardsView";
     document.documentElement.dataset.view = v;   // print styles only apply on the Deck cards tab
+    if (v === "cardsView" && $("cardSheet").children.length) fitGameChangers();   // can only measure while visible
     $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.view === v));
     syncUrl();
   }
@@ -1499,11 +1500,9 @@
     const meta = deckMeta.get(d.id) || {}, id = deckIdentity(d.id);
     const cmds = commanderArt.get(d.id) || [];
     const gc = listOf(meta.game_changers), turns = listOf(meta.extra_turns);
-    const url = `https://archidekt.com/decks/${d.id}`, MAX_GC = 4;   // 4 rows always fit under the fixed-size art
-    const gcRows = gc.length
-      ? gc.slice(0, gc.length > MAX_GC ? MAX_GC - 1 : MAX_GC).map(n => `<li>${esc(n)}</li>`).join("") +
-        (gc.length > MAX_GC ? `<li class="mc-none">and ${gc.length - MAX_GC + 1} more</li>` : "")
-      : `<li class="mc-none">None</li>`;
+    const url = `https://archidekt.com/decks/${d.id}`;
+    // every name goes in; fitGameChangers() trims the list to what fits and adds "+X more"
+    const gcRows = gc.length ? gc.map(n => `<li>${esc(n)}</li>`).join("") : `<li class="mc-none">None</li>`;
     return `
       <article class="mcard" data-id="${esc(d.id)}" role="button" tabindex="0" style="--frame:${frameFill(id)}" aria-label="${esc(cardTitle(d.name))} deck card. Click to include or leave out of the printout.">
         <div class="mc-frame"><div class="mc-inner">
@@ -1514,7 +1513,7 @@
             <div class="mc-row">
               <div class="mc-section">
                 <div class="mc-label"><span>Game Changers</span><b>${gc.length}</b></div>
-                <ul class="mc-list">${gcRows}</ul>
+                <ul class="mc-list" data-names="${esc(JSON.stringify(gc))}">${gcRows}</ul>
                 ${turns.length ? `<div class="mc-label" title="${esc(turns.join(", "))}"><span>Extra turns</span><b>${turns.length}</b></div>` : ""}
               </div>
               <div class="mc-side">
@@ -1543,11 +1542,29 @@
   $("cardSheet").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches(".mcard")) { e.preventDefault(); e.target.click(); } });
   $("printAll").addEventListener("click", () => { skipPrint.clear(); $("cardSheet").querySelectorAll(".mcard.skip").forEach(c => { c.classList.remove("skip"); c.setAttribute("aria-pressed", true); }); updatePrintCount(); });
 
+  // Trim each card's Game Changers to the rows that fit, ending with "+X more" when some don't.
+  function fitGameChangers() {
+    for (const card of $("cardSheet").querySelectorAll(".mcard")) {
+      const section = card.querySelector(".mc-section"), list = card.querySelector(".mc-list");
+      const names = JSON.parse(list.dataset.names || "[]");   // always start from the full list
+      if (!names.length || !section.clientHeight) continue;   // nothing to trim, or the tab isn't showing yet
+      const fill = shown => {
+        list.innerHTML = names.slice(0, shown).map(n => `<li>${esc(n)}</li>`).join("") +
+          (shown < names.length ? `<li class="mc-none">+${names.length - shown} more</li>` : "");
+      };
+      let shown = names.length;
+      fill(shown);
+      while (shown > 0 && section.scrollHeight > section.clientHeight + 1) fill(--shown);
+    }
+  }
+
   function renderDeckCards() {
     const list = sortBy(realDecks().filter(d => !isStale(d)), { k: "name", dir: 1 });
     $("cardSheet").innerHTML = list.map(deckCardHtml).join("") || `<div class="muted">No decks yet.</div>`;
     // load every card's art up front, so printing never catches an image that hasn't loaded yet
     $("cardSheet").querySelectorAll("img").forEach(img => img.loading = "eager");
+    fitGameChangers();
+    document.fonts?.ready.then(fitGameChangers);   // re-fit once the web fonts have loaded
     $("cardSheet").querySelectorAll(".mcard").forEach(c => { c.classList.toggle("skip", skipPrint.has(c.dataset.id)); c.setAttribute("aria-pressed", !skipPrint.has(c.dataset.id)); });
     updatePrintCount();
   }
